@@ -1,23 +1,21 @@
-# Use the official Node.js 18 image
-FROM node:18-alpine
+FROM node:10 AS ui-build
+WORKDIR /
+COPY / ./
+RUN npm install && npm run build
 
-# Set the working directory to /app
-WORKDIR /app
 
-# Copy the package.json and package-lock.json files to the container
-COPY package*.json ./
+FROM nginx:alpine
 
-# Install the dependencies
-RUN npm install
+#!/bin/sh
 
-# Copy the rest of the application code to the container
-COPY . .
+COPY .nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Build the application
-RUN npm run build
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
 
-# Expose port 3000 for the application
-EXPOSE 3000
+# Copy from the stahg 1
+COPY --from=ui-build build/ /usr/share/nginx/html
 
-# Start the application
-CMD [ "npm", "start" ]
+EXPOSE 3000 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
