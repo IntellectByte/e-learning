@@ -1,4 +1,4 @@
-FROM node:10 AS ui-build
+FROM node:16 AS ui-build
 WORKDIR /
 COPY / ./
 RUN npm install && npm run build
@@ -14,7 +14,7 @@ COPY .nginx/nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy from the stahg 1
-COPY --from=ui-build build/ /usr/share/nginx/html
+COPY --from=ui-build .next/ /usr/share/nginx/html
 
 EXPOSE 3000 80
 
