@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
 const nextConfig = {
+	output: 'standalone',
 	reactStrictMode: true,
 	swcMinify: true,
 	trailingSlash: true,
 	sassOptions: {
 		includePaths: [path.join(__dirname, "styles")],
+	},
+	watchOptions: {
+		poll: 1000,
+		aggregateTimeout: 300,
 	},
 	optimizeFonts: false,
 	eslint: {
