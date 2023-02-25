@@ -12,4 +12,5 @@ services:
       - /usr/src/app/node_modules
       - /usr/src/app/.next
     env_file:
-      - ./packages/elearning/.env
+      - ./packages/elearning:/usr/src/app/.env
+
