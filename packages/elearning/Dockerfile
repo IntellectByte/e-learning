@@ -1,15 +1,20 @@
-FROM node:14 AS dependencies
+FROM node:12 AS builder
+
+ENV PORT 3000
+
+# Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
+# Installing dependencies
 COPY package*.json /usr/src/app/
 RUN npm install
 
-FROM node:14 AS builder
-WORKDIR /usr/src/app
+# Copying source files
 COPY . /usr/src/app
-RUN npm run build
 
-ENV PORT 3000
+# Building app
+RUN npm run build
 EXPOSE 3000
 
 # Running the app
