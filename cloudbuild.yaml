@@ -2,6 +2,12 @@
 steps:
 - name: 'docker/compose:1.19.0'
   args: ['up', '-d']
+  env:
+  - 'RAILS_ENV=staging'
+  - 'SECRET_KEY_BASE=abc'
+  - 'ASSETS_PROVIDER=Google'
+  - 'GOOGLE_STORAGE_ACCESS_KEY=MY'
+  - 'GOOGLE_STORAGE_SECRET_KEY=KEY'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['tag', 'workspace_app:latest', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
 images: ['$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA']
