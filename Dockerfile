@@ -1,21 +1,19 @@
-FROM node:16 AS ui-build
+# build environment
+FROM node:14-alpine AS elearning-build
 WORKDIR /
-COPY / ./
+COPY . ./
 RUN npm install && npm run build
 
-
+#server environment
 FROM nginx:alpine
-
-#!/bin/sh
-
-COPY .nginx/nginx.conf /etc/nginx/nginx.conf
-
-## Remove default nginx index page
+COPY .nginx/nginx.conf /etc/nginx/conf.d/configfile.template
+ENV PORT 8080
+ENV HOST 0.0.0.0
+RUN sh -c "envsubst '\$PORT'  < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf"
+COPY --from=elearning-build .next/ /usr/share/nginx/html
 RUN rm -rf /usr/share/nginx/html/*
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
 
-# Copy from the stahg 1
-COPY --from=ui-build .next/ /usr/share/nginx/html
-
-EXPOSE 3000 80
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+#COPY --from=elearning-build .next/ /usr/share/nginx/html
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]
