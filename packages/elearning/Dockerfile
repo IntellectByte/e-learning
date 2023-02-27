@@ -1,16 +1,16 @@
-FROM node:14-alpine
+FROM node:16-alpine AS builder
 
-ENV PORT 3000
+WORKDIR /app
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+COPY package.json* ./
 
-COPY package*.json /usr/src/app/
 RUN npm install
 
-COPY . /usr/src/app
+COPY . .
 
 RUN npm run build
+
 EXPOSE 3000
 
-CMD "npm" "run" "dev"
+# CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
