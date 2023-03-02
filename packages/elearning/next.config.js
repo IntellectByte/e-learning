@@ -3,6 +3,7 @@ const path = require("path");
 const nextConfig = {
 	output: 'standalone',
 	reactStrictMode: true,
+	trailingSlash: true,
 	swcMinify: true,
 	trailingSlash: true,
 	sassOptions: {

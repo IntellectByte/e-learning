@@ -6,18 +6,17 @@ import Link from "@/utils/ActiveLink";
 import ProfileDropdown from "./ProfileDropdown";
 import Cart from "./Cart";
 import SearchForm from "./SearchForm";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
+import LanguageSelector from "../../components/_App/LanguageSelector";
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, language, changeLanguage }) => {
 	const { t } = useTranslation();
+
 	const [menu, setMenu] = React.useState(true);
-	
-
-
 	const toggleNavbar = () => {
 		setMenu(!menu);
 	};
@@ -46,6 +45,7 @@ const Navbar = ({ user }) => {
 				<div className="edemy-nav">
 					<div className="container-fluid">
 						<div className="navbar navbar-expand-lg navbar-light">
+							<LanguageSelector language={language} changeLanguage={changeLanguage} />
 							<Link href="/">
 								<a
 									onClick={toggleNavbar}
@@ -85,7 +85,7 @@ const Navbar = ({ user }) => {
 												onClick={toggleNavbar}
 												className="nav-link"
 											>
-												{t("navHome")}
+												{t("navHome", { defaultValue: "Començar" })}
 											</a>
 										</Link>
 									</motion.li>
@@ -106,7 +106,7 @@ const Navbar = ({ user }) => {
 												onClick={toggleNavbar}
 												className="nav-link"
 											>
-												Courses
+												{t("navCourses", { defaultValue: "Cursos" })}
 											</a>
 										</Link>
 									</motion.li>
@@ -131,7 +131,7 @@ const Navbar = ({ user }) => {
 														onClick={toggleNavbar}
 														className="nav-link"
 													>
-														Become An Instructor
+														{t("navInstructor", { defaultValue: "Instrutor" })}
 													</a>
 												</Link>
 											</motion.li>
@@ -153,7 +153,7 @@ const Navbar = ({ user }) => {
 													onClick={toggleNavbar}
 													className="nav-link"
 												>
-													Become An Instructor
+													{t("navInstructor", { defaultValue: "Instrutor" })}
 												</a>
 											</Link>
 										</motion.li>
@@ -171,7 +171,7 @@ const Navbar = ({ user }) => {
 										<Link href="/authentication">
 											<a className="default-btn">
 												<i className="flaticon-user"></i>{" "}
-												Login/Register <span></span>
+												{t("navLogin/Register", { defaultValue: "Login/Register" })}<span></span>
 											</a>
 										</Link>
 									)}

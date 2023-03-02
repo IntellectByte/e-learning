@@ -1,21 +1,43 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import Backend from "i18next-http-backend";
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
 
 i18n
-  .use(Backend)
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "pt",
+    fallbackLng: 'pt',
     debug: true,
     interpolation: {
       escapeValue: false,
     },
-    backend: {
-      loadPath: "../locales/{{lng}}.json",
+    resources: {
+      pt: {
+        translation: {
+          "navHome": "Començar",
+          "navCourses": "Cursos",
+          "navLogin/Register": "Entre/Cadastre-se",
+          "navInstructor": "Instrutor"
+      },
+      },
+      en: {
+        translation: {
+          "navHome": "Home",
+          "navCourses": "Courses",
+          "navLogin/Register": "Login/Register",
+          "navInstructor": "Instructor"
+      },
+      },
+      es: {
+        translation: {
+          "navHome": "Inicio",
+          "navCourses": "Cursos",
+          "navLogin/Register": "Entra/Registrate",
+          "navInstructor": "Instructor"
+      },
+      },
     },
   });
 
 export default i18n;
+
+

@@ -1,4 +1,5 @@
-import React from "react";
+import i18n from "../i18n";
+import React, { useState } from "react";
 import { Provider } from "react-redux";
 import { useStore } from "../store";
 import { parseCookies, destroyCookie } from "nookies";
@@ -23,19 +24,22 @@ import "../styles/responsive.css";
 
 // Dashboard
 import "../styles/dashboard.css";
-
 import Layout from "../components/_App/Layout";
-import i18n from "../i18n";
-import { I18nextProvider } from "react-i18next";
+
 
 function MyApp({ Component, pageProps }) {
+  const [language, setLanguage] = useState('en');
+
+  function changeLanguage(lng) {
+    i18n.changeLanguage(lng);
+    setLanguage(lng);
+  }
+
   const store = useStore(pageProps.initialReduxState);
   return (
     <Provider store={store}>
-      <Layout>
-        <I18nextProvider i18n={i18n}>
-          <Component {...pageProps} />
-        </I18nextProvider>
+      <Layout language={language} changeLanguage={changeLanguage}>
+        <Component {...pageProps} />
       </Layout>
     </Provider>
   );
@@ -100,3 +104,4 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 };
 
 export default MyApp;
+
