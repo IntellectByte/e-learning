@@ -7546,3 +7546,7 @@ Go Top CSS
         min-width: 196px;
     }
 }
+
+.carousel-settings {
+    height: 80%;
+}
