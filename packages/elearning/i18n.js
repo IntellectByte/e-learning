@@ -1,43 +1,27 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'pt',
+    resources: {
+      pt: {
+        translation: require("../../locales/pt"),
+      },
+      es: {
+        translation: require("../../locales/es.json"),
+      },
+      en: {
+        translation: require("../../locales/en.json"),
+      },
+    },
+    fallbackLng: "en", // si no se encuentra el idioma del navegador, utilizará portugués como idioma por defecto
     debug: true,
     interpolation: {
       escapeValue: false,
     },
-    resources: {
-      pt: {
-        translation: {
-          "navHome": "Començar",
-          "navCourses": "Cursos",
-          "navLogin/Register": "Entre/Cadastre-se",
-          "navInstructor": "Instrutor"
-      },
-      },
-      en: {
-        translation: {
-          "navHome": "Home",
-          "navCourses": "Courses",
-          "navLogin/Register": "Login/Register",
-          "navInstructor": "Instructor"
-      },
-      },
-      es: {
-        translation: {
-          "navHome": "Inicio",
-          "navCourses": "Cursos",
-          "navLogin/Register": "Entra/Registrate",
-          "navInstructor": "Instructor"
-      },
-      },
-    },
   });
 
 export default i18n;
-
-

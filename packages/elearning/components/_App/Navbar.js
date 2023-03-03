@@ -1,36 +1,42 @@
-import React from "react";
-import Router from "next/router";
-import NProgress from "nprogress";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "@/utils/ActiveLink";
 import ProfileDropdown from "./ProfileDropdown";
 import Cart from "./Cart";
 import SearchForm from "./SearchForm";
 import { useTranslation } from "next-i18next";
-import LanguageSelector from "../../components/_App/LanguageSelector";
 
-Router.onRouteChangeStart = () => NProgress.start();
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
-
-const Navbar = ({ user, language, changeLanguage }) => {
+const Navbar = ({ user }) => {
 	const { t } = useTranslation();
-
 	const [menu, setMenu] = React.useState(true);
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+
 	const toggleNavbar = () => {
 		setMenu(!menu);
 	};
 
+
+	const navbarRef = useRef(null);
+
 	React.useEffect(() => {
-		let elementId = document.getElementById("navbar");
-		document.addEventListener("scroll", () => {
+		const handleScroll = () => {
 			if (window.scrollY > 170) {
-				elementId.classList.add("is-sticky");
+				navbarRef.current.classList.add("is-sticky");
 			} else {
-				elementId.classList.remove("is-sticky");
+				navbarRef.current.classList.remove("is-sticky");
 			}
-		});
-	});
+		};
+		document.addEventListener("scroll", handleScroll);
+
+		return () => {
+			document.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	const classOne = menu
 		? "collapse navbar-collapse"
@@ -39,150 +45,157 @@ const Navbar = ({ user, language, changeLanguage }) => {
 		? "navbar-toggler navbar-toggler-right collapsed"
 		: "navbar-toggler navbar-toggler-right";
 
+
 	return (
 		<>
-			<div id="navbar" className="navbar-area">
-				<div className="edemy-nav">
-					<div className="container-fluid">
-						<div className="navbar navbar-expand-lg navbar-light">
-							<LanguageSelector language={language} changeLanguage={changeLanguage} />
-							<Link href="/">
-								<a
-									onClick={toggleNavbar}
-									className="navbar-brand"
-								>
-									<img src="/images/logo.png" alt="logo" />
-								</a>
-							</Link>
-
-							<button
-								onClick={toggleNavbar}
-								className={classTwo}
-								type="button"
-							>
-								<span className="icon-bar top-bar"></span>
-								<span className="icon-bar middle-bar"></span>
-								<span className="icon-bar bottom-bar"></span>
-							</button>
-
-							<div
-								className={classOne}
-								id="navbarSupportedContent"
-							>
-								<SearchForm />
-
-								<ul className="navbar-nav">
-									<motion.li
-										className="nav-item"
-										whileHover={{
-											scale: 1.1,
-											transition: { duration: 0.5 },
-										}}
-										whileTap={{ scale: 0.9 }}
-									>
-										<Link href="/" activeClassName="active">
-											<a
-												onClick={toggleNavbar}
-												className="nav-link"
-											>
-												{t("navHome", { defaultValue: "Començar" })}
-											</a>
-										</Link>
-									</motion.li>
-
-									<motion.li
-										className="nav-item"
-										whileHover={{
-											scale: 1.1,
-											transition: { duration: 0.5 },
-										}}
-										whileTap={{ scale: 0.9 }}
-									>
-										<Link
-											href="/courses"
-											activeClassName="active"
+			{isMounted && (
+				<>
+					<div id="navbar" className="navbar-area" ref={navbarRef}>
+						<div className="edemy-nav">
+							<div className="container-fluid">
+								<div className="navbar navbar-expand-lg navbar-light">
+									<Link href="/">
+										<a
+											onClick={toggleNavbar}
+											className="navbar-brand"
 										>
-											<a
-												onClick={toggleNavbar}
-												className="nav-link"
-											>
-												{t("navCourses", { defaultValue: "Cursos" })}
-											</a>
-										</Link>
-									</motion.li>
+											<img src="/images/logo.png" alt="logo" />
+										</a>
+									</Link>
 
-									{user ? (
-										!user.instructor_request && (
+									<button
+										onClick={toggleNavbar}
+										className={classTwo}
+										type="button"
+									>
+										<span className="icon-bar top-bar"></span>
+										<span className="icon-bar middle-bar"></span>
+										<span className="icon-bar bottom-bar"></span>
+									</button>
+
+									<div
+										className={classOne}
+										id="navbarSupportedContent"
+									>
+										<SearchForm />
+
+										<ul className="navbar-nav">
 											<motion.li
 												className="nav-item"
 												whileHover={{
 													scale: 1.1,
-													transition: {
-														duration: 0.5,
-													},
+													transition: { duration: 0.5 },
+												}}
+												whileTap={{ scale: 0.9 }}
+											>
+												<Link href="/" activeClassName="active">
+													<a
+														onClick={toggleNavbar}
+														className="nav-link"
+													>
+														{t("navHome", { defaultValue: "Home" })}
+													</a>
+												</Link>
+											</motion.li>
+
+											<motion.li
+												className="nav-item"
+												whileHover={{
+													scale: 1.1,
+													transition: { duration: 0.5 },
 												}}
 												whileTap={{ scale: 0.9 }}
 											>
 												<Link
-													href="/become-an-instructor"
+													href="/courses"
 													activeClassName="active"
 												>
 													<a
 														onClick={toggleNavbar}
 														className="nav-link"
 													>
-														{t("navInstructor", { defaultValue: "Instrutor" })}
+														{t("navCourses", { defaultValue: "Courses" })}
+
 													</a>
 												</Link>
 											</motion.li>
-										)
-									) : (
-										<motion.li
-											className="nav-item"
-											whileHover={{
-												scale: 1.1,
-												transition: { duration: 0.5 },
-											}}
-											whileTap={{ scale: 0.9 }}
-										>
-											<Link
-												href="/become-an-instructor"
-												activeClassName="active"
-											>
-												<a
-													onClick={toggleNavbar}
-													className="nav-link"
+
+											{user ? (
+												!user.instructor_request && (
+													<motion.li
+														className="nav-item"
+														whileHover={{
+															scale: 1.1,
+															transition: {
+																duration: 0.5,
+															},
+														}}
+														whileTap={{ scale: 0.9 }}
+													>
+														<Link
+															href="/become-an-instructor"
+															activeClassName="active"
+														>
+															<a
+																onClick={toggleNavbar}
+																className="nav-link"
+															>
+																{t("navInstructors", { defaultValue: "Instrutor" })}
+															</a>
+														</Link>
+													</motion.li>
+												)
+											) : (
+												<motion.li
+													className="nav-item"
+													whileHover={{
+														scale: 1.1,
+														transition: { duration: 0.5 },
+													}}
+													whileTap={{ scale: 0.9 }}
 												>
-													{t("navInstructor", { defaultValue: "Instrutor" })}
-												</a>
-											</Link>
-										</motion.li>
-									)}
-								</ul>
-							</div>
+													<Link
+														href="/become-an-instructor"
+														activeClassName="active"
+													>
+														<a
+															onClick={toggleNavbar}
+															className="nav-link"
+														>
+															{t("navInstructors", { defaultValue: "Instrutor" })}
+														</a>
+													</Link>
+												</motion.li>
+											)}
+										</ul>
+									</div>
 
-							<div className="others-option d-flex align-items-center">
-								<Cart />
+									<div className="others-option d-flex align-items-center">
+										<Cart />
 
-								<div className="option-item">
-									{user ? (
-										<ProfileDropdown {...user} />
-									) : (
-										<Link href="/authentication">
-											<a className="default-btn">
-												<i className="flaticon-user"></i>{" "}
-												{t("navLogin/Register", { defaultValue: "Login/Register" })}<span></span>
-											</a>
-										</Link>
-									)}
+										<div className="option-item">
+											{user ? (
+												<ProfileDropdown {...user} />
+											) : (
+												<Link href="/authentication">
+													<a className="default-btn">
+														<i className="flaticon-user"></i>{" "}
+														{t("navLoginRegister", { defaultValue: "Login/Register" })} <span></span>
+													</a>
+												</Link>
+											)}
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				</>
+			)}
 		</>
 	);
 };
+
+
 
 export default Navbar;

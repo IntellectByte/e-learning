@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+
 
 const SearchForm = () => {
 	const [search, setSearch] = useState("");
 	const router = useRouter();
+	const { t } = useTranslation();
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
@@ -14,11 +22,14 @@ const SearchForm = () => {
 		});
 	};
 	return (
-		<form className="search-box" onSubmit={handleSearch}>
+		<>
+			{isMounted && (
+				<>
+					<form className="search-box" onSubmit={handleSearch}>
 			<input
 				type="text"
 				className="input-search"
-				placeholder="Search Courses"
+				placeholder={t("searchCourses", { defaultValue: "Search Courses" })}
 				name="search"
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
@@ -27,6 +38,9 @@ const SearchForm = () => {
 				<i className="flaticon-search"></i>
 			</button>
 		</form>
+				</>
+			)}
+		</>
 	);
 };
 
