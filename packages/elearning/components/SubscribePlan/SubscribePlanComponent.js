@@ -37,7 +37,7 @@ const SubscribePlanComponent = () => {
                                     explicabo.
                                 </p>
 
-                                <Link href='/learning/sub-form/'>
+                                <Link href='/learning/payment/'>
                                     <a className='default-btn'>
                                         <i className='flaticon-user'></i>{' '}
                                         Subscribe Today <span></span>

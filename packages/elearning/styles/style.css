@@ -7550,3 +7550,40 @@ Go Top CSS
 .carousel-settings {
     height: 80%;
 }
+
+.btn-payment {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.button-payment {
+    background-color: #ea4c89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 700;
+    height: 60px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-payment:hover,
+.button-payment:focus {
+    background-color: #f082ac;
+}

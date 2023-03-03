@@ -33,8 +33,8 @@ const GetInstantCourses = ({ user }) => {
                                         <Link href='/authentication'>
                                             <a className='default-btn'>
                                                 <i className='flaticon-user'></i>{' '}
-                                                Subscribe To Our Monthly Plan{' '}
-                                                <span></span>
+                                                Register to see our monthly
+                                                plans <span></span>
                                             </a>
                                         </Link>
                                     )}
