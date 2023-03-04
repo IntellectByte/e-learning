@@ -55,7 +55,8 @@
     "swiper": "^8.3.2",
     "uuid": "^8.3.2",
     "uuid-validate": "^0.0.3",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
