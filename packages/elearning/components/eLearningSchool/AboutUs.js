@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import CarouselImages from '../CarouselImages/CarouselImages';
 
 const AboutUs = () => {
     return (
@@ -9,11 +10,12 @@ const AboutUs = () => {
                     <div className='row align-items-center'>
                         <div className='col-lg-6 col-md-12'>
                             <div className='about-image'>
-                                <img
+                                {/* <img
                                     src='/images/maestro-sorvete.png'
                                     alt='About'
                                     className='maestro-sorvete'
-                                />
+                                /> */}
+                                <CarouselImages />
                             </div>
                         </div>
 

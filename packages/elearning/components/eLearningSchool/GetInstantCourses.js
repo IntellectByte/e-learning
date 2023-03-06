@@ -22,17 +22,19 @@ const GetInstantCourses = ({ user }) => {
                                     </p>
 
                                     {user ? (
-                                        <Link href='/learning/my-courses/'>
+                                        <Link href='/learning/sub-form/'>
                                             <a className='default-btn'>
                                                 <i className='flaticon-user'></i>{' '}
-                                                Meus Cursos <span></span>
+                                                Subscribe To Our Monthly Plan{' '}
+                                                <span></span>
                                             </a>
                                         </Link>
                                     ) : (
                                         <Link href='/authentication'>
                                             <a className='default-btn'>
                                                 <i className='flaticon-user'></i>{' '}
-                                                Comece Agora <span></span>
+                                                Subscribe To Our Monthly Plan{' '}
+                                                <span></span>
                                             </a>
                                         </Link>
                                     )}
