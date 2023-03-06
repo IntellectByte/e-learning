@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <Layout>
         <I18nextProvider i18n={i18n}>
-          <Component {...pageProps} />
+          <Component {...pageProps} suppressHydrationWarning={true}/>
         </I18nextProvider>
       </Layout>
     </Provider>

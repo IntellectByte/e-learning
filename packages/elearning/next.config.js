@@ -2,6 +2,7 @@
 const path = require("path");
 const nextConfig = {
 	reactStrictMode: true,
+	trailingSlash: true,
 	swcMinify: true,
 	trailingSlash: true,
 	sassOptions: {
@@ -24,5 +25,12 @@ const nextConfig = {
 		STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
 	}
 };
+
+module.exports = {
+	i18n: {
+		locales: ['en', 'es', 'pt'],
+		defaultLocale: 'en'
+	}
+}
 
 module.exports = nextConfig;
