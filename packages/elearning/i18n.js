@@ -8,13 +8,13 @@ i18n
   .init({
     resources: {
       pt: {
-        translation: require("../../locales/pt"),
+        translation: require("./locales/pt.json"),
       },
       es: {
-        translation: require("../../locales/es.json"),
+        translation: require("./locales/es.json"),
       },
       en: {
-        translation: require("../../locales/en.json"),
+        translation: require("./locales/en.json"),
       },
     },
     fallbackLng: "en", // si no se encuentra el idioma del navegador, utilizará portugués como idioma por defecto

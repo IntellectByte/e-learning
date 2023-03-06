@@ -49,7 +49,7 @@ const Navbar = ({ user }) => {
 	return (
 		<>
 			{isMounted && (
-				<>
+				
 					<div id="navbar" className="navbar-area" ref={navbarRef}>
 						<div className="edemy-nav">
 							<div className="container-fluid">
@@ -190,7 +190,6 @@ const Navbar = ({ user }) => {
 							</div>
 						</div>
 					</div>
-				</>
 			)}
 		</>
 	);
