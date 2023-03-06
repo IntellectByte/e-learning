@@ -1,16 +1,2 @@
-# Next.js
-.next/
-out/
-node_modules/
-/.pnp
-.pnp.js
-
-# Environment variables
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Dependency directories
-node_modules/
-jspm_packages/
+node_modules
+.next
