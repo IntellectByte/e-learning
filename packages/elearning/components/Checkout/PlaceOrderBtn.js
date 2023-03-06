@@ -20,8 +20,8 @@ const PlaceOrderBtn = ({user, cartItems}) => {
     const router = useRouter();
 
     const checkPaymentStatus = async () => {
-        // const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=${paymentId}`;
-        const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=pb2btpq`;
+        const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=${paymentId}`;
+        // const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=pb2btpq`;
         const statusResponse = await axios.get(statusUrl)
         setPaymentStatus({
                 status: paymentStatus.status = statusResponse.data.status === 'CREATED' ?
@@ -29,8 +29,8 @@ const PlaceOrderBtn = ({user, cartItems}) => {
                     statusResponse.data.status
             }
         )
-        console.log(statusResponse.data.status)
-        console.log(paymentStatus)
+        // console.log(statusResponse.data.status)
+        // console.log(paymentStatus)
     }
 
 
@@ -98,7 +98,9 @@ const PlaceOrderBtn = ({user, cartItems}) => {
             // Payment has been approved, redirect to success page
 
 
-            handlePersistCourse().then(r => console.log(r))
+            handlePersistCourse().then(r => {
+                // console.log(r)
+            })
 
         } else {
             // Payment has been canceled or disapproved, redirect to failure page
