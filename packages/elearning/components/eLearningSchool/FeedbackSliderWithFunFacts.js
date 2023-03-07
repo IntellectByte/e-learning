@@ -35,7 +35,7 @@ const FeedbackSliderWithFunFacts = () => {
                                     na sua vida e na sua carreira
                                 </p>
 
-                                <Swiper
+                               {/*  <Swiper
                                     pagination={{
                                         dynamicBullets: true,
                                         clickable: true,
@@ -71,7 +71,7 @@ const FeedbackSliderWithFunFacts = () => {
                                                 </div>
                                             </SwiperSlide>
                                         ))}
-                                </Swiper>
+                                </Swiper> */}
                             </div>
                         </div>
 

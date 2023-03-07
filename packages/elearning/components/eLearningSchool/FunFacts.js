@@ -33,14 +33,14 @@ const FunFacts = () => {
 
                     <div className='col-lg-6 col-md-6 col-sm-6'>
                         <div className='single-funfacts-box'>
-                            <h3>50+</h3>
+                            <h3>350+</h3>
                             <p>Horas de Conteúdos</p>
                         </div>
                     </div>
 
                     <div className='col-lg-6 col-md-6 col-sm-6'>
                         <div className='single-funfacts-box'>
-                            <h3>10</h3>
+                            <h3>40</h3>
                             <p>cursos e consultorias em 10+ países</p>
                         </div>
                     </div>
