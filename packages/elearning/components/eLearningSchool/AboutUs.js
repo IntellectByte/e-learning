@@ -22,13 +22,14 @@ const AboutUs = () => {
                         <div className='col-lg-6 col-md-12'>
                             <div className='about-content'>
                                 <span className='sub-title'>
-                                    Aprendizado online
+                                    Aprendiçado online
                                 </span>
                                 <h2>
                                     Aprender de onde estiver sobre todos os
                                     tipos de sorvete e se quiser mais, você
                                     ganha uma aula prática presencial!
                                     {/* HACER CALL TO ACTION, SPAN, A, DARLE ESTILO & MANDARLOS A SUB PAGE */}
+                                    <br />
                                     Confira nossos planos
                                 </h2>
                                 <p>
@@ -39,7 +40,7 @@ const AboutUs = () => {
                                     dessa revolução?
                                 </p>
 
-                                <ul className='features-list'>
+                               {/*  <ul className='features-list'>
                                     <li>
                                         <span>
                                             <i className='flaticon-experience'></i>{' '}
@@ -64,7 +65,7 @@ const AboutUs = () => {
                                             Self Development
                                         </span>
                                     </li>
-                                </ul>
+                                </ul> */}
 
                                 <Link href='/courses'>
                                     <a className='default-btn'>

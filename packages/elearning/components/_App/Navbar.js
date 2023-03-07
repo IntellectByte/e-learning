@@ -141,20 +141,6 @@ const Navbar = ({ user }) => {
                                             }}
                                             whileTap={{ scale: 0.9 }}
                                         >
-                                            <Link
-                                                href='/about-us'
-                                                activeClassName='active'
-                                            >
-                                                <a
-                                                    onClick={toggleNavbar}
-                                                    className='nav-link'
-                                                >
-                                                    {t('navInstructors', {
-                                                        defaultValue:
-                                                            'Instrutor',
-                                                    })}
-                                                </a>
-                                            </Link>
                                         </motion.li>
 
                                         {/* NUESTRA HISTORIA */}
