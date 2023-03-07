@@ -83,23 +83,23 @@ const Footer = () => {
                                     </li>
                                     <li>
                                         <Link href='/about-us'>
-                                            <a>Cursos</a>
+                                            <a>About Us</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href='/courses'>
-                                            <a>Francisco</a>
+                                            <a>Courses</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href='/contact-us'>
-                                            <a>Na Mídia</a>
+                                            <a>Contact Us</a>
                                         </Link>
                                     </li>
                                     <li>
-                                       {/*  <Link href='/faq'>
+                                        <Link href='/faq'>
                                             <a>FAQ</a>
-                                        </Link> */}
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
