@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { motion } from 'framer-motion';
@@ -6,7 +6,7 @@ import Link from '@/utils/ActiveLink';
 import ProfileDropdown from './ProfileDropdown';
 import Cart from './Cart';
 import SearchForm from './SearchForm';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
@@ -15,21 +15,32 @@ Router.onRouteChangeError = () => NProgress.done();
 const Navbar = ({ user }) => {
     const { t } = useTranslation();
     const [menu, setMenu] = React.useState(true);
+    const [isMounted, setIsMounted] = React.useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const toggleNavbar = () => {
         setMenu(!menu);
     };
 
+    const navbarRef = useRef(null);
+
     React.useEffect(() => {
-        let elementId = document.getElementById('navbar');
-        document.addEventListener('scroll', () => {
+        const handleScroll = () => {
             if (window.scrollY > 170) {
-                elementId.classList.add('is-sticky');
+                navbarRef.current.classList.add('is-sticky');
             } else {
-                elementId.classList.remove('is-sticky');
+                navbarRef.current.classList.remove('is-sticky');
             }
-        });
-    });
+        };
+        document.addEventListener('scroll', handleScroll);
+
+        return () => {
+            document.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const classOne = menu
         ? 'collapse navbar-collapse'
@@ -40,125 +51,165 @@ const Navbar = ({ user }) => {
 
     return (
         <>
-            <div id='navbar' className='navbar-area'>
-                <div className='edemy-nav'>
-                    <div className='container-fluid'>
-                        <div className='navbar navbar-expand-lg navbar-light'>
-                            <Link href='/'>
-                                <a
+            {isMounted && (
+                <div id='navbar' className='navbar-area' ref={navbarRef}>
+                    <div className='edemy-nav'>
+                        <div className='container-fluid'>
+                            <div className='navbar navbar-expand-lg navbar-light'>
+                                <Link href='/'>
+                                    <a
+                                        onClick={toggleNavbar}
+                                        className='navbar-brand'
+                                    >
+                                        <img
+                                            src='/logo07.png'
+                                            alt='logo'
+                                            className='navbar-logo'
+                                        />
+                                    </a>
+                                </Link>
+
+                                <button
                                     onClick={toggleNavbar}
-                                    className='navbar-brand'
+                                    className={classTwo}
+                                    type='button'
                                 >
-                                    <img
-                                        src='/logo07.png'
-                                        alt='logo'
-                                        className='navbar-logo'
-                                    />
-                                </a>
-                            </Link>
+                                    <span className='icon-bar top-bar'></span>
+                                    <span className='icon-bar middle-bar'></span>
+                                    <span className='icon-bar bottom-bar'></span>
+                                </button>
 
-                            <button
-                                onClick={toggleNavbar}
-                                className={classTwo}
-                                type='button'
-                            >
-                                <span className='icon-bar top-bar'></span>
-                                <span className='icon-bar middle-bar'></span>
-                                <span className='icon-bar bottom-bar'></span>
-                            </button>
+                                <div
+                                    className={classOne}
+                                    id='navbarSupportedContent'
+                                >
+                                    <SearchForm />
 
-                            <div
-                                className={classOne}
-                                id='navbarSupportedContent'
-                            >
-                                <SearchForm />
-
-                                <ul className='navbar-nav'>
-                                    <motion.li
-                                        className='nav-item'
-                                        whileHover={{
-                                            scale: 1.1,
-                                            transition: { duration: 0.5 },
-                                        }}
-                                        whileTap={{ scale: 0.9 }}
-                                    >
-                                        <Link href='/' activeClassName='active'>
-                                            <a
-                                                onClick={toggleNavbar}
-                                                className='nav-link'
-                                            >
-                                                {t('navHome')}
-                                            </a>
-                                        </Link>
-                                    </motion.li>
-
-                                    <motion.li
-                                        className='nav-item'
-                                        whileHover={{
-                                            scale: 1.1,
-                                            transition: { duration: 0.5 },
-                                        }}
-                                        whileTap={{ scale: 0.9 }}
-                                    >
-                                        <Link
-                                            href='/courses'
-                                            activeClassName='active'
+                                    <ul className='navbar-nav'>
+                                        <motion.li
+                                            className='nav-item'
+                                            whileHover={{
+                                                scale: 1.1,
+                                                transition: { duration: 0.5 },
+                                            }}
+                                            whileTap={{ scale: 0.9 }}
                                         >
-                                            <a
-                                                onClick={toggleNavbar}
-                                                className='nav-link'
+                                            <Link
+                                                href='/'
+                                                activeClassName='active'
                                             >
-                                                Cursos
-                                            </a>
-                                        </Link>
-                                    </motion.li>
+                                                <a
+                                                    onClick={toggleNavbar}
+                                                    className='nav-link'
+                                                >
+                                                    {t('navHome', {
+                                                        defaultValue: 'Home',
+                                                    })}
+                                                </a>
+                                            </Link>
+                                        </motion.li>
 
-                                    {/* NUESTRA HISTORIA */}
-                                    <motion.li
-                                        className='nav-item'
-                                        whileHover={{
-                                            scale: 1.1,
-                                            transition: { duration: 0.5 },
-                                        }}
-                                        whileTap={{ scale: 0.9 }}
-                                    >
-                                        <Link
-                                            href='/about-us'
-                                            activeClassName='active'
+                                        <motion.li
+                                            className='nav-item'
+                                            whileHover={{
+                                                scale: 1.1,
+                                                transition: { duration: 0.5 },
+                                            }}
+                                            whileTap={{ scale: 0.9 }}
                                         >
-                                            <a
-                                                onClick={toggleNavbar}
-                                                className='nav-link'
+                                            <Link
+                                                href='/courses'
+                                                activeClassName='active'
                                             >
-                                                Nossa História
-                                            </a>
-                                        </Link>
-                                    </motion.li>
+                                                <a
+                                                    onClick={toggleNavbar}
+                                                    className='nav-link'
+                                                >
+                                                    {t('navCourses', {
+                                                        defaultValue: 'Courses',
+                                                    })}
+                                                </a>
+                                            </Link>
+                                        </motion.li>
 
-                                    {/* NUESTRA HISTORIA */}
-                                    <motion.li
-                                        className='nav-item'
-                                        whileHover={{
-                                            scale: 1.1,
-                                            transition: { duration: 0.5 },
-                                        }}
-                                        whileTap={{ scale: 0.9 }}
-                                    >
-                                        <Link
-                                            href='/francisco'
-                                            activeClassName='active'
+                                        {/* NUESTRA HISTORIA */}
+                                        <motion.li
+                                            className='nav-item'
+                                            whileHover={{
+                                                scale: 1.1,
+                                                transition: { duration: 0.5 },
+                                            }}
+                                            whileTap={{ scale: 0.9 }}
                                         >
-                                            <a
-                                                onClick={toggleNavbar}
-                                                className='nav-link'
+                                            <Link
+                                                href='/about-us'
+                                                activeClassName='active'
                                             >
-                                                Francisco Santana
-                                            </a>
-                                        </Link>
-                                    </motion.li>
+                                                <a
+                                                    onClick={toggleNavbar}
+                                                    className='nav-link'
+                                                >
+                                                    {t('navInstructors', {
+                                                        defaultValue:
+                                                            'Instrutor',
+                                                    })}
+                                                </a>
+                                            </Link>
+                                        </motion.li>
 
-                                    {user ? (
-                                        !user.instructor_request && (
+                                        {/* NUESTRA HISTORIA */}
+                                        <motion.li
+                                            className='nav-item'
+                                            whileHover={{
+                                                scale: 1.1,
+                                                transition: { duration: 0.5 },
+                                            }}
+                                            whileTap={{ scale: 0.9 }}
+                                        >
+                                            <Link
+                                                href='/francisco'
+                                                activeClassName='active'
+                                            >
+                                                <a
+                                                    onClick={toggleNavbar}
+                                                    className='nav-link'
+                                                >
+                                                    {t('navTeacher', {
+                                                        defaultValue:
+                                                            'Francisco',
+                                                    })}
+                                                </a>
+                                            </Link>
+                                        </motion.li>
+
+                                        {user ? (
+                                            !user.instructor_request && (
+                                                <motion.li
+                                                    className='nav-item'
+                                                    whileHover={{
+                                                        scale: 1.1,
+                                                        transition: {
+                                                            duration: 0.5,
+                                                        },
+                                                    }}
+                                                    whileTap={{ scale: 0.9 }}
+                                                >
+                                                    <Link
+                                                        href='/become-an-instructor'
+                                                        activeClassName='active'
+                                                    >
+                                                        <a
+                                                            onClick={
+                                                                toggleNavbar
+                                                            }
+                                                            className='nav-link'
+                                                        >
+                                                            Na Mídia
+                                                        </a>
+                                                    </Link>
+                                                </motion.li>
+                                            )
+                                        ) : (
                                             <motion.li
                                                 className='nav-item'
                                                 whileHover={{
@@ -177,56 +228,39 @@ const Navbar = ({ user }) => {
                                                         onClick={toggleNavbar}
                                                         className='nav-link'
                                                     >
-                                                        Na Mídia
+                                                        Na mídia
                                                     </a>
                                                 </Link>
                                             </motion.li>
-                                        )
-                                    ) : (
-                                        <motion.li
-                                            className='nav-item'
-                                            whileHover={{
-                                                scale: 1.1,
-                                                transition: { duration: 0.5 },
-                                            }}
-                                            whileTap={{ scale: 0.9 }}
-                                        >
-                                            <Link
-                                                href='/become-an-instructor'
-                                                activeClassName='active'
-                                            >
-                                                <a
-                                                    onClick={toggleNavbar}
-                                                    className='nav-link'
-                                                >
-                                                    Na mídia
+                                        )}
+                                    </ul>
+                                </div>
+
+                                <div className='others-option d-flex align-items-center '>
+                                    <Cart />
+
+                                    <div className='option-item'>
+                                        {user ? (
+                                            <ProfileDropdown {...user} />
+                                        ) : (
+                                            <Link href='/authentication'>
+                                                <a className='default-btn'>
+                                                    <i className='flaticon-user'></i>{' '}
+                                                    {t('navLoginRegister', {
+                                                        defaultValue:
+                                                            'Login/Register',
+                                                    })}
+                                                    <span></span>
                                                 </a>
                                             </Link>
-                                        </motion.li>
-                                    )}
-                                </ul>
-                            </div>
-
-                            <div className='others-option d-flex align-items-center '>
-                                <Cart />
-
-                                <div className='option-item'>
-                                    {user ? (
-                                        <ProfileDropdown {...user} />
-                                    ) : (
-                                        <Link href='/authentication'>
-                                            <a className='default-btn'>
-                                                <i className='flaticon-user'></i>{' '}
-                                                Login/Cadastrar <span></span>
-                                            </a>
-                                        </Link>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };
