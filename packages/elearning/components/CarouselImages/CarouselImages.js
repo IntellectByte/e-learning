@@ -10,7 +10,7 @@ const CarouselImages = () => {
                 <img src='/images/carousel/imgcarousel2.jpg' />
                 <img src='/images/carousel/imgcarousel3.jpg' />
                 <img src='/images/carousel/imgcarousel4.jpg' />
-                <img src='/images/carousel/imgcarousel5.jpg' />
+                <img src='/images/carousel/FRANCISCOSANTANA_GR-21.jpg' />
             </Carousel>
         </>
     );
