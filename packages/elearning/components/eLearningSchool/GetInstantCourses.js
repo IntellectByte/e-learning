@@ -15,14 +15,17 @@ const GetInstantCourses = ({ user }) => {
                                     </span>
                                     <h2>Aula Experimental</h2>
                                     <p>
-                                        Assista uma aula experimental totalmente gratuita con Francisco Sant'Ana para entender sobre a nossa metodologia. Assine um plano para continuar aprendendo mais
+                                        Assista uma aula experimental totalmente
+                                        gratuita para entender sobre a nossa
+                                        metodologia. Assine um plano para
+                                        continuar aprendendo mais
                                     </p>
 
                                     {user ? (
                                         <Link href='/learning/sub-form/'>
                                             <a className='default-btn'>
                                                 <i className='flaticon-user'></i>{' '}
-                                                Ganhe sua aula gratuita{' '}
+                                                Subscribe To Our Monthly Plan{' '}
                                                 <span></span>
                                             </a>
                                         </Link>
@@ -30,8 +33,7 @@ const GetInstantCourses = ({ user }) => {
                                         <Link href='/authentication'>
                                             <a className='default-btn'>
                                                 <i className='flaticon-user'></i>{' '}
-                                                Ganhe sua aula gratuita{' '}
-                                                {' '}
+                                                Subscribe To Our Monthly Plan{' '}
                                                 <span></span>
                                             </a>
                                         </Link>
