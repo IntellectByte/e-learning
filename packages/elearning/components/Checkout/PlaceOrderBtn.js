@@ -16,97 +16,11 @@ const PlaceOrderBtn = ({user, cartItems}) => {
         status: ''
     })
     const [paymentId, setPaymentId] = useState('')
+    const [paymentTime, setPaymentTime] = useState({
+        date: ''
+    })
     const dispatch = useDispatch();
     const router = useRouter();
-
-    const checkPaymentStatus = async () => {
-        const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=${paymentId}`;
-        // const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=pb2btpq`;
-        const statusResponse = await axios.get(statusUrl)
-        setPaymentStatus({
-                status: paymentStatus.status = statusResponse.data.status === 'CREATED' ?
-                    paymentStatus.status === 'CREATED' ? 'pending' : 'CREATED' :
-                    statusResponse.data.status
-            }
-        )
-        // console.log(statusResponse.data.status)
-        // console.log(paymentStatus)
-    }
-
-
-    const handlePersistCourse = async () => {
-        try {
-            const payload = {
-                cartItems,
-                userId: user.id,
-                buyer_name: user.first_name,
-                buyer_email: user.email,
-                buyer_avatar: user.profile_photo,
-            };
-            const url = `${baseUrl}/api/checkout`;
-            const response = await axios.post(url, payload);
-            toast.success(response.data.message, {
-                style: {
-                    border: "1px solid #4BB543",
-                    padding: "16px",
-                    color: "#4BB543",
-                },
-                iconTheme: {
-                    primary: "#4BB543",
-                    secondary: "#FFFAEE",
-                },
-            });
-            dispatch({
-                type: "RESET_CART",
-            });
-            setLoading(false);
-            router.push("/learning/my-courses");
-        } catch (err) {
-            // console.log(err.response);
-            let {
-                response: {
-                    data: { message },
-                },
-            } = err;
-            toast.error(message, {
-                style: {
-                    border: "1px solid #ff0033",
-                    padding: "16px",
-                    color: "#ff0033",
-                },
-                iconTheme: {
-                    primary: "#ff0033",
-                    secondary: "#FFFAEE",
-                },
-            });
-        }
-    };
-
-
-    useEffect(() => {
-        const {stripeTotal} = calculateCartTotal(cartItems);
-        setStripeAmount(stripeTotal);
-    }, [cartItems]);
-
-    useEffect(() => {
-        // Poll the API route every 5 seconds until payment status changes
-        if (!paymentStatus.status) return;
-        if (paymentStatus.status === "pending" || paymentStatus.status === 'CREATED') {
-            const intervalId = setTimeout(checkPaymentStatus, 4000);
-            return () => clearInterval(intervalId);
-        } else if (paymentStatus.status === "PAID") {
-            // Payment has been approved, redirect to success page
-
-
-            handlePersistCourse().then(r => {
-                // console.log(r)
-            })
-
-        } else {
-            // Payment has been canceled or disapproved, redirect to failure page
-            router.push("/failure");
-        }
-    }, [paymentStatus, setPaymentStatus]);
 
 
     const handleCancelOrder = async () => {
@@ -146,8 +60,113 @@ const PlaceOrderBtn = ({user, cartItems}) => {
                 },
             });
         }
-
     }
+
+
+    const checkPaymentStatus = async () => {
+        const thirtyMinAfter = new Date(paymentTime.date.getTime() + 30 * 60 * 1000)
+
+        if (thirtyMinAfter.getTime() <= new Date().getTime()) {
+
+            return handleCancelOrder()
+            .then(e => console.log(e))
+            .catch(error => console.log(error))
+
+        }
+
+        const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=${paymentId}`;
+        // const statusUrl = `${baseUrl}/api/rede-gateway/status?pay_order=pb2btpq`;
+        const statusResponse = await axios.get(statusUrl)
+        setPaymentStatus({
+                status: paymentStatus.status = statusResponse.data.status === 'CREATED' ?
+                    paymentStatus.status === 'CREATED' ? 'pending' : 'CREATED' :
+                    statusResponse.data.status
+            }
+        )
+        console.log(statusResponse.data.status)
+        console.log(paymentStatus)
+    }
+
+
+    const handlePersistCourse = async () => {
+        try {
+            const payload = {
+                cartItems,
+                userId: user.id,
+                buyer_name: user.first_name,
+                buyer_email: user.email,
+                buyer_avatar: user.profile_photo,
+            };
+            const url = `${baseUrl}/api/checkout`;
+            const response = await axios.post(url, payload);
+            toast.success(response.data.message, {
+                style: {
+                    border: "1px solid #4BB543",
+                    padding: "16px",
+                    color: "#4BB543",
+                },
+                iconTheme: {
+                    primary: "#4BB543",
+                    secondary: "#FFFAEE",
+                },
+            });
+            dispatch({
+                type: "RESET_CART",
+            });
+            setLoading(false);
+
+            router.push("/learning/my-courses");
+        } catch (err) {
+            // console.log(err.response);
+            let {
+                response: {
+                    data: {message},
+                },
+            } = err;
+            toast.error(message, {
+                style: {
+                    border: "1px solid #ff0033",
+                    padding: "16px",
+                    color: "#ff0033",
+                },
+                iconTheme: {
+                    primary: "#ff0033",
+                    secondary: "#FFFAEE",
+                },
+            });
+        }
+    };
+
+    useEffect(() => {
+            return () => {
+                if (paymentId) handleCancelOrder().then(e => console.log(e))
+            }
+        }, []);
+
+    useEffect(() => {
+        const {stripeTotal} = calculateCartTotal(cartItems);
+        setStripeAmount(stripeTotal);
+    }, [cartItems]);
+
+    useEffect(() => {
+        // Poll the API route every 5 seconds until payment status changes
+        if (!paymentStatus.status) return;
+        if (paymentStatus.status === "pending" || paymentStatus.status === 'CREATED') {
+            const intervalId = setTimeout(checkPaymentStatus, 4000);
+            return () => clearInterval(intervalId);
+        } else if (paymentStatus.status === "PAID") {
+            // Payment has been approved, redirect to success page
+
+
+            handlePersistCourse().then(r => {
+                // console.log(r)
+            })
+
+        } else {
+            // Payment has been canceled or disapproved, redirect to failure page
+            router.push("/failure");
+        }
+    }, [paymentStatus, setPaymentStatus]);
 
     const handleCheckout = async () => {
         setLoading(true);
@@ -182,6 +201,10 @@ const PlaceOrderBtn = ({user, cartItems}) => {
             setPaymentStatus({
                 status: "pending"
             })
+            setPaymentTime({
+                date: new Date()
+            })
+
 
         } catch (err) {
             // console.log(err.response);

@@ -114,14 +114,18 @@ const handlePostRequest = async (req, res) => {
 
         const redePaymentLink = xmlDoc.getElementsByTagName('url')[0].textContent;
 
+
         const redePayOrder = xmlDoc.getElementsByTagName('pay_order_id')[0].textContent;
 
         const redeMessage = xmlDoc.getElementsByTagName('message')[0].textContent;
 
+        const date = new Date()
+
         res.status(200).json({
             message: redeMessage,
             payOrder: redePayOrder,
-            link: redePaymentLink
+            link: redePaymentLink,
+            date: date
         });
     } catch (e) {
         res.status(400).json({
