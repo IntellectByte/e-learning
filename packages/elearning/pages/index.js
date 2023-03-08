@@ -12,6 +12,7 @@ import SubscribeForm from '@/components/Common/SubscribeForm';
 import Footer from '@/components/_App/Footer';
 import baseUrl from '@/utils/baseUrl';
 
+
 function Index({ courses, user }) {
     return (
         <>
