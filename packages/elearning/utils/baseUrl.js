@@ -1,6 +1,6 @@
 const baseUrl =
     process.env.NODE_ENV === 'production'
-        ? 'https://escolasorvete-2ae03.web.app'
-        : 'http://localhost:3000';
+        ? 'https://develop.escolasorvete.com.br'
+        : 'https://develop.escolasorvete.com.br';
 
 export default baseUrl;

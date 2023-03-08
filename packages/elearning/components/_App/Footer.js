@@ -83,17 +83,17 @@ const Footer = () => {
                                     </li>
                                     <li>
                                         <Link href='/about-us'>
-                                            <a>About Us</a>
+                                            <a>Historia</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href='/courses'>
-                                            <a>Courses</a>
+                                            <a>Cursos</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href='/contact-us'>
-                                            <a>Contact Us</a>
+                                            <a>Contacto</a>
                                         </Link>
                                     </li>
                                     <li>

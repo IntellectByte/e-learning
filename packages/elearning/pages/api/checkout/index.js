@@ -1,10 +1,6 @@
-import Stripe from "stripe";
 import { v4 as uuidv4 } from "uuid";
 import { Enrolment, Instructor_Earning, Course } from "database/models";
 import { calculateCartTotal } from "@/utils/calculateCartTotal";
-// import { checkoutConfirmation } from "email-templates/checkout-confirmation";
-
-const stripeSecret = Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
 	switch (req.method) {
@@ -25,7 +21,7 @@ const handlePostRequest = async (req, res) => {
 	const { stripeTotal } = calculateCartTotal(cartItems);
 
 	try {
-		await stripeSecret.charges.create(
+		await charges.create(
 			{
 				amount: stripeTotal,
 				currency: "usd",

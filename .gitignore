@@ -8,6 +8,10 @@ yarn-debug.log*
 yarn-error.log*
 .DS_STORE
 
+# IDE
+.idea
+.vscode
+
 # Runtime data
 pids
 *.pid
@@ -61,7 +65,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-#.env
+.env
 
 # Nextjs
 .next
