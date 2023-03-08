@@ -1,49 +1,146 @@
 import React from 'react';
 import Link from 'next/link';
+import { BiBadgeCheck } from 'react-icons/bi';
 
 const SubscribePlanComponent = () => {
     return (
         <>
             <div className='about-area francisco-area ptb-100'>
-                <div className='container'>
-                    <div className='row align-items-center'>
-                        <div className='col-lg-6 col-md-12'>
-                            <div className='about-image'>
-                                <div className='image'>
-                                    <img
-                                        src='/escola-sorvete-horizontal.png'
-                                        alt='image'
-                                    />
-                                </div>
-                            </div>
+                {/* <div className='card-container'>
+                    <div className='card'>
+                        <div className='img__card'>
+                            <img src='' alt='left' className='left' />
                         </div>
-
-                        <div className='col-lg-6 col-md-12'>
-                            <div className='about-content'>
-                                <span className='sub-title'>Subscription</span>
-                                <h2>Subscribe to our monthly plan</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                </p>
-
-                                <p>
-                                    Sed ut perspiciatis unde omnis iste natus
-                                    error sit voluptatem accusantium doloremque
-                                    laudantium, totam rem aperiam, eaque ipsa
-                                    quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae dicta sunt
-                                    explicabo.
-                                </p>
-
-                                <Link href='/learning/sub-form/'>
-                                    <a className='default-btn'>
-                                        <i className='flaticon-user'></i>{' '}
-                                        Subscribe Today <span></span>
-                                    </a>
-                                </Link>
-                            </div>
+                        <h4 className='card__title'>Monthly</h4>
+                        <h4 className='card__title'>
+                            <strong>R$ 55</strong>/Month
+                        </h4>
+                        <div className='desc'>
+                            <p>
+                                Acesso a mais de 160 cursos e Escolas
+                                <br />
+                                especializadas
+                            </p>
+                        </div>
+                        <ul>
+                            <li>
+                                <BiBadgeCheck /> Receba certificados digitais ao
+                                ser <br />
+                                aprovado nos nossos cursos.
+                            </li>
+                            <li>
+                                <BiBadgeCheck /> Baixe os cursos em seu
+                                smartphone <br />e estude sem conexão de
+                                internet.
+                            </li>
+                        </ul>
+                        <p>
+                            <a href='#' className='btn__choose'>
+                                Subscribe
+                            </a>
+                        </p>
+                    </div>
+                    <div className='card card__middle'>
+                        <div className='img__card'>
+                            <img src='' alt='left' className='left' />
+                        </div>
+                        <h4 className='card__title'>Anually</h4>
+                        <h4 className='card__title'>
+                            <strong>R$ 40</strong>/Month - R$ 480 Anually
+                        </h4>
+                        <div className='desc'>
+                            <p>
+                                Acesso a mais de 160 cursos e Escolas
+                                <br />
+                                especializadas
+                            </p>
+                        </div>
+                        <ul>
+                            <li>
+                                <BiBadgeCheck /> Receba certificados digitais ao
+                                ser <br />
+                                aprovado nos nossos cursos.
+                            </li>
+                            <li>
+                                <BiBadgeCheck /> Baixe os cursos em seu
+                                smartphone <br />e estude sem conexão de
+                                internet.
+                            </li>
+                        </ul>
+                        <p>
+                            <a href='#' className='btn__choose'>
+                                Subscribe
+                            </a>
+                        </p>
+                    </div>
+                </div> */}
+                <div class='wrapper'>
+                    <h2>
+                        Subscribe to our monthly plan. <br />
+                    </h2>
+                    <br />
+                    <div class='pricing-table'>
+                        <div class='pricing-box'>
+                            <h2>Monthly Membership</h2>
+                            <span class='price'>R$ 50/month</span>
+                            <p class='description'>
+                                Best For Lorem Ipsum is simply dummy text of the
+                                printing and typesetting industry...
+                            </p>
+                            <span class='pricing-table-divider'></span>
+                            <a class='btn' href='#'>
+                                <b>Subscribe</b>
+                            </a>
+                            <span class='pricing-table-divider'></span>
+                            <ul>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                            </ul>
+                        </div>
+                        <div class='pricing-box pricing-table-best'>
+                            <h2>Yearly Membership</h2>
+                            <span class='price'>R$ 40/month (R$ 480/year)</span>
+                            <p class='description'>
+                                Best For Lorem Ipsum is simply dummy text of the
+                                printing and typesetting industry...
+                            </p>
+                            <span class='pricing-table-divider'></span>
+                            <a class='btn' href='#'>
+                                <b>Subscribe</b>
+                            </a>
+                            <span class='pricing-table-divider'></span>
+                            <ul>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                                <li>
+                                    <BiBadgeCheck className='badge-color' />{' '}
+                                    Lorem Ipsum is simply dummy text
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
