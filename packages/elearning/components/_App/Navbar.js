@@ -132,7 +132,7 @@ const Navbar = ({ user }) => {
                                             </Link>
                                         </motion.li>
 
-                                        {/* NUESTRA HISTORIA */}
+                                        {/* INSTRUCTORS -- NOT LONGER IN USE
                                         <motion.li
                                             className='nav-item'
                                             whileHover={{
@@ -155,9 +155,9 @@ const Navbar = ({ user }) => {
                                                     })}
                                                 </a>
                                             </Link>
-                                        </motion.li>
+                                        </motion.li> */}
 
-                                        {/* NUESTRA HISTORIA */}
+                                        {/* FRANCISCO */}
                                         <motion.li
                                             className='nav-item'
                                             whileHover={{
