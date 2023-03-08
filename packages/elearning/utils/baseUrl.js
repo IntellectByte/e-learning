@@ -4,3 +4,4 @@ const baseUrl =
         : 'https://develop.escolasorvete.com.br';
 
 export default baseUrl;
+
