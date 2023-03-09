@@ -195,6 +195,8 @@ const PlaceOrderBtn = ({user, cartItems}) => {
 
             const url = `${baseUrl}/api/rede-gateway/create`;
             const response = await axios.post(url, payload);
+            
+            console.log(response.data);
 
             toast.success(response.data.message, {
                 style: {
@@ -220,7 +222,7 @@ const PlaceOrderBtn = ({user, cartItems}) => {
 
 
         } catch (err) {
-            // console.log(err.response);
+             console.log(err.response);
             let {
                 response: {
                     data: {message},
