@@ -16,7 +16,7 @@ const nextConfig = {
         JWT_SECRET: "asdfghjklnbvcxzqwertyuiopmkioprewqasderfgnujm",
         CLOUD_NAME: "dnunzwnex",
         UPLOAD_PRESETS: "images",
-        CLOUDINARY_URL: "https://api.cloudinary.com/v1_1/dnunzwnex/images/upload",
+        CLOUDINARY_URL: "https://api.cloudinary.com/v1_1/dnunzwnex/image/upload",
         CLOUDINARY_VIDEO_URL: "https://api.cloudinary.com/v1_1/dnunzwnex/videos/upload",
         CLOUDINARY_ZIP_URL: "https://api.cloudinary.com/v1_1/dnneps5f/raw/upload"
     }
