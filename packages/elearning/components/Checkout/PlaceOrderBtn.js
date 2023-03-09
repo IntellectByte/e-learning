@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {calculateCartTotal} from "@/utils/calculateCartTotal";
 import {NavLink} from "@mantine/core";
 import Link from "next/link";
+import baseUrl from "utils/baseUrl.js"
 
 const PlaceOrderBtn = ({user, cartItems}) => {
     const [stripeAmount, setStripeAmount] = React.useState(0);
