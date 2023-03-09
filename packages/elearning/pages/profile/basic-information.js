@@ -225,7 +225,6 @@ const BasicInformation = ({ user }) => {
                                         type='submit'
                                         className='btn default-btn'
                                     >
-                                        <i className='flaticon-right-arrow'></i>
                                         Save <span></span>
                                         {loading ? <LoadingSpinner /> : ''}
                                     </button>

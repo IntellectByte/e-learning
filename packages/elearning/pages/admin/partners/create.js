@@ -217,7 +217,6 @@ const Create = ({ user }) => {
                                                 type='submit'
                                                 disabled={disabled}
                                             >
-                                                <i className='flaticon-right-arrow'></i>
                                                 Save <span></span>
                                                 {loading ? (
                                                     <LoadingSpinner />
