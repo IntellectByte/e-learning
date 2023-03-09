@@ -194,9 +194,14 @@ const PlaceOrderBtn = ({user, cartItems}) => {
 
 
             const url = `${baseUrl}/api/rede-gateway/create`;
-            const response = await axios.post(url, payload);
+            
             
             console.log(url, payload);
+            
+            
+            const response = await axios.post(url, payload);
+            
+            
 
             toast.success(response.data.message, {
                 style: {
