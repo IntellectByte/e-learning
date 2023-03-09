@@ -46,15 +46,18 @@ const Custom404 = () => {
                     src='https://assets.codepen.io/1538474/meteor.svg'
                     class='meteor'
                 />
-                <p class='title'>Oh no!!</p>
+                <p class='title'>Oh no, algo deu errado!</p>
                 <p class='subtitle'>
-                    You’re either misspelling the URL <br /> or requesting a
-                    page that's no longer here.
+                    Você está digitando o URL incorretamente ou seu pagamento
+                    foi recusado. <br />
+                    Por favor, verifique o e-mail com o qual você se registrou.
                 </p>
                 <div align='center'>
-                    <a class='btn-back' href='#'>
-                        Back to previous page
-                    </a>
+                    <Link href='/'>
+                        <a class='btn-back' href='#'>
+                            Voltar ao Escola Sorvete
+                        </a>
+                    </Link>
                 </div>
                 <img
                     src='https://media.discordapp.net/attachments/1076613189795586122/1083484472491655319/sorvete-logo.png'
