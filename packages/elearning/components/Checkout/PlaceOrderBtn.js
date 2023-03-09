@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import LoadingSpinner from "@/utils/LoadingSpinner";
 import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
 import toast from "react-hot-toast";
 import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
@@ -257,7 +256,6 @@ const PlaceOrderBtn = ({user, cartItems}) => {
 
 
     );
-
 };
 
 export default PlaceOrderBtn;

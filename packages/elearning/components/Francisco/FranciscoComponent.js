@@ -22,50 +22,82 @@ const FranciscoComponent = () => {
                                 <span className='sub-title'>
                                     Francisco Santana
                                 </span>
-                                <h2>Lorem</h2>
+                                <h2>Inicios</h2>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
+                                    Nascido em São Paulo e criado em Cajamar, na
+                                    região metropolitana de São Paulo, o Chef
+                                    Glacier Francisco Sant’Ana é referência no
+                                    Brasil quando falamos em sorvete. Formado
+                                    pela Escola Nacional Superior de
+                                    Confeitaria, na França, foi o primeiro
+                                    brasileiro a receber o título CAP –
+                                    Certificat d’Aptitude Professionnelle en
+                                    Pâtisserie e o primeiro assistente
+                                    estrangeiro da instituição, onde também
+                                    ministrou aulas. Na Espanha, cursou a Escola
+                                    Universitária de Hotelaria e Turismo de Sant
+                                    Pol de Mar.
                                 </p>
 
                                 <p>
-                                    Sed ut perspiciatis unde omnis iste natus
-                                    error sit voluptatem accusantium doloremque
-                                    laudantium, totam rem aperiam, eaque ipsa
-                                    quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae dicta sunt
-                                    explicabo.
+                                    Geógrafo de formação, a escolha pela mudança
+                                    de profissão foi feita pelo prazer de fazer
+                                    algo que realmente gostava, tornando-se
+                                    então o respeitável Mestre Sorveteiro e de
+                                    reputação internacional. É professor não só
+                                    em seu país como também na França, Espanha,
+                                    Argentina e Itália.
                                 </p>
 
                                 <p>
-                                    Sed ut perspiciatis unde omnis iste natus
-                                    error sit voluptatem accusantium doloremque
-                                    laudantium, totam rem aperiam, eaque ipsa
-                                    quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae dicta sunt
-                                    explicabo.
+                                    Sant’Ana faz questão de incentivar os
+                                    sabores de frutas tropicais brasileiras,
+                                    assim como estimular a democratização de um
+                                    produto de qualidade, sem conservantes ou
+                                    produtos químicos. Seu lema? “Sem pó, sem
+                                    pasta, sorvete de verdade”.
                                 </p>
 
                                 <p>
-                                    Sed ut perspiciatis unde omnis iste natus
-                                    error sit voluptatem accusantium doloremque
-                                    laudantium, totam rem aperiam, eaque ipsa
-                                    quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae dicta sunt
-                                    explicabo.
+                                    Atualmente, viaja pelo Brasil e pelo mundo
+                                    prestando consultoria na área de sorveteria
+                                    profissional, ministra cursos para
+                                    empreendedores na Escola Sorvete, e é um dos
+                                    embaixadores Callebaut no Brasil.
                                 </p>
 
                                 <p>
-                                    Sed ut perspiciatis unde omnis iste natus
-                                    error sit voluptatem accusantium doloremque
-                                    laudantium, totam rem aperiam, eaque ipsa
-                                    quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae dicta sunt
-                                    explicabo.
+                                    Já ministrou cursos e implantou gelaterias e
+                                    sorveterias em mais de 13 países e em mais
+                                    de 12 estados brasileiros.
                                 </p>
 
-                                <ul className='features-list'>
+                                <div className='francisco-links'>
+                                    <ul className='francisco-ullinks'>
+                                        <li>
+                                            <a
+                                                href='https://www.instagram.com/franciscosantanasorvete/'
+                                                className='d-block'
+                                                target='_blank'
+                                                rel='noreferrer'
+                                            >
+                                                <i className='bx bxl-instagram'></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href='https://www.linkedin.com/in/francisco-santana-aa80a8138/'
+                                                className='d-block'
+                                                target='_blank'
+                                                rel='noreferrer'
+                                            >
+                                                <i className='bx bxl-linkedin'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* <ul className='features-list'>
                                     <li>
                                         <span>
                                             <i className='flaticon-experience'></i>{' '}
@@ -90,7 +122,7 @@ const FranciscoComponent = () => {
                                             Self Development
                                         </span>
                                     </li>
-                                </ul>
+                                </ul> */}
                             </div>
                         </div>
                     </div>

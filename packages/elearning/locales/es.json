@@ -2,8 +2,9 @@
     "navHome": "Inicio",
     "navCourses": "Cursos",
     "navInstructors": "Instructores",
-    "navLoginRegister":"Entrar/Registrar",
-    "navBlog": "Blog",
-    "navContact": "Contacto"
-  }
-  
+    "navTeacher": "Francisco",
+    "navLoginRegister": "Entrar/Registrar",
+    "searchCourses": "Buscar Cursos",
+    "main-banner-title": "El proveedor de educación a distancia líder en el mundo"
+}
+
