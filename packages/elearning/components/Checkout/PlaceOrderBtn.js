@@ -137,11 +137,25 @@ const PlaceOrderBtn = ({user, cartItems}) => {
         }
     };
 
+    const handleBeforeUnload = event => {
+
+        event.preventDefault();
+        event.returnValue = 'asdfasdf'
+
+        if (paymentId) handleCancelOrder().then(e => console.log(e))
+    };
+
     useEffect(() => {
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
             return () => {
-                if (paymentId) handleCancelOrder().then(e => console.log(e))
-            }
-        }, []);
+                console.log(paymentId, "canceled");
+                if (paymentId) handleCancelOrder().then(e => console.log(e));
+                window.removeEventListener('beforeunload', handleBeforeUnload);
+            };
+
+        }, [paymentId]);
 
     useEffect(() => {
         const {stripeTotal} = calculateCartTotal(cartItems);
