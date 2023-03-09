@@ -169,7 +169,7 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    background: #1cab94;
+    background: var(--btn-color);
     color: #fff;
     height: 30px;
     width: 30px;
@@ -200,7 +200,7 @@
 }
 
 .sidebar-menu-button {
-    background-color: #1cab94;
+    background-color: var(--btn-color);
     cursor: pointer;
     color: #fff;
     padding: 8px 15px;
@@ -224,7 +224,7 @@
 
 .info-box-card i {
     display: inline-block;
-    background-color: #1cab94;
+    background-color: var(--btn-color);
     width: 60px;
     height: 60px;
     line-height: 60px;
@@ -239,8 +239,8 @@
 }
 
 .info-box-card:hover {
-    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    -webkit-box-shadow: var(--btn-color) 0px 1px 4px;
+    box-shadow: var(--btn-color) 0px 1px 4px;
 }
 
 /* End info-box-card */
@@ -270,7 +270,7 @@
 
 .instructor-create-courses-card .icon i {
     font-size: 50px;
-    color: #1cab94;
+    color: var(--btn-color);
 }
 
 .instructor-create-courses-card h3 {
@@ -303,7 +303,7 @@
 }
 
 .action-dropdown .icon:hover {
-    background-color: #1cab94;
+    background-color: var(--btn-color);
     color: #ffffff;
 }
 

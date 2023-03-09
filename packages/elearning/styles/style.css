@@ -5182,7 +5182,7 @@ Feedback Area CSS
 .feedback-content
     .feedback-slides
     .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background-color: #1cab94;
+    background-color: var(--btn-color);
 }
 
 .single-feedback-item {
