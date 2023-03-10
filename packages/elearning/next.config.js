@@ -23,6 +23,14 @@ const nextConfig = {
         CLOUDINARY_ZIP_URL:
             'https://api.cloudinary.com/v1_1/dnneps5f/raw/upload',
     },
+    webpack: (config, { isServer }) => {
+        config.module.rules.push({
+            test: /\.json$/,
+            loader: 'json-loader',
+            type: 'javascript/auto',
+        });
+        return config;
+        }
 };
 
 module.exports = {

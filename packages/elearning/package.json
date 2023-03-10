@@ -22,7 +22,11 @@
     "@mantine/rte": "^5.1.1",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
+    "csv-parse": "^5.3.6",
+    "csvtojson": "^2.0.10",
+    "filereader": "^0.10.3",
     "framer-motion": "^7.3.4",
+    "fs": "^0.0.1-security",
     "fslightbox-react": "^1.6.2-2",
     "html-to-image": "^1.10.8",
     "i18next": "^22.4.10",
@@ -36,6 +40,8 @@
     "nodemailer": "^6.7.7",
     "nookies": "^2.5.2",
     "nprogress": "^0.2.0",
+    "papaparse": "^5.4.0",
+    "password-generator": "^2.3.2",
     "react": "18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-confirm-alert": "^3.0.6",
@@ -66,6 +72,7 @@
     "env-cmd": "^10.1.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "json-loader": "^0.5.7",
     "sequelize-cli": "^6.4.1"
   }
 }
