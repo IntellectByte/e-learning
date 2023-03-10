@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/_App/Navbar';
 import MainBanner from '@/components/eLearningSchool/MainBanner';
 import Partner from '@/components/eLearningSchool/Partner';
@@ -11,11 +11,29 @@ import ViewAllCourses from '@/components/eLearningSchool/ViewAllCourses';
 import SubscribeForm from '@/components/Common/SubscribeForm';
 import Footer from '@/components/_App/Footer';
 import baseUrl from '@/utils/baseUrl';
-
+import PopUp from '@/components/PopUp/PopUp';
 
 function Index({ courses, user }) {
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            if (sessionStorage.getItem('popupShown')) {
+                setShowPopup(true);
+                sessionStorage.setItem('popupShown', true);
+            }
+        }, 5000);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
     return (
         <>
+            {showPopup && <PopUp onClose={handleClosePopup} />}
             <Navbar user={user} />
             <MainBanner user={user} courses={courses} />
             <Features />
