@@ -8189,7 +8189,8 @@ Go Top CSS
     animation-delay: 1.9s;
 }
 
-.popup form input[type='email'] {
+.popup form input[type='email'],
+.popup form input[type='text'] {
     display: block;
     width: 100%;
     padding: 0.5rem;

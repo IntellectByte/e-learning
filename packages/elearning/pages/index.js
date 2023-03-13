@@ -18,7 +18,7 @@ function Index({ courses, user }) {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            if (sessionStorage.getItem('popupShown')) {
+            if (!sessionStorage.getItem('popupShown')) {
                 setShowPopup(true);
                 sessionStorage.setItem('popupShown', true);
             }
@@ -29,6 +29,7 @@ function Index({ courses, user }) {
 
     const handleClosePopup = () => {
         setShowPopup(false);
+        toast.success('Assinatura bem-sucedida!');
     };
 
     return (
