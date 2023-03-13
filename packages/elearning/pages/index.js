@@ -29,7 +29,6 @@ function Index({ courses, user }) {
 
     const handleClosePopup = () => {
         setShowPopup(false);
-        toast.success('Assinatura bem-sucedida!');
     };
 
     return (
