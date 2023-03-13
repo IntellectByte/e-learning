@@ -1,4 +1,5 @@
 import User from "./user";
+import HotmartUser from "./hotmartUser";
 import Category from "./category";
 import Course from "./course";
 import Video from "./video";
@@ -72,4 +73,5 @@ export {
 	Instructor_Earning,
 	Course_Progress,
 	Course_Asset,
+    HotmartUser
 };
