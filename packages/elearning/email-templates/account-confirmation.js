@@ -5,7 +5,7 @@ export const confirmEmailAddress = async (user) => {
 	// console.log(user.email)
 	const data = {
 		to: user.email,
-		from: "eLearniv Online Courses <hello@envytheme.com>",
+		from: "Escola Sorvete <contato@escolasorvete.com.br>",
 		subject: "Confirm Your Email Address",
 		html: `
         <!DOCTYPE html>
