@@ -5,5 +5,4 @@ const baseUrl =
 //        : 'https://develop.escolasorvete.com.br';
         : 'http://localhost:3000';
 
-
 export default baseUrl;

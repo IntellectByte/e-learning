@@ -576,6 +576,26 @@ a:hover {
     height: 562.5px;
 }
 
+.default-btn-style-4 {
+    border: none;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+    color: #ffffff;
+    background-color: var(--error-500);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 /* form-control */
 .form-control,
 .form-select {
@@ -2603,7 +2623,8 @@ Courses Area CSS
     position: absolute;
     right: 20px;
     top: 20px;
-    color: #ff5555;
+    color: var(--btn-color);
+    background: transparent;
     font-size: 35px;
     line-height: 1;
     padding: 0;
@@ -7981,4 +8002,312 @@ Go Top CSS
 
 .francisco-links ul li a i:hover {
     color: var(--btn-color);
+}
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
+@keyframes floating {
+    from {
+        transform: translateY(0px);
+    }
+    65% {
+        transform: translateY(15px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+
+.bluemoon {
+    background-image: url('https://assets.codepen.io/1538474/star.svg'),
+        linear-gradient(to bottom, #05007a, #4d007d);
+    height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.mars {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    height: 27vmin;
+    background: url('https://assets.codepen.io/1538474/mars.svg') no-repeat
+        bottom center;
+    background-size: cover;
+}
+.logo-404 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 16vmin;
+    width: 30vmin;
+}
+@media (max-width: 480px) and (min-width: 320px) {
+    .logo-404 {
+        top: 45vmin;
+    }
+}
+.meteor {
+    position: absolute;
+    right: 2vmin;
+    top: 16vmin;
+}
+.title {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    font-size: 5vmin;
+    margin-top: 31vmin;
+}
+@media (max-width: 480px) and (min-width: 320px) {
+    .title {
+        margin-top: 65vmin;
+    }
+}
+.subtitle {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    font-size: 3.5vmin;
+    margin-top: -1vmin;
+    margin-bottom: 9vmin;
+}
+.btn-back {
+    border: 1px solid white;
+    color: white;
+    height: 5vmin;
+    padding: 12px;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn-back:hover {
+    background: white;
+    color: #4d007d;
+}
+@media (max-width: 480px) and (min-width: 320px) {
+    .btn-back {
+        font-size: 3.5vmin;
+    }
+}
+.astronaut {
+    position: absolute;
+    top: 18vmin;
+    left: 10vmin;
+    height: 30vmin;
+    animation: floating 3s infinite ease-in-out;
+}
+@media (max-width: 480px) and (min-width: 320px) {
+    .astronaut {
+        top: 2vmin;
+    }
+}
+.spaceship {
+    position: absolute;
+    width: 300px;
+    bottom: 15vmin;
+    right: 24vmin;
+}
+@media (max-width: 480px) and (min-width: 320px) {
+    .spaceship {
+        width: 45vmin;
+        bottom: 18vmin;
+    }
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px var(--btn-color);
+    z-index: 999;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 30px;
+    opacity: 0;
+    animation: popupFadeIn 0.3s forwards;
+    animation-delay: 1s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.popup__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: buttonFadeIn 0.3s forwards;
+    animation-delay: 1s;
+}
+
+.popup__close:hover {
+    transform: rotate(180deg);
+}
+
+.popup h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: textFadeIn 0.3s forwards;
+    animation-delay: 1.3s;
+    color: var(--btn-color);
+    font-weight: 600;
+}
+
+.popup p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: textFadeIn 0.3s forwards;
+    animation-delay: 1.6s;
+}
+
+.popup p span {
+    color: var(--btn-color);
+}
+
+.popup form label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: textFadeIn 0.3s forwards;
+    animation-delay: 1.9s;
+}
+
+.popup form input[type='email'],
+.popup form input[type='text'] {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px var(--logo-color);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: inputFadeIn 0.3s forwards;
+    animation-delay: 2.2s;
+}
+
+.popup form button[type='submit'] {
+    background-color: var(--logo-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.popup form button[type='submit']:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: var(--logo-color);
+    border-radius: 9px;
+    transform-origin: center center;
+    transform: scale(0);
+}
+
+.popup form button[type='submit']:hover:before {
+    animation: ripple 0.75s linear forwards;
+}
+
+@keyframes ripple {
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes inputFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .popup {
+        padding: 1rem;
+    }
+    .popup h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .popup p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .popup form label {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    .popup form input[type='email'] {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .popup form button[type='submit'] {
+        font-size: 1rem;
+    }
 }
