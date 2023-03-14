@@ -17,6 +17,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@etchteam/next-pagination": "^3.5.4",
+    "@fontsource/roboto": "^4.5.8",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
     "@mantine/rte": "^5.1.1",
@@ -28,6 +29,7 @@
     "framer-motion": "^7.3.4",
     "fs": "^0.0.1-security",
     "fslightbox-react": "^1.6.2-2",
+    "google-fonts": "^1.0.0",
     "html-to-image": "^1.10.8",
     "i18next": "^22.4.10",
     "i18next-browser-languagedetector": "^7.0.1",
