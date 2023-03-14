@@ -56,9 +56,22 @@ Default CSS
 =================================================*/
 
 /* FONT IMPORTS */
-@import url('https://fonts.cdnfonts.com/css/roobert');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/*@import url('https://fonts.cdnfonts.com/css/roobert');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');*/
+
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat.ttf");}
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto.ttf");}
+@font-face {
+    font-family: "Roobert";
+    src: url("/fonts/Roobert.ttf");}
+
+
 
 /* VARIABLES */
 :root {
