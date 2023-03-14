@@ -17,9 +17,12 @@ export default function Francisco({ user }) {
                 activePageText='Francisco Santana'
             />
 
+            {/* FRANCISCO HISTORIA */}
             <FranciscoComponent />
 
-            <CourseAdvisor />
+            {/* EQUIPO */}
+            {/* ESPERANDO A MALU QUE ENVIE DATOS DEL TEAM */}
+            {/* <CourseAdvisor /> */}
 
             <Footer />
         </>

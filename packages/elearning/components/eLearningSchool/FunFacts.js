@@ -1,12 +1,20 @@
 import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const FunFacts = () => {
     const [students, setStudents] = useState(0);
     const [enrolls, setEnrolls] = useState(0);
     const [instructors, setInstractors] = useState(0);
     const [courses, setCourses] = useState(0);
+
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         const fethStats = async () => {
@@ -22,37 +30,56 @@ const FunFacts = () => {
     }, []);
     return (
         <>
-            <div className='funfacts-list'>
-                <div className='row'>
-                    <div className='col-lg-6 col-md-6 col-sm-6'>
-                        <div className='single-funfacts-box'>
-                            <h3>4500</h3>
-                            <p>Alunos Formados</p>
+            {isMounted && (
+                <div className='funfacts-list'>
+                    <div className='row'>
+                        <div className='col-lg-6 col-md-6 col-sm-6'>
+                            <div className='single-funfacts-box'>
+                                <h3>4500</h3>
+                                <p>
+                                    {t('funfacts-first', {
+                                        defaultValue: 'Graduated Students',
+                                    })}
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='col-lg-6 col-md-6 col-sm-6'>
-                        <div className='single-funfacts-box'>
-                            <h3>50+</h3>
-                            <p>Horas de Conteúdos</p>
+                        <div className='col-lg-6 col-md-6 col-sm-6'>
+                            <div className='single-funfacts-box'>
+                                <h3>50+</h3>
+                                <p>
+                                    {t('funfacts-second', {
+                                        defaultValue: 'Hours of Content',
+                                    })}
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='col-lg-6 col-md-6 col-sm-6'>
-                        <div className='single-funfacts-box'>
-                            <h3>10</h3>
-                            <p>cursos e consultorias em 10+ países</p>
+                        <div className='col-lg-6 col-md-6 col-sm-6'>
+                            <div className='single-funfacts-box'>
+                                <h3>10</h3>
+                                <p>
+                                    {t('funfacts-third', {
+                                        defaultValue:
+                                            'Courses and consulting services in 10+ countries',
+                                    })}
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='col-lg-6 col-md-6 col-sm-6'>
-                        <div className='single-funfacts-box'>
-                            <h3>5</h3>
-                            <p>Cursos Disponíveis</p>
+                        <div className='col-lg-6 col-md-6 col-sm-6'>
+                            <div className='single-funfacts-box'>
+                                <h3>5</h3>
+                                <p>
+                                    {t('funfacts-fourth', {
+                                        defaultValue: 'Available Courses',
+                                    })}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };

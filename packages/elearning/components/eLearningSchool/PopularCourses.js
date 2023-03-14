@@ -4,9 +4,16 @@ import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
 import CourseCard from '../Courses/CourseCard';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'next-i18next';
 
 const PopularCourses = ({ user }) => {
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = useState(false);
     const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const fetchCourses = async () => {
         const payload = {
@@ -68,47 +75,66 @@ const PopularCourses = ({ user }) => {
 
     return (
         <>
-            <div className='courses-area ptb-100'>
-                <div className='container'>
-                    <div className='section-title'>
-                        <span className='sub-title'>Comece por aqui</span>
-                        <h2>Não sabe por onde começar?</h2>
-                        <p>
-                            Conheça nossos cursos básicos para se tornar
-                            sorveteiro. Garantimos que você não vai querer parar
-                        </p>
-                    </div>
+            {isMounted && (
+                <div className='courses-area ptb-100'>
+                    <div className='container'>
+                        <div className='section-title'>
+                            <span className='sub-title'>
+                                {t('popular-span', {
+                                    defaultValue: 'Start here',
+                                })}
+                            </span>
+                            <h2>
+                                {t('popular-title', {
+                                    defaultValue: 'Dont know where to start?',
+                                })}
+                            </h2>
+                            <p>
+                                {t('popular-text', {
+                                    defaultValue:
+                                        'Discover our basic courses to become an ice cream maker. We guarantee you wont want to stop.',
+                                })}
+                            </p>
+                        </div>
 
-                    <div className='row'>
-                        {courses &&
-                            courses.map((course) => (
-                                <CourseCard
-                                    key={course.id}
-                                    {...course}
-                                    onFav={() => handleFav(course.id, true)}
-                                    onUnFav={() => handleFav(course.id, false)}
-                                    userId={user && user.id}
-                                />
-                            ))}
+                        <div className='row'>
+                            {courses &&
+                                courses.map((course) => (
+                                    <CourseCard
+                                        key={course.id}
+                                        {...course}
+                                        onFav={() => handleFav(course.id, true)}
+                                        onUnFav={() =>
+                                            handleFav(course.id, false)
+                                        }
+                                        userId={user && user.id}
+                                    />
+                                ))}
 
-                        <div className='col-lg-12 col-md-12'>
-                            <div className='courses-info'>
-                                <p>
-                                    Se aprofunde em um tema ou explore todo o
-                                    universo da sorveteria. Aqui você monta sua
-                                    grade e escolher o que é melhor para o seu
-                                    negócio{' '}
-                                    {!user && (
-                                        <Link href='/authentication'>
-                                            <a>Register Free Now!</a>
-                                        </Link>
-                                    )}
-                                </p>
+                            <div className='col-lg-12 col-md-12'>
+                                <div className='courses-info'>
+                                    <p>
+                                        {t('popular-text-2', {
+                                            defaultValue:
+                                                'Dive deep into a specific topic or explore the entire universe of ice cream making. Here, you can customize your curriculum and choose what is best for your business.',
+                                        })}{' '}
+                                        {!user && (
+                                            <Link href='/authentication'>
+                                                <a>
+                                                    {t('popular-register', {
+                                                        defaultValue:
+                                                            'Register Free Now!',
+                                                    })}
+                                                </a>
+                                            </Link>
+                                        )}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };

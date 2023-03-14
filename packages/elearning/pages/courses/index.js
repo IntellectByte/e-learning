@@ -11,6 +11,7 @@ export default function CoursesPage({ user }) {
 
             <PageBanner
                 pageTitle='Cursos'
+                a
                 homePageUrl='/'
                 homePageText='Home'
                 activePageText='Cursos'

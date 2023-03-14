@@ -20,19 +20,9 @@ const handlePostRequest = async (req, res) => {
 
 	const { stripeTotal } = calculateCartTotal(cartItems);
 
+	console.log(stripeTotal)
+
 	try {
-		await charges.create(
-			{
-				amount: stripeTotal,
-				currency: "usd",
-				source: "tok_mastercard",
-				receipt_email: buyer_email,
-				description: `Checkout | ${buyer_email} | ${userId}`,
-			},
-			{
-				idempotencyKey: uuidv4(),
-			}
-		);
 
 		cartItems.forEach(async (cart) => {
 			Enrolment.create({

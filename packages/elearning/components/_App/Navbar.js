@@ -132,9 +132,7 @@ const Navbar = ({ user }) => {
                                             </Link>
                                         </motion.li>
 
-                                   
-
-                                        {/* NUESTRA HISTORIA */}
+                                        {/* FRANCISCO */}
                                         <motion.li
                                             className='nav-item'
                                             whileHover={{
@@ -181,7 +179,10 @@ const Navbar = ({ user }) => {
                                                             }
                                                             className='nav-link'
                                                         >
-                                                            Na Mídia
+                                                            {t('navMedia', {
+                                                                defaultValue:
+                                                                    'Media',
+                                                            })}
                                                         </a>
                                                     </Link>
                                                 </motion.li>
@@ -205,7 +206,10 @@ const Navbar = ({ user }) => {
                                                         onClick={toggleNavbar}
                                                         className='nav-link'
                                                     >
-                                                        Na mídia
+                                                        {t('navMedia', {
+                                                            defaultValue:
+                                                                'Media',
+                                                        })}
                                                     </a>
                                                 </Link>
                                             </motion.li>

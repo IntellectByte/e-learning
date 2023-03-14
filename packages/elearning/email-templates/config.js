@@ -1,13 +1,16 @@
 import nodemailer from "nodemailer";
+import mandrillTransport from 'nodemailer-mandrill-transport'
 
+
+const {MANDRILL_USER, MANDRILL_API_KEY, MANDRILL_HOST, MANDRILL_PORT} = process.env
 export const transport = nodemailer.createTransport({
 	// Yes. SMTP!
 	service: "SMTP",
-	host: "email-smtp.ap-southeast-1.amazonaws.com", // Amazon email SMTP hostname
+	host: MANDRILL_HOST, // Amazon email SMTP hostname
 	secureConnection: true, // use SSL
-	port: 465, // port for secure SMTP
+	port: MANDRILL_PORT, // port for secure SMTP
 	auth: {
-		user: process.env.AWS_SES_USER, // Use from Amazon Credentials
-		pass: process.env.AWS_SES_PASSWORD, // Use from Amazon Credentials
+		user: MANDRILL_USER, // Use from Amazon Credentials
+		pass: MANDRILL_API_KEY, // Use from Amazon Credentials
 	},
 });

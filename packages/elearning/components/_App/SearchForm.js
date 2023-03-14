@@ -27,7 +27,9 @@ const SearchForm = () => {
                     <input
                         type='text'
                         className='input-search'
-                        placeholder='Pesquisar Cursos'
+                        placeholder={t('searchCourses', {
+                            defaultValue: 'Search Course',
+                        })}
                         name='search'
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
