@@ -59,7 +59,6 @@
     "react-sticky-box": "^1.0.2",
     "react-stripe-checkout": "^2.6.3",
     "react-tabs": "^5.1.0",
-    "react-wheel-of-prizes": "^1.0.9",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
