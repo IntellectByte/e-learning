@@ -34,7 +34,6 @@ const FeedbackSliderWithFunFacts = () => {
                                     queremos causar uma verdadeira transformação
                                     na sua vida e na sua carreira
                                 </p>
-
                                 <Swiper
                                     pagination={{
                                         dynamicBullets: true,
