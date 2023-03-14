@@ -132,31 +132,6 @@ const Navbar = ({ user }) => {
                                             </Link>
                                         </motion.li>
 
-                                        {/* INSTRUCTORS -- NOT LONGER IN USE
-                                        <motion.li
-                                            className='nav-item'
-                                            whileHover={{
-                                                scale: 1.1,
-                                                transition: { duration: 0.5 },
-                                            }}
-                                            whileTap={{ scale: 0.9 }}
-                                        >
-                                            <Link
-                                                href='/about-us'
-                                                activeClassName='active'
-                                            >
-                                                <a
-                                                    onClick={toggleNavbar}
-                                                    className='nav-link'
-                                                >
-                                                    {t('navInstructors', {
-                                                        defaultValue:
-                                                            'Instrutor',
-                                                    })}
-                                                </a>
-                                            </Link>
-                                        </motion.li> */}
-
                                         {/* FRANCISCO */}
                                         <motion.li
                                             className='nav-item'
@@ -204,7 +179,10 @@ const Navbar = ({ user }) => {
                                                             }
                                                             className='nav-link'
                                                         >
-                                                            Na Mídia
+                                                            {t('navMedia', {
+                                                                defaultValue:
+                                                                    'Media',
+                                                            })}
                                                         </a>
                                                     </Link>
                                                 </motion.li>
@@ -228,7 +206,10 @@ const Navbar = ({ user }) => {
                                                         onClick={toggleNavbar}
                                                         className='nav-link'
                                                     >
-                                                        Na mídia
+                                                        {t('navMedia', {
+                                                            defaultValue:
+                                                                'Media',
+                                                        })}
                                                     </a>
                                                 </Link>
                                             </motion.li>

@@ -5179,11 +5179,12 @@ Funfacts Area CSS
 /*================================================
 Feedback Area CSS
 =================================================*/
+
 .feedback-content .sub-title {
     display: block;
     text-transform: uppercase;
     color: var(--logo-color);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-size: 14px;
     font-weight: 600;
 }
@@ -5244,7 +5245,6 @@ Feedback Area CSS
 }
 
 .single-feedback-item .client-info {
-    margin-top: 25px;
 }
 
 .single-feedback-item .client-info img {
@@ -7883,8 +7883,8 @@ Go Top CSS
     transition: all ease-out 0.2s;
 }
 .price {
-    /* background: var(--logo-color); */
-    color: var(--btn-color);
+    background: var(--logo-color);
+    color: var(--main-background);
     font-size: 2em;
     font-weight: 600;
     position: relative;

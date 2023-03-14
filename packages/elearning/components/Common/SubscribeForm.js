@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'next-i18next';
 
 const SubscribeForm = () => {
     const [email, setEmail] = useState('');
+
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,53 +69,57 @@ const SubscribeForm = () => {
 
     return (
         <>
-            <div className='subscribe-area bg-f9f9f9 ptb-100'>
-                <div className='container'>
-                    <div className='subscribe-content'>
-                        <span className='sub-title'>
-                            Se você gosta de novidade…
-                        </span>
-                        <h2>Se inscreva em nossa Newsletter</h2>
-                        <p>
-                            Aqui compartilhamos novidades, dicas, promoções e
-                            notícias do mundo do sorvete em primeira mão.
-                            Inscreva-se.
-                        </p>
+            {isMounted && (
+                <div className='subscribe-area bg-f9f9f9 ptb-100'>
+                    <div className='container'>
+                        <div className='subscribe-content'>
+                            <span className='sub-title'>
+                                {t('subscribe-span', {
+                                    defaultValue: 'If you like news...',
+                                })}
+                            </span>
+                            <h2>
+                                {t('subscribe-h2', {
+                                    defaultValue: 'Subscribe to our Newsletter',
+                                })}
+                            </h2>
+                            <p>
+                                {t('subscribe-text', {
+                                    defaultValue:
+                                        'Here we share news, tips, promotions, and ice cream world news first-hand. Subscribe.',
+                                })}
+                            </p>
 
-                        <form
-                            className='newsletter-form'
-                            onSubmit={handleSubmit}
-                        >
-                            <input
-                                type='email'
-                                className='input-newsletter'
-                                placeholder='Seu Email'
-                                name='email'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-
-                            <motion.button
-                                type='submit'
-                                className='default-btn'
-                                whileTap={{ scale: 0.5 }}
+                            <form
+                                className='newsletter-form'
+                                onSubmit={handleSubmit}
                             >
-                                <i className='flaticon-user'></i> Me Inscrever{' '}
-                                <span></span>
-                            </motion.button>
-                        </form>
+                                <input
+                                    type='email'
+                                    className='input-newsletter'
+                                    placeholder='Email'
+                                    name='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+
+                                <motion.button
+                                    type='submit'
+                                    className='default-btn'
+                                    whileTap={{ scale: 0.5 }}
+                                >
+                                    <i className='flaticon-user'></i>
+                                    {t('subscribe-btn', {
+                                        defaultValue: 'Subscribe',
+                                    })}
+                                    <span></span>
+                                </motion.button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-                {/* <div
-                    className='shape13 newsletter-img'
-                    data-speed='0.06'
-                    data-revert='true'
-                >
-                    <img src='/sorvete-logo.png' alt='image' />
-                </div> */}
-            </div>
+            )}
         </>
     );
 };
