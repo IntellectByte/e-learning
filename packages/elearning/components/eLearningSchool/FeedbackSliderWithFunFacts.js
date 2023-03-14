@@ -4,9 +4,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 
 const FeedbackSliderWithFunFacts = () => {
     const [testimonials, setTestimonials] = useState([]);
+
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         const fetchTests = async () => {
@@ -19,81 +27,91 @@ const FeedbackSliderWithFunFacts = () => {
 
     return (
         <>
-            <div className='funfacts-and-feedback-area ptb-100'>
-                <div className='container'>
-                    <div className='row align-items-center'>
-                        <div className='col-lg-6 col-md-12'>
-                            <div className='feedback-content'>
-                                <span className='sub-title'>Fica a dica</span>
-                                <h2>
-                                    Ainda não tem certeza? Veja o que estão
-                                    falando sobre nós
-                                </h2>
-                                <p>
-                                    Não queremos apenas te vender um curso,
-                                    queremos causar uma verdadeira transformação
-                                    na sua vida e na sua carreira
-                                </p>
+            {isMounted && (
+                <div className='funfacts-and-feedback-area ptb-100'>
+                    <div className='container'>
+                        <div className='row align-items-center'>
+                            <div className='col-lg-6 col-md-12'>
+                                <div className='feedback-content'>
+                                    <span className='sub-title'>
+                                        {t('feedback-span', {
+                                            defaultValue: 'Just a tip',
+                                        })}
+                                    </span>
+                                    <h2>
+                                        {t('feedback-h2', {
+                                            defaultValue:
+                                                'Still not sure? See what they are saying about us',
+                                        })}
+                                    </h2>
+                                    <p>
+                                        {t('feedback-text', {
+                                            defaultValue:
+                                                'We dont just want to sell you a course, we want to create a real transformation in your life and career',
+                                        })}
+                                    </p>
+                                    <Swiper
+                                        pagination={{
+                                            dynamicBullets: true,
+                                            clickable: true,
+                                        }}
+                                        modules={[Pagination]}
+                                        className='mySwiper feedback-slides'
+                                    >
+                                        {testimonials.length > 0 &&
+                                            testimonials.map((teste) => (
+                                                <SwiperSlide key={teste.id}>
+                                                    <div className='single-feedback-item'>
+                                                        <p>
+                                                            {teste.description}
+                                                        </p>
 
-                                <Swiper
-                                    pagination={{
-                                        dynamicBullets: true,
-                                        clickable: true,
-                                    }}
-                                    modules={[Pagination]}
-                                    className='mySwiper feedback-slides'
-                                >
-                                    {testimonials.length > 0 &&
-                                        testimonials.map((teste) => (
-                                            <SwiperSlide key={teste.id}>
-                                                <div className='single-feedback-item'>
-                                                    <p>{teste.description}</p>
-
-                                                    <div className='client-info d-flex align-items-center'>
-                                                        <img
-                                                            src={
-                                                                teste.image_url
-                                                            }
-                                                            className='rounded-circle'
-                                                            alt='image'
-                                                        />
-                                                        <div className='title'>
-                                                            <h3>
-                                                                {teste.name}
-                                                            </h3>
-                                                            <span>
-                                                                {
-                                                                    teste.designation
+                                                        <div className='client-info d-flex align-items-center'>
+                                                            <img
+                                                                src={
+                                                                    teste.image_url
                                                                 }
-                                                            </span>
+                                                                className='rounded-circle'
+                                                                alt='image'
+                                                            />
+                                                            <div className='title'>
+                                                                <h3>
+                                                                    {teste.name}
+                                                                </h3>
+                                                                <span>
+                                                                    {
+                                                                        teste.designation
+                                                                    }
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </SwiperSlide>
-                                        ))}
-                                </Swiper>
+                                                </SwiperSlide>
+                                            ))}
+                                    </Swiper>
+                                </div>
+                            </div>
+
+                            <div className='col-lg-6 col-md-12'>
+                                <FunFacts />
                             </div>
                         </div>
+                    </div>
 
-                        <div className='col-lg-6 col-md-12'>
-                            <FunFacts />
-                        </div>
+                    <div className='shape2'>
+                        <img src='/images/shape2.png' alt='image' />
+                    </div>
+                    <div className='shape3'>
+                        <img src='/images/shape3.png' alt='image' />
+                    </div>
+                    <div className='shape4'>
+                        <img src='/images/shape4.png' alt='image' />
+                    </div>
+                    <div className='shape9'>
+                        <img src='/images/shape8.svg' alt='image' />
                     </div>
                 </div>
-
-                <div className='shape2'>
-                    <img src='/images/shape2.png' alt='image' />
-                </div>
-                <div className='shape3'>
-                    <img src='/images/shape3.png' alt='image' />
-                </div>
-                <div className='shape4'>
-                    <img src='/images/shape4.png' alt='image' />
-                </div>
-                <div className='shape9'>
-                    <img src='/images/shape8.svg' alt='image' />
-                </div>
-            </div>
+            )}
         </>
     );
 };

@@ -21,16 +21,16 @@ const MainBanner = ({ user, courses }) => {
                             <div className='col-lg-6 col-md-12'>
                                 <div className='main-banner-content'>
                                     <h1>
-                                        O jeito mais fácil de fazer sorvete de
-                                        verdade
+                                        {t('main-banner-title', {
+                                            defaultValue:
+                                                'The easiest way to make real ice cream.',
+                                        })}
                                     </h1>
                                     <p>
-                                        Formação empreendedora prática e técnica
-                                        para te ensinar a produzir sorvetes
-                                        naturais e artesanais do zero,
-                                        valorizando as regionalidades
-                                        brasileiras e te ensinando a ter
-                                        autonomia no seu negócio
+                                        {t('main-banner-text', {
+                                            defaultValue:
+                                                'Entrepreneurial practical and technical training to teach you how to produce natural and artisanal ice creams from scratch, valuing Brazilian regionalities and teaching you to have autonomy in your business.',
+                                        })}
                                     </p>
 
                                     <motion.div whileTap={{ scale: 0.9 }}>
@@ -38,14 +38,28 @@ const MainBanner = ({ user, courses }) => {
                                             <Link href='/courses'>
                                                 <a className='default-btn'>
                                                     <i className='flaticon-user'></i>{' '}
-                                                    Browse Courses <span></span>
+                                                    {t(
+                                                        'main-banner-button-one',
+                                                        {
+                                                            defaultValue:
+                                                                'Access your free class',
+                                                        }
+                                                    )}{' '}
+                                                    <span></span>
                                                 </a>
                                             </Link>
                                         ) : (
                                             <Link href='/authentication'>
                                                 <a className='default-btn'>
                                                     <i className='flaticon-user'></i>{' '}
-                                                    Join For Free <span></span>
+                                                    {t(
+                                                        'main-banner-button-two',
+                                                        {
+                                                            defaultValue:
+                                                                'Join for free',
+                                                        }
+                                                    )}{' '}
+                                                    <span></span>
                                                 </a>
                                             </Link>
                                         )}
