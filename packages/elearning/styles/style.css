@@ -60,18 +60,18 @@ Default CSS
 /*@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');*/
 
-
 @font-face {
-    font-family: "Montserrat";
-    src: url("/fonts/Montserrat.ttf");}
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat.ttf');
+}
 @font-face {
-    font-family: "Roboto";
-    src: url("/fonts/Roboto.ttf");}
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto.ttf');
+}
 @font-face {
-    font-family: "Roobert";
-    src: url("/fonts/Roobert.ttf");}
-
-
+    font-family: 'Roobert';
+    src: url('/fonts/Roobert.ttf');
+}
 
 /* VARIABLES */
 :root {
@@ -7883,8 +7883,8 @@ Go Top CSS
     transition: all ease-out 0.2s;
 }
 .price {
-    background: var(--logo-color);
-    color: var(--main-background);
+    /* background: var(--logo-color); */
+    color: var(--btn-color);
     font-size: 2em;
     font-weight: 600;
     position: relative;
