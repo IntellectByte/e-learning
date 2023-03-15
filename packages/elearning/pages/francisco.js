@@ -21,7 +21,8 @@ export default function Francisco({ user }) {
             <FranciscoComponent />
 
             {/* EQUIPO */}
-            <CourseAdvisor />
+            {/* ESPERANDO A MALU QUE ENVIE DATOS DEL TEAM */}
+            {/* <CourseAdvisor /> */}
 
             <Footer />
         </>

@@ -1,133 +1,106 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const FranciscoComponent = () => {
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
     return (
         <>
-            <div className='about-area francisco-area ptb-100'>
-                <div className='container'>
-                    <div className='row align-items-center'>
-                        <div className='col-lg-6 col-md-12'>
-                            <div className='about-image'>
-                                <div className='image'>
-                                    <img
-                                        src='/images/Francisco-Santana.jpg'
-                                        alt='image'
-                                    />
+            {isMounted && (
+                <div className='about-area francisco-area ptb-100'>
+                    <div className='container'>
+                        <div className='row align-items-center'>
+                            <div className='col-lg-6 col-md-12'>
+                                <div className='about-image'>
+                                    <div className='image'>
+                                        <img
+                                            src='/images/Francisco-Santana.jpg'
+                                            alt='image'
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className='col-lg-6 col-md-12'>
-                            <div className='about-content'>
-                                <span className='sub-title'>
-                                    Francisco Santana
-                                </span>
-                                <h2>Inicios</h2>
-                                <p>
-                                    Nascido em São Paulo e criado em Cajamar, na
-                                    região metropolitana de São Paulo, o Chef
-                                    Glacier Francisco Sant’Ana é referência no
-                                    Brasil quando falamos em sorvete. Formado
-                                    pela Escola Nacional Superior de
-                                    Confeitaria, na França, foi o primeiro
-                                    brasileiro a receber o título CAP –
-                                    Certificat d’Aptitude Professionnelle en
-                                    Pâtisserie e o primeiro assistente
-                                    estrangeiro da instituição, onde também
-                                    ministrou aulas. Na Espanha, cursou a Escola
-                                    Universitária de Hotelaria e Turismo de Sant
-                                    Pol de Mar.
-                                </p>
+                            <div className='col-lg-6 col-md-12'>
+                                <div className='about-content'>
+                                    <span className='sub-title'>
+                                        Francisco Santana
+                                    </span>
+                                    <h2>
+                                        {t('francisco-h2', {
+                                            defaultValue: 'His Story',
+                                        })}
+                                    </h2>
+                                    <p>
+                                        {t('francisco-text1', {
+                                            defaultValue:
+                                                'Born in São Paulo and raised in Cajamar, in the metropolitan region of São Paulo, Chef Glacier Francisco SantAna is a reference in Brazil when it comes to ice cream. Graduated from the National Superior School of Confectionery in France, he was the first Brazilian to receive the CAP - Certificat dAptitude Professionnelle en Pâtisserie title and the first foreign assistant of the institution, where he also taught classes. In Spain, he studied at the Sant Pol de Mar University School of Hospitality and Tourism.',
+                                        })}
+                                    </p>
 
-                                <p>
-                                    Geógrafo de formação, a escolha pela mudança
-                                    de profissão foi feita pelo prazer de fazer
-                                    algo que realmente gostava, tornando-se
-                                    então o respeitável Mestre Sorveteiro e de
-                                    reputação internacional. É professor não só
-                                    em seu país como também na França, Espanha,
-                                    Argentina e Itália.
-                                </p>
+                                    <p>
+                                        {t('francisco-text2', {
+                                            defaultValue:
+                                                'With a background in Geography, the decision to change professions was made out of the pleasure of doing something he really enjoyed, becoming the respected Master Ice Cream Maker with an international reputation. He is a teacher not only in his own country but also in France, Spain, Argentina, and Italy.',
+                                        })}
+                                    </p>
 
-                                <p>
-                                    Sant’Ana faz questão de incentivar os
-                                    sabores de frutas tropicais brasileiras,
-                                    assim como estimular a democratização de um
-                                    produto de qualidade, sem conservantes ou
-                                    produtos químicos. Seu lema? “Sem pó, sem
-                                    pasta, sorvete de verdade”.
-                                </p>
+                                    <p>
+                                        {t('francisco-text3', {
+                                            defaultValue:
+                                                'SantAna makes a point of encouraging the flavors of Brazilian tropical fruits, as well as promoting the democratization of a quality product, without preservatives or chemicals. His motto? No powder, no paste, real ice cream.',
+                                        })}
+                                    </p>
 
-                                <p>
-                                    Atualmente, viaja pelo Brasil e pelo mundo
-                                    prestando consultoria na área de sorveteria
-                                    profissional, ministra cursos para
-                                    empreendedores na Escola Sorvete, e é um dos
-                                    embaixadores Callebaut no Brasil.
-                                </p>
+                                    <p>
+                                        {t('francisco-text4', {
+                                            defaultValue:
+                                                'Currently, he travels around Brazil and the world providing consultancy services in the professional ice cream industry, teaching courses for entrepreneurs at the Escola Sorvete, and is one of Callebauts ambassadors in Brazil.',
+                                        })}
+                                    </p>
 
-                                <p>
-                                    Já ministrou cursos e implantou gelaterias e
-                                    sorveterias em mais de 13 países e em mais
-                                    de 12 estados brasileiros.
-                                </p>
+                                    <p>
+                                        {t('francisco-text5', {
+                                            defaultValue:
+                                                'He has taught courses and installed gelaterias and ice cream shops in more than 13 countries and in more than 12 Brazilian states.',
+                                        })}
+                                    </p>
 
-                                <div className='francisco-links'>
-                                    <ul className='francisco-ullinks'>
-                                        <li>
-                                            <a
-                                                href='https://www.instagram.com/franciscosantanasorvete/'
-                                                className='d-block'
-                                                target='_blank'
-                                                rel='noreferrer'
-                                            >
-                                                <i className='bx bxl-instagram'></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href='https://www.linkedin.com/in/francisco-santana-aa80a8138/'
-                                                className='d-block'
-                                                target='_blank'
-                                                rel='noreferrer'
-                                            >
-                                                <i className='bx bxl-linkedin'></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div className='francisco-links'>
+                                        <ul className='francisco-ullinks'>
+                                            <li>
+                                                <a
+                                                    href='https://www.instagram.com/franciscosantanasorvete/'
+                                                    className='d-block'
+                                                    target='_blank'
+                                                    rel='noreferrer'
+                                                >
+                                                    <i className='bx bxl-instagram'></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href='https://www.linkedin.com/in/francisco-santana-aa80a8138/'
+                                                    className='d-block'
+                                                    target='_blank'
+                                                    rel='noreferrer'
+                                                >
+                                                    <i className='bx bxl-linkedin'></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-
-                                {/* <ul className='features-list'>
-                                    <li>
-                                        <span>
-                                            <i className='flaticon-experience'></i>{' '}
-                                            Expert Trainers
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <i className='flaticon-time-left'></i>{' '}
-                                            Lifetime Acces
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <i className='flaticon-tutorials'></i>{' '}
-                                            Remote Learning
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <i className='flaticon-self-growth'></i>{' '}
-                                            Self Development
-                                        </span>
-                                    </li>
-                                </ul> */}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };
