@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { Enrolment, Instructor_Earning, Course } from "database/models";
 import { calculateCartTotal } from "@/utils/calculateCartTotal";
+import {checkoutConfirmation} from "../../../email-templates/checkout-confirmation";
+
 
 export default async function handler(req, res) {
 	switch (req.method) {
