@@ -1,11 +1,13 @@
 import baseUrl from "@/utils/baseUrl";
 import { transport } from "./config";
 
+const { MANDRILL_EMAIL_SENDER } = process.env
+
 export const checkoutConfirmation = async (cartItems, name, email) => {
 	// console.log(user.email)
 	const data = {
 		to: email,
-		from: "eLearniv Online Courses <hello@envytheme.com>",
+		from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
 		subject: "Checkout Confirmation",
 		html: `
         <!DOCTYPE html>
