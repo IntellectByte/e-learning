@@ -20,7 +20,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 // Global Styles
 import "../styles/style.css";
 import "../styles/responsive.css";
-import '@fontsource/roboto/400.css';
 
 // Dashboard
 import "../styles/dashboard.css";
