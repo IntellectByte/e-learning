@@ -9,4 +9,4 @@ const CourseOverview = ({ overview }) => {
 	);
 };
 
-export default CourseOverview;
+export default CourseOverview
