@@ -8140,18 +8140,15 @@ Go Top CSS
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 2rem;
-    box-shadow: 0px 0px 10px var(--btn-color);
+    box-shadow: 0 17px 30px rgba(0, 0, 0, 0.19), 0 12px 12px rgba(0, 0, 0, 0.23);
     z-index: 999;
     width: 90%;
     max-width: 600px;
-    border-radius: 30px;
+    border-radius: 27px;
     opacity: 0;
-    animation: popupFadeIn 0.3s forwards;
+    animation: popupFadeIn 0.5s forwards;
     animation-delay: 1s;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }
 
 .popup__close {
@@ -8163,8 +8160,38 @@ Go Top CSS
     border: none;
     cursor: pointer;
     opacity: 0;
-    animation: buttonFadeIn 0.3s forwards;
+    animation: buttonFadeIn 0.5s forwards;
+    animation-delay: 1.2s;
+}
+
+.popup-image {
+    height: 100%;
+    min-width: 40%;
+    width: 20px;
+    object-fit: cover;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    opacity: 0;
+    animation: imageFadeIn 0.5s forwards;
     animation-delay: 1s;
+}
+
+.popup-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    width: 60%;
+}
+
+.popup-content > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .popup__close:hover {
@@ -8175,17 +8202,36 @@ Go Top CSS
     font-size: 2rem;
     margin-bottom: 1rem;
     opacity: 0;
-    animation: textFadeIn 0.3s forwards;
-    animation-delay: 1.3s;
+    animation: textFadeIn 0.5s forwards;
+    animation-delay: 1.4s;
     color: var(--btn-color);
     font-weight: 600;
+}
+
+.color-changing {
+    animation: colorChange 5s linear infinite;
+}
+
+@keyframes colorChange {
+    0% {
+        color: #ff69b4; /* Pink */
+    }
+    33% {
+        color: #8a2be2; /* Blue */
+    }
+    66% {
+        color: #32cd32; /* Green */
+    }
+    100% {
+        color: #ff69b4; /* Pink */
+    }
 }
 
 .popup p {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
     opacity: 0;
-    animation: textFadeIn 0.3s forwards;
+    animation: textFadeIn 0.5s forwards;
     animation-delay: 1.6s;
 }
 
@@ -8198,8 +8244,8 @@ Go Top CSS
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     opacity: 0;
-    animation: textFadeIn 0.3s forwards;
-    animation-delay: 1.9s;
+    animation: textFadeIn 0.5s forwards;
+    animation-delay: 1.8s;
 }
 
 .popup form input[type='email'],
@@ -8209,12 +8255,27 @@ Go Top CSS
     padding: 0.5rem;
     font-size: 1.2rem;
     border: 2px solid #ccc;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px var(--logo-color);
+    border-radius: 6px;
+    box-shadow: inset 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     margin-bottom: 1rem;
     opacity: 0;
-    animation: inputFadeIn 0.3s forwards;
-    animation-delay: 2.2s;
+    animation: inputFadeIn 0.5s forwards;
+    animation-delay: 2s;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.popup form input[type='email']:focus,
+.popup form input[type='text']:focus {
+    border: 2px solid var(--btn-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08),
+        0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.popup form input[type='email'].invalid,
+.popup form input[type='text'].invalid {
+    border: 2px solid red;
+    animation: shake 0.82s forwards;
 }
 
 .popup form button[type='submit'] {
@@ -8229,8 +8290,10 @@ Go Top CSS
     display: block;
     margin: 0 auto;
     text-align: center;
+    opacity: 0;
+    animation: buttonFadeIn 0.5s forwards;
+    animation-delay: 2.4s;
 }
-
 .popup form button[type='submit']:before {
     content: '';
     position: absolute;
@@ -8247,6 +8310,17 @@ Go Top CSS
 
 .popup form button[type='submit']:hover:before {
     animation: ripple 0.75s linear forwards;
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes ripple {
@@ -8297,6 +8371,26 @@ Go Top CSS
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
     }
 }
 
