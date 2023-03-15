@@ -28,92 +28,97 @@ const handlePostRequest = async (req, res) => {
     const {cartTotal} = calculateCartTotal(cartItems);
 
     const headers = {
-        'Content-Type': 'text/xml'
+        'Content-Type': 'application/xml'
     };
 
-    const url = `${REDE_API_URL}/UniversalAPI/postAPI`
+    // const url = `${REDE_API_URL}/UniversalAPI/postAPI`
+    const url = `https://api.maxipago.net/UniversalAPI/postAPI`
 
-//     const xmlString = `<api-request>
-//     <verification>
-//         <merchantId>${REDE_MERCHANT_ID}</merchantId>
-//         <merchantKey>${REDE_MERCHANT_KEY}</merchantKey>
-//     </verification>
-//     <command>add-payment-order</command>
-//     <request>
-//         <referenceNum>${REDE_REFERENCE_NUM}</referenceNum>
-//         <userId>Flavis</userId>
-//         <consumerAuthentication>N</consumerAuthentication>
-//         <fraudCheck>N</fraudCheck>
-//         <billing>
-//             <email>${buyer_email}</email>
-//             <firstName>${buyer_name}</firstName>
-//             <lastName>${buyer_name}</lastName>
-//         </billing>
-//         <transactionDetail>
-// 			<description>Pagamento Parcela da curso</description>
-//             <comments>Pagar hoje</comments>
-//             <emailSubject>Favor efetuar o pagamento</emailSubject>
-//             <expirationDate>03/04/2025</expirationDate>
-//             <acceptPix>N</acceptPix>
-//             <payType>
-//                 <creditCard>
-//                     <processorID>1</processorID>
-//                     <operation>auth</operation>
-//                     <numberOfInstallments>1</numberOfInstallments>
-//                     <currencyCode>BRL</currencyCode>
-//                     <amount>${cartTotal}</amount>
-//                 </creditCard>
-//             </payType>
-//         </transactionDetail>
-//     </request>
-// </api-request>`;
+ //     const xmlString = `<api-request>
+ //     <verification>
+ //         <merchantId>${REDE_MERCHANT_ID}</merchantId>
+ //         <merchantKey>${REDE_MERCHANT_KEY}</merchantKey>
+ //     </verification>
+ //     <command>add-payment-order</command>
+ //     <request>
+ //         <referenceNum>${REDE_REFERENCE_NUM}</referenceNum>
+ //         <userId>${userId}</userId>
+ //         <consumerAuthentication>N</consumerAuthentication>
+ //         <fraudCheck>N</fraudCheck>
+ //         <billing>
+ //             <email>${buyer_email}</email>
+ //             <firstName>${buyer_name}</firstName>
+ //             <lastName>${buyer_name}</lastName>
+ //         </billing>
+ //         <transactionDetail>
+ // 			<description>Pagamento Parcela da curso</description>
+ //             <comments>Pagar hoje</comments>
+ //             <emailSubject>Favor efetuar o pagamento</emailSubject>
+ //             <expirationDate>03/04/2025</expirationDate>
+ //             <acceptPix>N</acceptPix>
+ //             <payType>
+ //                 <creditCard>
+ //                     <processorID>1</processorID>
+ //                     <operation>auth</operation>
+ //                     <numberOfInstallments>1</numberOfInstallments>
+ //                     <currencyCode>BRL</currencyCode>
+ //                     <amount>${cartTotal}</amount>
+ //                 </creditCard>
+ //             </payType>
+ //         </transactionDetail>
+ //     </request>
+ // </api-request>`;
+
 
     const xmlString = `<api-request>
-        <verification>
-            <merchantId>22980</merchantId>
-            <merchantKey>gcnv00nj9w7d5cihonkkhduc</merchantKey>
-        </verification>
-        <command>add-payment-order</command>
-        <request>
-            <referenceNum>20230304160644</referenceNum>
-            <userId>Flavis</userId>
-            <consumerAuthentication>N</consumerAuthentication>
-            <fraudCheck>N</fraudCheck>
-            <billing>
-                <email>teste@maxipago.com</email>
-                <firstName>Maxipago</firstName>
-                <lastName>Teste</lastName>
-            </billing>
-            <transactionDetail>
-                <description>Teste: Pagamento Parcela da moto 1 credit simulator 1</description>
-                <comments>Pagar ate dia 30</comments>
-                <emailSubject>Favor efetuar o pagamento</emailSubject>
-                <expirationDate>03/04/2025</expirationDate>
-                <acceptPix>N</acceptPix>
-                <payType>
-                    <creditCard>
-                        <processorID>1</processorID>
-                        <operation>auth</operation>
-                        <numberOfInstallments>1</numberOfInstallments>
-                        <currencyCode>BRL</currencyCode>
-                        <amount>128.76</amount>
-                    </creditCard>
-                </payType>
-            </transactionDetail>
-        </request>
-    </api-request>`;
+    <verification>
+        <merchantId>92986714</merchantId>
+        <merchantKey>e3ab3a5481574d528f3bacc77200fbe4</merchantKey>
+    </verification>
+    <command>add-payment-order</command>
+    <request>
+        <referenceNum>20230313110836</referenceNum>
+        <userId>Flavis</userId>
+        <consumerAuthentication>N</consumerAuthentication>
+        <fraudCheck>N</fraudCheck>
+        <billing>
+            <email>nicolas@escolasorvete.com.br</email>
+            <firstName>Nicolas</firstName>
+            <lastName>Salinas</lastName>
+        </billing>
+        <transactionDetail>
+            <description>asdfasdf</description>
+            <comments>Pagar ate dia 30</comments>
+            <emailSubject>Favor efetuar o pagamento</emailSubject>
+            <expirationDate>03/04/2025</expirationDate>
+            <acceptPix>N</acceptPix>
+            <payType>
+                <creditCard>
+                    <processorID>1</processorID>
+                    <operation>auth</operation>
+                    <numberOfInstallments>1</numberOfInstallments>
+                    <currencyCode>BRL</currencyCode>
+                    <amount>10</amount>
+                </creditCard>
+            </payType>
+        </transactionDetail>
+    </request>
+</api-request>`;
 
 
     try {
 
         const parser = new DOMParser();
 
+        console.log(url)
+
         const xmlRes = (await axios.post(url, xmlString, {headers})).data
+
+        console.log(xmlRes)
 
         const xmlDoc = parser.parseFromString(xmlRes, 'text/xml')
 
         const redePaymentLink = xmlDoc.getElementsByTagName('url')[0].textContent;
-
 
         const redePayOrder = xmlDoc.getElementsByTagName('pay_order_id')[0].textContent;
 
