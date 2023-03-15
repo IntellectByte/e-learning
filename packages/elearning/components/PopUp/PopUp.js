@@ -57,41 +57,50 @@ const PopUp = ({ onClose }) => {
             <button className='popup__close' onClick={onClose}>
                 X
             </button>
-            <h2>Seu dia de sorte</h2>
-            <p>
-                Subscreva a nossa newsletter e obtenha um código de{' '}
-                <span>desconto de 20%</span>
-            </p>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Digite seu nome:
-                    <input
-                        type='text'
-                        value={name}
-                        onChange={handleNameChange}
-                    />
-                </label>
-                <label>
-                    Digite seu e-mail:
-                    <input
-                        type='email'
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
-                </label>
-                {!emailValid && (
-                    <p style={{ color: 'red' }}>
-                        Please enter a valid email address.
+            <div className='popup-content'>
+                <img
+                    className='popup-image'
+                    src='/sorvete-logo.png'
+                    alt='Ice cream course'
+                />
+                <div>
+                    <h2 className='color-changing'>Seu dia de sorte</h2>
+                    <p>
+                        Subscreva a nossa newsletter e obtenha um código de{' '}
+                        <span>desconto de 20%</span>
                     </p>
-                )}
-                <button
-                    type='submit'
-                    onClick={onClose}
-                    disabled={!name || !email || !emailValid}
-                >
-                    Quero o cupom
-                </button>
-            </form>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Digite seu nome:
+                            <input
+                                type='text'
+                                value={name}
+                                onChange={handleNameChange}
+                            />
+                        </label>
+                        <label>
+                            Digite seu e-mail:
+                            <input
+                                type='email'
+                                value={email}
+                                onChange={handleEmailChange}
+                            />
+                        </label>
+                        {!emailValid && (
+                            <p style={{ color: 'red' }}>
+                                Por favor insira um endereço de e-mail válido.
+                            </p>
+                        )}
+                        <button
+                            type='submit'
+                            onClick={onClose}
+                            disabled={!name || !email || !emailValid}
+                        >
+                            Quero o cupom
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };
