@@ -4,16 +4,22 @@ import { toast } from 'react-hot-toast';
 const PopUp = ({ onClose }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [emailValid, setEmailValid] = useState(true);
 
     const handleNameChange = (e) => {
         setName(e.target.value);
     };
 
     const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+        const inputEmail = e.target.value;
+        setEmail(inputEmail);
+
+        // Valida que el formato de email sea correcto
+        const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+        setEmailValid(emailPattern.test(inputEmail));
     };
 
-    // Mailchimp throwing CORS error
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -73,7 +79,16 @@ const PopUp = ({ onClose }) => {
                         onChange={handleEmailChange}
                     />
                 </label>
-                <button type='submit' onClick={onClose}>
+                {!emailValid && (
+                    <p style={{ color: 'red' }}>
+                        Please enter a valid email address.
+                    </p>
+                )}
+                <button
+                    type='submit'
+                    onClick={onClose}
+                    disabled={!name || !email || !emailValid}
+                >
                     Quero o cupom
                 </button>
             </form>
