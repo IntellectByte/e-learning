@@ -50,7 +50,7 @@ const handlePostRequest = async (req, res) => {
 
 		// console.log(cartItems);
 
-		// checkoutConfirmation(cartItems, buyer_name, buyer_email);
+		checkoutConfirmation(cartItems, buyer_name, buyer_email);
 
 		res.status(200).json({
 			message: "Enroled successfully.",
