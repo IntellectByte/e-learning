@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const PopUp = ({ onClose }) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [nameError, setNameError] = useState('');
+
+    const handleNameChange = (e) => {
+        const inputName = e.target.value;
+        setName(inputName);
+
+        // Validate that the input name doesn't contain special characters
+        const namePattern = /^[a-zA-Z\s]+$/;
+        if (!namePattern.test(inputName)) {
+            setNameError(
+                'Please enter a valid name without special characters.'
+            );
+        } else {
+            setNameError('');
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
     const handleSubmit = (e) => {
-        if (!e.target.checkValidity()) {
+        if (!e.target.checkValidity() || nameError) {
             e.preventDefault();
             toast.error('Please fill out all fields correctly.');
             return;
@@ -44,11 +67,26 @@ const PopUp = ({ onClose }) => {
                         <input type='hidden' name='id' value='be824b0afb' />
                         <label>
                             Digite seu nome:
-                            <input type='text' name='MERGE1' required />
+                            <input
+                                type='text'
+                                name='MERGE1'
+                                value={name}
+                                onChange={handleNameChange}
+                                required
+                            />
                         </label>
+                        {nameError && (
+                            <p style={{ color: 'red' }}>{nameError}</p>
+                        )}
                         <label>
                             Digite seu e-mail:
-                            <input type='email' name='EMAIL' required />
+                            <input
+                                type='email'
+                                name='EMAIL'
+                                value={email}
+                                onChange={handleEmailChange}
+                                required
+                            />
                         </label>
                         <button type='submit'>Quero o cupom</button>
                     </form>
