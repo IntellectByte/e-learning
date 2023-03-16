@@ -1,16 +1,16 @@
-import React from "react";
-import Link from "next/link";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { handleLogin } from "@/utils/auth";
-import LoadingSpinner from "@/utils/LoadingSpinner";
-import baseUrl from "@/utils/baseUrl";
-import { useRouter } from "next/router";
-import { motion } from "framer-motion";
+import React from 'react';
+import Link from 'next/link';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { handleLogin } from '@/utils/auth';
+import LoadingSpinner from '@/utils/LoadingSpinner';
+import baseUrl from '@/utils/baseUrl';
+import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 const INITIAL_USER = {
-	email: "",
-	password: "",
+	email: '',
+	password: '',
 };
 
 const LoginForm = () => {
@@ -39,13 +39,13 @@ const LoginForm = () => {
 			handleLogin(response.data.elarniv_users_token, router);
 			toast.success(response.data.message, {
 				style: {
-					border: "1px solid #4BB543",
-					padding: "16px",
-					color: "#4BB543",
+					border: '1px solid #4BB543',
+					padding: '16px',
+					color: '#4BB543',
 				},
 				iconTheme: {
-					primary: "#4BB543",
-					secondary: "#FFFAEE",
+					primary: '#4BB543',
+					secondary: '#FFFAEE',
 				},
 			});
 		} catch (err) {
@@ -56,13 +56,13 @@ const LoginForm = () => {
 			} = err;
 			toast.error(message, {
 				style: {
-					border: "1px solid #ff0033",
-					padding: "16px",
-					color: "#ff0033",
+					border: '1px solid #ff0033',
+					padding: '16px',
+					color: '#ff0033',
 				},
 				iconTheme: {
-					primary: "#ff0033",
-					secondary: "#FFFAEE",
+					primary: '#ff0033',
+					secondary: '#FFFAEE',
 				},
 			});
 		} finally {
@@ -72,51 +72,58 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<div className="login-form">
+			<div className='login-form'>
 				<h2>Login</h2>
 
 				<form onSubmit={handleSubmit}>
-					<div className="form-group">
+					<div className='form-group'>
 						<label>Email</label>
 						<input
-							type="text"
-							className="form-control"
-							placeholder="Email"
-							name="email"
+							type='text'
+							className='form-control'
+							placeholder='Email'
+							name='email'
 							value={user.email}
 							onChange={handleChange}
 						/>
 					</div>
 
-					<div className="form-group">
+					<div className='form-group'>
 						<label>Password</label>
 						<input
-							type="password"
-							className="form-control"
-							placeholder="Password"
-							name="password"
+							type='password'
+							className='form-control'
+							placeholder='Password'
+							name='password'
 							value={user.password}
 							onChange={handleChange}
 						/>
 					</div>
 
-					<div className="row align-items-center">
-						<div className="col-lg-12 col-md-12 col-sm-12 remember-me-wrap">
-							<Link href="/send-confirmation-email">
-								<a className="lost-your-password">
+					<div className='row align-items-center'>
+						<div className='col-lg-12 col-md-12 col-sm-12 remember-me-wrap'>
+							<Link href='/send-confirmation-email'>
+								<a className='lost-your-password'>
 									Didn't receive a confirmation email?
+								</a>
+							</Link>
+						</div>
+						<div className='col-lg-6 col-md-6 col-sm-12 forgot-password-wrap'>
+							<Link href='/forgot-password-page'>
+								<a className='forgot-password'>
+									Forgot password?
 								</a>
 							</Link>
 						</div>
 					</div>
 
 					<motion.button
-						type="submit"
+						type='submit'
 						disabled={disabled}
 						whileTap={{ scale: 0.9 }}
 					>
 						Log In
-						{loading ? <LoadingSpinner /> : ""}
+						{loading ? <LoadingSpinner /> : ''}
 					</motion.button>
 				</form>
 			</div>
