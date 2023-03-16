@@ -21,7 +21,7 @@ const nextConfig = {
         CLOUDINARY_VIDEO_URL:
             'https://api.cloudinary.com/v1_1/dnunzwnex/video/upload',
         CLOUDINARY_ZIP_URL:
-            'https://api.cloudinary.com/v1_1/dnneps5f/raw/upload',
+            'https://api.cloudinary.com/v1_1/dnneps5f/raw/upload?api_key=284888778249526',
     },
     webpack: (config, { isServer }) => {
         config.module.rules.push({
