@@ -67,7 +67,7 @@ const userSignup = async (req, res) => {
 			reset_password_send_at: Date.now(),
 		});
 
-		confirmEmailAddress(newUser);
+		await confirmEmailAddress(newUser);
 
 		const elarniv_users_token = jwt.sign(
 			{
