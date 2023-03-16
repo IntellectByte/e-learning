@@ -4,7 +4,41 @@ import { transport } from "./config";
 const { MANDRILL_EMAIL_SENDER } = process.env
 
 export const checkoutConfirmation = async (cartItems, name, email) => {
-	// console.log(user.email)
+	// console.log(cartItems)
+
+	const items = `${cartItems.map(cart => `<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
+			<td
+				valign="middle"
+				width="80%"
+				style="text-align:left; padding: 0 2.5em;"
+			>
+				<div class="product-entry">
+					<img
+						src=${cart.image}
+						alt=""
+						style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;"
+					/>
+					<div class="text">
+						<h3>${cart.title}</h3>
+						<span>${cart.instructor}</span>
+					</div>
+				</div>
+			</td>
+			<td
+				valign="middle"
+				width="20%"
+				style="text-align:left; padding: 0 2.5em;"
+			>
+				<span class="price" style="color: #000; font-size: 20px;">
+					${cart.price}
+				</span>
+			</td>
+		</tr>`
+	)}`
+
+	console.log(items)
+
+
 	const data = {
 		to: email,
 		from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
@@ -342,42 +376,7 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
                                     <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
                                 </tr>
 
-                                ${cartItems.map((cart) => (
-									<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-										<td
-											valign="middle"
-											width="80%"
-											style="text-align:left; padding: 0 2.5em;"
-										>
-											<div class="product-entry">
-												<img
-													src={cart.image}
-													alt=""
-													style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;"
-												/>
-												<div class="text">
-													<h3>{cart.title}</h3>
-													<span>
-														{cart.instructor}
-													</span>
-												</div>
-											</div>
-										</td>
-										<td
-											valign="middle"
-											width="20%"
-											style="text-align:left; padding: 0 2.5em;"
-										>
-											<span
-												class="price"
-												style="color: #000; font-size: 20px;"
-											>
-												${cart.price}
-											</span>
-										</td>
-									</tr>
-								))}
-                                
+                                ${items}
 
                                 <tr>
                                     <td valign="middle" style="text-align:left; padding: 1em 2.5em;">
