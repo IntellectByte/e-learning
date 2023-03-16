@@ -172,6 +172,19 @@ const ForgotPassComponent = () => {
     const handleSendToken = async (e) => {
         e.preventDefault();
         setTokenLoading(true);
+
+        console.log(user.email)
+
+        try {
+
+            const response = await axios.get(`${baseUrl}/api/users/password-reset/token-send?userEmail=${user.email}`)
+
+            toast.success(response.data.message)
+
+        }catch (err){
+            toast.error(err.message)
+        }
+
         // BACKEND
         // BACKEND
         setTokenSent(true);
@@ -182,9 +195,8 @@ const ForgotPassComponent = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const url = `${baseUrl}/api/users/send-confirmation-email`;
-            const payload = { ...user };
-            const response = await axios.post(url, payload);
+            const url = `${baseUrl}/api/users/password-reset?userEmail=${user.email}&token=${user.token}`;
+            const response = await axios.put(url);
             toast.success(response.data.message, {
                 style: {
                     border: '1px solid #4BB543',
@@ -196,7 +208,7 @@ const ForgotPassComponent = () => {
                     secondary: '#FFFAEE',
                 },
             });
-            Router.push('/authentication');
+            Router.push('/');
         } catch (err) {
             let {
                 response: {
@@ -281,6 +293,7 @@ const ForgotPassComponent = () => {
                                     <motion.button
                                         type='submit'
                                         disabled={disabled}
+                                        // onClick={}
                                         whileTap={{ scale: 0.9 }}
                                         style={{ cursor: 'pointer' }}
                                     >
