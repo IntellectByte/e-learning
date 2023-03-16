@@ -46,15 +46,6 @@ const handlePostRequest = async (req, res) => {
             });
         }
 
-
-        // const items = `${cartItems.map(elem => `<div>
-        //     ${elem.title}
-        //     ${elem.price}
-        // </div>`)}`
-        //
-        //
-        // console.log(items);
-
         await checkoutConfirmation(cartItems, buyer_name, buyer_email);
 
         res.status(200).json({

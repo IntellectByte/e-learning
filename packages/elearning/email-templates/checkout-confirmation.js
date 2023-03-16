@@ -4,7 +4,7 @@ import { transport } from "./config";
 const { MANDRILL_EMAIL_SENDER } = process.env
 
 export const checkoutConfirmation = async (cartItems, name, email) => {
-	console.log(cartItems)
+	// console.log(cartItems)
 
 	const items = `${cartItems.map(cart => `<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 			<td
