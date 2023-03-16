@@ -12,6 +12,7 @@ import SubscribeForm from '@/components/Common/SubscribeForm';
 import Footer from '@/components/_App/Footer';
 import baseUrl from '@/utils/baseUrl';
 import PopUp from '@/components/PopUp/PopUp';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 function Index({ courses, user }) {
     const [showPopup, setShowPopup] = useState(false);
@@ -34,6 +35,7 @@ function Index({ courses, user }) {
     return (
         <>
             {showPopup && <PopUp onClose={handleClosePopup} />}
+            <SupportButton />
             <Navbar user={user} />
             <MainBanner user={user} courses={courses} />
             <Features />
