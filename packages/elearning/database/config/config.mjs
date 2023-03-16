@@ -6,6 +6,7 @@ export default {
 		host: process.env.DB_HOSTNAME,
 		port: process.env.DB_PORT,
 		dialect: "mysql",
+		logging: false
 	},
 	production: {
 		username: process.env.DB_USERNAME,
