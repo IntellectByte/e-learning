@@ -17,7 +17,6 @@ const ContactForm = () => {
     const [disabled, setDisabled] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
     const [emailError, setEmailError] = useState('');
-    const [phoneError, setPhoneError] = useState('');
 
     React.useEffect(() => {
         const isContact = Object.values(contact).every((el) => Boolean(el));
@@ -30,8 +29,6 @@ const ContactForm = () => {
 
         if (name === 'email') {
             validateEmail(value);
-        } else if (name === 'phone') {
-            validatePhone(value);
         }
     };
 
@@ -41,15 +38,6 @@ const ContactForm = () => {
             setEmailError('Please enter a valid email address');
         } else {
             setEmailError('');
-        }
-    };
-
-    const validatePhone = (phone) => {
-        const phonePattern = /^\+?[\d\s()-]{7,}$/; // Adjust the pattern to match the desired phone number format
-        if (!phonePattern.test(phone)) {
-            setPhoneError('Please enter a valid phone number');
-        } else {
-            setPhoneError('');
         }
     };
 
@@ -144,9 +132,6 @@ const ContactForm = () => {
                                     value={contact.phone}
                                     onChange={handleChange}
                                 />
-                                {phoneError && (
-                                    <div className='error'>{phoneError}</div>
-                                )}
                             </div>
                         </div>
 

@@ -1,154 +1,19 @@
+
+
 import baseUrl from "@/utils/baseUrl";
 import { transport } from "./config";
 
 const { MANDRILL_EMAIL_SENDER } = process.env
 
-export const checkoutConfirmation = async (cartItems, name, email) => {
-	// console.log(cartItems)
-
-	const items = `${cartItems.map(cart => `<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-			<td
-				valign="middle"
-				width="80%"
-				style="text-align:left; padding: 0 2.5em;"
-			>
-				<div class="product-entry">
-					<img
-						src=${cart.image}
-						alt=""
-						style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;"
-					/>
-					<div class="text">
-						<h3>${cart.title}</h3>
-						<span>${cart.instructor}</span>
-					</div>
-				</div>
-			</td>
-			<td
-				valign="middle"
-				width="20%"
-				style="text-align:left; padding: 0 2.5em;"
-			>
-				<span class="price" style="color: #000; font-size: 20px;">
-					${cart.price}
-				</span>
-			</td>
-		</tr>`
-	)}`
-
-	console.log(items)
+export const passwordResetConfirmation = async (password, name, email) => {
+    // console.log(password)
 
 
-	const data = {
-		to: email,
-		from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
-		subject: "Checkout Confirmation",
-		html: `
-        <!DOCTYPE html>
-            <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-            <head>
-                <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-                <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-                <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-                <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
-                <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
-
-                <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
-
-                <!-- CSS Reset : BEGIN -->
-                <style>
-
-                    /* What it does: Remove spaces around the email design added by some email clients. */
-                    /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
-                    html,
-            body {
-                margin: 0 auto !important;
-                padding: 0 !important;
-                height: 100% !important;
-                width: 100% !important;
-                background: #f1f1f1;
-            }
-
-            /* What it does: Stops email clients resizing small text. */
-            * {
-                -ms-text-size-adjust: 100%;
-                -webkit-text-size-adjust: 100%;
-            }
-
-            /* What it does: Centers email on Android 4.4 */
-            div[style*="margin: 16px 0"] {
-                margin: 0 !important;
-            }
-
-            /* What it does: Stops Outlook from adding extra spacing to tables. */
-            table,
-            td {
-                mso-table-lspace: 0pt !important;
-                mso-table-rspace: 0pt !important;
-            }
-
-            /* What it does: Fixes webkit padding issue. */
-            table {
-                border-spacing: 0 !important;
-                border-collapse: collapse !important;
-                table-layout: fixed !important;
-                margin: 0 auto !important;
-            }
-
-            /* What it does: Uses a better rendering method when resizing images in IE. */
-            img {
-                -ms-interpolation-mode:bicubic;
-... (308 lines left)
-Collapse
-message.txt
-15 KB
-﻿
-import baseUrl from "@/utils/baseUrl";
-import { transport } from "./config";
-
-const { MANDRILL_EMAIL_SENDER } = process.env
-
-export const checkoutConfirmation = async (cartItems, name, email) => {
-	// console.log(cartItems)
-
-	const items = `${cartItems.map(cart => `<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-			<td
-				valign="middle"
-				width="80%"
-				style="text-align:left; padding: 0 2.5em;"
-			>
-				<div class="product-entry">
-					<img
-						src=${cart.image}
-						alt=""
-						style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;"
-					/>
-					<div class="text">
-						<h3>${cart.title}</h3>
-						<span>${cart.instructor}</span>
-					</div>
-				</div>
-			</td>
-			<td
-				valign="middle"
-				width="20%"
-				style="text-align:left; padding: 0 2.5em;"
-			>
-				<span class="price" style="color: #000; font-size: 20px;">
-					${cart.price}
-				</span>
-			</td>
-		</tr>`
-	)}`
-
-	console.log(items)
-
-
-	const data = {
-		to: email,
-		from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
-		subject: "Checkout Confirmation",
-		html: `
+    const data = {
+        to: email,
+        from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
+        subject: "Password Reset Confirmation",
+        html: `
         <!DOCTYPE html>
             <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
             <head>
@@ -443,70 +308,22 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
             </head>
 
             <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
-                <center style="width: 100%; background-color: #f1f1f1;">
-                <div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
-                &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
-                </div>
-                <div style="max-width: 600px; margin: 0 auto;" class="email-container">
-                    <!-- BEGIN BODY -->
-                <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-                    <tr>
-                    <td valign="top" class="bg_white" style="padding: 1em 2.5em 0 2.5em;">
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td class="logo" style="text-align: left;">
-                                    <h1><a href=${baseUrl}>eLearniv</a></h1>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    </tr><!-- end tr -->
-                            <tr>
-                    <td valign="middle" class="hero bg_white" style="padding: 2em 0 2em 0;">
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td style="padding: 0 2.5em; text-align: left;">
-                                    <div class="text">
-                                        <h2>${name}, Your purchase receipt here</h2>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    </tr><!-- end tr -->
-                    <tr>
-                        <table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-                                    <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-                                    <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
-                                </tr>
-
-                                ${items}
-
-                                <tr>
-                                    <td valign="middle" style="text-align:left; padding: 1em 2.5em;">
-                                        <p><a href=${baseUrl} class="btn btn-primary">Continue to your order</a></p>
-                                    </td>
-                                </tr>
-                        </table>
-                    </tr><!-- end tr -->
-                <!-- 1 Column Text + Button : END -->
-                </table>
-
-                </div>
-            </center>
+                
+                
+                <div>Your password is ${password}</div>
+                
             </body>
             </html>
         `,
-	};
+    };
 
-	try {
-		await transport.sendMail(data);
-		console.log("Email send successfully");
-		// res.status(200).send("Email send successfully")
-	} catch (error) {
-		console.log("########", error);
-		// res.status(500).send("Error proccessing charge");
-	}
-	transport.close();
+    try {
+        await transport.sendMail(data);
+        console.log("Email send successfully");
+        // res.status(200).send("Email send successfully")
+    } catch (error) {
+        console.log("########", error);
+        // res.status(500).send("Error proccessing charge");
+    }
+    transport.close();
 };
