@@ -24,12 +24,12 @@ const handlePutRequest = async (req, res) => {
 
     try {
 
-        const {userId, token} = req.query
+        const {userEmail, token} = req.query
 
         // console.log(user.id)
 
         const user = await User.findOne({
-            where: {id: userId},
+            where: {email: userEmail},
         });
 
         if (!user) throw new Error("User does not found.")
@@ -47,7 +47,7 @@ const handlePutRequest = async (req, res) => {
                 password: passwordHash
             },
             {
-                where: {id: userId}
+                where: {email: userEmail}
             }
         )
 
@@ -60,7 +60,7 @@ const handlePutRequest = async (req, res) => {
                 reset_password_token: confirmToken
             },
             {
-                where: {id: userId}
+                where: {email: userEmail}
             }
         )
 

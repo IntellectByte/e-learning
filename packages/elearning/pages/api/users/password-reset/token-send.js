@@ -22,12 +22,12 @@ const handleGetRequest = async (req, res) => {
 
     try {
 
-        const { userId } = req.query
+        const { userEmail } = req.query
 
-        // console.log(user.id)
+        // console.log(user.email)
 
         const user = await User.findOne({
-            where: {id: userId},
+            where: {email: userEmail},
         });
 
         if (!user) throw new Error("User does not found.")
