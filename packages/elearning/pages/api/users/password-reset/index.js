@@ -4,11 +4,10 @@ import User from "@/database/models/user";
 import passwordGenerator from "password-generator";
 import bcrypt from "bcrypt";
 import {passwordResetConfirmation} from "../../../../email-templates/password-reset-confirmation";
+import { v4 as uuidv4 } from "uuid";
+
 
 export default async (req, res) => {
-    if (!("authorization" in req.headers)) {
-        return res.status(401).json({message: "No autorization token"});
-    }
     switch (req.method) {
         case "PUT":
             await handlePutRequest(req, res);
@@ -25,20 +24,21 @@ const handlePutRequest = async (req, res) => {
 
     try {
 
-        const {userId} = jwt.verify(
-            req.headers.authorization,
-            process.env.JWT_SECRET
-        );
-
-        const user = await User.findOne({
-            where: {id: userId},
-        });
+        const {userEmail, token} = req.query
 
         // console.log(user.id)
 
+        const user = await User.findOne({
+            where: {email: userEmail},
+        });
+
+        if (!user) throw new Error("User does not found.")
+
+        if (token !== user.reset_password_token) throw new Error("Invalid Token.")
+
         const passwordRandom = passwordGenerator(12, false)
 
-        // console.log(passwordRandom)
+        // return console.log(passwordRandom)
 
         const passwordHash = await bcrypt.hash(passwordRandom, 10);
 
@@ -47,14 +47,26 @@ const handlePutRequest = async (req, res) => {
                 password: passwordHash
             },
             {
-                where: {id: userId}
+                where: {email: userEmail}
             }
         )
 
         await passwordResetConfirmation(passwordRandom, user.first_name, user.email)
 
+        const confirmToken = uuidv4();
+
+        await User.update(
+            {
+                reset_password_token: confirmToken
+            },
+            {
+                where: {email: userEmail}
+            }
+        )
+
         res.status(200).json({
-            message: "Password Updated."
+            message: "Password Updated.",
+            newPasswordResetToken: confirmToken
         });
 
     } catch (e) {
