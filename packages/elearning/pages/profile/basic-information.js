@@ -81,6 +81,11 @@ const BasicInformation = ({ user }) => {
                                 <a>Profile Picture</a>
                             </Link>
                         </li>
+                        <li>
+                            <Link href='/profile/change-password'>
+                                <a>Change Password</a>
+                            </Link>
+                        </li>
                     </ul>
 
                     <div className='basic-profile-information-form'>
