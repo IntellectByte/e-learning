@@ -23,12 +23,9 @@ const handlePutRequest = async (req, res) => {
 
     try {
 
-        const {password1, password2} = req.body
+        const {oldPw, password1, password2} = req.body
 
-        const {userId} = jwt.verify(
-            req.headers.authorization,
-            process.env.JWT_SECRET
-        )
+        const {userId} = jwt.verify(req.headers.authorization, process.env.JWT_SECRET)
 
         const user = await User.findOne({
             where: {id: userId},
@@ -36,27 +33,24 @@ const handlePutRequest = async (req, res) => {
 
         if (!user) throw new Error(" User does not found.")
 
+
+        const resultA = bcrypt.compareSync(oldPw, user.password)
+        if (!resultA) throw new Error("Incorrect current password.")
+
+
         if (password1 !== password2) throw new Error("Passwords dont match.")
         if (password1.length < 6) throw new Error("Password should be minimum of six characters long")
 
-        bcrypt.compare(password1, user.password, (err, result) => {
-            if (err) {
-                throw new Error(err.message)
-            }
-            if (result === true) {
-                throw new Error("The new password cannot be the same as the old password");
-            }
-        })
+        const resultB = bcrypt.compareSync(password1, user.password)
+        if (resultB) throw new Error("The new password cannot be the same as the old password");
+
 
         const passwordHash = await bcrypt.hash(password1, 10);
 
-        await User.update(
-            {
-                password: passwordHash
-            },
-            {
-                where: {id: userId}
-            }
+        await User.update({
+            password: passwordHash
+        },
+            {where: {id: userId}}
         )
 
 
