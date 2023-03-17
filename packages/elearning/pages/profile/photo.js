@@ -121,6 +121,11 @@ const Photo = ({ user }) => {
                                 <a className='active'>Profile Picture</a>
                             </Link>
                         </li>
+                        <li>
+                            <Link href='/profile/change-password'>
+                                <a>Change Password</a>
+                            </Link>
+                        </li>
                     </ul>
 
                     <div className='basic-profile-information-form'>
