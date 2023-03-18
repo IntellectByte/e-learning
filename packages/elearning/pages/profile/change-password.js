@@ -43,10 +43,11 @@ const ChangePassword = ({ user }) => {
                 return;
             }
 
-            const url = `${baseUrl}/api/users/change-password`;
+            const url = `${baseUrl}/api/users/password-change`;
             const payload = {
-                currentPassword,
-                newPassword,
+                oldPw: currentPassword,
+                password1: newPassword,
+                password2: confirmNewPassword
             };
             const response = await axios.put(url, payload, {
                 headers: { Authorization: elarniv_users_token },
