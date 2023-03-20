@@ -92,9 +92,9 @@ function Index({ courses, user }) {
         <>
             {showPopup && <PopUp onClose={handleClosePopup} />}
             <SupportButton />
-            <motion.div initial='hidden' animate='visible' variants={fadeIn}>
-                <Navbar user={user} />
-            </motion.div>
+
+            <Navbar user={user} />
+
             <motion.div
                 ref={refMainBanner}
                 initial='hidden'
