@@ -7,6 +7,7 @@ import ProfileDropdown from './ProfileDropdown';
 import Cart from './Cart';
 import SearchForm from './SearchForm';
 import { useTranslation } from 'next-i18next';
+import NotificationIcon from './NotificationIcon';
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
@@ -218,6 +219,8 @@ const Navbar = ({ user }) => {
                                 </div>
 
                                 <div className='others-option d-flex align-items-center '>
+                                    {/* Notification Bell for online classes */}
+                                    {/* {user && <NotificationIcon />} */}
                                     <Cart />
 
                                     <div className='option-item'>
