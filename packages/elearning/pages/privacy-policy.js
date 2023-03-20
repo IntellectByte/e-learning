@@ -4,6 +4,7 @@ import PageBanner from "@/components/Common/PageBanner";
 import Footer from "@/components/_App/Footer";
 
 export default function PrivacyPolicyPage( { user } ) {
+
 	return (
 		<>
 			<Navbar user={user} />

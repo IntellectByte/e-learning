@@ -8,6 +8,7 @@ import Enrolment from "./enrolment";
 import Instructor_Earning from "./instructor_earning";
 import Course_Progress from "./course_progress";
 import Course_Asset from "./course_asset";
+import Notification from "./notification"
 
 User.hasMany(Course, { foreignKey: "userId", as: "courses" });
 Course.belongsTo(User, { foreignKey: "userId", as: "user" });
@@ -23,6 +24,9 @@ Video.belongsTo(User, { foreignKey: "userId", as: "user" });
 
 User.hasMany(Favourite, { foreignKey: "userId", as: "favourites" });
 Favourite.belongsTo(User, { foreignKey: "userId", as: "user" });
+
+User.hasMany(Notification, {foreignKey: "userId", as: "notifications", onDelete: "CASCADE"})
+Notification.belongsTo(User, {foreignKey: "userId", as: "user"})
 
 Course.hasMany(Favourite, { foreignKey: "courseId", as: "favourites" });
 Favourite.belongsTo(Course, { foreignKey: "courseId", as: "course" });
@@ -73,5 +77,6 @@ export {
 	Instructor_Earning,
 	Course_Progress,
 	Course_Asset,
-    HotmartUser
+    HotmartUser,
+	Notification
 };
