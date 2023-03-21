@@ -141,6 +141,31 @@ const PlaceOrderBtn = ({ user, cartItems }) => {
         if (paymentId) handleCancelOrder().then((e) => console.log(e));
     };
 
+
+
+
+    const script1 = document.createElement('script')
+    const script2 = document.createElement('script')
+    script1.src = "https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"
+    script1.async = true
+
+
+    useEffect(() => {
+
+        const script = document.createElement('script');
+        script.src = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+        script.async = true;
+        script.onload = () => {
+            const checkoutElements = window.checkoutElements.init('overlayCheckout', {
+                offer: 'zpb5u3gt'
+            });
+            checkoutElements.attach('#payment_button');
+        };
+        document.body.appendChild(script);
+
+    }, [])
+
+
     useEffect(() => {
         window.addEventListener('beforeunload', handleBeforeUnload);
 
@@ -238,22 +263,23 @@ const PlaceOrderBtn = ({ user, cartItems }) => {
 
     return (
         <div>
-            <button
-                onClick={handleCheckout}
-                type='submit'
-                className='default-btn-style-3 d-block w-100 mt-3'
-                disabled={cartItems.length == 0 || loading}
-            >
-                Place Order <span></span> {loading && <LoadingSpinner />}
-            </button>
-            {paymentId && (
-                <button
-                    onClick={handleCancelOrder}
-                    className='default-btn-style-4 d-block w-100 mt-4'
-                >
-                    Cancel Order
-                </button>
-            )}
+            {/*<button*/}
+            {/*    onClick={handleCheckout}*/}
+            {/*    type='submit'*/}
+            {/*    className='default-btn-style-3 d-block w-100 mt-3'*/}
+            {/*    disabled={cartItems.length == 0 || loading}*/}
+            {/*>*/}
+            {/*    Place Order <span></span> {loading && <LoadingSpinner />}*/}
+            {/*</button>*/}
+            {/*{paymentId && (*/}
+            {/*    <button*/}
+            {/*        onClick={handleCancelOrder}*/}
+            {/*        className='default-btn-style-4 d-block w-100 mt-4'*/}
+            {/*    >*/}
+            {/*        Cancel Order*/}
+            {/*    </button>*/}
+            {/*)}*/}
+            <button id="payment_button" >Proceed to checkout</button>
         </div>
     );
 };

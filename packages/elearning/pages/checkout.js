@@ -9,16 +9,16 @@ export default function CheckoutPage({ user }) {
 		<>
 			<Navbar user={user} />
 
-			<PageBanner
-				pageTitle="Checkout"
-				homePageUrl="/"
-				homePageText="Home"
-				activePageText="Checkout"
-			/>
+			{/*<PageBanner*/}
+			{/*	pageTitle="Checkout"*/}
+			{/*	homePageUrl="/"*/}
+			{/*	homePageText="Home"*/}
+			{/*	activePageText="Checkout"*/}
+			{/*/>*/}
 
 			<CheckoutForm user={user} />
 
-			<Footer />
+			{/*<Footer />*/}
 		</>
 	);
 }

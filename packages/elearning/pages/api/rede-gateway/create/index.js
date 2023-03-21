@@ -110,6 +110,8 @@ const handlePostRequest = async (req, res) => {
 
         const xmlRes = (await axios.post(url, xmlString, {headers})).data
 
+        console.log(xmlRes)
+
         const xmlDoc = parser.parseFromString(xmlRes, 'text/xml')
 
         const redePaymentLink = xmlDoc.getElementsByTagName('url')[0].textContent;
@@ -120,6 +122,8 @@ const handlePostRequest = async (req, res) => {
         const redeMessage = xmlDoc.getElementsByTagName('message')[0].textContent;
 
         const date = new Date()
+
+        console.log(redeMessage)
 
         res.status(200).json({
             message: redeMessage,
