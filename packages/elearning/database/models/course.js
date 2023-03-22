@@ -28,6 +28,7 @@ const initCourse = (sequelize, Types) => {
 			lessons: DataTypes.STRING,
 			duration: DataTypes.STRING,
 			image: DataTypes.STRING,
+			hotmartId: DataTypes.STRING,
 			access_time: {
 				type: DataTypes.ENUM,
 				values: ["Lifetime", "Three Months", "Six Months", "1 Year"],
@@ -69,6 +70,7 @@ const initCourse = (sequelize, Types) => {
 			updatedAt: "updated_at",
 		}
 	);
+
 	return Course;
 };
 export default initCourse(connection, DataTypes);

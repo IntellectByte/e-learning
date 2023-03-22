@@ -40,6 +40,8 @@ const BuyCourseBtn = ({ current_user, course }) => {
         courseObj['duration'] = courseCart.duration;
         courseObj['access_time'] = courseCart.access_time;
         courseObj['quantity'] = 1;
+        courseObj['hotmartId'] = courseCart.hotmartId;
+
         courseObj[
             'instructor'
         ] = `${courseCart.user.first_name} ${courseCart.user.last_name}`;
