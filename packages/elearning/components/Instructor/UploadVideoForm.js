@@ -5,6 +5,7 @@ import baseUrl from '@/utils/baseUrl';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import UploadChunkVideoForm from "@/components/Instructor/UploadChunkVideoForm";
 
 const INITIAL_VALUE = {
     group_name: '',
@@ -18,6 +19,8 @@ const INITIAL_VALUE = {
 };
 
 const UploadVideoForm = ({ courseId }) => {
+
+
     const { elarniv_users_token } = parseCookies();
     const [video, setVideo] = useState(INITIAL_VALUE);
     const [disabled, setDisabled] = React.useState(true);
@@ -272,7 +275,11 @@ const UploadVideoForm = ({ courseId }) => {
                     </div>
                 </div>
 
+
                 <div className='col-md-6'>
+
+                    <UploadChunkVideoForm />
+
                     <div className='form-group'>
                         <label className='form-label fw-semibold'>
                             Select Video
