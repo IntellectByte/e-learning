@@ -31,6 +31,22 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user.email || !user.password) {
+            toast.error('Please fill in all fields', {
+                style: {
+                    border: '1px solid #ff0033',
+                    padding: '16px',
+                    color: '#ff0033',
+                },
+                iconTheme: {
+                    primary: '#ff0033',
+                    secondary: '#FFFAEE',
+                },
+            });
+            return;
+        }
+
         try {
             setLoading(true);
             const url = `${baseUrl}/api/users/signin`;
@@ -85,6 +101,7 @@ const LoginForm = () => {
                             name='email'
                             value={user.email}
                             onChange={handleChange}
+                            required
                         />
                     </div>
 
@@ -97,6 +114,7 @@ const LoginForm = () => {
                             name='password'
                             value={user.password}
                             onChange={handleChange}
+                            required
                         />
                     </div>
 
