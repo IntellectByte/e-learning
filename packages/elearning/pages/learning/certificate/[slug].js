@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
+import Confetti from 'react-confetti';
 
 const slug = ({ user }) => {
     const [student, setStudent] = useState(
@@ -78,57 +79,37 @@ const slug = ({ user }) => {
 
             <div className='ptb-100 get-certificate'>
                 <div className='container'>
-                    <div className='row'>
-                        <div className='col-lg-4'>
-                            <div className='form-box'>
-                                <form>
-                                    <label className='mb-2'>Seu Nome</label>
-                                    <input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Enter your name'
-                                        value={student}
-                                        onChange={(e) =>
-                                            setStudent(e.target.value)
-                                        }
-                                    />
-                                </form>
-                            </div>
+                    <div className='form-box'>
+                        <form>
+                            <label className='mb-2'>Seu Nome</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                placeholder='Enter your name'
+                                value={student}
+                                onChange={(e) => setStudent(e.target.value)}
+                            />
+                        </form>
+                    </div>
+                    <div id='domEl' ref={domEl} className='certificate-img'>
+                        <Confetti width={1200} height={700} />
+                        <div className='content'>
+                            <h2>{student}</h2>
+                            <p>
+                                Por completar o <b>{course && course.title}</b>
+                            </p>
                         </div>
+                        <img src='/images/certificate1.jpg' alt='' />
+                    </div>
 
-                        <div className='col-lg-8'>
-                            <div
-                                id='domEl'
-                                ref={domEl}
-                                className='certificate-img'
-                            >
-                                <div className='content'>
-                                    <h2>{student}</h2>
-                                    <p>
-                                        For completing the{' '}
-                                        <b>{course && course.title}</b>
-                                    </p>
-                                </div>
-                                <img src='/images/certificate.png' alt='' />
-                            </div>
-
-                            <div className='caption'>
-                                <button
-                                    className='download-btn'
-                                    onClick={downloadCertificate}
-                                    title='JPEG Image'
-                                >
-                                    <i className='bx bxs-file-jpg'></i>
-                                </button>{' '}
-                                <button
-                                    className='download-btn'
-                                    onClick={downloadCertificatePdf}
-                                    title='PDF'
-                                >
-                                    <i className='bx bxs-file-pdf'></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div className='caption'>
+                        <button
+                            className='download-btn download-btn-jpg visible'
+                            onClick={downloadCertificate}
+                            title='JPEG Image'
+                        >
+                            Download as JPG
+                        </button>
                     </div>
                 </div>
             </div>
