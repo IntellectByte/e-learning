@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 const slug = ({ user }) => {
     const [student, setStudent] = useState(
@@ -74,6 +75,8 @@ const slug = ({ user }) => {
 
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <div className='ptb-100 get-certificate'>

@@ -1,24 +1,27 @@
-import React from "react";
-import Navbar from "@/components/_App/Navbar";
-import PageBanner from "@/components/Common/PageBanner";
-import ConfirmEmail from "@/components/Authentication/ConfirmEmail";
-import Footer from "@/components/_App/Footer";
+import React from 'react';
+import Navbar from '@/components/_App/Navbar';
+import PageBanner from '@/components/Common/PageBanner';
+import ConfirmEmail from '@/components/Authentication/ConfirmEmail';
+import Footer from '@/components/_App/Footer';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 export default function ForgotPasswordPage({ user }) {
-	return (
-		<>
-			<Navbar user={user} />
+    return (
+        <>
+            <SupportButton />
 
-			<PageBanner
-				pageTitle="Send Confirmation Email"
-				homePageUrl="/"
-				homePageText="Home"
-				activePageText="Send Confirmation Email"
-			/>
+            <Navbar user={user} />
 
-			<ConfirmEmail />
+            <PageBanner
+                pageTitle='Send Confirmation Email'
+                homePageUrl='/'
+                homePageText='Home'
+                activePageText='Send Confirmation Email'
+            />
 
-			<Footer />
-		</>
-	);
+            <ConfirmEmail />
+
+            <Footer />
+        </>
+    );
 }
