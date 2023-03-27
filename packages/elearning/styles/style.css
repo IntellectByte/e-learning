@@ -7455,16 +7455,36 @@ Go Top CSS
 .get-certificate label {
     text-align: center;
     font-weight: 700;
+    font-size: 28px;
+    color: #bd2368;
+    margin-bottom: 2px;
 }
 
 .get-certificate input {
+    width: 40%; /* Adjust this value to set the desired input width */
     border: none;
-    border-radius: 55px;
-    background-color: var(--beige-secundario);
+    border-radius: 30px;
+
     font-size: 16px;
     font-weight: 400;
-    -webkit-box-shadow: 0 1px 7px 0 var(--logo-color);
-    box-shadow: 0 1px 7px 0 var(--logo-color);
+    padding: 10px 20px;
+
+    transition: 0.3s;
+    outline: none;
+    border: 2px solid transparent;
+    border-color: #bd2368;
+    background-color: #fff;
+    color: #bd2368;
+    -webkit-box-shadow: 0 1px 7px 0 #bd2368;
+    box-shadow: 0 1px 7px 0 #bd2368;
+}
+
+.get-certificate input:focus {
+    border-color: #bd2368;
+    background-color: #fff;
+    color: #bd2368;
+    -webkit-box-shadow: 0 1px 7px 0 #bd2368;
+    box-shadow: 0 1px 7px 0 #bd2368;
 }
 
 .get-certificate .content h2 {
@@ -7476,34 +7496,53 @@ Go Top CSS
 }
 
 .get-certificate .caption {
-    text-align: right;
-    margin-top: -50px;
-    position: relative;
-    padding-right: 10px;
-    opacity: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: 1;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     z-index: 2;
 }
 
 .get-certificate .caption .download-btn {
-    width: 40px;
-    height: 40px;
-    line-height: 42px;
-    background-color: #fff;
+    background-color: #bd2368;
     border: 0;
-    padding: 0;
-    font-size: 40px;
+    padding: 10px 20px;
+    font-size: 16px;
     border-radius: 5px;
-    color: #f44336;
+    color: #fff;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.get-certificate .caption .download-btn:nth-child(1) {
-    color: #3100f3;
+.get-certificate .caption .download-btn:hover {
+    background-color: #a01d57;
 }
 
-.get-certificate .col-lg-8:hover .caption {
+/* Remove hover effect to make buttons always visible */
+/*.get-certificate .col-lg-8:hover .caption {
     opacity: 1;
+}*/
+
+.get-certificate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.get-certificate form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .live-class-icon {
