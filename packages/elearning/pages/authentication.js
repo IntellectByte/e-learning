@@ -4,10 +4,13 @@ import PageBanner from '@/components/Common/PageBanner';
 import LoginForm from '@/components/Authentication/LoginForm';
 import RegisterForm from '@/components/Authentication/RegisterForm';
 import Footer from '@/components/_App/Footer';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 export default function AuthenticationPage({ user }) {
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <PageBanner

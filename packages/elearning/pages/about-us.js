@@ -5,10 +5,13 @@ import AboutUs from '../components/AboutUs/AboutUs';
 import FeedbackSliderWithFunFacts from '@/components/eLearningSchool/FeedbackSliderWithFunFacts';
 import Partner from '@/components/eLearningSchool/Partner';
 import Footer from '../components/_App/Footer';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 export default function AbourUsPage({ user }) {
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <PageBanner

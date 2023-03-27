@@ -8,6 +8,7 @@ import { parseCookies } from 'nookies';
 import baseUrl from '@/utils/baseUrl';
 import GeneralLoader from '@/utils/GeneralLoader';
 import CourseCard from '@/components/Learning/CourseCard';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -34,6 +35,8 @@ const Index = ({ user }) => {
 
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <div className='ptb-100'>

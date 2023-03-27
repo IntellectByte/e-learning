@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import { useRouter } from 'next/router';
 import baseUrl from '@/utils/baseUrl';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 const Photo = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -104,6 +105,8 @@ const Photo = ({ user }) => {
 
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <div className='ptb-100'>
