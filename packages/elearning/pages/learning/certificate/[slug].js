@@ -17,6 +17,15 @@ const slug = ({ user }) => {
     const router = useRouter();
     const { slug } = router.query;
 
+    const getCurrentDate = () => {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const year = today.getFullYear();
+
+        return `${day}/${month}/${year}`;
+    };
+
     useEffect(() => {
         const fetchCourse = async () => {
             try {
@@ -95,11 +104,12 @@ const slug = ({ user }) => {
                         <Confetti width={1200} height={700} />
                         <div className='content'>
                             <h2>{student}</h2>
+                            <p className='date'>{getCurrentDate()}</p>
                             <p>
                                 Por completar o <b>{course && course.title}</b>
                             </p>
                         </div>
-                        <img src='/images/certificate1.jpg' alt='' />
+                        <img src='/images/certificate2.jpg' alt='' />
                     </div>
 
                     <div className='caption'>
