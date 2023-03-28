@@ -93,7 +93,8 @@ function Index({ courses, user }) {
         <>
             {showPopup && <PopUp onClose={handleClosePopup} />}
 
-            <TopBanner message='Curso Sorvete 50%OFF!' />
+            {/*<TopBanner message='Curso Sorvete 50%OFF!' />*/}
+            <TopBanner />
 
             <SupportButton />
 
