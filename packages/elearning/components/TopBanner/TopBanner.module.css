@@ -1,23 +1,19 @@
 .topBanner {
     display: none;
-    background: linear-gradient(
-        135deg,
-        #4ebddd 0%,
-        #58c7e0 100%
-    ); /* Added gradient background */
+    background: linear-gradient(135deg, #4ebddd 0%, #58c7e0 100%);
     color: #ffffff;
     text-align: center;
-    padding: 10px 0; /* Increased padding for more space */
+    padding: 10px 0;
     top: 0;
     left: 0;
     font-size: 17px;
     font-weight: bold;
     width: 100%;
     z-index: 1000;
-    box-sizing: border-box; /* Added box-sizing to include padding in the total width */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
-    transition: transform 0.3s ease; /* Added transition for smooth hiding and showing */
-    margin: 0 auto; /* Added margin to center the element and prevent expanding the width */
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
 }
 
 .visible {
