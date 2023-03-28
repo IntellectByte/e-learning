@@ -12,12 +12,12 @@ const Index = ({ user }) => {
 
             <Navbar user={user} />
 
-            <PageBanner
+            {/* <PageBanner
                 pageTitle='Subscribe to our monthly plan'
                 homePageUrl='/'
                 homePageText='Home'
                 activePageText='Monthly Plan'
-            />
+            /> */}
 
             <SubscribePlanComponent />
 
