@@ -93,7 +93,7 @@ const AdminSideNav = ({ user }) => {
                                         className={
                                             currentRoute === '/admin/courses' ||
                                             currentRoute ===
-                                                '/admin/courses/new-arrival'
+                                            '/admin/courses/new-arrival'
                                                 ? 'active'
                                                 : ''
                                         }
@@ -117,9 +117,9 @@ const AdminSideNav = ({ user }) => {
                                     <a
                                         className={
                                             currentRoute ===
-                                                '/admin/instructor' ||
+                                            '/admin/instructor' ||
                                             currentRoute ===
-                                                '/admin/instructor/requests'
+                                            '/admin/instructor/requests'
                                                 ? 'active'
                                                 : ''
                                         }
@@ -143,9 +143,9 @@ const AdminSideNav = ({ user }) => {
                                     <a
                                         className={
                                             currentRoute ===
-                                                '/admin/students' ||
+                                            '/admin/students' ||
                                             currentRoute ===
-                                                '/admin/students/site-admins'
+                                            '/admin/students/site-admins'
                                                 ? 'active'
                                                 : ''
                                         }
@@ -169,9 +169,9 @@ const AdminSideNav = ({ user }) => {
                                     <a
                                         className={
                                             currentRoute ===
-                                                '/admin/partners' ||
+                                            '/admin/partners' ||
                                             currentRoute ===
-                                                '/admin/partners/create'
+                                            '/admin/partners/create'
                                                 ? 'active'
                                                 : ''
                                         }
@@ -195,9 +195,9 @@ const AdminSideNav = ({ user }) => {
                                     <a
                                         className={
                                             currentRoute ===
-                                                '/admin/testimonials' ||
+                                            '/admin/testimonials' ||
                                             currentRoute ===
-                                                '/admin/testimonials/create'
+                                            '/admin/testimonials/create'
                                                 ? 'active'
                                                 : ''
                                         }
@@ -221,9 +221,9 @@ const AdminSideNav = ({ user }) => {
                                     <a
                                         className={
                                             currentRoute ===
-                                                '/admin/categories' ||
+                                            '/admin/categories' ||
                                             currentRoute ===
-                                                '/admin/categories/create'
+                                            '/admin/categories/create'
                                                 ? 'active'
                                                 : ''
                                         }
@@ -248,12 +248,37 @@ const AdminSideNav = ({ user }) => {
                                         className={
                                             currentRoute === '/admin/coupons' ||
                                             currentRoute ===
-                                                '/admin/coupons/create'
+                                            '/admin/coupons/create'
                                                 ? 'active'
                                                 : ''
                                         }
                                     >
                                         Coupons
+                                    </a>
+                                </Link>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{
+                                    scale: 1.05,
+                                }}
+                                whileTap={{ scale: 0.9 }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 400,
+                                    damping: 10,
+                                }}
+                            >
+                                <Link href='/admin/banners/create'>
+                                    <a
+                                        className={
+                                            currentRoute === '/admin/banners' ||
+                                            currentRoute ===
+                                            '/admin/banners/create'
+                                                ? 'active'
+                                                : ''
+                                        }
+                                    >
+                                        Banners
                                     </a>
                                 </Link>
                             </motion.li>
