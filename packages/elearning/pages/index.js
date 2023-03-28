@@ -16,6 +16,7 @@ import Footer from '@/components/_App/Footer';
 import baseUrl from '@/utils/baseUrl';
 import PopUp from '@/components/PopUp/PopUp';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const fadeIn = {
     hidden: { opacity: 0 },
@@ -91,6 +92,9 @@ function Index({ courses, user }) {
     return (
         <>
             {showPopup && <PopUp onClose={handleClosePopup} />}
+
+            <TopBanner message='Curso Sorvete 50%OFF!' />
+
             <SupportButton />
 
             <Navbar user={user} />
