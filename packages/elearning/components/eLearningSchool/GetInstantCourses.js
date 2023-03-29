@@ -38,36 +38,23 @@ const GetInstantCourses = ({ user }) => {
                                             })}
                                         </p>
 
-                                        {user ? (
-                                            <Link href='/learning/sub-form/'>
-                                                <a className='default-btn'>
-                                                    <i className='flaticon-user'></i>{' '}
-                                                    {t('instant-btn1', {
-                                                        defaultValue:
-                                                            'Subscribe To Our Monthly Plan',
-                                                    })}
-                                                    <span></span>
-                                                </a>
-                                            </Link>
-                                        ) : (
-                                            <Link href='/authentication'>
-                                                <a className='default-btn'>
-                                                    <i className='flaticon-user'></i>{' '}
-                                                    {t('instant-btn2', {
-                                                        defaultValue:
-                                                            'Register to see our monthly plans',
-                                                    })}
-                                                    <span></span>
-                                                </a>
-                                            </Link>
-                                        )}
+                                        <Link href='/learning/sub-form/'>
+                                            <a className='default-btn'>
+                                                <i className='flaticon-user'></i>{' '}
+                                                {t('instant-btn1', {
+                                                    defaultValue:
+                                                        'Subscribe To Our Monthly Plan',
+                                                })}
+                                                <span></span>
+                                            </a>
+                                        </Link>
                                     </div>
                                 </div>
 
                                 <div className='col-lg-4 col-md-12'>
                                     <div className='get-instant-courses-image'>
                                         <img
-                                            src='/images/sorvete-3.jpg'
+                                            src='/images/sorvete-3.webp'
                                             alt='image'
                                         />
                                     </div>

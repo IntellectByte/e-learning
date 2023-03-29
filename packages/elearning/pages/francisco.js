@@ -4,10 +4,13 @@ import PageBanner from '../components/Common/PageBanner';
 import FranciscoComponent from '../components/Francisco/FranciscoComponent';
 import CourseAdvisor from '../components/Common/CourseAdvisor';
 import Footer from '../components/_App/Footer';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 export default function Francisco({ user }) {
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <PageBanner

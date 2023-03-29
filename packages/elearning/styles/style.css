@@ -5560,6 +5560,7 @@ Get Instant Courses Area CSS
         rgba(245, 187, 214, 1) 100%,
         rgba(238, 138, 184, 1) 100%
     );
+
     border-radius: 50px;
 }
 
@@ -7455,16 +7456,36 @@ Go Top CSS
 .get-certificate label {
     text-align: center;
     font-weight: 700;
+    font-size: 28px;
+    color: #bd2368;
+    margin-bottom: 2px;
 }
 
 .get-certificate input {
+    width: 40%; /* Adjust this value to set the desired input width */
     border: none;
-    border-radius: 55px;
-    background-color: var(--beige-secundario);
+    border-radius: 30px;
+
     font-size: 16px;
     font-weight: 400;
-    -webkit-box-shadow: 0 1px 7px 0 var(--logo-color);
-    box-shadow: 0 1px 7px 0 var(--logo-color);
+    padding: 10px 20px;
+
+    transition: 0.3s;
+    outline: none;
+    border: 2px solid transparent;
+    border-color: #bd2368;
+    background-color: #fff;
+    color: #bd2368;
+    -webkit-box-shadow: 0 1px 7px 0 #bd2368;
+    box-shadow: 0 1px 7px 0 #bd2368;
+}
+
+.get-certificate input:focus {
+    border-color: #bd2368;
+    background-color: #fff;
+    color: #bd2368;
+    -webkit-box-shadow: 0 1px 7px 0 #bd2368;
+    box-shadow: 0 1px 7px 0 #bd2368;
 }
 
 .get-certificate .content h2 {
@@ -7476,34 +7497,53 @@ Go Top CSS
 }
 
 .get-certificate .caption {
-    text-align: right;
-    margin-top: -50px;
-    position: relative;
-    padding-right: 10px;
-    opacity: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: 1;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     z-index: 2;
 }
 
 .get-certificate .caption .download-btn {
-    width: 40px;
-    height: 40px;
-    line-height: 42px;
-    background-color: #fff;
+    background-color: #bd2368;
     border: 0;
-    padding: 0;
-    font-size: 40px;
+    padding: 10px 20px;
+    font-size: 16px;
     border-radius: 5px;
-    color: #f44336;
+    color: #fff;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.get-certificate .caption .download-btn:nth-child(1) {
-    color: #3100f3;
+.get-certificate .caption .download-btn:hover {
+    background-color: #a01d57;
 }
 
-.get-certificate .col-lg-8:hover .caption {
+/* Remove hover effect to make buttons always visible */
+/*.get-certificate .col-lg-8:hover .caption {
     opacity: 1;
+}*/
+
+.get-certificate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.get-certificate form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .live-class-icon {
@@ -8031,12 +8071,19 @@ Go Top CSS
 }
 
 .bluemoon {
-    background-image: url('https://assets.codepen.io/1538474/star.svg'),
-        linear-gradient(to bottom, #05007a, #4d007d);
-    height: 100vh;
+    background: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
+    min-height: 100vh;
     margin: 0;
     background-attachment: fixed;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-container img {
+    width: 50%;
+    max-width: 400px;
 }
 
 .mars {
@@ -8045,44 +8092,29 @@ Go Top CSS
     bottom: 0;
     position: absolute;
     height: 27vmin;
-    background: url('https://assets.codepen.io/1538474/mars.svg') no-repeat
-        bottom center;
+
     background-size: cover;
 }
-.logo-404 {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: 16vmin;
-    width: 30vmin;
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
-@media (max-width: 480px) and (min-width: 320px) {
-    .logo-404 {
-        top: 45vmin;
-    }
-}
-.meteor {
-    position: absolute;
-    right: 2vmin;
-    top: 16vmin;
-}
+
 .title {
-    color: white;
+    color: #ee3a80;
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     text-align: center;
     font-size: 5vmin;
-    margin-top: 31vmin;
+    margin-top: 4vmin;
 }
-@media (max-width: 480px) and (min-width: 320px) {
-    .title {
-        margin-top: 65vmin;
-    }
-}
+
 .subtitle {
-    color: white;
+    color: #161616;
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
     text-align: center;
@@ -8090,47 +8122,67 @@ Go Top CSS
     margin-top: -1vmin;
     margin-bottom: 9vmin;
 }
+
 .btn-back {
     border: 1px solid white;
+    background-color: #ee3a80;
     color: white;
     height: 5vmin;
     padding: 12px;
     font-family: 'Nunito', sans-serif;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    z-index: 999;
 }
+
 .btn-back:hover {
-    background: white;
-    color: #4d007d;
+    z-index: 999;
+    background: #66deff;
+    color: black;
 }
-@media (max-width: 480px) and (min-width: 320px) {
+
+@media (max-width: 480px) {
+    .bluemoon {
+        max-height: 100%;
+    }
+
+    .content-container img {
+        width: 80%;
+    }
+
+    .title {
+        font-size: 8vw;
+    }
+
+    .subtitle {
+        font-size: 4.5vw;
+    }
+
     .btn-back {
-        font-size: 3.5vmin;
+        font-size: 4vw;
+    }
+
+    .falling-ice-cream {
+        max-height: 70vh;
     }
 }
-.astronaut {
+
+@keyframes falling {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+}
+
+.falling-ice-cream {
     position: absolute;
-    top: 18vmin;
-    left: 10vmin;
-    height: 30vmin;
-    animation: floating 3s infinite ease-in-out;
-}
-@media (max-width: 480px) and (min-width: 320px) {
-    .astronaut {
-        top: 2vmin;
-    }
-}
-.spaceship {
-    position: absolute;
-    width: 300px;
-    bottom: 15vmin;
-    right: 24vmin;
-}
-@media (max-width: 480px) and (min-width: 320px) {
-    .spaceship {
-        width: 45vmin;
-        bottom: 18vmin;
-    }
+    animation: falling linear infinite;
+    opacity: 0;
+    max-height: 100vh;
 }
 
 .popup {

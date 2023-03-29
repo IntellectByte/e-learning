@@ -158,7 +158,32 @@ const Navbar = ({ user }) => {
                                             </Link>
                                         </motion.li>
 
-                                        {user ? (
+                                        {/* Subscriptions */}
+                                        <motion.li
+                                            className='nav-item'
+                                            whileHover={{
+                                                scale: 1.1,
+                                                transition: { duration: 0.5 },
+                                            }}
+                                            whileTap={{ scale: 0.9 }}
+                                        >
+                                            <Link
+                                                href='/learning/sub-form/'
+                                                activeClassName='active'
+                                            >
+                                                <a
+                                                    onClick={toggleNavbar}
+                                                    className='nav-link'
+                                                >
+                                                    {t('navSubscriptions', {
+                                                        defaultValue:
+                                                            'Subscriptions',
+                                                    })}
+                                                </a>
+                                            </Link>
+                                        </motion.li>
+
+                                        {/* {user ? (
                                             !user.instructor_request && (
                                                 <motion.li
                                                     className='nav-item'
@@ -214,7 +239,7 @@ const Navbar = ({ user }) => {
                                                     </a>
                                                 </Link>
                                             </motion.li>
-                                        )}
+                                        )} */}
                                     </ul>
                                 </div>
 

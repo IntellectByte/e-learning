@@ -1,147 +1,188 @@
 import React from 'react';
-import Link from 'next/link';
-import { BiBadgeCheck } from 'react-icons/bi';
+import { Pricing } from 'react-pricing';
+import styles from './SubscribePlanComponent.module.css';
 
 const SubscribePlanComponent = () => {
     return (
         <>
-            <div className='about-area francisco-area ptb-100'>
-                {/* <div className='card-container'>
-                    <div className='card'>
-                        <div className='img__card'>
-                            <img src='' alt='left' className='left' />
-                        </div>
-                        <h4 className='card__title'>Monthly</h4>
-                        <h4 className='card__title'>
-                            <strong>R$ 55</strong>/Month
-                        </h4>
-                        <div className='desc'>
-                            <p>
-                                Acesso a mais de 160 cursos e Escolas
-                                <br />
-                                especializadas
-                            </p>
-                        </div>
-                        <ul>
-                            <li>
-                                <BiBadgeCheck /> Receba certificados digitais ao
-                                ser <br />
-                                aprovado nos nossos cursos.
-                            </li>
-                            <li>
-                                <BiBadgeCheck /> Baixe os cursos em seu
-                                smartphone <br />e estude sem conexão de
-                                internet.
-                            </li>
-                        </ul>
-                        <p>
-                            <a href='#' className='btn__choose'>
-                                Subscribe
-                            </a>
-                        </p>
-                    </div>
-                    <div className='card card__middle'>
-                        <div className='img__card'>
-                            <img src='' alt='left' className='left' />
-                        </div>
-                        <h4 className='card__title'>Anually</h4>
-                        <h4 className='card__title'>
-                            <strong>R$ 40</strong>/Month - R$ 480 Anually
-                        </h4>
-                        <div className='desc'>
-                            <p>
-                                Acesso a mais de 160 cursos e Escolas
-                                <br />
-                                especializadas
-                            </p>
-                        </div>
-                        <ul>
-                            <li>
-                                <BiBadgeCheck /> Receba certificados digitais ao
-                                ser <br />
-                                aprovado nos nossos cursos.
-                            </li>
-                            <li>
-                                <BiBadgeCheck /> Baixe os cursos em seu
-                                smartphone <br />e estude sem conexão de
-                                internet.
-                            </li>
-                        </ul>
-                        <p>
-                            <a href='#' className='btn__choose'>
-                                Subscribe
-                            </a>
-                        </p>
-                    </div>
-                </div> */}
-                <div class='wrapper'>
+            <div className={styles['main-component-background']}>
+                <div className={styles.wrapper}>
                     <h2>
-                        Subscribe to our monthly plan. <br />
+                        Subscribete a nuestros planes
+                        <br />
                     </h2>
                     <br />
-                    <div class='pricing-table'>
-                        <div class='pricing-box'>
-                            <h2>Monthly Membership</h2>
-                            <span class='price'>R$ 50/month</span>
-                            <p class='description'>
-                                Best For Lorem Ipsum is simply dummy text of the
-                                printing and typesetting industry...
-                            </p>
-                            <span class='pricing-table-divider'></span>
-                            <a class='btn' href='#'>
-                                <b>Subscribe</b>
-                            </a>
-                            <span class='pricing-table-divider'></span>
-                            <ul>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                            </ul>
-                        </div>
-                        <div class='pricing-box pricing-table-best'>
-                            <h2>Yearly Membership</h2>
-                            <span class='price'>R$ 40/month (R$ 480/year)</span>
-                            <p class='description'>
-                                Best For Lorem Ipsum is simply dummy text of the
-                                printing and typesetting industry...
-                            </p>
-                            <span class='pricing-table-divider'></span>
-                            <a class='btn' href='#'>
-                                <b>Subscribe</b>
-                            </a>
-                            <span class='pricing-table-divider'></span>
-                            <ul>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                                <li>
-                                    <BiBadgeCheck className='badge-color' />{' '}
-                                    Lorem Ipsum is simply dummy text
-                                </li>
-                            </ul>
-                        </div>
+                    <div className={styles['pricing-table']}>
+                        <Pricing
+                            data={[
+                                {
+                                    text: 'Clases Grabadas',
+                                    value: true,
+                                },
+                                { text: 'Receta del mes', value: true },
+                                {
+                                    text: 'acceso a la comunidad (WA)',
+                                    value: true,
+                                },
+                                { text: 'material de apoyo', value: true },
+                                { text: 'Certificado digital', value: true },
+                                {
+                                    text: 'Aulas practicas grabadas',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Descuento en tienda online',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Eventos con descuentos exclusivos',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Cursos en Streaming',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Aulas practicas en vivo',
+                                    value: false,
+                                },
+                                { text: '1 consultoria con SF', value: false },
+                                {
+                                    text: 'Una clase practica en la escuela (optativa)*',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Grupo de linkedin ex alumnos',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Ceremonia de graduación con diploma fisico',
+                                    value: false,
+                                },
+                            ]}
+                            price={323}
+                            duration='y'
+                            background='linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)'
+                            shadow='#F5BCD7'
+                            currency='U$D'
+                            buttonContent='Subscribete'
+                            //priceText='Bring your designs to the next level and export them.'
+                            headerText='Plan Basico'
+                        />
+
+                        <Pricing
+                            data={[
+                                {
+                                    text: 'Clases Grabadas',
+                                    value: true,
+                                },
+                                { text: 'Receta del mes', value: true },
+                                {
+                                    text: 'acceso a la comunidad (WA)',
+                                    value: true,
+                                },
+                                { text: 'material de apoyo', value: true },
+                                { text: 'Certificado digital', value: true },
+                                {
+                                    text: 'Aulas practicas grabadas',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Descuento en tienda online',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Eventos con descuentos exclusivos',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Cursos en Streaming',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Aulas practicas en vivo',
+                                    value: false,
+                                },
+                                { text: '1 consultoria con SF', value: false },
+                                {
+                                    text: 'Una clase practica en la escuela (optativa)*',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Grupo de linkedin ex alumnos',
+                                    value: false,
+                                },
+                                {
+                                    text: 'Ceremonia de graduación con diploma fisico',
+                                    value: false,
+                                },
+                            ]}
+                            price={474}
+                            duration='y'
+                            background='linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)'
+                            shadow='#F5BCD7'
+                            currency='U$D'
+                            buttonContent='Subscribete'
+                            //priceText='Bring your designs to the next level and export them.'
+                            headerText='Plan Intermedio'
+                        />
+
+                        <Pricing
+                            data={[
+                                {
+                                    text: 'Clases Grabadas',
+                                    value: true,
+                                },
+                                { text: 'Receta del mes', value: true },
+                                {
+                                    text: 'acceso a la comunidad (WA)',
+                                    value: true,
+                                },
+                                { text: 'material de apoyo', value: true },
+                                { text: 'Certificado digital', value: true },
+                                {
+                                    text: 'Aulas practicas grabadas',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Descuento en tienda online',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Eventos con descuentos exclusivos',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Cursos en Streaming',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Aulas practicas en vivo',
+                                    value: true,
+                                },
+                                { text: '1 consultoria con SF', value: true },
+                                {
+                                    text: 'Una clase practica en la escuela (optativa)*',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Grupo de linkedin ex alumnos',
+                                    value: true,
+                                },
+                                {
+                                    text: 'Ceremonia de graduación con diploma fisico',
+                                    value: true,
+                                },
+                            ]}
+                            price={708}
+                            duration='y'
+                            background='linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%)'
+                            shadow='#F5BCD7'
+                            currency='U$D'
+                            buttonContent='Subscribete'
+                            // priceText='mo/year'
+                            headerText='Plan Premium'
+                        />
                     </div>
                 </div>
             </div>

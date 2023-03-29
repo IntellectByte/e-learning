@@ -9,6 +9,7 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import { useRouter } from 'next/router';
 import baseUrl from '@/utils/baseUrl';
 import styles from './ProfileSettings.module.css';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 const ChangePassword = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -47,7 +48,7 @@ const ChangePassword = ({ user }) => {
             const payload = {
                 oldPw: currentPassword,
                 password1: newPassword,
-                password2: confirmNewPassword
+                password2: confirmNewPassword,
             };
             const response = await axios.put(url, payload, {
                 headers: { Authorization: elarniv_users_token },
@@ -70,6 +71,8 @@ const ChangePassword = ({ user }) => {
 
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <div className={styles.container}>

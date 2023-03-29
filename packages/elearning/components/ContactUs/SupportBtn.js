@@ -54,7 +54,8 @@ const SupportButton = () => {
                     justify-content: center;
                     width: 60px;
                     height: 60px;
-                    background-color: #66deff;
+                    background-color: #ee8ab8;
+                    color: #ffffff;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -64,7 +65,7 @@ const SupportButton = () => {
                     animation: pulsate 1.5s infinite ease-in-out;
                 }
                 button:hover {
-                    background-color: #00a9ff;
+                    background-color: #ce417d;
                     transform: scale(1.1);
                 }
             `}</style>

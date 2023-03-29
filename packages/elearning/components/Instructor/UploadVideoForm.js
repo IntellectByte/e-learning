@@ -5,6 +5,7 @@ import baseUrl from '@/utils/baseUrl';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import UploadChunkVideoForm from '@/components/Instructor/UploadChunkVideoForm';
 
 const INITIAL_VALUE = {
     group_name: '',
@@ -273,6 +274,8 @@ const UploadVideoForm = ({ courseId }) => {
                 </div>
 
                 <div className='col-md-6'>
+                    <UploadChunkVideoForm />
+
                     <div className='form-group'>
                         <label className='form-label fw-semibold'>
                             Select Video

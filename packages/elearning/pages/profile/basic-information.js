@@ -7,6 +7,7 @@ import axios from 'axios';
 import { parseCookies } from 'nookies';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import baseUrl from '@/utils/baseUrl';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 const BasicInformation = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -64,6 +65,8 @@ const BasicInformation = ({ user }) => {
 
     return (
         <>
+            <SupportButton />
+
             <Navbar user={user} />
 
             <div className='ptb-100'>

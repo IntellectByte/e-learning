@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import SocialShareBtns from './SocialShareBtns';
 import { calculateDiscount } from '@/utils/helper';
+import { useTranslation } from 'next-i18next';
 
 const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
     // console.log(course);
@@ -19,6 +20,13 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
     const router = useRouter();
     const [apply, setApplyCoupon] = useState(false);
     const [coupon, setCoupon] = useState({ coupon: '' });
+
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = React.useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         const courseExist = cartItems.find((cart) => {
@@ -112,163 +120,226 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
 
     return (
         <>
-            <StickyBox className='sticky-box' offsetTop={100} offsetBottom={20}>
-                <div className='courses-sidebar-sticky'>
-                    <div className='courses-sidebar-information'>
-                        <ul className='info'>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-play'></i> Live
-                                        Class
-                                    </span>
-                                    {course.is_class ? (
-                                        <div className='live-class-icon'></div>
-                                    ) : (
-                                        'No'
-                                    )}
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-teacher'></i>{' '}
-                                        Instructor
-                                    </span>
-                                    {course.user && course.user.first_name}{' '}
-                                    {course.user && course.user.last_name}
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-time'></i>{' '}
-                                        Duration
-                                    </span>
-                                    {course.duration}
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-distance-learning'></i>{' '}
-                                        Lessons
-                                    </span>
-                                    {course.lessons}
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-web'></i>{' '}
-                                        Enrolled
-                                    </span>
-                                    {course.enrolments &&
-                                        course.enrolments.length}{' '}
-                                    students
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-html'></i>{' '}
-                                        Language
-                                    </span>
-                                    English
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-caption'></i>{' '}
-                                        Video Subtitle
-                                    </span>
-                                    N/A
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-lock'></i> Access
-                                    </span>
-                                    {course.access_time}
-                                </div>
-                            </li>
-                            <li>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span>
-                                        <i className='flaticon-certification'></i>{' '}
-                                        Certificate
-                                    </span>
-                                    Yes
-                                </div>
-                            </li>
-                        </ul>
+            {isMounted && (
+                <StickyBox
+                    className='sticky-box'
+                    offsetTop={100}
+                    offsetBottom={20}
+                >
+                    <div className='courses-sidebar-sticky'>
+                        <div className='courses-sidebar-information'>
+                            <ul className='info'>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-play'></i>{' '}
+                                            {t('course-page-liveclass', {
+                                                defaultValue: 'Live Class',
+                                            })}
+                                        </span>
+                                        {course.is_class ? (
+                                            <div className='live-class-icon'></div>
+                                        ) : (
+                                            'No'
+                                        )}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-teacher'></i>{' '}
+                                            {t(
+                                                'course-page-details-instructor',
+                                                {
+                                                    defaultValue: 'Instructor',
+                                                }
+                                            )}
+                                        </span>
+                                        {course.user && course.user.first_name}{' '}
+                                        {course.user && course.user.last_name}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-time'></i>{' '}
+                                            {t('course-page-details-duration', {
+                                                defaultValue: 'Duration',
+                                            })}
+                                        </span>
+                                        {course.duration}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-distance-learning'></i>{' '}
+                                            {t('course-page-details-lessons', {
+                                                defaultValue: 'Lessons',
+                                            })}
+                                        </span>
+                                        {course.lessons}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-web'></i>{' '}
+                                            {t('course-page-details-enrolled', {
+                                                defaultValue: 'Enrolled',
+                                            })}
+                                        </span>
+                                        {course.enrolments &&
+                                            course.enrolments.length}{' '}
+                                        students
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-html'></i>{' '}
+                                            {t('course-page-details-language', {
+                                                defaultValue: 'Language',
+                                            })}
+                                        </span>
+                                        English
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-caption'></i>{' '}
+                                            {t(
+                                                'course-page-details-videosubtitle',
+                                                {
+                                                    defaultValue:
+                                                        'Video Subtitle',
+                                                }
+                                            )}
+                                        </span>
+                                        N/A
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-lock'></i>{' '}
+                                            {t('course-page-details-access', {
+                                                defaultValue: 'Access',
+                                            })}
+                                        </span>
+                                        {course.access_time}
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-certification'></i>{' '}
+                                            {t(
+                                                'course-page-details-certificate',
+                                                {
+                                                    defaultValue: 'Certificate',
+                                                }
+                                            )}
+                                        </span>
+                                        Yes
+                                    </div>
+                                </li>
+                            </ul>
 
-                        <div className='coupon'>
-                            <h4 onClick={() => setApplyCoupon(!apply)}>
-                                Apply Coupon
-                            </h4>
-                            {apply && (
-                                <form onSubmit={handleCoupon}>
-                                    <input
-                                        type='text'
-                                        className='input-search'
-                                        placeholder='Enter Coupon'
-                                        name='search'
-                                        value={coupon.coupon}
-                                        onChange={(e) =>
-                                            setCoupon(e.target.value)
-                                        }
-                                    />
-                                    <button type='submit'>
-                                        <b>Apply</b>
-                                    </button>
-                                </form>
-                            )}
-                        </div>
-
-                        <div className='btn-box'>
-                            {alreadyBuy ? (
-                                <button
-                                    onClick={() =>
-                                        router.push('/learning/my-courses')
-                                    }
-                                    className='default-btn'
-                                >
-                                    <i className='flaticon-shopping-cart'></i>{' '}
-                                    View My Courses
-                                    <span></span>
-                                </button>
-                            ) : (
-                                <>
-                                    {add ? (
-                                        <Link href='/checkout'>
-                                            <a className='default-btn'>
-                                                {' '}
-                                                View Cart
-                                            </a>
-                                        </Link>
-                                    ) : (
-                                        <button
-                                            onClick={() => addToCart(course)}
-                                            className='default-btn'
-                                            disabled={add}
-                                        >
-                                            {' '}
-                                            <i className='flaticon-shopping-cart'></i>{' '}
-                                            Add to cart
-                                            <span></span>
+                            <div className='coupon'>
+                                <h4 onClick={() => setApplyCoupon(!apply)}>
+                                    {t('course-page-details-applycoupon', {
+                                        defaultValue: 'Apply Coupon',
+                                    })}
+                                </h4>
+                                {apply && (
+                                    <form onSubmit={handleCoupon}>
+                                        <input
+                                            type='text'
+                                            className='input-search'
+                                            placeholder='Enter Coupon'
+                                            name='search'
+                                            value={coupon.coupon}
+                                            onChange={(e) =>
+                                                setCoupon(e.target.value)
+                                            }
+                                        />
+                                        <button type='submit'>
+                                            <b>
+                                                {t(
+                                                    'course-page-details-applybtn',
+                                                    {
+                                                        defaultValue: 'Apply',
+                                                    }
+                                                )}
+                                            </b>
                                         </button>
-                                    )}
-                                </>
-                            )}
-                        </div>
+                                    </form>
+                                )}
+                            </div>
 
-                        <SocialShareBtns />
+                            <div className='btn-box'>
+                                {alreadyBuy ? (
+                                    <button
+                                        onClick={() =>
+                                            router.push('/learning/my-courses')
+                                        }
+                                        className='default-btn'
+                                    >
+                                        <i className='flaticon-shopping-cart'></i>{' '}
+                                        {t(
+                                            'course-page-details-viewmycourses',
+                                            {
+                                                defaultValue: 'View My Courses',
+                                            }
+                                        )}
+                                        <span></span>
+                                    </button>
+                                ) : (
+                                    <>
+                                        {add ? (
+                                            <Link href='/checkout'>
+                                                <a className='default-btn'>
+                                                    {' '}
+                                                    {t(
+                                                        'course-page-details-viewmycart',
+                                                        {
+                                                            defaultValue:
+                                                                'View Cart',
+                                                        }
+                                                    )}
+                                                </a>
+                                            </Link>
+                                        ) : (
+                                            <button
+                                                onClick={() =>
+                                                    addToCart(course)
+                                                }
+                                                className='default-btn'
+                                                disabled={add}
+                                            >
+                                                {' '}
+                                                <i className='flaticon-shopping-cart'></i>{' '}
+                                                {t(
+                                                    'course-page-details-addtomycart',
+                                                    {
+                                                        defaultValue:
+                                                            'Add to cart',
+                                                    }
+                                                )}
+                                                <span></span>
+                                            </button>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+
+                            <SocialShareBtns />
+                        </div>
                     </div>
-                </div>
-            </StickyBox>
+                </StickyBox>
+            )}
         </>
     );
 };

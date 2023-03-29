@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const BuyCourseBtn = ({ current_user, course }) => {
     const cartItems = useSelector((state) => state.cart.cartItems);
@@ -11,6 +12,13 @@ const BuyCourseBtn = ({ current_user, course }) => {
     const [add, setAdd] = useState(false);
     const [alreadyBuy, setAlreadyBuy] = useState(false);
     const router = useRouter();
+
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = React.useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         const courseExist = cartItems.find((cart) => {
@@ -53,29 +61,46 @@ const BuyCourseBtn = ({ current_user, course }) => {
     };
 
     return alreadyBuy ? (
-        <button
-            className='default-btn'
-            onClick={() => router.push('/checkout')}
-        >
-            <i className='flaticon-user'></i> View My Courses <span></span>
-        </button>
-    ) : (
         <>
-            {add ? (
+            {isMounted && (
                 <button
+                    className='default-btn'
                     onClick={() => router.push('/checkout')}
-                    className='default-btn'
                 >
-                    View Cart
-                </button>
-            ) : (
-                <button
-                    className='default-btn'
-                    onClick={() => buyCourse(course)}
-                >
-                    <i className='flaticon-shopping-cart'></i> Buy Course
+                    <i className='flaticon-user'></i>{' '}
+                    {t('course-btn-view-my-couses', {
+                        defaultValue: 'View My Courses',
+                    })}{' '}
                     <span></span>
                 </button>
+            )}
+        </>
+    ) : (
+        <>
+            {isMounted && (
+                <>
+                    {add ? (
+                        <button
+                            onClick={() => router.push('/checkout')}
+                            className='default-btn'
+                        >
+                            {t('course-btn-view-my-couses-view-cart', {
+                                defaultValue: 'View Cart',
+                            })}
+                        </button>
+                    ) : (
+                        <button
+                            className='default-btn'
+                            onClick={() => buyCourse(course)}
+                        >
+                            <i className='flaticon-shopping-cart'></i>{' '}
+                            {t('course-btn-view-my-couses-buycourse', {
+                                defaultValue: 'Buy Course',
+                            })}
+                            <span></span>
+                        </button>
+                    )}
+                </>
             )}
         </>
     );
