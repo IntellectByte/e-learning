@@ -1,5 +1,3 @@
-
-
 export default async function handler(req, res) {
     switch (req.method) {
         case "POST":
@@ -13,30 +11,39 @@ export default async function handler(req, res) {
 }
 
 const hookHandler = async (req, res) => {
-    if (req.method === 'POST') {
+
+    try {
+
         const payload = req.body
 
-        if (payload.type === 'PAYMENT_STATUS_CHANGED') {
-            // Process the payment status change
-            const transactionId = payload.data.transaction.id
-            const status = payload.data.transaction.status
-            const productId = payload.data.product.id
-            const productName = payload.data.product.name
-            const customerName = payload.data.customer.name
-            const customerEmail = payload.data.customer.email
-
-            // Do something with the payment data, such as update your database or send a notification
-            console.log(`Payment status changed for transaction ${transactionId}. Status is now ${status}.`)
-            console.log(productId)
-            console.log(productName)
-            console.log(customerName)
-            console.log(customerEmail)
+        if (payload.type !== 'PAYMENT_STATUS_CHANGED') {
+            throw new Error("error")
         }
 
+        const transactionId = payload.data.transaction.id
+        const status1 = payload.data.transaction.status
+        const productId = payload.data.product.id
+        const productName = payload.data.product.name
+        const customerName = payload.data.customer.name
+        const customerEmail = payload.data.customer.email
+
+
+        return res.json({
+            transactionId: transactionId,
+            productId: productId,
+            status: status1,
+            productName: productName,
+            customerName: customerName,
+            customerEmail: customerEmail
+
+        })
+
         // Respond with a success status
-        res.status(200).end()
-    } else {
+
+    } catch (err) {
         // Respond with a 405 error for non-POST requests
-        res.status(405).end()
+        res.status(405).json({
+            message: err.message
+        })
     }
 };
