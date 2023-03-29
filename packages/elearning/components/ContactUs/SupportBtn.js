@@ -55,6 +55,7 @@ const SupportButton = () => {
                     width: 60px;
                     height: 60px;
                     background-color: #ee8ab8;
+                    color: #ffffff;
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;

@@ -1,6 +1,10 @@
 .topBanner {
     display: none;
-    background: linear-gradient(135deg, #4ebddd 0%, #58c7e0 100%);
+    background: linear-gradient(
+        172deg,
+        rgb(206, 65, 125) 0%,
+        rgb(204, 194, 229) 100%
+    );
     color: #ffffff;
     text-align: center;
     padding: 10px 0;
@@ -14,6 +18,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     margin: 0 auto;
+}
+
+.topBanner p {
+    color: #ffffff;
 }
 
 .visible {
