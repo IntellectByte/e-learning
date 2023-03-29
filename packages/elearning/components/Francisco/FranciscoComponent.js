@@ -19,7 +19,7 @@ const FranciscoComponent = () => {
                                 <div className='about-image'>
                                     <div className='image'>
                                         <img
-                                            src='/images/Francisco-Santana.jpg'
+                                            src='/images/Francisco-Santana.webp'
                                             alt='image'
                                         />
                                     </div>

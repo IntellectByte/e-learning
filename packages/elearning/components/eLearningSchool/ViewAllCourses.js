@@ -54,7 +54,7 @@ const ViewAllCourses = () => {
                             <div className='col-lg-6 col-md-12'>
                                 <div className='view-all-courses-image'>
                                     <img
-                                        src='/images/unnamed.jpg'
+                                        src='/images/unnamed.webp'
                                         alt='image'
                                     />
                                 </div>

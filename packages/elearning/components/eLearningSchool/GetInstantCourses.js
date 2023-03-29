@@ -54,7 +54,7 @@ const GetInstantCourses = ({ user }) => {
                                 <div className='col-lg-4 col-md-12'>
                                     <div className='get-instant-courses-image'>
                                         <img
-                                            src='/images/sorvete-3.jpg'
+                                            src='/images/sorvete-3.webp'
                                             alt='image'
                                         />
                                     </div>
