@@ -47,9 +47,6 @@ const initNotification = (sequelize, Types) => {
         }
     );
 
-    sequelize.sync()
-        .then(() => console.log("sinc"))
-        .catch((err) => console.log(err))
 
     return Notification;
 };

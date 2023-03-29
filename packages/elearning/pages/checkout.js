@@ -1,27 +1,24 @@
-import React from 'react';
-import Navbar from '@/components/_App/Navbar';
-import PageBanner from '@/components/Common/PageBanner';
-import CheckoutForm from '@/components/Checkout/CheckoutForm';
-import Footer from '@/components/_App/Footer';
-import SupportButton from '@/components/ContactUs/SupportBtn';
+import React from "react";
+import Navbar from "@/components/_App/Navbar";
+import PageBanner from "@/components/Common/PageBanner";
+import CheckoutForm from "@/components/Checkout/CheckoutForm";
+import Footer from "@/components/_App/Footer";
 
 export default function CheckoutPage({ user }) {
-    return (
-        <>
-            <SupportButton />
+	return (
+		<>
+			<Navbar user={user} />
 
-            <Navbar user={user} />
+			{/*<PageBanner*/}
+			{/*	pageTitle="Checkout"*/}
+			{/*	homePageUrl="/"*/}
+			{/*	homePageText="Home"*/}
+			{/*	activePageText="Checkout"*/}
+			{/*/>*/}
 
-            <PageBanner
-                pageTitle='Checkout'
-                homePageUrl='/'
-                homePageText='Home'
-                activePageText='Checkout'
-            />
+			<CheckoutForm user={user} />
 
-            <CheckoutForm user={user} />
-
-            <Footer />
-        </>
-    );
+			{/*<Footer />*/}
+		</>
+	);
 }
