@@ -2023,7 +2023,10 @@ Main Banner Area CSS
 =================================================*/
 .main-banner {
     position: relative;
-    background: var(--main-background);
+    /* background: var(--main-background); */
+    background-image: url('/blob-scene-haikei.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
     z-index: 1;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -2232,7 +2235,10 @@ About Area CSS
 .about-area {
     position: relative;
     z-index: 1;
-    background: rgb(255, 255, 255);
+    background-image: url('/blob-haikei2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: rgb(255, 255, 255);
     background: linear-gradient(
         53deg,
         rgba(255, 255, 255, 1) 0%,
@@ -2245,7 +2251,7 @@ About Area CSS
         rgba(246, 192, 217, 1) 92%,
         rgba(245, 187, 214, 1) 100%,
         rgba(238, 138, 184, 1) 100%
-    );
+    ); */
 }
 
 .about-image {
@@ -5546,6 +5552,7 @@ Get Instant Courses Area CSS
 .get-instant-courses-inner-area {
     position: relative;
     z-index: 1;
+
     background: rgb(255, 255, 255);
     background: linear-gradient(
         53deg,
