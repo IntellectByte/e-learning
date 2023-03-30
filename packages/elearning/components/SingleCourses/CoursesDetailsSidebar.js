@@ -298,7 +298,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                     </button>
                                 ) : (
                                     <>
-                                        {add ? (
+                                        {/* {add ? (
                                             <Link href='/checkout'>
                                                 <a className='default-btn'>
                                                     {' '}
@@ -330,7 +330,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                                 )}
                                                 <span></span>
                                             </button>
-                                        )}
+                                        )} */}
                                     </>
                                 )}
                             </div>
