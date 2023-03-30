@@ -6,11 +6,11 @@ const CarouselImages = () => {
     return (
         <>
             <Carousel className='carousel-settings'>
-                <img src='/images/sorvete-aboutus.jpg' />
-                <img src='/images/carousel/imgcarousel2.JPG' />
-                <img src='/images/carousel/imgcarousel3.JPG' />
-                <img src='/images/carousel/imgcarousel4.JPG' />
-                <img src='/images/carousel/imgcarousel5.JPG' />
+                <img src='/images/carousel/sorvete-aboutus_1.webp' />
+                <img src='/images/carousel/imgcarousel2.webp' />
+                <img src='/images/carousel/imgcarousel3.webp' />
+                <img src='/images/carousel/imgcarousel4.webp' />
+                <img src='/images/carousel/imgcarousel5.webp' />
             </Carousel>
         </>
     );
