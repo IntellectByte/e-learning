@@ -26,7 +26,7 @@ const handlePostRequest = async (req, res) => {
     try {
 
         for (const cart of cartItems) {
-            Enrolment.create({
+            await Enrolment.create({
                 bought_price: cart.price,
                 payment_method: "Card",
                 buyer_name: buyer_name,
