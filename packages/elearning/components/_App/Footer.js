@@ -151,7 +151,10 @@ const Footer = () => {
                                         </li>
                                         <li>
                                             <i className='bx bx-phone-call'></i>
-                                            <a href='+55 (11) 3862-1698'>
+                                            <a
+                                                href='https://wa.me/+551138621698'
+                                                target='_BLANK'
+                                            >
                                                 +55 (11) 3862-1698
                                             </a>
                                         </li>
