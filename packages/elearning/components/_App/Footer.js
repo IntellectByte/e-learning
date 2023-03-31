@@ -166,7 +166,10 @@ const Footer = () => {
                                         </li>
                                         <li>
                                             <i className='bx bxs-inbox'></i>
-                                            <a href='tel:+557854578964'>
+                                            <a
+                                                href='https://www.instagram.com/escolasorvete/'
+                                                target='_BLANK'
+                                            >
                                                 @escolasorvete
                                             </a>
                                         </li>
