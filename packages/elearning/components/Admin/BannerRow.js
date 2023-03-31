@@ -1,60 +1,45 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
-import {parseCookies} from "nookies";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import baseUrl from '@/utils/baseUrl';
+import { parseCookies } from 'nookies';
 
 const BannerRow = ({
-                       id,
-                       code,
-                       discount,
-                       active_for_full_site,
-                       onDelete,
-                       onCheck,
-                       isNavBar
-                   }) => {
-
-    const [isHome, setIsHome] = useState(isNavBar)
+    id,
+    code,
+    discount,
+    active_for_full_site,
+    onDelete,
+    onCheck,
+    isNavBar,
+}) => {
+    const [isHome, setIsHome] = useState(isNavBar);
 
     function setHomeDiscountBanner(id) {
+        const { elarniv_users_token } = parseCookies();
 
-        const {elarniv_users_token} = parseCookies()
+        axios
+            .put(
+                `${baseUrl}/api/banners/set-home`,
+                {
+                    bannerId: id,
+                },
+                {
+                    headers: { Authorization: elarniv_users_token },
+                }
+            )
+            .then((json) => {
+                console.log('done');
 
-        axios.put(`${baseUrl}/api/banners/set-home`, {
-
-            bannerId: id
-
-        }, {
-            headers: {Authorization: elarniv_users_token}
-        },)
-            .then(json => {
-                console.log("done")
-
-                setIsHome(json.data.isHome)
-
+                setIsHome(json.data.isHome);
             })
-            .catch(err => console.log(err.message))
-
+            .catch((err) => console.log(err.message));
     }
 
-    useEffect(() => {
-
-    }, [isHome])
-
+    useEffect(() => {}, [isHome]);
 
     return (
         <tr>
             <td>{code}</td>
-            <td>{discount}%</td>
-            <td>
-                <input
-                    type='checkbox'
-                    onClick={() => onCheck(id)}
-                    value={active_for_full_site}
-                    checked={active_for_full_site}
-                    onChange={() => {
-                    }}
-                />
-            </td>
 
             <td>
                 <button
@@ -72,10 +57,9 @@ const BannerRow = ({
                     type='button'
                     className='btn btn-sm fs-12'
                 >
-                    {isHome ? "Home" : "Set Home"}
+                    {isHome ? 'Home' : 'Set Home'}
                 </button>
             </td>
-
         </tr>
     );
 };
