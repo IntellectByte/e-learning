@@ -1,13 +1,8 @@
-import {Model, DataTypes} from "sequelize";
-import connection from "../connection";
+import { Model, DataTypes } from 'sequelize';
+import connection from '../connection';
 
 const initNotification = (sequelize, Types) => {
     class Notification extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
         static associate(models) {
             // define association here
         }
@@ -22,31 +17,37 @@ const initNotification = (sequelize, Types) => {
             },
             title: Types.STRING,
             message: Types.STRING,
-            read: Types.BOOLEAN,
+            read: {
+                type: Types.BOOLEAN,
+                defaultValue: false,
+            },
             link: Types.STRING,
             notificationType: {
                 type: DataTypes.ENUM,
-                values: ["LiveStream"]
+                values: ['LiveStream', 'Other'],
             },
             userId: {
                 type: DataTypes.UUID,
                 allowNull: false,
                 references: {
-                    model: "users",
-                    key: "id",
-                    as: "userId",
+                    model: 'users',
+                    key: 'id',
+                    as: 'userId',
                 },
+            },
+            timestamp: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW,
             },
         },
         {
             sequelize,
-            modelName: "Notification",
-            tableName: "notifications",
-            createdAt: "created_at",
-            updatedAt: "updated_at",
+            modelName: 'Notification',
+            tableName: 'notifications',
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
         }
     );
-
 
     return Notification;
 };
