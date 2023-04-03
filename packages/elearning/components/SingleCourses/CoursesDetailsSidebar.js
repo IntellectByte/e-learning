@@ -280,59 +280,59 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                             </div>
 
                             <div className='btn-box'>
-                                {alreadyBuy ? (
-                                    <button
-                                        onClick={() =>
-                                            router.push('/learning/my-courses')
-                                        }
-                                        className='default-btn'
-                                    >
-                                        <i className='flaticon-shopping-cart'></i>{' '}
-                                        {t(
-                                            'course-page-details-viewmycourses',
-                                            {
-                                                defaultValue: 'View My Courses',
-                                            }
-                                        )}
-                                        <span></span>
-                                    </button>
-                                ) : (
-                                    <>
-                                        {add ? (
-                                            <Link href='/checkout'>
-                                                <a className='default-btn'>
-                                                    {' '}
-                                                    {t(
-                                                        'course-page-details-viewmycart',
-                                                        {
-                                                            defaultValue:
-                                                                'View Cart',
-                                                        }
-                                                    )}
-                                                </a>
-                                            </Link>
-                                        ) : (
-                                            <button
-                                                onClick={() =>
-                                                    addToCart(course)
-                                                }
-                                                className='default-btn'
-                                                disabled={add}
-                                            >
-                                                {' '}
-                                                <i className='flaticon-shopping-cart'></i>{' '}
-                                                {t(
-                                                    'course-page-details-addtomycart',
-                                                    {
-                                                        defaultValue:
-                                                            'Add to cart',
-                                                    }
-                                                )}
-                                                <span></span>
-                                            </button>
-                                        )}
-                                    </>
-                                )}
+                                {/*{alreadyBuy ? (*/}
+                                {/*    <button*/}
+                                {/*        onClick={() =>*/}
+                                {/*            router.push('/learning/my-courses')*/}
+                                {/*        }*/}
+                                {/*        className='default-btn'*/}
+                                {/*    >*/}
+                                {/*        <i className='flaticon-shopping-cart'></i>{' '}*/}
+                                {/*        {t(*/}
+                                {/*            'course-page-details-viewmycourses',*/}
+                                {/*            {*/}
+                                {/*                defaultValue: 'View My Courses',*/}
+                                {/*            }*/}
+                                {/*        )}*/}
+                                {/*        <span></span>*/}
+                                {/*    </button>*/}
+                                {/*) : (*/}
+                                {/*    <>*/}
+                                {/*        {add ? (*/}
+                                {/*            <Link href='/checkout'>*/}
+                                {/*                <a className='default-btn'>*/}
+                                {/*                    {' '}*/}
+                                {/*                    {t(*/}
+                                {/*                        'course-page-details-viewmycart',*/}
+                                {/*                        {*/}
+                                {/*                            defaultValue:*/}
+                                {/*                                'View Cart',*/}
+                                {/*                        }*/}
+                                {/*                    )}*/}
+                                {/*                </a>*/}
+                                {/*            </Link>*/}
+                                {/*        ) : (*/}
+                                {/*            <button*/}
+                                {/*                onClick={() =>*/}
+                                {/*                    addToCart(course)*/}
+                                {/*                }*/}
+                                {/*                className='default-btn'*/}
+                                {/*                disabled={add}*/}
+                                {/*            >*/}
+                                {/*                {' '}*/}
+                                {/*                <i className='flaticon-shopping-cart'></i>{' '}*/}
+                                {/*                {t(*/}
+                                {/*                    'course-page-details-addtomycart',*/}
+                                {/*                    {*/}
+                                {/*                        defaultValue:*/}
+                                {/*                            'Add to cart',*/}
+                                {/*                    }*/}
+                                {/*                )}*/}
+                                {/*                <span></span>*/}
+                                {/*            </button>*/}
+                                {/*        )}*/}
+                                {/*    </>*/}
+                                {/*)}*/}
                             </div>
 
                             <SocialShareBtns />

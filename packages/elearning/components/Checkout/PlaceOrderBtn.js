@@ -91,7 +91,7 @@ const PlaceOrderBtn = ({ user, cartItems }) => {
 
     return (
         <div>
-            <button id="payment_button" className={'default-btn-style-3 d-block w-100 mt-3'} >Proceed to checkout</button>
+            <button onClick={() => router.push("/learning/my-courses") } id="payment_button" className={'default-btn-style-3 d-block w-100 mt-3'} >Proceed to checkout</button>
         </div>
     );
 };
