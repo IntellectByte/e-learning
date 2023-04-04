@@ -91,7 +91,17 @@ const BuyCourseBtn = ({ current_user, course }) => {
                     ) : (
                         <button
                             className='default-btn'
-                            onClick={() => buyCourse(course)}
+                            onClick={() => {
+
+                                //Clean cart --- for hotmart checkout **ONLY
+
+                                dispatch({
+                                    type: "RESET_CART"
+                                })
+
+
+                                buyCourse(course)
+                            }}
                         >
                             <i className='flaticon-shopping-cart'></i>{' '}
                             {t('course-btn-view-my-couses-buycourse', {
