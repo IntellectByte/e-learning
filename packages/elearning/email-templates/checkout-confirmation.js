@@ -1,12 +1,13 @@
-import baseUrl from "@/utils/baseUrl";
-import { transport } from "./config";
+import baseUrl from '@/utils/baseUrl';
+import { transport } from './config';
 
-const { MANDRILL_EMAIL_SENDER } = process.env
+const { MANDRILL_EMAIL_SENDER } = process.env;
 
 export const checkoutConfirmation = async (cartItems, name, email) => {
-	// console.log(cartItems)
+    // console.log(cartItems)
 
-	const items = `${cartItems.map(cart => `<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
+    const items = `${cartItems.map(
+        (cart) => `<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 			<td
 				valign="middle"
 				width="80%"
@@ -34,16 +35,15 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
 				</span>
 			</td>
 		</tr>`
-	)}`
+    )}`;
 
-	console.log(items)
+    console.log(items);
 
-
-	const data = {
-		to: email,
-		from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
-		subject: "Checkout Confirmation",
-		html: `
+    const data = {
+        to: email,
+        from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
+        subject: 'Checkout Confirmation',
+        html: `
         <!DOCTYPE html>
             <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
             <head>
@@ -350,7 +350,9 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
                                 <td class="logo" style="text-align: left;">
-                                    <h1><a href=${baseUrl + "/learning/my-courses"}>eLearniv</a></h1>
+                                    <h1><a href=${
+                                        baseUrl + '/learning/my-courses'
+                                    }>Escola Sorvete</a></h1>
                                 </td>
                             </tr>
                         </table>
@@ -393,15 +395,15 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
             </body>
             </html>
         `,
-	};
+    };
 
-	try {
-		await transport.sendMail(data);
-		console.log("Email send successfully");
-		// res.status(200).send("Email send successfully")
-	} catch (error) {
-		console.log("########", error);
-		// res.status(500).send("Error proccessing charge");
-	}
-	transport.close();
+    try {
+        await transport.sendMail(data);
+        console.log('Email send successfully');
+        // res.status(200).send("Email send successfully")
+    } catch (error) {
+        console.log('########', error);
+        // res.status(500).send("Error proccessing charge");
+    }
+    transport.close();
 };
