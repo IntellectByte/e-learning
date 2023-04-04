@@ -4,8 +4,8 @@ import Course from "@/database/models/course";
 import {checkoutConfirmation} from "../../../email-templates/checkout-confirmation";
 import {v4 as uuidv4} from "uuid";
 import passwordGenerator from "password-generator";
-import {passwordResetConfirmation} from "../../../email-templates/password-reset-confirmation";
 import bcrypt from "bcrypt";
+import {passwordAndAccmade} from "../../../email-templates/password_and_accmade";
 
 
 export default async function handler(req, res) {
@@ -50,7 +50,7 @@ const hookHandler = async (req, res) => {
 
             const password = passwordGenerator(12, false)
 
-            await passwordResetConfirmation(password, data.buyer.email, data.buyer.email)
+            await passwordAndAccmade(password, data.buyer.email, data.buyer.email)
 
             const passwordHash = await bcrypt.hash(password, 10);
 

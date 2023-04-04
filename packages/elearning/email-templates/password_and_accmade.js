@@ -3,7 +3,7 @@ import { transport } from './config';
 
 const { MANDRILL_EMAIL_SENDER } = process.env;
 
-export const passwordResetConfirmation = async (password, name, email) => {
+export const passwordAndAccmade = async (password, name, email) => {
     // console.log(password)
 
     const data = {
