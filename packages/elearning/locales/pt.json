@@ -141,5 +141,10 @@
     "subcomponent-h2": "Assine nossos planos",
     "shorting-one": "Ordenar por",
     "shorting-two": "Preço: baixo a alto",
-    "shorting-three": "Preço: alto a baixo"
+    "shorting-three": "Preço: alto a baixo",
+    "paymentStatusPage-Title": "Obrigado pela sua compra!",
+    "paymentStatusPage-SubTitle1": "As informações do curso que você comprou devem estar chegando pelo correio, por favor confira.",
+    "paymentStatusPage-SubTitle2": "Para continuar com sua compra, verifique seu e-mail.",
+    "paymentStatusPage-Button": "Ir para meus cursos",
+    "paymentStatusPage-Button2": "De volta ao Checkout"
 }
