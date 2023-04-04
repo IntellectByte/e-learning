@@ -551,7 +551,6 @@ a:hover {
     display: inline-block;
     text-align: center;
     overflow: hidden;
-    z-index: 1;
     color: #ffffff;
     background-color: var(--btn-color);
     -webkit-transition: 0.5s;
@@ -815,14 +814,14 @@ Navbar Area CSS
     display: flex;
     justify-content: space-between;
     color: var(--black-900);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     padding-left: 0;
     padding-right: 0;
     padding-top: 25px;
     padding-bottom: 25px;
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .edemy-nav .navbar .navbar-nav .nav-item a i {
@@ -5288,7 +5287,7 @@ Feedback Area CSS
     z-index: -1;
 }
 
-.single-feedback-item::before {
+/* .single-feedback-item::before {
     content: '\f10a';
     font-family: Flaticon;
     font-size: 100px;
@@ -5298,7 +5297,7 @@ Feedback Area CSS
     z-index: -1;
     bottom: 25px;
     line-height: 1;
-}
+} */
 
 .testimonials-slides {
     max-width: 900px;

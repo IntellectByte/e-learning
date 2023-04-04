@@ -151,7 +151,10 @@ const Footer = () => {
                                         </li>
                                         <li>
                                             <i className='bx bx-phone-call'></i>
-                                            <a href='+55 (11) 3862-1698'>
+                                            <a
+                                                href='https://wa.me/+551138621698'
+                                                target='_BLANK'
+                                            >
                                                 +55 (11) 3862-1698
                                             </a>
                                         </li>
@@ -163,7 +166,10 @@ const Footer = () => {
                                         </li>
                                         <li>
                                             <i className='bx bxs-inbox'></i>
-                                            <a href='tel:+557854578964'>
+                                            <a
+                                                href='https://www.instagram.com/escolasorvete/'
+                                                target='_BLANK'
+                                            >
                                                 @escolasorvete
                                             </a>
                                         </li>

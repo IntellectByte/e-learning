@@ -28,17 +28,21 @@ import '../styles/dashboard.css';
 import Layout from '../components/_App/Layout';
 import i18n from '../i18n';
 import { I18nextProvider } from 'react-i18next';
+import {NotificationProvider} from "@/utils/NotificationContext";
 
 function MyApp({ Component, pageProps }) {
     const store = useStore(pageProps.initialReduxState);
     return (
-        <Provider store={store}>
-            <Layout>
-                <I18nextProvider i18n={i18n}>
-                    <Component {...pageProps} suppressHydrationWarning={true} />
-                </I18nextProvider>
-            </Layout>
-        </Provider>
+        <NotificationProvider>
+            <Provider store={store}>
+                <Layout>
+                    <I18nextProvider i18n={i18n}>
+                        <Component {...pageProps} suppressHydrationWarning={true} />
+                    </I18nextProvider>
+                </Layout>
+            </Provider>
+        </NotificationProvider>
+
     );
 }
 
