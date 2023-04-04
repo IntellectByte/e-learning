@@ -67,7 +67,8 @@ const hookHandler = async (req, res) => {
         }
 
         const course = await Course.findOne({
-            where: {hotmartId: data.purchase.offer.code}
+            where: {hotmartId: data.purchase.offer.code},
+
         })
 
 
@@ -81,6 +82,17 @@ const hookHandler = async (req, res) => {
             courseId: course.id,
             status: "paid",
         });
+
+
+        const instructor = await User.findOne({
+            where: {id: course.userId}
+        })
+
+        course["instructor"] = `${instructor.first_name} ${instructor.last_name}`
+        course["price"] = `$ ${course.latest_price}`
+
+        // console.log(course)
+
 
         await checkoutConfirmation([course], user.first_name, user.email);
 
