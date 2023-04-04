@@ -2,8 +2,6 @@ import {Enrolment} from "@/database/models";
 import User from "@/database/models/user";
 import Course from "@/database/models/course";
 import {checkoutConfirmation} from "../../../email-templates/checkout-confirmation";
-import {redirect} from 'next/router';
-import {router} from "next/client";
 import {v4 as uuidv4} from "uuid";
 import passwordGenerator from "password-generator";
 import {passwordResetConfirmation} from "../../../email-templates/password-reset-confirmation";
@@ -27,7 +25,7 @@ const hookHandler = async (req, res) => {
     try {
 
         const {
-            data, id, creation_date, event
+            data, event
         } = req.body
 
 
@@ -35,13 +33,13 @@ const hookHandler = async (req, res) => {
             throw new Error("The purchase could not be completed.")
         }
 
-        console.log(event)
-        console.log("product", data.product)
-        console.log("purchase", data.purchase)
-        console.log("sub", data.subscription)
-        console.log("buyer", data.buyer)
-        console.log(id)
-        console.log(creation_date)
+        // console.log(event)
+        // console.log("product", data.product)
+        // console.log("purchase", data.purchase)
+        // console.log("sub", data.subscription)
+        // console.log("buyer", data.buyer)
+        // console.log(id)
+        // console.log(creation_date)
 
         let user = await User.findOne({
             where: {email: data.buyer.email}
@@ -57,6 +55,8 @@ const hookHandler = async (req, res) => {
             const passwordHash = await bcrypt.hash(password, 10);
 
             user = await User.create({
+                first_name: data.buyer.name,
+                last_name: data.buyer.name,
                 email: data.buyer.email,
                 password: passwordHash,
                 reset_password_token: confirmToken,
@@ -69,10 +69,6 @@ const hookHandler = async (req, res) => {
         const course = await Course.findOne({
             where: {hotmartId: data.purchase.offer.code}
         })
-
-        // console.log("-------------------------------------------------------------")
-        // console.log(user)
-        // console.log(course)
 
 
         await Enrolment.create({
@@ -88,18 +84,9 @@ const hookHandler = async (req, res) => {
 
         await checkoutConfirmation([course], user.first_name, user.email);
 
-        // redirect(res, "/learning/my-courses/", 301)
-        await router.push('/learning/my-courses/')
-
-        // return res.status(200).json({
-        //     message: "ok"
-        // })
-
-        res.writeHead(302, {Location: '/learning/my-courses/'})
-        res.end()
-
-
-        // Respond with a success status
+        return res.status(200).json({
+            message: "ok"
+        })
 
     } catch (err) {
         // Respond with a 405 error for non-POST requests

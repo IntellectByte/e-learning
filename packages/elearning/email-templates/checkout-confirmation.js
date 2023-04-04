@@ -380,7 +380,7 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
 
                                 <tr>
                                     <td valign="middle" style="text-align:left; padding: 1em 2.5em;">
-                                        <p><a href=${baseUrl} class="btn btn-primary">Continue to your order</a></p>
+                                        <p><a href=${`${baseUrl}/learning/my-courses`} class="btn btn-primary">Continue to your order</a></p>
                                     </td>
                                 </tr>
                         </table>
