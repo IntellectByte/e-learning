@@ -9,7 +9,7 @@ export const passwordAndAccmade = async (password, name, email) => {
     const data = {
         to: email,
         from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
-        subject: 'Password Reset Confirmation',
+        subject: 'Password Assignment Confirmation',
         html: `
         <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
