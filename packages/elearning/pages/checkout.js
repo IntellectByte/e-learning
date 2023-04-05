@@ -1,24 +1,38 @@
-import React from "react";
-import Navbar from "@/components/_App/Navbar";
-import PageBanner from "@/components/Common/PageBanner";
-import CheckoutForm from "@/components/Checkout/CheckoutForm";
-import Footer from "@/components/_App/Footer";
+import React, { useState } from 'react';
+import Navbar from '@/components/_App/Navbar';
+import PageBanner from '@/components/Common/PageBanner';
+import CheckoutForm from '@/components/Checkout/CheckoutForm';
+import Footer from '@/components/_App/Footer';
+import PopUpCheck from '@/components/PopUp/PopupCheckout';
 
 export default function CheckoutPage({ user }) {
-	return (
-		<>
-			<Navbar user={user} />
+    const [showChackoutPopUp, setShowChackoutPopUp] = useState(true); // Change the initial state to true
 
-			{/*<PageBanner*/}
-			{/*	pageTitle="Checkout"*/}
-			{/*	homePageUrl="/"*/}
-			{/*	homePageText="Home"*/}
-			{/*	activePageText="Checkout"*/}
-			{/*/>*/}
+    const handleCloseCheckOutPopUP = () => {
+        setShowChackoutPopUp(false);
+    };
 
-			<CheckoutForm user={user} />
+    const handleShowCheckOutPopUP = () => {
+        setShowChackoutPopUp(true);
+    };
 
-			{/*<Footer />*/}
-		</>
-	);
+    return (
+        <>
+            <Navbar user={user} />
+
+            {showChackoutPopUp && (
+                <PopUpCheck onClose={handleCloseCheckOutPopUP} />
+            )}
+            {/*<PageBanner
+                pageTitle="Checkout"
+                homePageUrl="/"
+                homePageText="Home"
+                activePageText="Checkout"
+            />*/}
+
+            <CheckoutForm user={user} onButtonClick={handleShowCheckOutPopUP} />
+
+            {/*<Footer />*/}
+        </>
+    );
 }
