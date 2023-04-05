@@ -3,13 +3,13 @@ import { transport } from './config';
 
 const { MANDRILL_EMAIL_SENDER } = process.env;
 
-export const passwordResetConfirmation = async (password, name, email) => {
+export const passwordAndAccmade = async (password, name, email) => {
     // console.log(password)
 
     const data = {
         to: email,
         from: `Escola Sorvete <${MANDRILL_EMAIL_SENDER}>`,
-        subject: 'Password Reset Confirmation',
+        subject: 'Password Assignment Confirmation',
         html: `
         <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">

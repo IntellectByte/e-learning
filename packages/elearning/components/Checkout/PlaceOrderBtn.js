@@ -8,6 +8,7 @@ import { calculateCartTotal } from '@/utils/calculateCartTotal';
 import { NavLink } from '@mantine/core';
 import Link from 'next/link';
 import baseUrl from 'utils/baseUrl.js';
+import {RESET_CART} from "@/store/types";
 
 const PlaceOrderBtn = ({ user, cartItems }) => {
     const [stripeAmount, setStripeAmount] = React.useState(0);
@@ -91,7 +92,12 @@ const PlaceOrderBtn = ({ user, cartItems }) => {
 
     return (
         <div>
-            <button onClick={() => router.push("/payment-status") } id="payment_button" className={'default-btn-style-3 d-block w-100 mt-3'} >Proceed to checkout</button>
+            <button onClick={() => {
+                dispatch({
+                    type: RESET_CART
+                })
+                router.push("/payment-status")
+            } } id="payment_button" className={'default-btn-style-3 d-block w-100 mt-3'} >Proceed to checkout</button>
         </div>
     );
 };

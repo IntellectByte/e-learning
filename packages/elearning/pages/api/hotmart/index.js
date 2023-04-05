@@ -4,8 +4,8 @@ import Course from "@/database/models/course";
 import {checkoutConfirmation} from "../../../email-templates/checkout-confirmation";
 import {v4 as uuidv4} from "uuid";
 import passwordGenerator from "password-generator";
-import {passwordResetConfirmation} from "../../../email-templates/password-reset-confirmation";
 import bcrypt from "bcrypt";
+import {passwordAndAccmade} from "../../../email-templates/password_and_accmade";
 
 
 export default async function handler(req, res) {
@@ -50,7 +50,7 @@ const hookHandler = async (req, res) => {
 
             const password = passwordGenerator(12, false)
 
-            await passwordResetConfirmation(password, data.buyer.email, data.buyer.email)
+            await passwordAndAccmade(password, data.buyer.email, data.buyer.email)
 
             const passwordHash = await bcrypt.hash(password, 10);
 
@@ -67,7 +67,8 @@ const hookHandler = async (req, res) => {
         }
 
         const course = await Course.findOne({
-            where: {hotmartId: data.purchase.offer.code}
+            where: {hotmartId: data.purchase.offer.code},
+
         })
 
 
@@ -81,6 +82,17 @@ const hookHandler = async (req, res) => {
             courseId: course.id,
             status: "paid",
         });
+
+
+        const instructor = await User.findOne({
+            where: {id: course.userId}
+        })
+
+        course["instructor"] = `${instructor.first_name} ${instructor.last_name}`
+        course["price"] = `$ ${course.latest_price}`
+
+        // console.log(course)
+
 
         await checkoutConfirmation([course], user.first_name, user.email);
 
