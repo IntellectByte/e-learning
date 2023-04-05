@@ -22,16 +22,16 @@ const PopupCheckout = ({ onClose }) => {
                     <div className={styles.popup}>
                         <div className={styles.popupContent}>
                             <p className={styles.textoGrande}>
-                                Antes de proceder con la compra, es importante
-                                que tengas en cuenta que el correo electrónico
-                                que utilices durante el proceso será el que se
-                                asigne al curso adquirido. Así mismo, es
-                                fundamental que revises tu correo electrónico
-                                una vez finalizada la compra, ya que allí
-                                recibirás toda la información necesaria para
-                                acceder al curso. No olvides revisar tu bandeja
-                                de spam o correo no deseado en caso de que no
-                                recibas el correo en tu bandeja de entrada.
+                                {t('popupcheckout-p1', {
+                                    defaultValue:
+                                        'Before proceeding with the purchase, it is important that you take into account that the email you use during the process will be the one assigned to the purchased course. Likewise, it is essential that you check your email once the purchase is complete, since there you will receive all the necessary information to access the course. Do not forget to check your spam or junk mail folder in case you do not receive the mail in your inbox.',
+                                })}
+                            </p>
+                            <p className={styles.subtitulo}>
+                                {t('popupcheckout-p2', {
+                                    defaultValue:
+                                        'Any inconvenience communicate to WhatsApp that is on the main page.',
+                                })}
                             </p>
                         </div>
                         <div className={styles.popupButtons}>
@@ -39,7 +39,9 @@ const PopupCheckout = ({ onClose }) => {
                                 className={styles.button}
                                 onClick={handleSubmit}
                             >
-                                Continuar Compra
+                                {t('popupcheckout-btn', {
+                                    defaultValue: 'Keep buying',
+                                })}
                             </button>
                         </div>
                     </div>

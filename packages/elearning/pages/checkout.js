@@ -4,6 +4,7 @@ import PageBanner from '@/components/Common/PageBanner';
 import CheckoutForm from '@/components/Checkout/CheckoutForm';
 import Footer from '@/components/_App/Footer';
 import PopUpCheck from '@/components/PopUp/PopupCheckout';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true); // Change the initial state to true
@@ -19,6 +20,8 @@ export default function CheckoutPage({ user }) {
     return (
         <>
             <Navbar user={user} />
+
+            <SupportButton />
 
             {showChackoutPopUp && (
                 <PopUpCheck onClose={handleCloseCheckOutPopUP} />
