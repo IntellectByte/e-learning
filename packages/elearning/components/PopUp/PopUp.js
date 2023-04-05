@@ -47,81 +47,86 @@ const PopUp = ({ onClose }) => {
     return (
         <>
             {isMounted && (
-                <div className='popup'>
-                    <button className='popup__close' onClick={onClose}>
-                        X
-                    </button>
-                    <div className='popup-content'>
-                        <img
-                            className='popup-image'
-                            src='/sorvete-logo.png'
-                            alt='Ice cream course'
-                        />
-                        <div>
-                            <h2 className='color-changing'>
-                                {t('popup-h2', {
-                                    defaultValue: 'Your lucky day',
-                                })}
-                            </h2>
-                            <p>
-                                {t('popup-p', {
-                                    defaultValue:
-                                        'Subscribe to our newsletter and get a 20% discount code',
-                                })}
-                            </p>
-                            <form
-                                onSubmit={handleSubmit}
-                                action='https://escolasorvete.us17.list-manage.com/subscribe/post'
-                                method='POST'
-                            >
-                                <input
-                                    type='hidden'
-                                    name='u'
-                                    value='861af04770adfc24846742c1c'
-                                />
-                                <input
-                                    type='hidden'
-                                    name='id'
-                                    value='be824b0afb'
-                                />
-                                <label>
-                                    {t('popup-label1', {
-                                        defaultValue: 'Type your name:',
+                <>
+                    <div className='overlaypopup'></div>
+                    <div className='popup'>
+                        <button className='popup__close' onClick={onClose}>
+                            X
+                        </button>
+                        <div className='popup-content'>
+                            <img
+                                className='popup-image'
+                                src='/sorvete-logo.png'
+                                alt='Ice cream course'
+                            />
+                            <div>
+                                <h2 className='color-changing'>
+                                    {t('popup-h2', {
+                                        defaultValue: 'Your lucky day',
                                     })}
-
+                                </h2>
+                                <p>
+                                    {t('popup-p', {
+                                        defaultValue:
+                                            'Subscribe to our newsletter and get a 20% discount code',
+                                    })}
+                                </p>
+                                <form
+                                    onSubmit={handleSubmit}
+                                    action='https://escolasorvete.us17.list-manage.com/subscribe/post'
+                                    method='POST'
+                                >
                                     <input
-                                        type='text'
-                                        name='MERGE1'
-                                        value={name}
-                                        onChange={handleNameChange}
-                                        required
+                                        type='hidden'
+                                        name='u'
+                                        value='861af04770adfc24846742c1c'
                                     />
-                                </label>
-                                {nameError && (
-                                    <p style={{ color: 'red' }}>{nameError}</p>
-                                )}
-                                <label>
-                                    {t('popup-label2', {
-                                        defaultValue: 'Type your e-mail:',
-                                    })}
-
                                     <input
-                                        type='email'
-                                        name='EMAIL'
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                        required
+                                        type='hidden'
+                                        name='id'
+                                        value='be824b0afb'
                                     />
-                                </label>
-                                <button type='submit'>
-                                    {t('popup-btn', {
-                                        defaultValue: 'I want the coupon',
-                                    })}
-                                </button>
-                            </form>
+                                    <label>
+                                        {t('popup-label1', {
+                                            defaultValue: 'Type your name:',
+                                        })}
+
+                                        <input
+                                            type='text'
+                                            name='MERGE1'
+                                            value={name}
+                                            onChange={handleNameChange}
+                                            required
+                                        />
+                                    </label>
+                                    {nameError && (
+                                        <p style={{ color: 'red' }}>
+                                            {nameError}
+                                        </p>
+                                    )}
+                                    <label>
+                                        {t('popup-label2', {
+                                            defaultValue: 'Type your e-mail:',
+                                        })}
+
+                                        <input
+                                            type='email'
+                                            name='EMAIL'
+                                            value={email}
+                                            onChange={handleEmailChange}
+                                            required
+                                        />
+                                    </label>
+                                    <button type='submit'>
+                                        {t('popup-btn', {
+                                            defaultValue: 'I want the coupon',
+                                        })}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </>
             )}
         </>
     );
