@@ -146,5 +146,8 @@
     "paymentStatusPage-SubTitle1": "En el mail te tiene que estar llegando la info del curso que compraste porfavor revisalo.",
     "paymentStatusPage-SubTitle2": "Para continuar con tu compra, porfavor revisa tu correo electronico.",
     "paymentStatusPage-Button": "Ir a mis cursos",
-    "paymentStatusPage-Button2": "Volver al checkout"
+    "paymentStatusPage-Button2": "Volver al checkout",
+    "popupcheckout-p1": "Antes de proceder con la compra, es importante que tengas en cuenta que el correo electrónico que utilices durante el proceso será el que se asigne al curso adquirido. Así mismo, es fundamental que revises tu correo electrónico una vez finalizada la compra, ya que allí recibirás toda la información necesaria para acceder al curso. No olvides revisar tu bandeja de spam o correo no deseado en caso de que no recibas el correo en tu bandeja de entrada.",
+    "popupcheckout-p2": "Cualquier inconveniente comunicarse al WhatsApp que se encuentra en la página principal.",
+    "popupcheckout-btn": "Continuar Compra"
 }
