@@ -8191,6 +8191,24 @@ Go Top CSS
     max-height: 100vh;
 }
 
+@keyframes borderColors {
+    0% {
+        border-color: #2196f3;
+    }
+    25% {
+        border-color: #ce417d;
+    }
+    50% {
+        border-color: #4caf50;
+    }
+    75% {
+        border-color: #ffeb3b;
+    }
+    100% {
+        border-color: #2196f3;
+    }
+}
+
 .popup {
     position: fixed;
     top: 50%;
@@ -8198,7 +8216,9 @@ Go Top CSS
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 2rem;
-    box-shadow: 0 17px 30px rgba(0, 0, 0, 0.19), 0 12px 12px rgba(0, 0, 0, 0.23);
+    border: 2px solid #ce417d;
+    animation: borderColors 4s linear infinite;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     z-index: 999;
     width: 90%;
     max-width: 600px;

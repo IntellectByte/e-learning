@@ -72,7 +72,7 @@ function Index({ courses, user }) {
     // const [refPopularCourses, inViewPopularCourses] = useInView({
     //     threshold: 0.9,
     //     triggerOnce: true,
-    // });
+    // });a
 
     useEffect(() => {
         const timeout = setTimeout(() => {
