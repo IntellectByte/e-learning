@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import PlaceOrderBtn from "@/components/Checkout/PlaceOrderBtn";
 
 const validationSchema = Yup.object().shape({
     doc: Yup.string().required('Required'),
@@ -26,12 +27,44 @@ const PaymentField = ({ onFormComplete }) => {
     //     setSubmitting(false);
     // };
 
+
     const validateForm = async (values) => {
         try {
             await validationSchema.validate(values, { abortEarly: false });
+
+             setTimeout(() => {
+
+                 const script = document.getElementById('script-getnet')
+
+                 // console.log(script.id)
+
+                 script.dataset.getnetCustomerDocumentType = values.doc;
+                 script.dataset.getnetCustomerDocumentNumber = values.documentNumber;
+                 script.dataset.getnetCustomerPhoneNumber = values.phoneNumber;
+                 script.dataset.getnetCustomerAddressStreetNumber = values.streetNumber;
+                 script.dataset.getnetCustomerAddressStreet = values.street;
+                 script.dataset.getnetCustomerAddressComplementary = values.addressComplementary;
+                 script.dataset.getnetCustomerAddressNeighborhood = values.neighborhood;
+                 script.dataset.getnetCustomerAddressCity = values.city;
+                 script.dataset.getnetCustomerAddressState = values.state;
+                 script.dataset.getnetCustomerAddressZipcode = values.zipCode;
+                 script.dataset.getnetCustomerCountry = 'Brasil';
+
+                 const loader = document.getElementById('getnet-loader')
+
+                 console.log(script.dataset)
+
+
+
+            }, 500)
+
             onFormComplete(true);
+
+
+
         } catch (error) {
             onFormComplete(false);
+
         }
     };
 
@@ -47,7 +80,7 @@ const PaymentField = ({ onFormComplete }) => {
                             <div className='card-body'>
                                 <Formik
                                     initialValues={{
-                                        doc: '',
+                                        doc: 'CPF',
                                         documentNumber: '',
                                         phoneNumber: '',
                                         streetNumber: '',
@@ -73,6 +106,9 @@ const PaymentField = ({ onFormComplete }) => {
                                                     name='doc'
                                                     id='doc'
                                                 >
+                                                    {/*<option value={''}>*/}
+                                                    {/*    ---*/}
+                                                    {/*</option>*/}
                                                     <option value='CPF'>
                                                         CPF
                                                     </option>
@@ -294,7 +330,33 @@ const PaymentField = ({ onFormComplete }) => {
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
+                                            {/*{*/}
+                                            {/*    isPaymentFormComplete ?*/}
+                                            {/*        <PlaceOrderBtn*/}
+                                            {/*            user={user}*/}
+                                            {/*            cartItems={cartItems}*/}
+                                            {/*            disabled={false}*/}
+                                            {/*            inner={'Proceed to checkout'}*/}
+                                            {/*            btnColor={"3"}*/}
+                                            {/*        />*/}
+                                            {/*        :*/}
+                                            {/*        <PlaceOrderBtn*/}
+                                            {/*            user={user}*/}
+                                            {/*            disabled={true}*/}
+                                            {/*            inner={"Complete the form to proceed"}*/}
+                                            {/*            btnColor={"4"}*/}
+
+                                            {/*        />*/}
+                                            {/*}*/}
+
+
                                         </Form>
+
+
+
                                     )}
                                 </Formik>
                             </div>
