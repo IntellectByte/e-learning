@@ -118,9 +118,9 @@ const PlaceOrderBtn = ({user, cartItems}) => {
             script.dataset.getnetAmount = cartTotal;
             script.dataset.getnetCustomerid = user.id;
             script.dataset.getnetOrderid = uuidv4();
-            script.dataset.getnetPaymentMethodsDisabled = ["pix", "credito", "qr-code"];
+            // script.dataset.getnetPaymentMethodsDisabled = ["pix", "credito", "qr-code"];
             script.dataset.getnetButtonClass = 'pay-button-getnet';
-            script.dataset.getnetInstallments = '12';
+            script.dataset.getnetInstallments = '6';
             script.dataset.getnetCustomerFirstName = user.first_name;
             script.dataset.getnetCustomerLastName = user.last_name;
             script.dataset.getnetCustomerEmail = user.email;
