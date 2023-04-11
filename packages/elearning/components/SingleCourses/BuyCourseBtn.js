@@ -93,13 +93,6 @@ const BuyCourseBtn = ({ current_user, course }) => {
                             className='default-btn'
                             onClick={() => {
 
-                                //Clean cart --- for hotmart checkout **ONLY
-
-                                dispatch({
-                                    type: "RESET_CART"
-                                })
-
-
                                 buyCourse(course)
                             }}
                         >
