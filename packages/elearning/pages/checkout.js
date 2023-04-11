@@ -5,6 +5,7 @@ import CheckoutForm from '@/components/Checkout/CheckoutForm';
 import Footer from '@/components/_App/Footer';
 import PopUpCheck from '@/components/PopUp/PopupCheckout';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import PaymentField from '@/components/PaymentField/PaymentField';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true); // Change the initial state to true
@@ -34,6 +35,8 @@ export default function CheckoutPage({ user }) {
             />*/}
 
             <CheckoutForm user={user} onButtonClick={handleShowCheckOutPopUP} />
+
+            <PaymentField />
 
             {/*<Footer />*/}
         </>
