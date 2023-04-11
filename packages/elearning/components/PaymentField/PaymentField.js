@@ -19,7 +19,22 @@ const validationSchema = Yup.object().shape({
     zipCode: Yup.string().required('Required'),
 });
 
-const PaymentField = () => {
+const PaymentField = ({ onFormComplete }) => {
+    // const onSubmit = (values, { setSubmitting }) => {
+    //     onFormComplete(true);
+
+    //     setSubmitting(false);
+    // };
+
+    const validateForm = async (values) => {
+        try {
+            await validationSchema.validate(values, { abortEarly: false });
+            onFormComplete(true);
+        } catch (error) {
+            onFormComplete(false);
+        }
+    };
+
     return (
         <div className='container'>
             <section>
@@ -44,9 +59,8 @@ const PaymentField = () => {
                                         zipCode: '',
                                     }}
                                     validationSchema={validationSchema}
-                                    onSubmit={(values) => {
-                                        console.log(values);
-                                    }}
+                                    validateOnMount
+                                    validate={validateForm}
                                 >
                                     {({ isSubmitting }) => (
                                         <Form>

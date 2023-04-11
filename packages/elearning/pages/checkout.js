@@ -9,6 +9,7 @@ import PaymentField from '@/components/PaymentField/PaymentField';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
+    const [isPaymentFormComplete, setIsPaymentFormComplete] = useState(false);
 
     const handleCloseCheckOutPopUP = () => {
         setShowChackoutPopUp(false);
@@ -28,9 +29,13 @@ export default function CheckoutPage({ user }) {
                 <PopUpCheck onClose={handleCloseCheckOutPopUP} />
             )}
 
-            <CheckoutForm user={user} onButtonClick={handleShowCheckOutPopUP} />
+            <CheckoutForm
+                user={user}
+                onButtonClick={handleShowCheckOutPopUP}
+                isPaymentFormComplete={isPaymentFormComplete}
+            />
 
-            <PaymentField />
+            <PaymentField onFormComplete={setIsPaymentFormComplete} />
         </>
     );
 }
