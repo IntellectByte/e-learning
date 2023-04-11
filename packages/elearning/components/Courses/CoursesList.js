@@ -19,8 +19,6 @@ const CoursesList = ({ user }) => {
 	const short = router.query.short ? router.query.short : "";
 	const search = router.query.search ? router.query.search : "";
 
-	console.log(courses)
-
 	const fetchCourses = async () => {
 		setLoading(true);
 
