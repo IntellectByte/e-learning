@@ -8530,3 +8530,7 @@ Go Top CSS
         opacity: 1;
     }
 }
+
+.cursor-pointer-one {
+    cursor: pointer;
+}
