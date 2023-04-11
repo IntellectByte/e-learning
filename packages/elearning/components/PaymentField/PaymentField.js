@@ -1,4 +1,23 @@
 import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+    doc: Yup.string().required('Required'),
+    documentNumber: Yup.string()
+        .min(11, 'Must be at least 11 characters')
+        .required('Required'),
+    phoneNumber: Yup.string()
+        .min(10, 'Must be at least 10 characters')
+        .required('Required'),
+    streetNumber: Yup.string().required('Required'),
+    street: Yup.string().required('Required'),
+    addressComplementary: Yup.string().required('Required'),
+    neighborhood: Yup.string().required('Required'),
+    city: Yup.string().required('Required'),
+    state: Yup.string().required('Required'),
+    zipCode: Yup.string().required('Required'),
+});
 
 const PaymentField = () => {
     return (
@@ -11,186 +30,259 @@ const PaymentField = () => {
                                 <h5 className='mb-0'>Seus Dados</h5>
                             </div>
                             <div className='card-body'>
-                                <form>
-                                    <div className='form-outline mb-4'>
-                                        <label for='doc'>Tipo de Doc</label>
-                                        <select name='doc' id='doc'>
-                                            <option value='CPF'>CPF</option>
-                                            <option value='CNPJ '>CNPJ</option>
-                                        </select>
-                                    </div>
+                                <Formik
+                                    initialValues={{
+                                        doc: '',
+                                        documentNumber: '',
+                                        phoneNumber: '',
+                                        streetNumber: '',
+                                        street: '',
+                                        addressComplementary: '',
+                                        neighborhood: '',
+                                        city: '',
+                                        state: '',
+                                        zipCode: '',
+                                    }}
+                                    validationSchema={validationSchema}
+                                    onSubmit={(values) => {
+                                        console.log(values);
+                                    }}
+                                >
+                                    {({ isSubmitting }) => (
+                                        <Form>
+                                            <div className='form-outline mb-4'>
+                                                <label htmlFor='doc'>
+                                                    Tipo de Doc
+                                                </label>
+                                                <Field
+                                                    as='select'
+                                                    name='doc'
+                                                    id='doc'
+                                                >
+                                                    <option value='CPF'>
+                                                        CPF
+                                                    </option>
+                                                    <option value='CNPJ'>
+                                                        CNPJ
+                                                    </option>
+                                                </Field>
+                                                <ErrorMessage
+                                                    name='doc'
+                                                    component='div'
+                                                />
+                                            </div>
 
-                                    <hr className='my-4' />
+                                            <hr className='my-4' />
 
-                                    <div className='form-outline'>
-                                        <input
-                                            type='number'
-                                            id='formNameOnCard'
-                                            className='form-control'
-                                            placeholder='000.000.000-00'
-                                            required
-                                        />
-                                        <label
-                                            className='form-label'
-                                            for='formNameOnCard'
-                                        >
-                                            CPF ou CNPJ do dono do cartão
-                                        </label>
-                                    </div>
-
-                                    <hr className='my-4' />
-
-                                    <div className='form-outline mb-4'>
-                                        <input
-                                            type='number'
-                                            id='form6Example3'
-                                            className='form-control'
-                                            placeholder='XX XXXX-XXXX'
-                                            required
-                                        />
-                                        <label
-                                            className='form-label'
-                                            for='form6Example3'
-                                        >
-                                            Telefone
-                                        </label>
-                                    </div>
-
-                                    <hr className='my-4' />
-
-                                    <h5 className='mb-4'>
-                                        Endereço de cobrança
-                                    </h5>
-
-                                    <div className='row mb-4'>
-                                        <div className='col'>
                                             <div className='form-outline'>
-                                                <input
+                                                <Field
                                                     type='number'
+                                                    name='documentNumber'
                                                     id='formNameOnCard'
                                                     className='form-control'
-                                                    placeholder='Street Number'
-                                                    required
+                                                    placeholder='000.000.000-00'
                                                 />
                                                 <label
                                                     className='form-label'
-                                                    for='formNameOnCard'
+                                                    htmlFor='formNameOnCard'
                                                 >
-                                                    Street Number
+                                                    CPF ou CNPJ do dono do
+                                                    cartão
                                                 </label>
-                                            </div>
-                                        </div>
-                                        <div className='col'>
-                                            <div className='form-outline'>
-                                                <input
-                                                    type='text'
-                                                    id='formCardNumber'
-                                                    className='form-control'
-                                                    placeholder='Street'
-                                                    required
+                                                <ErrorMessage
+                                                    name='documentNumber'
+                                                    component='div'
                                                 />
-                                                <label
-                                                    className='form-label'
-                                                    for='formCardNumber'
-                                                >
-                                                    Street
-                                                </label>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div className='row mb-4'>
-                                        <div className='col'>
-                                            <div className='form-outline'>
-                                                <input
-                                                    type='text'
-                                                    id='formNameOnCard'
-                                                    className='form-control'
-                                                    placeholder='Address Complementary'
-                                                    required
-                                                />
-                                                <label
-                                                    className='form-label'
-                                                    for='formNameOnCard'
-                                                >
-                                                    Address Complementary
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className='col'>
-                                            <div className='form-outline'>
-                                                <input
-                                                    type='text'
-                                                    id='formCardNumber'
-                                                    className='form-control'
-                                                    placeholder='Nome do bairro'
-                                                    required
-                                                />
-                                                <label
-                                                    className='form-label'
-                                                    for='formCardNumber'
-                                                >
-                                                    Bairro (Neighborhood)
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            <hr className='my-4' />
 
-                                    <div className='row mb-4'>
-                                        <div className='col'>
-                                            <div className='form-outline'>
-                                                <input
-                                                    type='text'
-                                                    id='formNameOnCard'
+                                            <div className='form-outline mb-4'>
+                                                <Field
+                                                    type='number'
+                                                    name='phoneNumber'
+                                                    id='form6Example3'
                                                     className='form-control'
-                                                    placeholder='City'
-                                                    required
+                                                    placeholder='XX XXXX-XXXX'
                                                 />
                                                 <label
                                                     className='form-label'
-                                                    for='formNameOnCard'
+                                                    htmlFor='form6Example3'
                                                 >
-                                                    City
+                                                    Telefone
                                                 </label>
-                                            </div>
-                                        </div>
-                                        <div className='col'>
-                                            <div className='form-outline'>
-                                                <input
-                                                    type='text'
-                                                    id='formCardNumber'
-                                                    className='form-control'
-                                                    placeholder='State'
-                                                    required
+                                                <ErrorMessage
+                                                    name='phoneNumber'
+                                                    component='div'
                                                 />
-                                                <label
-                                                    className='form-label'
-                                                    for='formCardNumber'
-                                                >
-                                                    State
-                                                </label>
                                             </div>
-                                        </div>
 
-                                        <div className='col'>
-                                            <div className='form-outline'>
-                                                <input
-                                                    type='text'
-                                                    id='formCardNumber'
-                                                    className='form-control'
-                                                    placeholder='Zip Code'
-                                                    required
-                                                />
-                                                <label
-                                                    className='form-label'
-                                                    for='formCardNumber'
-                                                >
-                                                    Zip Code
-                                                </label>
+                                            <hr className='my-4' />
+
+                                            <h5 className='mb-4'>
+                                                Endereço de cobrança
+                                            </h5>
+
+                                            <div className='row mb-4'>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='number'
+                                                            name='streetNumber'
+                                                            id='formStreetNumber'
+                                                            className='form-control'
+                                                            placeholder='Street Number'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formStreetNumber'
+                                                        >
+                                                            Street Number
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='streetNumber'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='text'
+                                                            name='street'
+                                                            id='formCardNumber'
+                                                            className='form-control'
+                                                            placeholder='Street'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formCardNumber'
+                                                        >
+                                                            Street
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='street'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </form>
+
+                                            <div className='row mb-4'>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='text'
+                                                            name='addressComplementary'
+                                                            id='formAddressComplementary'
+                                                            className='form-control'
+                                                            placeholder='Address Complementary'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formAddressComplementary'
+                                                        >
+                                                            Address
+                                                            Complementary
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='addressComplementary'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='text'
+                                                            name='neighborhood'
+                                                            id='formCardNumber'
+                                                            className='form-control'
+                                                            placeholder='Nome do bairro'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formCardNumber'
+                                                        >
+                                                            Bairro
+                                                            (Neighborhood)
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='neighborhood'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className='row mb-4'>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='text'
+                                                            name='city'
+                                                            id='formCity'
+                                                            className='form-control'
+                                                            placeholder='City'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formCity'
+                                                        >
+                                                            City
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='city'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='text'
+                                                            name='state'
+                                                            id='formState'
+                                                            className='form-control'
+                                                            placeholder='State'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formState'
+                                                        >
+                                                            State
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='state'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='text'
+                                                            name='zipCode'
+                                                            id='formZipCode'
+                                                            className='form-control'
+                                                            placeholder='Zip Code'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formZipCode'
+                                                        >
+                                                            Zip Code
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='zipCode'
+                                                            component='div'
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )}
+                                </Formik>
                             </div>
                         </div>
                     </div>
