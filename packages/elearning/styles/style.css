@@ -8191,6 +8191,39 @@ Go Top CSS
     max-height: 100vh;
 }
 
+@keyframes borderColors {
+    0% {
+        border-color: #2196f3;
+    }
+    25% {
+        border-color: #ce417d;
+    }
+    50% {
+        border-color: #4caf50;
+    }
+    75% {
+        border-color: #ffeb3b;
+    }
+    100% {
+        border-color: #2196f3;
+    }
+}
+
+@keyframes popupFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translate(-100%, -50%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
 .popup {
     position: fixed;
     top: 50%;
@@ -8198,14 +8231,16 @@ Go Top CSS
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 2rem;
-    box-shadow: 0 17px 30px rgba(0, 0, 0, 0.19), 0 12px 12px rgba(0, 0, 0, 0.23);
+    border: 3.8px solid #ce417d;
+    animation: borderColors 4s linear infinite, popupFadeIn 0.5s forwards,
+        slideInFromLeft 0.5s forwards;
+    animation-delay: 1s, 1s, 1s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     z-index: 999;
     width: 90%;
     max-width: 600px;
     border-radius: 27px;
     opacity: 0;
-    animation: popupFadeIn 0.5s forwards;
-    animation-delay: 1s;
     display: flex;
 }
 
@@ -8474,5 +8509,24 @@ Go Top CSS
     }
     .popup form button[type='submit'] {
         font-size: 1rem;
+    }
+}
+
+.overlaypopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    animation: overlayFadeIn 0.5s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes overlayFadeIn {
+    to {
+        opacity: 1;
     }
 }

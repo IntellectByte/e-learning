@@ -8,7 +8,9 @@ import {calculateCartTotal} from '@/utils/calculateCartTotal';
 import {NavLink} from '@mantine/core';
 import Link from 'next/link';
 import baseUrl from 'utils/baseUrl.js';
+
 import {v4 as uuidv4} from "uuid";
+
 
 const PlaceOrderBtn = ({user, cartItems}) => {
     const [stripeAmount, setStripeAmount] = React.useState(0);
