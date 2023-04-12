@@ -2,6 +2,9 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PlaceOrderBtn from "@/components/Checkout/PlaceOrderBtn";
+import axios from "axios";
+import baseUrl from "@/utils/baseUrl";
+import {parseCookies} from "nookies";
 
 const validationSchema = Yup.object().shape({
     doc: Yup.string().required('Required'),
@@ -27,6 +30,7 @@ const PaymentField = ({ onFormComplete }) => {
     //     setSubmitting(false);
     // };
 
+    const {elarniv_users_token} = parseCookies()
 
     const validateForm = async (values) => {
         try {
@@ -49,12 +53,41 @@ const PaymentField = ({ onFormComplete }) => {
                  script.dataset.getnetCustomerAddressState = values.state;
                  script.dataset.getnetCustomerAddressZipcode = values.zipCode;
                  script.dataset.getnetCustomerCountry = 'Brasil';
-
-                 const loader = document.getElementById('getnet-loader')
-
-                 console.log(script.dataset)
+                 script.dataset.getnetCustomerCountry = 'Brasil';
 
 
+                 // console.log(script.dataset)
+
+                 const payment = {
+                     id: script.dataset.getnetOrderid,
+                     userId: script.dataset.getnetCustomerid,
+                     amount: parseFloat(script.dataset.getnetAmount),
+                     buyerEmail: script.dataset.getnetCustomerEmail,
+                     buyerName: `${script.dataset.getnetCustomerFirstName} ${script.dataset.getnetCustomerLastName}`,
+                     buyerDocType: script.dataset.getnetCustomerDocumentType,
+                     buyerDocNumber: script.dataset.getnetCustomerDocumentNumber,
+                     buyerAdressStreetNumber: script.dataset.getnetCustomerAddressStreetNumber,
+                     buyerPhoneNumber: script.dataset.getnetCustomerPhoneNumber,
+                     buyerAdressStreet: script.dataset.getnetCustomerAddressStreet,
+                     buyerAdressComplementary: script.dataset.getnetCustomerAddressComplementary,
+                     buyerAdressNeighborhood: script.dataset.getnetCustomerAddressNeighborhood,
+                     buyerAdressCity: script.dataset.getnetCustomerAddressCity,
+                     buyerAdressState: script.dataset.getnetCustomerAddressState,
+                     buyerAdressZipCode: script.dataset.getnetCustomerAddressZipcode,
+                     buyerCountry: script.dataset.getnetCustomerCountry,
+                     items: JSON.parse(script.dataset.getnetItems),
+                     paymentState: 'PENDANT'
+                 };
+
+                 console.log(payment)
+
+                 axios.post(`${baseUrl}/api/purchases`, payment, {
+                 headers: {authorization: elarniv_users_token}
+                 })
+                     .then(data => console.log(data))
+                     .catch(err => console.log(err))
+
+                 ///TODO: intentar poner la funcion onFormComplete aca dentro del timeout
 
             }, 500)
 
