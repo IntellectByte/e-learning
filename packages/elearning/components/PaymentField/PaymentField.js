@@ -53,7 +53,6 @@ const PaymentField = ({ onFormComplete }) => {
                  script.dataset.getnetCustomerAddressState = values.state;
                  script.dataset.getnetCustomerAddressZipcode = values.zipCode;
                  script.dataset.getnetCustomerCountry = 'Brasil';
-                 script.dataset.getnetCustomerCountry = 'Brasil';
 
 
                  // console.log(script.dataset)
@@ -89,7 +88,7 @@ const PaymentField = ({ onFormComplete }) => {
 
                  ///TODO: intentar poner la funcion onFormComplete aca dentro del timeout
 
-            }, 500)
+            }, 1000)
 
             onFormComplete(true);
 
