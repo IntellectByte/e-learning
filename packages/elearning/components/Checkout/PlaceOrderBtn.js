@@ -12,22 +12,11 @@ import baseUrl from 'utils/baseUrl.js';
 import {v4 as uuidv4} from "uuid";
 
 
-const PlaceOrderBtn = ({user, cartItems}) => {
-    const [stripeAmount, setStripeAmount] = React.useState(0);
+const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     const [loading, setLoading] = useState(false);
-    const [paymentStatus, setPaymentStatus] = useState({
-        status: '',
-    });
-    const [paymentId, setPaymentId] = useState('');
-    const [paymentTime, setPaymentTime] = useState({
-        date: '',
-    });
     const dispatch = useDispatch();
     const router = useRouter();
-    // const [authorization, setAuthorization] = useState({
-    //     type: '',
-    //     token: ''
-    // })
+
 
     const handlePersistCourse = async () => {
         try {
@@ -111,6 +100,8 @@ const PlaceOrderBtn = ({user, cartItems}) => {
 
             console.log(user)
 
+            const token = uuidv4();
+
             const script = document.createElement('script');
             script.src = 'https://checkout.getnet.com.br/loader.js';
             script.async = true;
@@ -119,34 +110,22 @@ const PlaceOrderBtn = ({user, cartItems}) => {
             script.dataset.getnetToken = `${data.token_type} ${data.access_token}`
             script.dataset.getnetAmount = cartTotal;
             script.dataset.getnetCustomerid = user.id;
-            script.dataset.getnetOrderid = uuidv4();
+            script.dataset.getnetOrderid = token;
             // script.dataset.getnetPaymentMethodsDisabled = ["pix", "credito", "qr-code"];
             script.dataset.getnetButtonClass = 'pay-button-getnet';
             script.dataset.getnetInstallments = '6';
             script.dataset.getnetCustomerFirstName = user.first_name;
             script.dataset.getnetCustomerLastName = user.last_name;
             script.dataset.getnetCustomerEmail = user.email;
-            script.dataset.getnetCustomerDocumentType = 'CPF';
-            script.dataset.getnetCustomerDocumentNumber = '22233366638';
-            script.dataset.getnetCustomerPhoneNumber = '1134562356';
-            script.dataset.getnetCustomerAddressStreetNumber = '1711';
-            script.dataset.getnetCustomerAddressStreet = 'Rua Alexandre Dumas';
-            script.dataset.getnetCustomerAddressComplementary = '';
-            script.dataset.getnetCustomerAddressNeighborhood = 'Chacara Santo Antonio';
-            script.dataset.getnetCustomerAddressCity = 'São Paulo';
-            script.dataset.getnetCustomerAddressState = 'SP';
-            script.dataset.getnetCustomerAddressZipcode = '04717004';
-            script.dataset.getnetCustomerCountry = 'Brasil';
-            // script.dataset.getnetShippingAddress = '[{ "first_name": "João", "name": "João Borgas", "email": "joaoborgas@gmail.com", "phone_number": "", "shipping_amount": 10, "address": { "street": "Rua dos Pagamentos", "complement": "", "number": "171", "district": "Centro", "city": "São Paulo", "state": "SP", "country": "Brasil", "postal_code": "12345678"}}]';
-            // script.dataset.getnetItems = '[{"name": "","description": "", "value": 0, "quantity": 0,"sku": ""}]';
             script.dataset.getnetItems = JSON.stringify(getnetItems);
-            script.dataset.getnetUrlCallback = `${baseUrl}/success`;
+            script.dataset.getnetUrlCallback = `${baseUrl}/success?orderId=${token}`;
             script.dataset.getnetPreAuthorizationCredit = '';
 
-            script.onload = () => {
-                const checkoutElements = window.checkoutElements.init('overlayCheckout');
-                checkoutElements.attach('.pay-button-getnet');
-            }
+            // script.onload = () => {
+            //     const checkoutElements = window.checkoutElements.init('overlayCheckout');
+            //     checkoutElements.attach('.pay-button-getnet');
+            // }
+
             document.body.appendChild(script);
         } catch (err) {
             console.log(err)
@@ -157,14 +136,30 @@ const PlaceOrderBtn = ({user, cartItems}) => {
 
     useEffect(() => {
         fetchAccessToken()
-            .then(e => console.log(e))
+            .then(e => {
+                console.log(e)
+            })
             .catch(err => console.log(err))
+    }, [])
+
+    useEffect(() => {
+
+        setLoading(true)
+
+        setTimeout(() => {
+
+            setLoading(false)
+
+        },5000)
+
     }, [])
 
 
     return (
         <div>
-            <button className={'default-btn-style-3 d-block w-100 mt-3 pay-button-getnet'}>Proceed to checkout</button>
+            <button disabled={loading ? true : disabled} className={`default-btn-style-${btnColor} d-block w-100 mt-3 pay-button-getnet`}>
+                {inner} <span></span> {loading && <LoadingSpinner />}
+            </button>
         </div>
     );
 };

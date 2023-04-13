@@ -8,7 +8,8 @@ import Enrolment from "./enrolment";
 import Instructor_Earning from "./instructor_earning";
 import Course_Progress from "./course_progress";
 import Course_Asset from "./course_asset";
-import Notification from "./notification"
+import Notification from "./notification";
+import Purchase from "./purchase";
 
 User.hasMany(Course, { foreignKey: "userId", as: "courses" });
 Course.belongsTo(User, { foreignKey: "userId", as: "user" });
@@ -78,5 +79,6 @@ export {
 	Course_Progress,
 	Course_Asset,
     HotmartUser,
-	Notification
+	Notification,
+	Purchase
 };
