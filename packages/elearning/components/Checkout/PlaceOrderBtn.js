@@ -153,7 +153,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
             setLoading(false)
 
-        },5000)
+        }, 6000)
 
     }, [])
 
