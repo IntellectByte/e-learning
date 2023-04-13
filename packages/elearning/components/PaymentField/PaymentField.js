@@ -78,13 +78,17 @@ const PaymentField = ({ onFormComplete }) => {
                      paymentState: 'PENDANT'
                  };
 
-                 console.log(payment)
+                 // console.log(payment)
 
                  axios.post(`${baseUrl}/api/purchases`, payment, {
                  headers: {authorization: elarniv_users_token}
                  })
-                     .then(data => console.log(data))
-                     .catch(err => console.log(err))
+                     .then(data => {
+                         // console.log(data)
+                     })
+                     .catch(err => {
+                         // console.log(err)
+                     })
 
                  ///TODO: intentar poner la funcion onFormComplete aca dentro del timeout
 

@@ -94,11 +94,12 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
                     "description": e.slug,
                     "value": e.price,
                     "quantity": 1,
+                    "id": e.id,
                     "sku": ""
                 }
             })
 
-            console.log(user)
+            // console.log(user)
 
             const token = uuidv4();
 
@@ -118,7 +119,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             script.dataset.getnetCustomerLastName = user.last_name;
             script.dataset.getnetCustomerEmail = user.email;
             script.dataset.getnetItems = JSON.stringify(getnetItems);
-            script.dataset.getnetUrlCallback = `${baseUrl}/success?orderId=${token}`;
+            script.dataset.getnetUrlCallback = `${baseUrl}/payment-successful?orderId=${token}`;
             script.dataset.getnetPreAuthorizationCredit = '';
 
             // script.onload = () => {
@@ -128,7 +129,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
             document.body.appendChild(script);
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
 
 
@@ -137,9 +138,11 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     useEffect(() => {
         fetchAccessToken()
             .then(e => {
-                console.log(e)
+                // console.log(e)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                // console.log(err)
+            })
     }, [])
 
     useEffect(() => {
