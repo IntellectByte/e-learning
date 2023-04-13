@@ -92,7 +92,7 @@ const PaymentField = ({ onFormComplete }) => {
 
                  ///TODO: intentar poner la funcion onFormComplete aca dentro del timeout
 
-            }, 1000)
+            }, 2000)
 
             onFormComplete(true);
 
