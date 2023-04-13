@@ -149,5 +149,10 @@
     "paymentStatusPage-Button2": "Back to checkout",
     "popupcheckout-p1": "Before proceeding with the purchase, it is important that you take into account that the email you use during the process will be the one assigned to the purchased course. Likewise, it is essential that you check your email once the purchase is complete, since there you will receive all the necessary information to access the course. Do not forget to check your spam or junk mail folder in case you do not receive the mail in your inbox.",
     "popupcheckout-p2": "Any inconvenience communicate to WhatsApp that is on the main page.",
-    "popupcheckout-btn": "Keep buying"
+    "popupcheckout-btn": "Keep buying",
+    "paymentSuccess-Title": "Thanks for your purchase!",
+    "paymentSuccess-SubTitle1": "You can now see your purchased courses on My Learnings tab.",
+    "paymentSuccess-SubTitle2": "To see your courses enter the button below.",
+    "paymentSuccess-Button": "My Courses",
+    "paymentSuccess-Button2": "Back to home"
 }

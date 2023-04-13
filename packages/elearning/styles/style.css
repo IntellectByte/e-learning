@@ -8530,3 +8530,26 @@ Go Top CSS
         opacity: 1;
     }
 }
+
+.cursor-pointer-one {
+    cursor: pointer;
+}
+
+.bluemoon2 {
+    background-image: url('/blurry-gradient-haikei.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 480px) {
+    .bluemoon2 {
+        max-height: 100%;
+    }
+}
