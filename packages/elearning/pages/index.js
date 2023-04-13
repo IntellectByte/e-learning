@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 // ADDED ANIMATION LIBRARIES
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import Navbar from '@/components/_App/Navbar';
 import MainBanner from '@/components/eLearningSchool/MainBanner';
 import Partner from '@/components/eLearningSchool/Partner';
@@ -56,24 +54,6 @@ const fadeInRight = {
 function Index({ courses, user }) {
     const [showPopup, setShowPopup] = useState(false);
 
-    // Animations on scroll
-    // const [refMainBanner, inViewMainBanner] = useInView({
-    //     threshold: 0.9,
-    //     triggerOnce: true,
-    // });
-    // const [refFeatures, inViewFeatures] = useInView({
-    //     threshold: 0.9,
-    //     triggerOnce: true,
-    // });
-    // const [refAboutUs, inViewAboutUs] = useInView({
-    //     threshold: 0.9,
-    //     triggerOnce: true,
-    // });
-    // const [refPopularCourses, inViewPopularCourses] = useInView({
-    //     threshold: 0.9,
-    //     triggerOnce: true,
-    // });a
-
     useEffect(() => {
         const timeout = setTimeout(() => {
             if (!sessionStorage.getItem('popupShown')) {
@@ -93,45 +73,20 @@ function Index({ courses, user }) {
         <>
             {showPopup && <PopUp onClose={handleClosePopup} />}
 
-            {/*<TopBanner message='Curso Sorvete 50%OFF!' />*/}
             <TopBanner />
 
             <SupportButton />
 
             <Navbar user={user} />
 
-            {/* <motion.div
-                ref={refMainBanner}
-                initial='hidden'
-                animate={inViewMainBanner ? 'visible' : 'hidden'}
-                variants={fadeInUp}
-            > */}
             <MainBanner user={user} courses={courses} />
-            {/* </motion.div> */}
-            {/* <motion.div
-                ref={refFeatures}
-                initial='hidden'
-                animate={inViewFeatures ? 'visible' : 'hidden'}
-                variants={fadeInLeft}
-            > */}
+
             <Features />
-            {/* </motion.div> */}
-            {/* <motion.div
-                ref={refAboutUs}
-                initial='hidden'
-                animate={inViewAboutUs ? 'visible' : 'hidden'}
-                variants={fadeInRight}
-            > */}
+
             <AboutUs />
-            {/* </motion.div> */}
-            {/* <motion.div
-                ref={refPopularCourses}
-                initial='hidden'
-                animate={inViewPopularCourses ? 'visible' : 'hidden'}
-                variants={fadeInUp}
-            > */}
+
             <PopularCourses user={user} />
-            {/* </motion.div> */}
+
             <FeedbackSliderWithFunFacts />
             <GetInstantCourses user={user} />
             <ViewAllCourses />
