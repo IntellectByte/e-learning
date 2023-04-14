@@ -31,49 +31,49 @@ const PaymentSuccessful = ({user}) => {
     const hasRunRef = useRef(false);
 
 
-    useEffect(() => {
-        setIsMounted(true);
-
-        (async () => {
-            const { orderId } = router.query;
-
-            if (!hasRunRef.current && orderId) {
-                const headers = {
-                    "Content-Type": "application/json",
-                    authorization: elarniv_users_token,
-                };
-
-                try {
-                    const purchaseResponse = await axios.put(
-                        `${baseUrl}/api/purchases`,
-                        {
-                            data: {
-                                purchaseId: orderId,
-                                paymentStatus: "SUCCESS",
-                            },
-                        },
-                        { headers }
-                );
-
-                    hasRunRef.current = true;
-
-                    const { items } = purchaseResponse.data.data;
-
-                    const checkoutResponse = await axios.post(`${baseUrl}/api/checkout`, {
-                        cartItems: items,
-                        userId: user.id,
-                        buyer_name: `${user.first_name} ${user.last_name}`,
-                        buyer_email: user.email,
-                        buyer_avatar: user.profile_photo,
-                    });
-
-                    // console.log(checkoutResponse);
-                } catch (error) {
-                    // console.log(error);
-                }
-            }
-        })();
-    }, [router.query.orderId]);
+    // useEffect(() => {
+    //     setIsMounted(true);
+    //
+    //     (async () => {
+    //         const { orderId } = router.query;
+    //
+    //         if (!hasRunRef.current && orderId) {
+    //             const headers = {
+    //                 "Content-Type": "application/json",
+    //                 authorization: elarniv_users_token,
+    //             };
+    //
+    //             try {
+    //                 const purchaseResponse = await axios.put(
+    //                     `${baseUrl}/api/purchases`,
+    //                     {
+    //                         data: {
+    //                             purchaseId: orderId,
+    //                             paymentStatus: "SUCCESS",
+    //                         },
+    //                     },
+    //                     { headers }
+    //             );
+    //
+    //                 hasRunRef.current = true;
+    //
+    //                 const { items } = purchaseResponse.data.data;
+    //
+    //                 const checkoutResponse = await axios.post(`${baseUrl}/api/checkout`, {
+    //                     cartItems: items,
+    //                     userId: user.id,
+    //                     buyer_name: `${user.first_name} ${user.last_name}`,
+    //                     buyer_email: user.email,
+    //                     buyer_avatar: user.profile_photo,
+    //                 });
+    //
+    //                 // console.log(checkoutResponse);
+    //             } catch (error) {
+    //                 // console.log(error);
+    //             }
+    //         }
+    //     })();
+    // }, [router.query.orderId]);
 
 
     return (
