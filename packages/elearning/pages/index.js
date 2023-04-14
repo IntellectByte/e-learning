@@ -71,7 +71,7 @@ function Index({ courses, user }) {
 
     return (
         <>
-            {/* {showPopup && <PopUp onClose={handleClosePopup} />} */}
+            {showPopup && <PopUp onClose={handleClosePopup} />}
 
             <TopBanner />
 
