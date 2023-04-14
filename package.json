@@ -11,4 +11,5 @@
   "devDependencies": {
     "@types/react-i18next": "^8.1.0"
   }
+  
 }
