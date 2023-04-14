@@ -89,13 +89,19 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             const {cartTotal} = calculateCartTotal(cartItems)
 
             const getnetItems = cartItems.map(e => {
+
+
+
                 return {
                     "name": e.title,
                     "description": e.slug,
                     "value": e.price,
                     "quantity": 1,
                     "id": e.id,
-                    "sku": ""
+                    "sku": "",
+                    "image": e.image,
+                    "instructor": e.instructor
+
                 }
             })
 
@@ -119,7 +125,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             script.dataset.getnetCustomerLastName = user.last_name;
             script.dataset.getnetCustomerEmail = user.email;
             script.dataset.getnetItems = JSON.stringify(getnetItems);
-            script.dataset.getnetUrlCallback = `${baseUrl}/payment-successful?orderId=${token}`;
+            script.dataset.getnetUrlCallback = `${baseUrl}/api/purchases/update?orderId=${token}`;
             script.dataset.getnetPreAuthorizationCredit = '';
 
             // script.onload = () => {

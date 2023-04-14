@@ -45,14 +45,6 @@ const handlePostRequest = async (req, res) => {
                 courseId: cart.id,
                 status: "paid",
             });
-
-            // const courseInstractor = await Course.findOne({
-            //     attributes: ["userId"], where: {id: cart.id},
-            // });
-
-            // await Instructor_Earning.create({
-            //     earnings: cart.price, userId: courseInstractor.userId, courseId: cart.id,
-            // });
         }
 
         await checkoutConfirmation(cartItems, buyer_name, buyer_email);
