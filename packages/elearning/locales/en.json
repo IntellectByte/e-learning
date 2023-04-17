@@ -165,5 +165,7 @@
     "registerpage-lastname": "Last Name",
     "registerpage-password": "Password",
     "registerpage-description": "The password should be at least eight characters long. To make it stronger, use upper and lower case letters, numbers, and symbols",
-    "registerpage-regster": "Register"
+    "registerpage-regster": "Register",
+    "bannercourses-lessons": "Lessons",
+    "bannercourses-students": "Students"
 }

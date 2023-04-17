@@ -165,5 +165,7 @@
     "registerpage-lastname": "Sobrenome",
     "registerpage-password": "Senha",
     "registerpage-description": "A senha deve ter pelo menos oito caracteres. Para torná-lo mais forte, use letras maiúsculas e minúsculas, números e símbolos",
-    "registerpage-regster": "Registro"
+    "registerpage-regster": "Registro",
+    "bannercourses-lessons": "Lições",
+    "bannercourses-students": "Alunos"
 }
