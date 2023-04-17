@@ -2620,6 +2620,7 @@ Courses Area CSS
     -webkit-box-shadow: var(--logo-color) 2px 5px 12px;
     box-shadow: var(--logo-color) 2px 5px 12px;
     min-width: 100%;
+    min-height: 701px;
 }
 
 .single-courses-box .courses-image {
@@ -5614,8 +5615,15 @@ Get Instant Courses Area CSS
 
 .get-instant-courses-image {
     position: relative;
+    right: 18px;
     z-index: 1;
     border-radius: 0 5px 5px 0;
+}
+
+@media (max-width: 768px) {
+    .get-instant-courses-image {
+        right: 0px;
+    }
 }
 
 .get-instant-courses-image img {
