@@ -8,6 +8,7 @@ import baseUrl from '@/utils/baseUrl';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const INIT_PARTNER = {
     name: '',
@@ -133,6 +134,8 @@ const Create = ({ user }) => {
 
     return (
         <>
+            <TopBanner />
+
             <Navbar user={user} />
 
             <div className='main-content'>

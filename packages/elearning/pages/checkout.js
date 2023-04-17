@@ -6,6 +6,7 @@ import CheckoutForm from '@/components/Checkout/CheckoutForm';
 // import PopUpCheck from '@/components/PopUp/PopupCheckout';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import PaymentField from '@/components/PaymentField/PaymentField';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
@@ -21,6 +22,8 @@ export default function CheckoutPage({ user }) {
 
     return (
         <>
+            <TopBanner />
+
             <Navbar user={user} />
 
             <SupportButton />
