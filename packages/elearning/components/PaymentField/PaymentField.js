@@ -1,19 +1,15 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import PlaceOrderBtn from "@/components/Checkout/PlaceOrderBtn";
-import axios from "axios";
-import baseUrl from "@/utils/baseUrl";
-import {parseCookies} from "nookies";
+import PlaceOrderBtn from '@/components/Checkout/PlaceOrderBtn';
+import axios from 'axios';
+import baseUrl from '@/utils/baseUrl';
+import { parseCookies } from 'nookies';
 
 const validationSchema = Yup.object().shape({
     doc: Yup.string().required('Required'),
-    documentNumber: Yup.string()
-        .min(11, 'Must be at least 11 characters')
-        .required('Required'),
-    phoneNumber: Yup.string()
-        .min(10, 'Must be at least 10 characters')
-        .required('Required'),
+    documentNumber: Yup.string().required('Required'),
+    phoneNumber: Yup.string().required('Required'),
     streetNumber: Yup.string().required('Required'),
     street: Yup.string().required('Required'),
     addressComplementary: Yup.string().required('Required'),
@@ -24,83 +20,74 @@ const validationSchema = Yup.object().shape({
 });
 
 const PaymentField = ({ onFormComplete }) => {
-    // const onSubmit = (values, { setSubmitting }) => {
-    //     onFormComplete(true);
-
-    //     setSubmitting(false);
-    // };
-
-    const {elarniv_users_token} = parseCookies()
+    const { elarniv_users_token } = parseCookies();
 
     const validateForm = async (values) => {
         try {
             await validationSchema.validate(values, { abortEarly: false });
 
-             setTimeout(() => {
+            setTimeout(() => {
+                const script = document.getElementById('script-getnet');
 
-                 const script = document.getElementById('script-getnet')
+                script.dataset.getnetCustomerDocumentType = values.doc;
+                script.dataset.getnetCustomerDocumentNumber =
+                    values.documentNumber;
+                script.dataset.getnetCustomerPhoneNumber = values.phoneNumber;
+                script.dataset.getnetCustomerAddressStreetNumber =
+                    values.streetNumber;
+                script.dataset.getnetCustomerAddressStreet = values.street;
+                script.dataset.getnetCustomerAddressComplementary =
+                    values.addressComplementary;
+                script.dataset.getnetCustomerAddressNeighborhood =
+                    values.neighborhood;
+                script.dataset.getnetCustomerAddressCity = values.city;
+                script.dataset.getnetCustomerAddressState = values.state;
+                script.dataset.getnetCustomerAddressZipcode = values.zipCode;
+                script.dataset.getnetCustomerCountry = 'Brasil';
 
-                 // console.log(script.id)
+                const payment = {
+                    id: script.dataset.getnetOrderid,
+                    userId: script.dataset.getnetCustomerid,
+                    amount: parseFloat(script.dataset.getnetAmount),
+                    buyerEmail: script.dataset.getnetCustomerEmail,
+                    buyerName: `${script.dataset.getnetCustomerFirstName} ${script.dataset.getnetCustomerLastName}`,
+                    buyerDocType: script.dataset.getnetCustomerDocumentType,
+                    buyerDocNumber: script.dataset.getnetCustomerDocumentNumber,
+                    buyerAdressStreetNumber:
+                        script.dataset.getnetCustomerAddressStreetNumber,
+                    buyerPhoneNumber: script.dataset.getnetCustomerPhoneNumber,
+                    buyerAdressStreet:
+                        script.dataset.getnetCustomerAddressStreet,
+                    buyerAdressComplementary:
+                        script.dataset.getnetCustomerAddressComplementary,
+                    buyerAdressNeighborhood:
+                        script.dataset.getnetCustomerAddressNeighborhood,
+                    buyerAdressCity: script.dataset.getnetCustomerAddressCity,
+                    buyerAdressState: script.dataset.getnetCustomerAddressState,
+                    buyerAdressZipCode:
+                        script.dataset.getnetCustomerAddressZipcode,
+                    buyerCountry: script.dataset.getnetCustomerCountry,
+                    items: JSON.parse(script.dataset.getnetItems),
+                    paymentState: 'PENDANT',
+                };
 
-                 script.dataset.getnetCustomerDocumentType = values.doc;
-                 script.dataset.getnetCustomerDocumentNumber = values.documentNumber;
-                 script.dataset.getnetCustomerPhoneNumber = values.phoneNumber;
-                 script.dataset.getnetCustomerAddressStreetNumber = values.streetNumber;
-                 script.dataset.getnetCustomerAddressStreet = values.street;
-                 script.dataset.getnetCustomerAddressComplementary = values.addressComplementary;
-                 script.dataset.getnetCustomerAddressNeighborhood = values.neighborhood;
-                 script.dataset.getnetCustomerAddressCity = values.city;
-                 script.dataset.getnetCustomerAddressState = values.state;
-                 script.dataset.getnetCustomerAddressZipcode = values.zipCode;
-                 script.dataset.getnetCustomerCountry = 'Brasil';
+                axios
+                    .post(`${baseUrl}/api/purchases`, payment, {
+                        headers: { authorization: elarniv_users_token },
+                    })
+                    .then((data) => {
+                        // console.log(data)
+                    })
+                    .catch((err) => {
+                        // console.log(err)
+                    });
 
-
-                 // console.log(script.dataset)
-
-                 const payment = {
-                     id: script.dataset.getnetOrderid,
-                     userId: script.dataset.getnetCustomerid,
-                     amount: parseFloat(script.dataset.getnetAmount),
-                     buyerEmail: script.dataset.getnetCustomerEmail,
-                     buyerName: `${script.dataset.getnetCustomerFirstName} ${script.dataset.getnetCustomerLastName}`,
-                     buyerDocType: script.dataset.getnetCustomerDocumentType,
-                     buyerDocNumber: script.dataset.getnetCustomerDocumentNumber,
-                     buyerAdressStreetNumber: script.dataset.getnetCustomerAddressStreetNumber,
-                     buyerPhoneNumber: script.dataset.getnetCustomerPhoneNumber,
-                     buyerAdressStreet: script.dataset.getnetCustomerAddressStreet,
-                     buyerAdressComplementary: script.dataset.getnetCustomerAddressComplementary,
-                     buyerAdressNeighborhood: script.dataset.getnetCustomerAddressNeighborhood,
-                     buyerAdressCity: script.dataset.getnetCustomerAddressCity,
-                     buyerAdressState: script.dataset.getnetCustomerAddressState,
-                     buyerAdressZipCode: script.dataset.getnetCustomerAddressZipcode,
-                     buyerCountry: script.dataset.getnetCustomerCountry,
-                     items: JSON.parse(script.dataset.getnetItems),
-                     paymentState: 'PENDANT'
-                 };
-
-                 // console.log(payment)
-
-                 axios.post(`${baseUrl}/api/purchases`, payment, {
-                 headers: {authorization: elarniv_users_token}
-                 })
-                     .then(data => {
-                         // console.log(data)
-                     })
-                     .catch(err => {
-                         // console.log(err)
-                     })
-
-                 ///TODO: intentar poner la funcion onFormComplete aca dentro del timeout
-
-            }, 2000)
+                ///TODO: intentar poner la funcion onFormComplete aca dentro del timeout
+            }, 2000);
 
             onFormComplete(true);
-
-
-
         } catch (error) {
             onFormComplete(false);
-
         }
     };
 
@@ -109,7 +96,7 @@ const PaymentField = ({ onFormComplete }) => {
             <section>
                 <div className='row'>
                     <div className='col-md-8 mb-4'>
-                        <div className='card mb-4'>
+                        <div className='card mb-4 payment-field-border'>
                             <div className='card-header py-3'>
                                 <h5 className='mb-0'>Seus Dados</h5>
                             </div>
@@ -141,10 +128,22 @@ const PaymentField = ({ onFormComplete }) => {
                                                     as='select'
                                                     name='doc'
                                                     id='doc'
+                                                    style={{
+                                                        display: 'block',
+                                                        width: '100%',
+                                                        padding: '8px',
+                                                        fontSize: '16px',
+                                                        lineHeight: '1.5',
+                                                        color: '#495057',
+                                                        backgroundColor: '#fff',
+                                                        backgroundClip:
+                                                            'padding-box',
+                                                        border: '1px solid #ced4da',
+                                                        borderRadius: '4px',
+                                                        transition:
+                                                            'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+                                                    }}
                                                 >
-                                                    {/*<option value={''}>*/}
-                                                    {/*    ---*/}
-                                                    {/*</option>*/}
                                                     <option value='CPF'>
                                                         CPF
                                                     </option>
@@ -155,10 +154,13 @@ const PaymentField = ({ onFormComplete }) => {
                                                 <ErrorMessage
                                                     name='doc'
                                                     component='div'
+                                                    style={{
+                                                        color: 'red',
+                                                    }}
                                                 />
                                             </div>
 
-                                            <hr className='my-4' />
+                                            <hr className='my-4 payment-field-border' />
 
                                             <div className='form-outline'>
                                                 <Field
@@ -166,7 +168,7 @@ const PaymentField = ({ onFormComplete }) => {
                                                     name='documentNumber'
                                                     id='formNameOnCard'
                                                     className='form-control'
-                                                    placeholder='000.000.000-00'
+                                                    placeholder='00000000000'
                                                 />
                                                 <label
                                                     className='form-label'
@@ -178,10 +180,13 @@ const PaymentField = ({ onFormComplete }) => {
                                                 <ErrorMessage
                                                     name='documentNumber'
                                                     component='div'
+                                                    style={{
+                                                        color: 'red',
+                                                    }}
                                                 />
                                             </div>
 
-                                            <hr className='my-4' />
+                                            <hr className='my-4 payment-field-border' />
 
                                             <div className='form-outline mb-4'>
                                                 <Field
@@ -200,37 +205,19 @@ const PaymentField = ({ onFormComplete }) => {
                                                 <ErrorMessage
                                                     name='phoneNumber'
                                                     component='div'
+                                                    style={{
+                                                        color: 'red',
+                                                    }}
                                                 />
                                             </div>
 
-                                            <hr className='my-4' />
+                                            <hr className='my-4 payment-field-border' />
 
                                             <h5 className='mb-4'>
                                                 Endereço de cobrança
                                             </h5>
 
                                             <div className='row mb-4'>
-                                                <div className='col'>
-                                                    <div className='form-outline'>
-                                                        <Field
-                                                            type='number'
-                                                            name='streetNumber'
-                                                            id='formStreetNumber'
-                                                            className='form-control'
-                                                            placeholder='Street Number'
-                                                        />
-                                                        <label
-                                                            className='form-label'
-                                                            htmlFor='formStreetNumber'
-                                                        >
-                                                            Street Number
-                                                        </label>
-                                                        <ErrorMessage
-                                                            name='streetNumber'
-                                                            component='div'
-                                                        />
-                                                    </div>
-                                                </div>
                                                 <div className='col'>
                                                     <div className='form-outline'>
                                                         <Field
@@ -249,6 +236,34 @@ const PaymentField = ({ onFormComplete }) => {
                                                         <ErrorMessage
                                                             name='street'
                                                             component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className='col'>
+                                                    <div className='form-outline'>
+                                                        <Field
+                                                            type='number'
+                                                            name='streetNumber'
+                                                            id='formStreetNumber'
+                                                            className='form-control'
+                                                            placeholder='Street Number'
+                                                        />
+                                                        <label
+                                                            className='form-label'
+                                                            htmlFor='formStreetNumber'
+                                                        >
+                                                            Street Number
+                                                        </label>
+                                                        <ErrorMessage
+                                                            name='streetNumber'
+                                                            component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
@@ -274,6 +289,9 @@ const PaymentField = ({ onFormComplete }) => {
                                                         <ErrorMessage
                                                             name='addressComplementary'
                                                             component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
@@ -296,6 +314,9 @@ const PaymentField = ({ onFormComplete }) => {
                                                         <ErrorMessage
                                                             name='neighborhood'
                                                             component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
@@ -320,6 +341,9 @@ const PaymentField = ({ onFormComplete }) => {
                                                         <ErrorMessage
                                                             name='city'
                                                             component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
@@ -341,6 +365,9 @@ const PaymentField = ({ onFormComplete }) => {
                                                         <ErrorMessage
                                                             name='state'
                                                             component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
@@ -362,37 +389,14 @@ const PaymentField = ({ onFormComplete }) => {
                                                         <ErrorMessage
                                                             name='zipCode'
                                                             component='div'
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-                                            {/*{*/}
-                                            {/*    isPaymentFormComplete ?*/}
-                                            {/*        <PlaceOrderBtn*/}
-                                            {/*            user={user}*/}
-                                            {/*            cartItems={cartItems}*/}
-                                            {/*            disabled={false}*/}
-                                            {/*            inner={'Proceed to checkout'}*/}
-                                            {/*            btnColor={"3"}*/}
-                                            {/*        />*/}
-                                            {/*        :*/}
-                                            {/*        <PlaceOrderBtn*/}
-                                            {/*            user={user}*/}
-                                            {/*            disabled={true}*/}
-                                            {/*            inner={"Complete the form to proceed"}*/}
-                                            {/*            btnColor={"4"}*/}
-
-                                            {/*        />*/}
-                                            {/*}*/}
-
-
                                         </Form>
-
-
-
                                     )}
                                 </Formik>
                             </div>

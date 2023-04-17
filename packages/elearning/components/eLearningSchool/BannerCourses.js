@@ -76,7 +76,8 @@ const BannerCourses = ({
                                 </li>
                                 <li>
                                     <i className='flaticon-people'></i>{' '}
-                                    {enrolments && enrolments.length}{' '}
+                                    {/* {enrolments && enrolments.length}{' '} */}
+                                    200+{' '}
                                     {t('bannercourses-students', {
                                         defaultValue: 'Students',
                                     })}
