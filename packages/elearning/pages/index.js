@@ -90,7 +90,7 @@ function Index({ courses, user }) {
             {/* <FeedbackSliderWithFunFacts /> */}
             <GetInstantCourses user={user} />
             <ViewAllCourses />
-            <Partner />
+            {/* <Partner /> */}
             <SubscribeForm />
             <Footer />
         </>
