@@ -8,6 +8,7 @@ import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
 import { formatDate } from '@/utils/helper';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 function myPurchases({ user }) {
     const { elarniv_users_token } = parseCookies();
@@ -26,6 +27,8 @@ function myPurchases({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

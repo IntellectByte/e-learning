@@ -5,11 +5,14 @@ import FranciscoComponent from '../components/Francisco/FranciscoComponent';
 import CourseAdvisor from '../components/Common/CourseAdvisor';
 import Footer from '../components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function Francisco({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

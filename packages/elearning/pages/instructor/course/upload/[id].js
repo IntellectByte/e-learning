@@ -5,6 +5,7 @@ import PageNavigation from '@/components/Instructor/PageNavigation';
 import { useRouter } from 'next/router';
 import UploadVideoForm from '@/components/Instructor/UploadVideoForm';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const router = useRouter();
@@ -12,6 +13,8 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

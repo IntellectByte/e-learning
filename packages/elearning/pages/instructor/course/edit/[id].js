@@ -8,6 +8,7 @@ import { parseCookies } from 'nookies';
 import baseUrl from '@/utils/baseUrl';
 import PageNavigation from '../../../../components/Instructor/PageNavigation';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Create = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -31,6 +32,8 @@ const Create = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

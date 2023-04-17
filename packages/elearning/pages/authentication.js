@@ -5,11 +5,14 @@ import LoginForm from '@/components/Authentication/LoginForm';
 import RegisterForm from '@/components/Authentication/RegisterForm';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function AuthenticationPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

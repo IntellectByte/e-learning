@@ -5,11 +5,14 @@ import CoursesList from '@/components/Courses/CoursesList';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 // import SubscribePlanComponent from '../../components/SubscribePlan/SubscribePlanComponent';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function CoursesPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

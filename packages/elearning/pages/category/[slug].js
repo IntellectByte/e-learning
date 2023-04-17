@@ -4,11 +4,14 @@ import PageBanner from '@/components/Common/PageBanner';
 import CoursesList from '@/components/Category/CoursesList';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function CoursesPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 
