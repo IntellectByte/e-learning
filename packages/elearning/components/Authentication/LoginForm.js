@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -7,6 +7,7 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import baseUrl from '@/utils/baseUrl';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'next-i18next';
 
 const INITIAL_USER = {
     email: '',
@@ -17,12 +18,18 @@ const LoginForm = () => {
     const [user, setUser] = React.useState(INITIAL_USER);
     const [disabled, setDisabled] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+    const [isMounted, setIsMounted] = React.useState(false);
+    const { t } = useTranslation();
     const router = useRouter();
 
     React.useEffect(() => {
         const isUser = Object.values(user).every((el) => Boolean(el));
         isUser ? setDisabled(false) : setDisabled(true);
     }, [user]);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -88,63 +95,79 @@ const LoginForm = () => {
 
     return (
         <>
-            <div className='login-form'>
-                <h2>Login</h2>
+            {isMounted && (
+                <div className='login-form'>
+                    <h2>
+                        {t('loginpage-login', {
+                            defaultValue: 'Login',
+                        })}
+                    </h2>
 
-                <form onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <label>Email</label>
-                        <input
-                            type='text'
-                            className='form-control'
-                            placeholder='Email'
-                            name='email'
-                            value={user.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className='form-group'>
-                        <label>Password</label>
-                        <input
-                            type='password'
-                            className='form-control'
-                            placeholder='Password'
-                            name='password'
-                            value={user.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className='row align-items-center'>
-                        <div className='col-lg-12 col-md-12 col-sm-12 remember-me-wrap'>
-                            <Link href='/send-confirmation-email'>
-                                <a className='lost-your-password'>
-                                    Didn't receive a confirmation email?
-                                </a>
-                            </Link>
+                    <form onSubmit={handleSubmit}>
+                        <div className='form-group'>
+                            <label>Email</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                name='email'
+                                value={user.email}
+                                onChange={handleChange}
+                                required
+                            />
                         </div>
-                        <div className='col-lg-6 col-md-6 col-sm-12 forgot-password-wrap'>
-                            <Link href='/forgot-password-page'>
-                                <a className='forgot-password'>
-                                    Forgot password?
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
 
-                    <motion.button
-                        type='submit'
-                        disabled={disabled}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        Log In
-                        {loading ? <LoadingSpinner /> : ''}
-                    </motion.button>
-                </form>
-            </div>
+                        <div className='form-group'>
+                            <label>
+                                {t('loginpage-password', {
+                                    defaultValue: 'Password',
+                                })}
+                            </label>
+                            <input
+                                type='password'
+                                className='form-control'
+                                name='password'
+                                value={user.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className='row align-items-center'>
+                            <div className='col-lg-12 col-md-12 col-sm-12 remember-me-wrap'>
+                                <Link href='/send-confirmation-email'>
+                                    <a className='lost-your-password'>
+                                        {t('loginpage-confirmationemail', {
+                                            defaultValue:
+                                                'Didnt receive a confirmation email?',
+                                        })}
+                                    </a>
+                                </Link>
+                            </div>
+                            <div className='col-lg-6 col-md-6 col-sm-12 forgot-password-wrap'>
+                                <Link href='/forgot-password-page'>
+                                    <a className='forgot-password'>
+                                        {t('loginpage-forgotpassword', {
+                                            defaultValue: 'Forgot password?',
+                                        })}
+                                    </a>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <motion.button
+                            type='submit'
+                            disabled={disabled}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            {t('loginpage-logintwo', {
+                                defaultValue: 'Log In',
+                            })}
+
+                            {loading ? <LoadingSpinner /> : ''}
+                        </motion.button>
+                    </form>
+                </div>
+            )}
         </>
     );
 };

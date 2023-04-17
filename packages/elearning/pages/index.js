@@ -60,7 +60,7 @@ function Index({ courses, user }) {
                 setShowPopup(true);
                 sessionStorage.setItem('popupShown', true);
             }
-        }, 5000);
+        }, 30000); // Added feature to load after 30 seconds of being on the website.
 
         return () => clearTimeout(timeout);
     }, []);

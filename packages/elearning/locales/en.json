@@ -154,5 +154,16 @@
     "paymentSuccess-SubTitle1": "You can now see your purchased courses on My Learnings tab.",
     "paymentSuccess-SubTitle2": "To see your courses enter the button below.",
     "paymentSuccess-Button": "My Courses",
-    "paymentSuccess-Button2": "Back to home"
+    "paymentSuccess-Button2": "Back to home",
+    "loginpage-login": "Login",
+    "loginpage-password": "Password",
+    "loginpage-confirmationemail": "Didnt receive a confirmation email?",
+    "loginpage-forgotpassword": "Forgot password?",
+    "loginpage-logintwo": "Log In",
+    "registerpage-register": "Register",
+    "registerpage-firstname": "Name",
+    "registerpage-lastname": "Last Name",
+    "registerpage-password": "Password",
+    "registerpage-description": "The password should be at least eight characters long. To make it stronger, use upper and lower case letters, numbers, and symbols",
+    "registerpage-regster": "Register"
 }
