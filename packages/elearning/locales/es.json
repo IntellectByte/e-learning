@@ -167,5 +167,17 @@
     "registerpage-description": "La contraseña debe tener al menos ocho caracteres. Para hacerlo más fuerte, use letras mayúsculas y minúsculas, números y símbolos",
     "registerpage-regster": "Registro",
     "bannercourses-lessons": "Lecciones",
-    "bannercourses-students": "Estudiantes"
+    "bannercourses-students": "Estudiantes",
+    "paymentfield-page-h5": "Sus datos",
+    "paymentfield-page-tipodoc": "Tipo de Documento",
+    "paymentfield-page-cpf": "CPF o CNPJ del titular de la tarjeta",
+    "paymentfield-page-telefone": "Numero de Telefono",
+    "paymentfield-page-cobranca": "Dirección",
+    "paymentfield-page-street": "Calle",
+    "paymentfield-page-streetnumber": "Número de calle",
+    "paymentfield-page-complementary": "Dirección Complementaria",
+    "paymentfield-page-bairro": "Barrio",
+    "paymentfield-page-cityname": "Ciudad",
+    "paymentfield-page-statename": "Estado o Provincia",
+    "paymentfield-page-zipcode": "Codigo Postal"
 }
