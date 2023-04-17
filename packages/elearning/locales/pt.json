@@ -167,5 +167,17 @@
     "registerpage-description": "A senha deve ter pelo menos oito caracteres. Para torná-lo mais forte, use letras maiúsculas e minúsculas, números e símbolos",
     "registerpage-regster": "Registro",
     "bannercourses-lessons": "Lições",
-    "bannercourses-students": "Alunos"
+    "bannercourses-students": "Alunos",
+    "paymentfield-page-h5": "Seus Dados",
+    "paymentfield-page-tipodoc": "Tipo De Documento",
+    "paymentfield-page-cpf": "CPF ou CNPJ do dono do cartão",
+    "paymentfield-page-telefone": "Telefone",
+    "paymentfield-page-cobranca": "Endereço de cobrança",
+    "paymentfield-page-street": "Rua",
+    "paymentfield-page-streetnumber": "Número da rua",
+    "paymentfield-page-complementary": "Endereço Complementar",
+    "paymentfield-page-bairro": "Vizinhança(Bairro)",
+    "paymentfield-page-cityname": "Cidade",
+    "paymentfield-page-statename": "Estado ou Província",
+    "paymentfield-page-zipcode": "CEP"
 }
