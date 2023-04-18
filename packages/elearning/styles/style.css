@@ -8274,7 +8274,7 @@ Go Top CSS
         slideInFromLeft 0.5s forwards;
     animation-delay: 1s, 1s, 1s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    z-index: 999;
+    z-index: 9999999;
     width: 90%;
     max-width: 600px;
     border-radius: 27px;
@@ -8594,23 +8594,45 @@ Go Top CSS
 
 @keyframes borderColorsPaymentField {
     0% {
-        border-color: #2196f3;
+        border-color: #ee8ab8;
     }
     25% {
         border-color: #ce417d;
     }
     50% {
-        border-color: #4caf50;
+        border-color: var(--color-secundario);
     }
     75% {
-        border-color: #ffeb3b;
+        border-color: var(--logo-color);
     }
     100% {
-        border-color: #2196f3;
+        border-color: var(--btn-color);
     }
 }
 
 .payment-field-border {
     border: 1px solid #ce417d;
+    animation: borderColorsPaymentField 10s linear infinite;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    background: inherit; /* Same background as the parent div */
+    bottom: 10px;
+    margin-bottom: 60px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 6px solid #ce417d;
     animation: borderColorsPaymentField 4s linear infinite;
+    border-radius: 10px;
 }
