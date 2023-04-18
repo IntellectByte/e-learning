@@ -410,7 +410,7 @@ a:hover {
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -2277,7 +2277,7 @@ About Area CSS
     text-transform: uppercase;
     color: var(--btn-color);
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -5624,7 +5624,7 @@ Get Instant Courses Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -5715,7 +5715,7 @@ View All Courses Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
