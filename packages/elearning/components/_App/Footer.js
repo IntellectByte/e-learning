@@ -127,11 +127,11 @@ const Footer = () => {
                                                 </a>
                                             </Link>
                                         </li>
-                                        {/* <li>
+                                        <li>
                                             <Link href='/faq'>
                                                 <a>FAQ</a>
                                             </Link>
-                                        </li> */}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

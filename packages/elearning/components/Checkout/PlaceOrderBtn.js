@@ -89,23 +89,16 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             const {cartTotal} = calculateCartTotal(cartItems)
 
             const getnetItems = cartItems.map(e => {
-
-
-
                 return {
                     "name": e.title,
                     "description": e.slug,
                     "value": e.price,
                     "quantity": 1,
-                    "id": e.id,
-                    "sku": "",
-                    "image": e.image,
-                    "instructor": e.instructor,
-                    "type": e.type && e.type
+                    "sku": ""
                 }
             })
 
-            // console.log(user)
+            console.log(user)
 
             const token = uuidv4();
 
@@ -125,7 +118,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             script.dataset.getnetCustomerLastName = user.last_name;
             script.dataset.getnetCustomerEmail = user.email;
             script.dataset.getnetItems = JSON.stringify(getnetItems);
-            script.dataset.getnetUrlCallback = `${baseUrl}/api/purchases/update?orderId=${token}`;
+            script.dataset.getnetUrlCallback = `${baseUrl}/success?orderId=${token}`;
             script.dataset.getnetPreAuthorizationCredit = '';
 
             // script.onload = () => {
@@ -135,7 +128,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
             document.body.appendChild(script);
         } catch (err) {
-            // console.log(err)
+            console.log(err)
         }
 
 
@@ -144,11 +137,9 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     useEffect(() => {
         fetchAccessToken()
             .then(e => {
-                // console.log(e)
+                console.log(e)
             })
-            .catch(err => {
-                // console.log(err)
-            })
+            .catch(err => console.log(err))
     }, [])
 
     useEffect(() => {
@@ -159,7 +150,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
             setLoading(false)
 
-        }, 6000)
+        },5000)
 
     }, [])
 

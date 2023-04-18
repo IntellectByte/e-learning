@@ -6,7 +6,6 @@ import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
 import CourseOverview from '@/components/Learning/CourseOverview';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const [course, setCourse] = useState({});
@@ -38,8 +37,6 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

@@ -11,6 +11,7 @@ import { calculateDiscount } from '@/utils/helper';
 import { useTranslation } from 'next-i18next';
 
 const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
+    // console.log(course);
     const cartItems = useSelector((state) => state.cart.cartItems);
     const discount = useSelector((state) => state.cart.discount);
     const dispatch = useDispatch();
@@ -75,6 +76,8 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                 `${baseUrl}/api/coupons/get-coupon`,
                 payload
             );
+
+            // console.log(response.data.discount);
 
             dispatch({
                 type: 'GET_DISCOUNT',
@@ -156,7 +159,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                         {course.user && course.user.last_name}
                                     </div>
                                 </li>
-                                {/* <li>
+                                <li>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <span>
                                             <i className='flaticon-time'></i>{' '}
@@ -166,7 +169,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                         </span>
                                         {course.duration}
                                     </div>
-                                </li> */}
+                                </li>
                                 <li>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <span>
@@ -178,7 +181,19 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                         {course.lessons}
                                     </div>
                                 </li>
-
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-web'></i>{' '}
+                                            {t('course-page-details-enrolled', {
+                                                defaultValue: 'Enrolled',
+                                            })}
+                                        </span>
+                                        {course.enrolments &&
+                                            course.enrolments.length}{' '}
+                                        students
+                                    </div>
+                                </li>
                                 <li>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <span>
@@ -190,7 +205,21 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                         English
                                     </div>
                                 </li>
-
+                                <li>
+                                    <div className='d-flex justify-content-between align-items-center'>
+                                        <span>
+                                            <i className='flaticon-caption'></i>{' '}
+                                            {t(
+                                                'course-page-details-videosubtitle',
+                                                {
+                                                    defaultValue:
+                                                        'Video Subtitle',
+                                                }
+                                            )}
+                                        </span>
+                                        N/A
+                                    </div>
+                                </li>
                                 <li>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <span>

@@ -1,69 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 
 const GetInstantCourses = ({ user }) => {
-    const [email, setEmail] = useState('');
-
     const { t } = useTranslation();
     const [isMounted, setIsMounted] = useState(false);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch('/api/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
-
-            const data = await response.json();
-
-            setEmail('');
-
-            if (!response.ok) {
-                toast.error(data.error, {
-                    style: {
-                        border: '1px solid #ff0033',
-                        padding: '16px',
-                        color: '#ff0033',
-                    },
-                    iconTheme: {
-                        primary: '#ff0033',
-                        secondary: '#FFFAEE',
-                    },
-                });
-            } else {
-                toast.success('Email submitted successfully!', {
-                    style: {
-                        border: '1px solid #4BB543',
-                        padding: '16px',
-                        color: '#4BB543',
-                    },
-                    iconTheme: {
-                        primary: '#4BB543',
-                        secondary: '#FFFAEE',
-                    },
-                });
-            }
-        } catch (error) {
-            toast.error('An error occurred. Please try again.', {
-                style: {
-                    border: '1px solid #ff0033',
-                    padding: '16px',
-                    color: '#ff0033',
-                },
-                iconTheme: {
-                    primary: '#ff0033',
-                    secondary: '#FFFAEE',
-                },
-            });
-        }
-    };
 
     useEffect(() => {
         setIsMounted(true);
@@ -97,76 +38,16 @@ const GetInstantCourses = ({ user }) => {
                                             })}
                                         </p>
 
-                                        <form
-                                            className='newsletter-form-instant-courses'
-                                            onSubmit={handleSubmit}
-                                        >
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    flexDirection: 'row',
-                                                    alignItems: 'center',
-                                                    width: '100%',
-                                                    marginBottom: '15px',
-                                                    flexWrap: 'wrap',
-                                                }}
-                                            >
-                                                <input
-                                                    type='email'
-                                                    className='input-newsletter'
-                                                    style={{
-                                                        flex: 1,
-                                                        padding: '10px',
-                                                        fontSize: '16px',
-                                                        lineHeight: '24px',
-                                                        border: '1px solid #ccc',
-                                                        borderRadius: '5px',
-                                                        backgroundColor: '#fff',
-                                                        minWidth: '200px',
-                                                        marginBottom: '10px',
-                                                    }}
-                                                    placeholder='Email'
-                                                    name='email'
-                                                    value={email}
-                                                    onChange={(e) =>
-                                                        setEmail(e.target.value)
-                                                    }
-                                                    required
-                                                />
-
-                                                <motion.button
-                                                    type='submit'
-                                                    className='default-btn'
-                                                    whileTap={{ scale: 0.5 }}
-                                                    style={{
-                                                        marginLeft: '10px',
-                                                        marginTop: '0',
-                                                        marginBottom: '10px',
-                                                        flexShrink: 0,
-                                                    }}
-                                                >
-                                                    <i className='flaticon-user'></i>
-                                                    {t('subscribe-btn', {
-                                                        defaultValue:
-                                                            'Subscribe',
-                                                    })}
-                                                    <span></span>
-                                                </motion.button>
-                                            </div>
-                                            <style jsx>{`
-                                                @media screen and (max-width: 767px) {
-                                                    .input-newsletter {
-                                                        width: 100%;
-                                                        margin-bottom: 10px;
-                                                    }
-
-                                                    .default-btn {
-                                                        margin-left: 0;
-                                                        width: 100%;
-                                                    }
-                                                }
-                                            `}</style>
-                                        </form>
+                                        <Link href='/learning/sub-form/'>
+                                            <a className='default-btn'>
+                                                <i className='flaticon-user'></i>{' '}
+                                                {t('instant-btn1', {
+                                                    defaultValue:
+                                                        'Subscribe To Our Monthly Plan',
+                                                })}
+                                                <span></span>
+                                            </a>
+                                        </Link>
                                     </div>
                                 </div>
 
