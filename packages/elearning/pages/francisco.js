@@ -5,11 +5,15 @@ import FranciscoComponent from '../components/Francisco/FranciscoComponent';
 import CourseAdvisor from '../components/Common/CourseAdvisor';
 import Footer from '../components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function Francisco({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 
@@ -26,6 +30,7 @@ export default function Francisco({ user }) {
             {/* EQUIPO */}
             {/* ESPERANDO A MALU QUE ENVIE DATOS DEL TEAM */}
             {/* <CourseAdvisor /> */}
+            <SubscribeForm />
 
             <Footer />
         </>

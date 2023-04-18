@@ -8,6 +8,7 @@ import axios from 'axios';
 import CourseCard from '@/components/Courses/CourseCard';
 import { toast } from 'react-hot-toast';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -69,6 +70,8 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

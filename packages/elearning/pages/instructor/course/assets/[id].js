@@ -13,6 +13,7 @@ import GeneralLoader from '@/utils/GeneralLoader';
 import UploadAssetForm from '../../../../components/Instructor/UploadAssetForm';
 import PageNavigation from '../../../../components/Instructor/PageNavigation';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -101,6 +102,8 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

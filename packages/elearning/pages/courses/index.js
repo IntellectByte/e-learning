@@ -4,11 +4,16 @@ import PageBanner from '@/components/Common/PageBanner';
 import CoursesList from '@/components/Courses/CoursesList';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+// import SubscribePlanComponent from '../../components/SubscribePlan/SubscribePlanComponent';
+import TopBanner from '@/components/TopBanner/TopBanner';
+import GetInstantCourses from '@/components/eLearningSchool/GetInstantCourses';
 
 export default function CoursesPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 
@@ -20,7 +25,15 @@ export default function CoursesPage({ user }) {
                 activePageText='Cursos'
             />
 
+            {/* DESCOMENTAR ESTE COMPONENTE CUANDO ANDE LA SUBSCRIPCION Y TENGA UN FLUJO IMPLEMENTADO */}
+
+            {/* <SubscribePlanComponent />
+
+            <hr /> */}
+
             <CoursesList user={user} />
+
+            <GetInstantCourses user={user} />
 
             <Footer />
         </>
