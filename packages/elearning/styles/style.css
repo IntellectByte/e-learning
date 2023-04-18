@@ -410,7 +410,7 @@ a:hover {
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -2268,6 +2268,16 @@ About Area CSS
     text-align: center;
 }
 
+.about-image .image img {
+    margin-bottom: 268px;
+}
+
+@media (max-width: 768px) {
+    .about-image .image img {
+        margin-bottom: 0;
+    }
+}
+
 .about-content {
     padding-left: 15px;
 }
@@ -2277,7 +2287,7 @@ About Area CSS
     text-transform: uppercase;
     color: var(--btn-color);
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -5624,7 +5634,7 @@ Get Instant Courses Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -5715,7 +5725,7 @@ View All Courses Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 600;
 }
 
@@ -5735,6 +5745,9 @@ View All Courses Area CSS
 }
 
 .view-all-courses-image {
+    border: 3px solid #ce417d;
+    animation: borderColorsPaymentField 10s linear infinite;
+    border-radius: 10px;
     text-align: center;
 }
 

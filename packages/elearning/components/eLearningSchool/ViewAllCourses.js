@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faYoutube,
+    faInstagram,
+    faTiktok,
+    faPinterest,
+    faLinkedin,
+    faFacebook,
+} from '@fortawesome/free-brands-svg-icons';
 
 const ViewAllCourses = () => {
     const { t } = useTranslation();
@@ -36,18 +45,101 @@ const ViewAllCourses = () => {
                                         })}
                                     </p>
 
-                                    <Link href='https://www.instagram.com/escolasorvete/'>
+                                    <hr
+                                        className='payment-field-border'
+                                        style={{
+                                            marginTop: '50px',
+                                            marginBottom: '50px',
+                                        }}
+                                    />
+
+                                    {/* FALTAN LOS LINKS A LAS DIFERENTES REDES SOCIALES */}
+                                    <div className='social-icons'>
                                         <a
-                                            className='default-btn'
+                                            href='https://www.youtube.com/channel/your_channel_id'
                                             target='_blank'
+                                            rel='noopener noreferrer'
+                                            style={{
+                                                marginRight: '32px',
+                                                color: '#ce417d',
+                                            }}
                                         >
-                                            <i className='flaticon-agenda'></i>{' '}
-                                            {t('viewall-btn', {
-                                                defaultValue: 'Enter Channels',
-                                            })}
-                                            <span></span>
+                                            <FontAwesomeIcon
+                                                icon={faYoutube}
+                                                style={{ fontSize: '29px' }}
+                                            />
                                         </a>
-                                    </Link>
+                                        <a
+                                            href='https://www.instagram.com/your_instagram_username'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            style={{
+                                                marginRight: '32px',
+                                                color: '#ce417d',
+                                            }}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faInstagram}
+                                                style={{ fontSize: '29px' }}
+                                            />
+                                        </a>
+                                        <a
+                                            href='https://www.tiktok.com/@your_tiktok_username'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            style={{
+                                                marginRight: '32px',
+                                                color: '#ce417d',
+                                            }}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faTiktok}
+                                                style={{ fontSize: '29px' }}
+                                            />
+                                        </a>
+                                        <a
+                                            href='https://www.pinterest.com/your_pinterest_username'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            style={{
+                                                marginRight: '32px',
+                                                color: '#ce417d',
+                                            }}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faPinterest}
+                                                style={{ fontSize: '29px' }}
+                                            />
+                                        </a>
+                                        <a
+                                            href='https://www.linkedin.com/in/your_linkedin_username'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            style={{
+                                                marginRight: '32px',
+                                                color: '#ce417d',
+                                            }}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faLinkedin}
+                                                style={{ fontSize: '29px' }}
+                                            />
+                                        </a>
+                                        <a
+                                            href='https://www.facebook.com/your_facebook_username'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            style={{
+                                                marginRight: '32px',
+                                                color: '#ce417d',
+                                            }}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faFacebook}
+                                                style={{ fontSize: '29px' }}
+                                            />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -56,6 +148,7 @@ const ViewAllCourses = () => {
                                     <img
                                         src='/images/unnamed.webp'
                                         alt='image'
+                                        style={{ borderRadius: '10px' }}
                                     />
                                 </div>
                             </div>
