@@ -20,7 +20,7 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
 						style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;"
 					/>
 					<div class="text">
-						<h3>${cart.name}</h3>
+						<h3>${cart.title}</h3>
 						<span>${cart.instructor}</span>
 					</div>
 				</div>
@@ -31,7 +31,7 @@ export const checkoutConfirmation = async (cartItems, name, email) => {
 				style="text-align:left; padding: 0 2.5em;"
 			>
 				<span class="price" style="color: #000; font-size: 20px;">
-					${cart.value}
+					${cart.price}
 				</span>
 			</td>
 		</tr>`

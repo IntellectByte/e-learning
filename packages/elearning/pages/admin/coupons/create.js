@@ -9,7 +9,6 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import toast from 'react-hot-toast';
 import { parseCookies } from 'nookies';
 import { useRouter } from 'next/router';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 const create = ({ user }) => {
     const router = useRouter();
@@ -72,8 +71,6 @@ const create = ({ user }) => {
 
     return (
         <>
-            <TopBanner />
-
             <Navbar user={user} />
 
             <div className='main-content'>

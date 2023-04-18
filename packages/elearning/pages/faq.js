@@ -12,14 +12,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import SubscribeForm from '../components/Common/SubscribeForm';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function FAQPage({ user }) {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

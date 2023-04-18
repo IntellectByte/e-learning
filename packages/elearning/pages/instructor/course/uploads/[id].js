@@ -11,7 +11,6 @@ import { useRouter } from 'next/router';
 import CourseVideos from '@/components/Instructor/CourseVideos';
 import GeneralLoader from '@/utils/GeneralLoader';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -100,8 +99,6 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import baseUrl from '@/utils/baseUrl';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
-// hola
+
 const SubscribeForm = () => {
     const [email, setEmail] = useState('');
 
@@ -16,20 +18,12 @@ const SubscribeForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
-
-            const data = await response.json();
-
+            const payload = { email: email };
+            const url = `${baseUrl}/api/subscriptions/new`;
+            const response = await axios.post(url, payload);
             setEmail('');
-
-            if (!response.ok) {
-                toast.error(data.error, {
+            if (response.data.code == 'exist') {
+                toast.error(response.data.message, {
                     style: {
                         border: '1px solid #ff0033',
                         padding: '16px',
@@ -41,7 +35,7 @@ const SubscribeForm = () => {
                     },
                 });
             } else {
-                toast.success('Email submitted successfully!', {
+                toast.success(response.data.message, {
                     style: {
                         border: '1px solid #4BB543',
                         padding: '16px',
@@ -53,8 +47,13 @@ const SubscribeForm = () => {
                     },
                 });
             }
-        } catch (error) {
-            toast.error('An error occurred. Please try again.', {
+        } catch (err) {
+            let {
+                response: {
+                    data: { message },
+                },
+            } = err;
+            toast.error(message, {
                 style: {
                     border: '1px solid #ff0033',
                     padding: '16px',

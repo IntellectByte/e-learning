@@ -7,7 +7,10 @@ import {
 import CheckoutList from './CheckoutList';
 import PlaceOrderBtn from './PlaceOrderBtn';
 import Link from 'next/link';
-import PlaceOrderBtnDisabled from '@/components/Checkout/PlaceOrderBtnDisabled';
+import PlaceOrderBtnDisabled from "@/components/Checkout/PlaceOrderBtnDisabled";
+import axios from "axios";
+import {v4 as uuidv4} from "uuid";
+import baseUrl from "@/utils/baseUrl";
 
 const CheckoutForm = ({ user, isPaymentFormComplete }) => {
     const cartItems = useSelector((state) => state.cart.cartItems);
@@ -23,11 +26,13 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
     }, [cartItems]);
 
     const handleRemove = async (cartId) => {
+        // console.log(cartId);
         dispatch({
             type: 'REMOVE_CART',
             id: cartId,
         });
     };
+
 
     return (
         <>
@@ -77,6 +82,7 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                             </div>
                         </div>
 
+                        {/*{cartItems.length > 0 && isPaymentFormComplete ? (*/}
                         {cartItems.length > 0 && (
                             <div className='col-lg-3 col-md-12'>
                                 <p className='fs-18 mb-2'>Subtotal:</p>
@@ -88,19 +94,30 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                                         </del>
                                     )}
                                 </h1>
-                                {isPaymentFormComplete ? (
-                                    <PlaceOrderBtn
+                                {
+                                    isPaymentFormComplete ?
+                                        <PlaceOrderBtn
                                         user={user}
                                         cartItems={cartItems}
                                         disabled={false}
                                         inner={'Proceed to checkout'}
-                                        btnColor={'3'}
-                                    />
-                                ) : (
+                                        btnColor={"3"}
+                                        />
+                                        :
+                                        // <PlaceOrderBtn
+                                        //     user={user}
+                                        //     disabled={true}
+                                        //     inner={"Complete the form to proceed"}
+                                        //     btnColor={"4"}
+                                        //
+                                        // />
                                     <PlaceOrderBtnDisabled />
-                                )}
+                                    }
+
                             </div>
-                        )}
+                        )
+
+                        }
                     </div>
                 </div>
             </div>

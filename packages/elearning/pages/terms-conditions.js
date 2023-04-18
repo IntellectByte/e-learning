@@ -4,7 +4,6 @@ import PageBanner from '@/components/Common/PageBanner';
 import Footer from '@/components/_App/Footer';
 import { useTranslation } from 'next-i18next';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function TermsConditionsPage({ user }) {
     const { t } = useTranslation();
@@ -17,8 +16,6 @@ export default function TermsConditionsPage({ user }) {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

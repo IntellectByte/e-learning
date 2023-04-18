@@ -8,7 +8,6 @@ import { parseCookies } from 'nookies';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import baseUrl from '@/utils/baseUrl';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 const BasicInformation = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -67,8 +66,6 @@ const BasicInformation = ({ user }) => {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 
