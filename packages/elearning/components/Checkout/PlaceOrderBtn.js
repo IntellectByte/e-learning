@@ -100,8 +100,8 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
                     "id": e.id,
                     "sku": "",
                     "image": e.image,
-                    "instructor": e.instructor
-
+                    "instructor": e.instructor,
+                    "type": e.type && e.type
                 }
             })
 
