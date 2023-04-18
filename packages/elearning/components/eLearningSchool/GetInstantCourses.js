@@ -100,52 +100,72 @@ const GetInstantCourses = ({ user }) => {
                                         <form
                                             className='newsletter-form-instant-courses'
                                             onSubmit={handleSubmit}
-                                            style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                width: '100%',
-                                                maxWidth: '500px',
-                                                margin: '0 auto',
-                                                padding: '20px',
-
-                                                borderRadius: '5px',
-                                            }}
                                         >
-                                            <input
-                                                type='email'
-                                                className='input-newsletter'
+                                            <div
                                                 style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    alignItems: 'center',
                                                     width: '100%',
-                                                    padding: '10px',
                                                     marginBottom: '15px',
-                                                    fontSize: '16px',
-                                                    lineHeight: '24px',
-                                                    border: '1px solid #ccc',
-                                                    borderRadius: '5px',
-                                                    backgroundColor: '#fff',
+                                                    flexWrap: 'wrap',
                                                 }}
-                                                placeholder='Email'
-                                                name='email'
-                                                value={email}
-                                                onChange={(e) =>
-                                                    setEmail(e.target.value)
-                                                }
-                                                required
-                                            />
-
-                                            <motion.button
-                                                type='submit'
-                                                className='default-btn'
-                                                whileTap={{ scale: 0.5 }}
                                             >
-                                                <i className='flaticon-user'></i>
-                                                {t('subscribe-btn', {
-                                                    defaultValue: 'Subscribe',
-                                                })}
-                                                <span></span>
-                                            </motion.button>
+                                                <input
+                                                    type='email'
+                                                    className='input-newsletter'
+                                                    style={{
+                                                        flex: 1,
+                                                        padding: '10px',
+                                                        fontSize: '16px',
+                                                        lineHeight: '24px',
+                                                        border: '1px solid #ccc',
+                                                        borderRadius: '5px',
+                                                        backgroundColor: '#fff',
+                                                        minWidth: '200px',
+                                                        marginBottom: '10px',
+                                                    }}
+                                                    placeholder='Email'
+                                                    name='email'
+                                                    value={email}
+                                                    onChange={(e) =>
+                                                        setEmail(e.target.value)
+                                                    }
+                                                    required
+                                                />
+
+                                                <motion.button
+                                                    type='submit'
+                                                    className='default-btn'
+                                                    whileTap={{ scale: 0.5 }}
+                                                    style={{
+                                                        marginLeft: '10px',
+                                                        marginTop: '0',
+                                                        marginBottom: '10px',
+                                                        flexShrink: 0,
+                                                    }}
+                                                >
+                                                    <i className='flaticon-user'></i>
+                                                    {t('subscribe-btn', {
+                                                        defaultValue:
+                                                            'Subscribe',
+                                                    })}
+                                                    <span></span>
+                                                </motion.button>
+                                            </div>
+                                            <style jsx>{`
+                                                @media screen and (max-width: 767px) {
+                                                    .input-newsletter {
+                                                        width: 100%;
+                                                        margin-bottom: 10px;
+                                                    }
+
+                                                    .default-btn {
+                                                        margin-left: 0;
+                                                        width: 100%;
+                                                    }
+                                                }
+                                            `}</style>
                                         </form>
                                     </div>
                                 </div>
