@@ -23,7 +23,7 @@ const SubscribePlanComponent = () => {
       title:"Plano de Assinatura BÁSICO",
       slug:"picol-para-todos-como-inovar-no-mercado-de-picols",
       price:1589,
-      image:"https://res.cloudinary.com/dnunzwnex/image/upload/v1681832031/gsb9jwyinybvcituiccq.webp",
+      image:"https://media.discordapp.net/attachments/1090618368584859729/1097969547220357140/bored-ape.gif",
       duration:"Assinatura de 1 año",
       quantity:1,
       hotmartId:"bwwp449q",
@@ -49,7 +49,7 @@ const SubscribePlanComponent = () => {
       title:"Plano de Assinatura INTERMEDIÁRIO",
       slug:"picol-para-todos-como-inovar-no-mercado-de-picols",
       price:2331,
-      image:"https://res.cloudinary.com/dnunzwnex/image/upload/v1681832031/gsb9jwyinybvcituiccq.webp",
+      image:"https://media.discordapp.net/attachments/1090618368584859729/1097969547794980975/grandpa-apes-grandpa-ape_2.gif",
       duration:"Assinatura de 1 año",
       quantity:1,
       hotmartId:"bwwp449q",
@@ -75,7 +75,7 @@ const SubscribePlanComponent = () => {
       title:"Plano de Assinatura PREMIUM",
       slug:"picol-para-todos-como-inovar-no-mercado-de-picols",
       price:3482,
-      image:"https://res.cloudinary.com/dnunzwnex/image/upload/v1681832031/gsb9jwyinybvcituiccq.webp",
+      image:"https://media.discordapp.net/attachments/1090618368584859729/1097969548285706290/nft-monkey-nft-meme.gif",
       duration:"Assinatura de 1 año",
       quantity:1,
       hotmartId:"bwwp449q",
@@ -86,7 +86,7 @@ const SubscribePlanComponent = () => {
     dispatch({
       type: "RESET_CART"
     });
-    
+
     dispatch({
       type: "ADD_TO_CART",
       data: planObj,
