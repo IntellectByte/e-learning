@@ -54,7 +54,7 @@ const ViewAllCourses = () => {
                                     />
 
                                     {/* FALTAN LOS LINKS A LAS DIFERENTES REDES SOCIALES */}
-                                    <div className='social-icons'>
+                                    <div>
                                         <a
                                             href='https://www.youtube.com/channel/your_channel_id'
                                             target='_blank'
