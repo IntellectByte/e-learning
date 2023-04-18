@@ -1,3 +1,40 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@nicolas-escolasorvete 
+escolasorvete
+/
+e-learning
+Private
+Cannot fork because forking is disabled.
+Code
+Issues
+49
+Pull requests
+1
+Actions
+Projects
+1
+Security
+37
+Insights
+Settings
+Beta Try the new code view
+e-learning/packages/elearning/components/SubscribePlan/SubscribePlanComponent.js /
+@nicolas-escolasorvete
+nicolas-escolasorvete subs flow
+Latest commit 9f23b8c 8 minutes ago
+ History
+ 3 contributors
+@lucas-escolasorvete@juan-escolasorvete@nicolas-escolasorvete
+356 lines (336 sloc)  15.5 KB
+ 
+
 import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Pricing} from "react-pricing";
@@ -354,3 +391,18 @@ const SubscribePlanComponent = () => {
 };
 
 export default SubscribePlanComponent;
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+e-learning/SubscribePlanComponent.js at develop · escolasorvete/e-learning
