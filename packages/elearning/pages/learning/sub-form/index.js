@@ -5,6 +5,7 @@ import SubscribePlanComponent from '../../../components/SubscribePlan/SubscribeP
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 const Index = ({ user }) => {
     return (
@@ -23,6 +24,8 @@ const Index = ({ user }) => {
             /> */}
 
             <SubscribePlanComponent />
+
+            <SubscribeForm />
 
             <Footer />
         </>
