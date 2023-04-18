@@ -56,6 +56,7 @@ const ViewAllCourses = () => {
                                     <img
                                         src='/images/unnamed.webp'
                                         alt='image'
+                                        style={{ borderRadius: '10px' }}
                                     />
                                 </div>
                             </div>

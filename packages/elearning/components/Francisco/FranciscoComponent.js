@@ -33,6 +33,7 @@ const FranciscoComponent = () => {
                                         <img
                                             src='/images/Francisco-Santana.webp'
                                             alt='image'
+                                            style={{ borderRadius: '10px' }}
                                         />
                                     </div>
                                 </div>
