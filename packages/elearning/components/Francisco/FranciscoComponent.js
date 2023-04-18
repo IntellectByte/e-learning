@@ -25,7 +25,13 @@ const FranciscoComponent = () => {
                                 allowfullscreen
                             ></iframe>
                         </div>
-                        <hr className='payment-field-border' />
+                        <hr
+                            className='payment-field-border'
+                            style={{
+                                marginBottom: '70px',
+                                marginTop: '70px',
+                            }}
+                        />
                         <div className='row align-items-center'>
                             <div className='col-lg-6 col-md-12'>
                                 <div className='about-image'>
@@ -33,7 +39,9 @@ const FranciscoComponent = () => {
                                         <img
                                             src='/images/Francisco-Santana.webp'
                                             alt='image'
-                                            style={{ borderRadius: '10px' }}
+                                            style={{
+                                                borderRadius: '10px',
+                                            }}
                                         />
                                     </div>
                                 </div>

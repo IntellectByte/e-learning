@@ -2268,6 +2268,16 @@ About Area CSS
     text-align: center;
 }
 
+.about-image .image img {
+    margin-bottom: 268px;
+}
+
+@media (max-width: 768px) {
+    .about-image .image img {
+        margin-bottom: 0;
+    }
+}
+
 .about-content {
     padding-left: 15px;
 }
