@@ -5735,6 +5735,9 @@ View All Courses Area CSS
 }
 
 .view-all-courses-image {
+    border: 3px solid #ce417d;
+    animation: borderColorsPaymentField 10s linear infinite;
+    border-radius: 10px;
     text-align: center;
 }
 
