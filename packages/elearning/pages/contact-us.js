@@ -7,6 +7,7 @@ import ContactInfo from '@/components/ContactUs/ContactInfo';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function ContactUsPage({ user }) {
     return (
@@ -39,6 +40,8 @@ export default function ContactUsPage({ user }) {
             </div>
 
             <GoogleMap />
+
+            <SubscribeForm />
 
             <Footer />
         </>

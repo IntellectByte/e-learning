@@ -11,6 +11,7 @@ import baseUrl from '@/utils/baseUrl';
 import styles from './ProfileSettings.module.css';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 const ChangePassword = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -186,6 +187,9 @@ const ChangePassword = ({ user }) => {
                     </div>
                 </div>
             </div>
+
+            <SubscribeForm />
+
             <Footer />
         </>
     );

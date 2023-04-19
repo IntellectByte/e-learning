@@ -5,6 +5,7 @@ import ForgotPasswordForm from '@/components/Authentication/ForgotPasswordForm';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function ForgotPasswordPage() {
     return (
@@ -23,6 +24,8 @@ export default function ForgotPasswordPage() {
             />
 
             <ForgotPasswordForm />
+
+            <SubscribeForm />
 
             <Footer />
         </>

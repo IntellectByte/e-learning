@@ -7,6 +7,7 @@ import SupportButton from '@/components/ContactUs/SupportBtn';
 // import SubscribePlanComponent from '../../components/SubscribePlan/SubscribePlanComponent';
 import TopBanner from '@/components/TopBanner/TopBanner';
 import GetInstantCourses from '@/components/eLearningSchool/GetInstantCourses';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function CoursesPage({ user }) {
     return (
@@ -34,6 +35,8 @@ export default function CoursesPage({ user }) {
             <CoursesList user={user} />
 
             <GetInstantCourses user={user} />
+
+            <SubscribeForm />
 
             <Footer />
         </>

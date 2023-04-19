@@ -7,6 +7,7 @@ import CheckoutForm from '@/components/Checkout/CheckoutForm';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import PaymentField from '@/components/PaymentField/PaymentField';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
@@ -40,6 +41,8 @@ export default function CheckoutPage({ user }) {
             />
 
             <PaymentField onFormComplete={setIsPaymentFormComplete} />
+
+            <SubscribeForm />
         </>
     );
 }
