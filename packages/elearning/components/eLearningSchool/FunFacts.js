@@ -31,11 +31,11 @@ const FunFacts = () => {
     return (
         <>
             {isMounted && (
-                <div className='funfacts-list'>
+                <div className='funfacts-list' style={{width:"95%", display:"flex", justifyContent:"center"}}>
                     <div className='row'>
                         <div className='col-lg-6 col-md-6 col-sm-6'>
                             <div className='single-funfacts-box'>
-                                <h3>4500</h3>
+                                <h3>+4500</h3>
                                 <p>
                                     {t('funfacts-first', {
                                         defaultValue: 'Graduated Students',
@@ -46,7 +46,7 @@ const FunFacts = () => {
 
                         <div className='col-lg-6 col-md-6 col-sm-6'>
                             <div className='single-funfacts-box'>
-                                <h3>50+</h3>
+                                <h3>+120</h3>
                                 <p>
                                     {t('funfacts-second', {
                                         defaultValue: 'Hours of Content',
@@ -57,11 +57,11 @@ const FunFacts = () => {
 
                         <div className='col-lg-6 col-md-6 col-sm-6'>
                             <div className='single-funfacts-box'>
-                                <h3>10</h3>
+                                <h3>+400</h3>
                                 <p>
                                     {t('funfacts-third', {
                                         defaultValue:
-                                            'Courses and consulting services in 10+ countries',
+                                            'Courses and consulting services in +38 countries',
                                     })}
                                 </p>
                             </div>
@@ -69,7 +69,7 @@ const FunFacts = () => {
 
                         <div className='col-lg-6 col-md-6 col-sm-6'>
                             <div className='single-funfacts-box'>
-                                <h3>5</h3>
+                                <h3>+15</h3>
                                 <p>
                                     {t('funfacts-fourth', {
                                         defaultValue: 'Available Courses',
