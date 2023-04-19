@@ -15,6 +15,7 @@ import baseUrl from '@/utils/baseUrl';
 import PopUp from '@/components/PopUp/PopUp';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import FunFacts from '@/components/eLearningSchool/FunFacts';
 
 const fadeIn = {
     hidden: { opacity: 0 },
@@ -90,6 +91,8 @@ function Index({ courses, user }) {
             {/* <FeedbackSliderWithFunFacts /> */}
             <GetInstantCourses user={user} />
             <ViewAllCourses />
+            <FunFacts />
+
             {/* <Partner /> */}
             <SubscribeForm />
             <Footer />
