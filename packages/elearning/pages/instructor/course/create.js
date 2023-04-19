@@ -4,11 +4,14 @@ import Footer from '@/components/_App/Footer';
 import Link from 'next/link';
 import CourseCreateForm from '@/components/Instructor/CourseCreateForm';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Create = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

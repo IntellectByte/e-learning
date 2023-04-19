@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 // INTERNALS
 import Navbar from '@/components/_App/Navbar';
 import CheckoutForm from '@/components/Checkout/CheckoutForm';
-import PopUpCheck from '@/components/PopUp/PopupCheckout';
+// import PopUpCheck from '@/components/PopUp/PopupCheckout';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import PaymentField from '@/components/PaymentField/PaymentField';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
@@ -21,13 +22,16 @@ export default function CheckoutPage({ user }) {
 
     return (
         <>
+            <TopBanner />
+
             <Navbar user={user} />
 
             <SupportButton />
 
-            {showChackoutPopUp && (
+            {/* COMMENTING POP UP BECAUSE IT WAS USED WHEN WE HAD HOTMART CHECKOUT */}
+            {/* {showChackoutPopUp && (
                 <PopUpCheck onClose={handleCloseCheckOutPopUP} />
-            )}
+            )} */}
 
             <CheckoutForm
                 user={user}

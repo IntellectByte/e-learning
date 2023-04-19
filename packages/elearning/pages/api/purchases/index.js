@@ -1,6 +1,7 @@
 import {Purchase} from "@/database/models";
 
 export default async (req, res) => {
+
     if (!("authorization" in req.headers)) {
         return res.status(401).json({message: "No autorization token"});
     }
@@ -45,8 +46,15 @@ const getPurchaseById = async (req, res) => {
 };
 
 const purchaseUpdate = async (req, res) => {
-    const {purchaseId, paymentState} = req.body;
+    const purchaseId = req.body.data.purchaseId;
+    // const paymentState = req.body.data.paymentStatus;
+
+
+
     try {
+
+
+
         const purchase = await Purchase.findOne({where: {id: purchaseId}});
         if (!purchase) {
             return res.status(404).json({
@@ -54,12 +62,23 @@ const purchaseUpdate = async (req, res) => {
                 message: "Purchase not found.",
             });
         }
-        const updatedPurchase = await purchase.update({paymentState});
-        const {id, paymentState} = updatedPurchase;
+
+
+        // console.log(req.body)
+        // return console.log(req.body.data.paymentStatus)
+
+        const updatedPurchase = await Purchase.update({paymentState: req.body.data.paymentStatus},
+            {
+                where: {id: purchaseId}
+            }
+            );
+
+
+        const {id, paymentState, items} = purchase;
 
         res.status(200).json({
             message: "Purchase updated.",
-            data: {id, paymentState}
+            data: {id, paymentState, items}
         });
     } catch (e) {
         res.status(400).json({
@@ -77,7 +96,7 @@ const purchaseCreate = async (req, res) => {
     // Validate input data
     const {error} = validatePurchase(purchase);
     if (error) {
-        console.log(error)
+        // console.log(error)
 
         return res.status(400).json({
             error_code: "purchase_validation_error",

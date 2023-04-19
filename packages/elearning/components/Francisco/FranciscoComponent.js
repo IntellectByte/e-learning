@@ -14,6 +14,24 @@ const FranciscoComponent = () => {
             {isMounted && (
                 <div className='about-area francisco-area ptb-100'>
                     <div className='container'>
+                        <div className='video-container'>
+                            <iframe
+                                width='560'
+                                height='315'
+                                src='https://www.youtube.com/embed/WO-suAVDztk'
+                                title='YouTube video player'
+                                frameborder='0'
+                                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        <hr
+                            className='payment-field-border'
+                            style={{
+                                marginBottom: '70px',
+                                marginTop: '70px',
+                            }}
+                        />
                         <div className='row align-items-center'>
                             <div className='col-lg-6 col-md-12'>
                                 <div className='about-image'>
@@ -21,6 +39,9 @@ const FranciscoComponent = () => {
                                         <img
                                             src='/images/Francisco-Santana.webp'
                                             alt='image'
+                                            style={{
+                                                borderRadius: '10px',
+                                            }}
                                         />
                                     </div>
                                 </div>

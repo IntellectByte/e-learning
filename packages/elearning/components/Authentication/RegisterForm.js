@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { handleLogin } from '@/utils/auth';
@@ -6,6 +6,7 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import baseUrl from '@/utils/baseUrl';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'next-i18next';
 
 const INITIAL_USER = {
     first_name: '',
@@ -18,12 +19,18 @@ const RegisterForm = () => {
     const [user, setUser] = React.useState(INITIAL_USER);
     const [disabled, setDisabled] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+    const [isMounted, setIsMounted] = React.useState(false);
+    const { t } = useTranslation();
     const router = useRouter();
 
     React.useEffect(() => {
         const isUser = Object.values(user).every((el) => Boolean(el));
         isUser ? setDisabled(false) : setDisabled(true);
     }, [user]);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -73,73 +80,90 @@ const RegisterForm = () => {
 
     return (
         <>
-            <div className='register-form'>
-                <h2>Register</h2>
+            {isMounted && (
+                <div className='register-form'>
+                    <h2>
+                        {t('registerpage-register', {
+                            defaultValue: 'Register',
+                        })}
+                    </h2>
 
-                <form onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <label>First Name</label>
-                        <input
-                            type='text'
-                            className='form-control'
-                            placeholder='First Name'
-                            name='first_name'
-                            value={user.first_name}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className='form-group'>
-                        <label>Last Name</label>
-                        <input
-                            type='text'
-                            className='form-control'
-                            placeholder='Last Name'
-                            name='last_name'
-                            value={user.last_name}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className='form-group'>
+                            <label>
+                                {t('registerpage-firstname', {
+                                    defaultValue: 'Name',
+                                })}
+                            </label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                name='first_name'
+                                value={user.first_name}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className='form-group'>
+                            <label>
+                                {t('registerpage-lastname', {
+                                    defaultValue: 'Last Name',
+                                })}
+                            </label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                name='last_name'
+                                value={user.last_name}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                    <div className='form-group'>
-                        <label>Email</label>
-                        <input
-                            type='email'
-                            className='form-control'
-                            placeholder='Email'
-                            name='email'
-                            value={user.email}
-                            onChange={handleChange}
-                        />
-                    </div>
+                        <div className='form-group'>
+                            <label>Email</label>
+                            <input
+                                type='email'
+                                className='form-control'
+                                name='email'
+                                value={user.email}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                    <div className='form-group'>
-                        <label>Password</label>
-                        <input
-                            type='password'
-                            className='form-control'
-                            placeholder='Password'
-                            name='password'
-                            value={user.password}
-                            onChange={handleChange}
-                        />
-                    </div>
+                        <div className='form-group'>
+                            <label>
+                                {t('registerpage-password', {
+                                    defaultValue: 'Password',
+                                })}
+                            </label>
+                            <input
+                                type='password'
+                                className='form-control'
+                                name='password'
+                                value={user.password}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                    <p className='description'>
-                        The password should be at least eight characters long.
-                        To make it stronger, use upper and lower case letters,
-                        numbers, and symbols like ? $ % ^ & )
-                    </p>
+                        <p className='description'>
+                            {t('registerpage-description', {
+                                defaultValue:
+                                    'The password should be at least eight characters long. To make it stronger, use upper and lower case letters, numbers, and symbols',
+                            })}
+                        </p>
 
-                    <motion.button
-                        type='submit'
-                        disabled={disabled}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        Register
-                        {loading ? <LoadingSpinner /> : ''}
-                    </motion.button>
-                </form>
-            </div>
+                        <motion.button
+                            type='submit'
+                            disabled={disabled}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            {t('registerpage-regster', {
+                                defaultValue: 'Register',
+                            })}
+                            {loading ? <LoadingSpinner /> : ''}
+                        </motion.button>
+                    </form>
+                </div>
+            )}
         </>
     );
 };

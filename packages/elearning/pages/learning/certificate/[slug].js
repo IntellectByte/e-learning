@@ -9,6 +9,7 @@ import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import Confetti from 'react-confetti';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const slug = ({ user }) => {
     const [quizCompleted, setQuizCompleted] = useState(false);
@@ -92,6 +93,8 @@ const slug = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

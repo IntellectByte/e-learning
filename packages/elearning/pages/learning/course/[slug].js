@@ -15,6 +15,7 @@ import CourseDiscussion from '@/components/Learning/CourseDiscussion';
 import CourseRating from '@/components/Learning/CourseRating';
 import CourseFeedback from '@/components/Learning/CourseFeedback';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const [videos, setVideos] = useState([]);
@@ -63,6 +64,8 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 
