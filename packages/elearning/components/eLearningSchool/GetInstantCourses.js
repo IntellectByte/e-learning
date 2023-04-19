@@ -12,6 +12,11 @@ const GetInstantCourses = ({ user }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        window.open(
+            'https://www.youtube.com/watch?v=WO-suAVDztk',
+            '_blank',
+            'noopener noreferrer'
+        );
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
@@ -137,7 +142,9 @@ const GetInstantCourses = ({ user }) => {
                                                 <motion.button
                                                     type='submit'
                                                     className='default-btn'
-                                                    whileTap={{ scale: 0.5 }}
+                                                    whileTap={{
+                                                        scale: 0.5,
+                                                    }}
                                                     style={{
                                                         marginLeft: '10px',
                                                         marginTop: '0',
