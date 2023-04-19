@@ -66,7 +66,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                     </Link>
                                                 )}
                                             </li>
-                                            {/* <li>
+                                            <li>
                                                 <i className='bx bx-group'></i>
                                                 <span>
                                                     {t('course-page-span2', {
@@ -80,7 +80,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                             enrolments.length}
                                                     </a>
                                                 </Link>
-                                            </li> */}
+                                            </li>
                                             <li>
                                                 <i className='bx bx-calendar'></i>
                                                 <span>

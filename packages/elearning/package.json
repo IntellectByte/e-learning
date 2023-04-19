@@ -19,7 +19,6 @@
     "@emotion/styled": "^11.10.6",
     "@etchteam/next-pagination": "^3.5.4",
     "@fontsource/roboto": "^4.5.8",
-    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@mantine/core": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
     "@mantine/rte": "^5.1.1",

@@ -9,7 +9,6 @@ import baseUrl from '@/utils/baseUrl';
 import GeneralLoader from '@/utils/GeneralLoader';
 import CourseCard from '@/components/Learning/CourseCard';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -37,8 +36,6 @@ const Index = ({ user }) => {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

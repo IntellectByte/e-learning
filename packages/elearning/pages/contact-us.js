@@ -6,14 +6,11 @@ import GoogleMap from '../components/ContactUs/GoogleMap';
 import ContactInfo from '@/components/ContactUs/ContactInfo';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function ContactUsPage({ user }) {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

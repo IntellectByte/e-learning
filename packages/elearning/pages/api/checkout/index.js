@@ -19,31 +19,30 @@ export default async function handler(req, res) {
 const handlePostRequest = async (req, res) => {
     const {cartItems, userId, buyer_name, buyer_email, buyer_avatar} = req.body;
 
-    // console.log(req.body)
-
     const {stripeTotal} = calculateCartTotal(cartItems);
 
-    // console.log(stripeTotal)
+    console.log(stripeTotal)
 
     try {
 
         for (const cart of cartItems) {
-
-            const enrol = await Enrolment.findOne({
-                where: {userId: userId, courseId: cart.id}
-            })
-
-            if (enrol) throw new Error("Enrolment already exists")
-
             await Enrolment.create({
                 bought_price: cart.price,
-                payment_method: "Getnet",
+                payment_method: "Card",
                 buyer_name: buyer_name,
                 buyer_email: buyer_email,
                 buyer_avatar: buyer_avatar,
                 userId: userId,
                 courseId: cart.id,
                 status: "paid",
+            });
+
+            const courseInstractor = await Course.findOne({
+                attributes: ["userId"], where: {id: cart.id},
+            });
+
+            await Instructor_Earning.create({
+                earnings: cart.price, userId: courseInstractor.userId, courseId: cart.id,
             });
         }
 

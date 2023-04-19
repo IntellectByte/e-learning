@@ -36,101 +36,18 @@ const ViewAllCourses = () => {
                                         })}
                                     </p>
 
-                                    <hr
-                                        className='payment-field-border'
-                                        style={{
-                                            marginTop: '50px',
-                                            marginBottom: '50px',
-                                        }}
-                                    />
-
-                                    {/* FALTAN LOS LINKS A LAS DIFERENTES REDES SOCIALES */}
-                                    <div>
+                                    <Link href='https://www.instagram.com/escolasorvete/'>
                                         <a
-                                            href='https://www.youtube.com/channel/your_channel_id'
+                                            className='default-btn'
                                             target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
                                         >
-                                            <i
-                                                className='bx bxl-youtube'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
+                                            <i className='flaticon-agenda'></i>{' '}
+                                            {t('viewall-btn', {
+                                                defaultValue: 'Enter Channels',
+                                            })}
+                                            <span></span>
                                         </a>
-                                        <a
-                                            href='https://www.instagram.com/your_instagram_username'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
-                                        >
-                                            <i
-                                                className='bx bxl-instagram'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
-                                        </a>
-                                        <a
-                                            href='https://www.tiktok.com/@your_tiktok_username'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
-                                        >
-                                            <i
-                                                className='bx bxl-tiktok'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
-                                        </a>
-                                        <a
-                                            href='https://www.pinterest.com/your_pinterest_username'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
-                                        >
-                                            <i
-                                                className='bx bxl-pinterest'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
-                                        </a>
-                                        <a
-                                            href='https://www.linkedin.com/in/your_linkedin_username'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
-                                        >
-                                            <i
-                                                className='bx bxl-linkedin'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
-                                        </a>
-                                        <a
-                                            href='https://www.facebook.com/your_facebook_username'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
-                                        >
-                                            <i
-                                                className='bx bxl-facebook'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
-                                        </a>
-                                    </div>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -139,7 +56,6 @@ const ViewAllCourses = () => {
                                     <img
                                         src='/images/unnamed.webp'
                                         alt='image'
-                                        style={{ borderRadius: '10px' }}
                                     />
                                 </div>
                             </div>

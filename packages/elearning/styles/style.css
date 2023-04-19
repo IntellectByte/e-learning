@@ -410,7 +410,7 @@ a:hover {
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 10px;
-    font-size: 23px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -1936,20 +1936,10 @@ Navbar Area CSS
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
 }
 
-.navbar-area.is-sticky::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0.15px;
-    background-color: #ce417d;
-}
-
 .navbar-area.is-sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 40px;
+    top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
@@ -2268,16 +2258,6 @@ About Area CSS
     text-align: center;
 }
 
-.about-image .image img {
-    margin-bottom: 268px;
-}
-
-@media (max-width: 768px) {
-    .about-image .image img {
-        margin-bottom: 0;
-    }
-}
-
 .about-content {
     padding-left: 15px;
 }
@@ -2287,7 +2267,7 @@ About Area CSS
     text-transform: uppercase;
     color: var(--btn-color);
     margin-bottom: 10px;
-    font-size: 23px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -2640,7 +2620,6 @@ Courses Area CSS
     -webkit-box-shadow: var(--logo-color) 2px 5px 12px;
     box-shadow: var(--logo-color) 2px 5px 12px;
     min-width: 100%;
-    min-height: 701px;
 }
 
 .single-courses-box .courses-image {
@@ -5569,30 +5548,10 @@ Video Area CSS
 /*================================================
 Get Instant Courses Area CSS
 =================================================*/
-
-@keyframes borderColorsInstantCourses {
-    0% {
-        border-color: #2196f3;
-    }
-    25% {
-        border-color: #ce417d;
-    }
-    50% {
-        border-color: #4caf50;
-    }
-    75% {
-        border-color: #ffeb3b;
-    }
-    100% {
-        border-color: #2196f3;
-    }
-}
-
 .get-instant-courses-inner-area {
     position: relative;
     z-index: 1;
-    animation: borderColorsInstantCourses 8s linear infinite;
-    border: 3px solid;
+
     background: rgb(255, 255, 255);
     background: linear-gradient(
         53deg,
@@ -5634,7 +5593,7 @@ Get Instant Courses Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 10px;
-    font-size: 23px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -5655,15 +5614,8 @@ Get Instant Courses Area CSS
 
 .get-instant-courses-image {
     position: relative;
-    right: 18px;
     z-index: 1;
     border-radius: 0 5px 5px 0;
-}
-
-@media (max-width: 768px) {
-    .get-instant-courses-image {
-        right: 0px;
-    }
 }
 
 .get-instant-courses-image img {
@@ -5725,7 +5677,7 @@ View All Courses Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 8px;
-    font-size: 23px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -5745,9 +5697,6 @@ View All Courses Area CSS
 }
 
 .view-all-courses-image {
-    border: 3px solid #ce417d;
-    animation: borderColorsPaymentField 10s linear infinite;
-    border-radius: 10px;
     text-align: center;
 }
 
@@ -6124,7 +6073,7 @@ Subscribe Area CSS
     text-transform: uppercase;
     color: var(--logo-color);
     margin-bottom: 8px;
-    font-size: 23px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -8287,7 +8236,7 @@ Go Top CSS
         slideInFromLeft 0.5s forwards;
     animation-delay: 1s, 1s, 1s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    z-index: 9999999;
+    z-index: 999;
     width: 90%;
     max-width: 600px;
     border-radius: 27px;
@@ -8603,49 +8552,4 @@ Go Top CSS
     .bluemoon2 {
         max-height: 100%;
     }
-}
-
-@keyframes borderColorsPaymentField {
-    0% {
-        border-color: #ee8ab8;
-    }
-    25% {
-        border-color: #ce417d;
-    }
-    50% {
-        border-color: var(--color-secundario);
-    }
-    75% {
-        border-color: var(--logo-color);
-    }
-    100% {
-        border-color: var(--btn-color);
-    }
-}
-
-.payment-field-border {
-    border: 1px solid #ce417d;
-    animation: borderColorsPaymentField 10s linear infinite;
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    margin: 0 auto;
-    background: inherit; /* Same background as the parent div */
-    bottom: 10px;
-    margin-bottom: 60px;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 6px solid #ce417d;
-    animation: borderColorsPaymentField 4s linear infinite;
-    border-radius: 10px;
 }

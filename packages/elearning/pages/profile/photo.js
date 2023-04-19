@@ -9,7 +9,6 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import { useRouter } from 'next/router';
 import baseUrl from '@/utils/baseUrl';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import TopBanner from '@/components/TopBanner/TopBanner';
 
 const Photo = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -107,8 +106,6 @@ const Photo = ({ user }) => {
     return (
         <>
             <SupportButton />
-
-            <TopBanner />
 
             <Navbar user={user} />
 

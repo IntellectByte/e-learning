@@ -13,37 +13,11 @@ const PopUp = ({ onClose }) => {
         setIsMounted(true);
     }, []);
 
-    const addToMailchimp = async (email, name) => {
-        try {
-            const response = await fetch('/api/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, name }),
-            });
-
-            //a
-            const data = await response.json();
-
-            if (response.ok && data.status === 'subscribed') {
-                toast.success('Email submitted successfully!');
-                setTimeout(() => {
-                    onClose();
-                }, 2000);
-            } else {
-                toast.error('An error occurred. Please try again.');
-            }
-        } catch (error) {
-            console.error('Mailchimp error:', error);
-            toast.error('An error occurred. Please try again.');
-        }
-    };
-
     const handleNameChange = (e) => {
         const inputName = e.target.value;
         setName(inputName);
 
+        // Validate that the input name doesn't contain special characters
         const namePattern = /^[a-zA-Z\s]+$/;
         if (!namePattern.test(inputName)) {
             setNameError(
@@ -58,15 +32,16 @@ const PopUp = ({ onClose }) => {
         setEmail(e.target.value);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const handleSubmit = (e) => {
         if (!e.target.checkValidity() || nameError) {
+            e.preventDefault();
             toast.error('Please fill out all fields correctly.');
             return;
         }
-
-        await addToMailchimp(email, name);
+        toast.success('Email submitted successfully!');
+        setTimeout(() => {
+            onClose();
+        }, 2000);
     };
 
     return (
@@ -93,11 +68,11 @@ const PopUp = ({ onClose }) => {
                                 <p>
                                     {t('popup-p', {
                                         defaultValue:
-                                            'Subscribe to our newsletter and get a 10% discount code',
+                                            'Subscribe to our newsletter and get a 20% discount code',
                                     })}
                                 </p>
-
                                 <form
+                                    onSubmit={handleSubmit}
                                     action='https://escolasorvete.us17.list-manage.com/subscribe/post'
                                     method='POST'
                                 >
@@ -142,10 +117,7 @@ const PopUp = ({ onClose }) => {
                                             required
                                         />
                                     </label>
-                                    <button
-                                        type='submit'
-                                        onClick={handleSubmit}
-                                    >
+                                    <button type='submit'>
                                         {t('popup-btn', {
                                             defaultValue: 'I want the coupon',
                                         })}
