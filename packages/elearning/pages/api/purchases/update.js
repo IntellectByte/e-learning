@@ -26,7 +26,6 @@ const purchase = async (req, res) => {
     try {
 
 
-
         const purchase = await Purchase.findOne({where: {id: purchaseId}});
         if (!purchase) {
             return res.status(404).json({
@@ -50,6 +49,25 @@ const purchase = async (req, res) => {
         })
 
         for (const cart of purchase.items) {
+
+            if (cart.type === 'sub'){
+
+                const courses = await Course.findAll()
+
+                for (const course of courses){
+                    await Enrolment.create({
+                        bought_price: course.latest_price,
+                        payment_method: "Getnet",
+                        buyer_name: purchase.buyerName,
+                        buyer_email: user.email,
+                        buyer_avatar: user.profile_photo,
+                        userId: user.id,
+                        courseId: course.id,
+                        status: "paid",
+                    })
+                }
+                continue
+            }
 
             const enrol = await Enrolment.findOne({
                 where: {userId: purchase.userId, courseId: cart.id}
