@@ -4,11 +4,14 @@ import PageBanner from '@/components/Common/PageBanner';
 import ForgotPasswordForm from '@/components/Authentication/ForgotPasswordForm';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function ForgotPasswordPage() {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

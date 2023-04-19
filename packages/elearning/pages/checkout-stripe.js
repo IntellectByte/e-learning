@@ -5,11 +5,14 @@ import CheckoutForm from '@/components/Checkout/CheckoutForm';
 import Footer from '@/components/_App/Footer';
 import baseUrl from '@/utils/baseUrl';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function CheckoutPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

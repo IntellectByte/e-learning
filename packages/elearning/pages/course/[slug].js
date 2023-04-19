@@ -8,6 +8,7 @@ import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
 import toast from 'react-hot-toast';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function SingleCoursesPage({ user }) {
     const [course, setCourse] = useState({});
@@ -48,6 +49,8 @@ export default function SingleCoursesPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 

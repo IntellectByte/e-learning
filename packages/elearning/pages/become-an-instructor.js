@@ -8,6 +8,7 @@ import RegisterForm from '@/components/BecomeAInstructor/RegisterForm';
 import Footer from '@/components/_App/Footer';
 import { useRouter } from 'next/router';
 import SupportButton from '@/components/ContactUs/SupportBtn';
+import TopBanner from '@/components/TopBanner/TopBanner';
 
 export default function BecomeAInstructorPage({ user }) {
     const router = useRouter();
@@ -21,6 +22,8 @@ export default function BecomeAInstructorPage({ user }) {
     return (
         <>
             <SupportButton />
+
+            <TopBanner />
 
             <Navbar user={user} />
 
