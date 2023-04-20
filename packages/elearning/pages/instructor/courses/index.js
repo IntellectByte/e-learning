@@ -10,6 +10,7 @@ import baseUrl from '@/utils/baseUrl';
 import GeneralLoader from '@/utils/GeneralLoader';
 import toast from 'react-hot-toast';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -118,36 +119,11 @@ const Index = ({ user }) => {
                         ) : (
                             <h3>Empty</h3>
                         )}
-
-                        {/* Pagination */}
-                        {/* <div className="col-lg-12 col-md-12">
-							<div className="pagination-area text-center mt-3">
-								<a href="#" className="prev page-numbers">
-									<i className="bx bx-chevrons-left"></i>
-								</a>
-								<span
-									className="page-numbers current"
-									aria-current="page"
-								>
-									1
-								</span>
-								<a href="#" className="page-numbers">
-									2
-								</a>
-								<a href="#" className="page-numbers">
-									3
-								</a>
-								<a href="#" className="page-numbers">
-									4
-								</a>
-								<a href="#" className="next page-numbers">
-									<i className="bx bx-chevrons-right"></i>
-								</a>
-							</div>
-						</div> */}
                     </div>
                 </div>
             </div>
+
+            <SubscribeForm />
 
             <Footer />
         </>

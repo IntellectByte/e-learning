@@ -3,3 +3,4 @@ node_modules
 .env
 /utils/baseUrl.js
 .idea
+/package-lock.json

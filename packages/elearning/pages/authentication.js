@@ -6,6 +6,7 @@ import RegisterForm from '@/components/Authentication/RegisterForm';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function AuthenticationPage({ user }) {
     return (
@@ -36,6 +37,8 @@ export default function AuthenticationPage({ user }) {
                     </div>
                 </div>
             </div>
+
+            <SubscribeForm />
 
             <Footer />
         </>

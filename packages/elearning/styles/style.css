@@ -1960,6 +1960,12 @@ Navbar Area CSS
     animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
 }
 
+@media (max-width: 767px) {
+    .navbar-area.is-sticky {
+        top: 85px;
+    }
+}
+
 .navbar-area.is-sticky.pb-0 {
     padding-bottom: 5px !important;
 }
@@ -8648,4 +8654,30 @@ Go Top CSS
     border: 6px solid #ce417d;
     animation: borderColorsPaymentField 4s linear infinite;
     border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+    .textoCertificadoMobile {
+        font-size: 10px;
+        text-align: center;
+        position: relative;
+        left: 5px;
+    }
+
+    .textoStudentMobile {
+        font-size: 10px;
+        position: relative;
+        left: 9px;
+        top: 2.5px;
+    }
+
+    .textoDateMobile {
+        font-size: 15px;
+        position: relative;
+        left: 8.5px;
+    }
+
+    .textoNomeCert {
+        font-size: 10px;
+    }
 }

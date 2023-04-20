@@ -6,6 +6,7 @@ import Footer from '@/components/_App/Footer';
 import baseUrl from '@/utils/baseUrl';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function CheckoutPage({ user }) {
     return (
@@ -22,6 +23,8 @@ export default function CheckoutPage({ user }) {
                 homePageText='Home'
                 activePageText='Checkout'
             />
+
+            <SubscribeForm />
 
             <Footer />
         </>
