@@ -8,16 +8,9 @@ import { useRouter } from 'next/router';
 import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
-import Confetti from 'react-confetti';
 import TopBanner from '@/components/TopBanner/TopBanner';
 
 const slug = ({ user }) => {
-    const [quizCompleted, setQuizCompleted] = useState(false);
-
-    const completeQuiz = () => {
-        setQuizCompleted(true);
-    };
-
     const [student, setStudent] = useState(
         user && `${user.first_name} ${user.last_name}`
     );
@@ -100,68 +93,42 @@ const slug = ({ user }) => {
 
             <div className='ptb-100 get-certificate'>
                 <div className='container'>
-                    {quizCompleted ? (
-                        <>
-                            <div className='form-box'>
-                                <form>
-                                    <label className='mb-2'>Seu Nome</label>
-                                    <input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Enter your name'
-                                        value={student}
-                                        onChange={(e) =>
-                                            setStudent(e.target.value)
-                                        }
-                                    />
-                                </form>
-                            </div>
-                            <div
-                                id='domEl'
-                                ref={domEl}
-                                className='certificate-img'
-                            >
-                                <Confetti width={1200} height={700} />
-                                <div className='content'>
-                                    <h2>{student}</h2>
-                                    <p className='date'>{getCurrentDate()}</p>
-                                    <p>
-                                        Por completar o{' '}
-                                        <b>{course && course.title}</b>
-                                    </p>
-                                </div>
-                                <img src='/images/certificate2.jpg' alt='' />
-                            </div>
-
-                            <div className='caption'>
-                                <button
-                                    className='download-btn download-btn-jpg visible'
-                                    onClick={downloadCertificate}
-                                    title='JPEG Image'
-                                >
-                                    Download as JPG
-                                </button>
-                            </div>
-                        </>
-                    ) : (
-                        <div>
-                            <h2>
-                                Please complete the quiz to get your
-                                certificate:
-                            </h2>
-
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: `
-                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdSivXCpzWshhhdViTjhV6wCW0KFi63bFITOQhIrRFbgicZlg/viewform?embedded=true" width="640" height="912" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
-                                `,
-                                }}
-                            ></div>
-                            <button onClick={completeQuiz}>
-                                Complete Quiz
-                            </button>
+                    <div className='form-box'>
+                        <form>
+                            <label className='mb-2 textoNomeCert'>
+                                Seu Nome
+                            </label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                placeholder='Seu Nome'
+                                value={student}
+                                onChange={(e) => setStudent(e.target.value)}
+                            />
+                        </form>
+                    </div>
+                    <div id='domEl' ref={domEl} className='certificate-img'>
+                        <div className='content'>
+                            <h2 className='textoStudentMobile'>{student}</h2>
+                            <p className='date textoDateMobile'>
+                                {getCurrentDate()}
+                            </p>
+                            <p className='textoCertificadoMobile'>
+                                Por completar o <b>{course && course.title}</b>
+                            </p>
                         </div>
-                    )}
+                        <img src='/images/certificate2.jpg' alt='' />
+                    </div>
+
+                    <div className='caption'>
+                        <button
+                            className='download-btn download-btn-jpg visible'
+                            onClick={downloadCertificate}
+                            title='JPEG Image'
+                        >
+                            Download as JPG
+                        </button>
+                    </div>
                 </div>
             </div>
 
