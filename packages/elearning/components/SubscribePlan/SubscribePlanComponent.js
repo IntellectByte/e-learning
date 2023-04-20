@@ -174,11 +174,11 @@ const SubscribePlanComponent = () => {
                                             value: false,
                                         },
                                     ]}
-                                    price={323}
+                                    price="1589"
                                     duration='y'
                                     background='linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)'
                                     shadow='#F5BCD7'
-                                    currency='U$D'
+                                    currency='R$'
                                     buttonContent={
                                         alreadySubscribe ? (
                                             <a
@@ -266,11 +266,11 @@ const SubscribePlanComponent = () => {
                                             value: false,
                                         },
                                     ]}
-                                    price={474}
+                                    price="2331"
                                     duration='y'
                                     background='linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)'
                                     shadow='#F5BCD7'
-                                    currency='U$D'
+                                    currency='R$'
                                     buttonContent={
                                         alreadySubscribe ? (
                                             <a
@@ -358,11 +358,11 @@ const SubscribePlanComponent = () => {
                                             value: true,
                                         },
                                     ]}
-                                    price={708}
+                                    price="3482"
                                     duration='y'
                                     background='linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%)'
                                     shadow='#F5BCD7'
-                                    currency='U$D'
+                                    currency='R$'
                                     buttonContent={
                                         alreadySubscribe ? (
                                             <a
