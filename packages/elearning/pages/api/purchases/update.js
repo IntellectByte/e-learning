@@ -94,7 +94,7 @@ const purchase = async (req, res) => {
         // console.log(req.body)
         // return console.log(req.body.data.paymentStatus)
 
-        const updatedPurchase = await Purchase.update({paymentState: paymentStatus},
+        await Purchase.update({paymentState: paymentStatus},
             {
                 where: {id: purchaseId}
             }
@@ -104,7 +104,7 @@ const purchase = async (req, res) => {
             where: {id: purchase.userId}
         })
 
-        if (!user){
+        if (!user) {
 
             const confirmToken = uuidv4()
 
@@ -114,7 +114,7 @@ const purchase = async (req, res) => {
 
             const passwordHash = await bcrypt.hash(passwordRandom, 10);
 
-             user = await User.create({
+            user = await User.create({
                 first_name: purchase.buyerName,
                 last_name: purchase.buyerName,
                 email: purchase.buyerEmail,
@@ -141,7 +141,7 @@ const purchase = async (req, res) => {
             );
 
             await persistCourses(purchase, user)
-
+            await checkoutConfirmation(purchase.items, purchase.buyerName, purchase.buyerEmail);
 
             return res.redirect(301, '/payment-successful')
 
@@ -204,7 +204,6 @@ const purchase = async (req, res) => {
         //     message: "ok",
         //     purchase: purchase
         // })
-
 
 
     } catch (e) {
