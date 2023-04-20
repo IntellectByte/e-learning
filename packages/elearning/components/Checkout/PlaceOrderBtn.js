@@ -18,57 +18,12 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     const router = useRouter();
 
 
-    // const handlePersistCourse = async () => {
-    //     try {
-    //         const payload = {
-    //             cartItems,
-    //             userId: user.id,
-    //             buyer_name: user.first_name,
-    //             buyer_email: user.email,
-    //             buyer_avatar: user.profile_photo,
-    //         };
-    //         const url = `${baseUrl}/api/checkout`;
-    //         const response = await axios.post(url, payload);
-    //         toast.success(response.data.message, {
-    //             style: {
-    //                 border: '1px solid #4BB543',
-    //                 padding: '16px',
-    //                 color: '#4BB543',
-    //             },
-    //             iconTheme: {
-    //                 primary: '#4BB543',
-    //                 secondary: '#FFFAEE',
-    //             },
-    //         });
-    //         dispatch({
-    //             type: 'RESET_CART',
-    //         });
-    //         setLoading(false);
-    //
-    //         router.push('/learning/my-courses');
-    //     } catch (err) {
-    //         // console.log(err.response);
-    //         let {
-    //             response: {
-    //                 data: {message},
-    //             },
-    //         } = err;
-    //         toast.error(message, {
-    //             style: {
-    //                 border: '1px solid #ff0033',
-    //                 padding: '16px',
-    //                 color: '#ff0033',
-    //             },
-    //             iconTheme: {
-    //                 primary: '#ff0033',
-    //                 secondary: '#FFFAEE',
-    //             },
-    //         });
-    //     }
-    // };
-
-
     const fetchAccessToken = async () => {
+
+        const script1 = document.getElementById('script-getnet');
+        if (script1){
+            script1.remove()
+        }
 
         const formData = new URLSearchParams();
         formData.append('scope', 'oob')
@@ -85,6 +40,11 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
         )).data
 
         try {
+
+            const script1 = document.getElementById('script-getnet');
+            if (script1){
+                script1.remove()
+            }
 
             const {cartTotal} = calculateCartTotal(cartItems)
 
@@ -108,6 +68,13 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             // console.log(user)
 
             const token = uuidv4();
+
+
+            const script2 = document.getElementById('script-getnet');
+            if (script2){
+                script2.remove()
+            }
+
 
             const script = document.createElement('script');
             script.src = 'https://checkout.getnet.com.br/loader.js';
@@ -141,7 +108,18 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
     }
 
-    useEffect(() => {
+
+
+    useEffect( () => {
+
+        const script = document.getElementById('script-getnet');
+        if (script){
+            script.remove()
+        }
+
+
+
+
         fetchAccessToken()
             .then(e => {
                 // console.log(e)
@@ -152,6 +130,11 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     }, [])
 
     useEffect(() => {
+
+        const script = document.getElementById('script-getnet');
+        if (script){
+            script.remove()
+        }
 
         setLoading(true)
 

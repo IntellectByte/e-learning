@@ -1,5 +1,12 @@
 import {Course, Enrolment, Purchase, User} from "@/database/models";
 import {checkoutConfirmation} from "../../../email-templates/checkout-confirmation";
+import bcrypt from "bcrypt";
+import {v4 as uuidv4} from "uuid";
+
+import {confirmEmailAddress} from "../../../email-templates/account-confirmation";
+import passwordGenerator from "password-generator";
+import {passwordResetConfirmation} from "../../../email-templates/password-reset-confirmation";
+import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
 
@@ -19,7 +26,57 @@ export default async (req, res) => {
     }
 };
 
+
+async function persistCourses(purchase, user) {
+
+    for (const cart of purchase.items) {
+
+        if (cart.type === 'sub') {
+
+            const courses = await Course.findAll()
+
+            for (const course of courses) {
+                await Enrolment.create({
+                    bought_price: course.latest_price,
+                    payment_method: "Getnet",
+                    buyer_name: purchase.buyerName,
+                    buyer_email: user.email,
+                    buyer_avatar: user.profile_photo,
+                    userId: user.id,
+                    courseId: course.id,
+                    status: "paid",
+                })
+            }
+            continue
+        }
+
+        const enrol = await Enrolment.findOne({
+            where: {userId: purchase.userId, courseId: cart.id}
+        })
+
+        if (enrol) throw new Error("Enrolment already exists")
+
+        await Enrolment.create({
+
+            bought_price: cart.amount,
+            payment_method: "Getnet",
+            buyer_name: purchase.buyerName,
+            buyer_email: user.email,
+            buyer_avatar: user.profile_photo,
+            userId: user.id,
+            courseId: cart.id,
+            status: "paid",
+
+        });
+    }
+
+}
+
+
 const purchase = async (req, res) => {
+
+    console.log("mamma")
+
     const purchaseId = req.query.orderId;
     const paymentStatus = "SUCCESS"
 
@@ -43,70 +100,110 @@ const purchase = async (req, res) => {
             }
         );
 
-        const user = await User.findOne({
+        let user = await User.findOne({
             where: {id: purchase.userId}
         })
 
         if (!user){
 
-            /// TODO: create user if does not exists
+            const confirmToken = uuidv4()
 
-        }
+            const passwordRandom = passwordGenerator(12, false)
 
+            await passwordResetConfirmation(passwordRandom, purchase.buyerName, purchase.buyerEmail)
 
-        for (const cart of purchase.items) {
+            const passwordHash = await bcrypt.hash(passwordRandom, 10);
 
-            if (cart.type === 'sub'){
-
-                const courses = await Course.findAll()
-
-                for (const course of courses){
-                    await Enrolment.create({
-                        bought_price: course.latest_price,
-                        payment_method: "Getnet",
-                        buyer_name: purchase.buyerName,
-                        buyer_email: user.email,
-                        buyer_avatar: user.profile_photo,
-                        userId: user.id,
-                        courseId: course.id,
-                        status: "paid",
-                    })
-                }
-                continue
-            }
-
-            const enrol = await Enrolment.findOne({
-                where: {userId: purchase.userId, courseId: cart.id}
-            })
-
-            if (enrol) throw new Error("Enrolment already exists")
-
-            await Enrolment.create({
-
-                bought_price: cart.price,
-                payment_method: "Getnet",
-                buyer_name: purchase.buyerName,
-                buyer_email: user.email,
-                buyer_avatar: user.profile_photo,
-                userId: user.id,
-                courseId: cart.id,
-                status: "paid",
-
+             user = await User.create({
+                first_name: purchase.buyerName,
+                last_name: purchase.buyerName,
+                email: purchase.buyerEmail,
+                password: passwordHash,
+                reset_password_token: confirmToken,
+                reset_password_send_at: Date.now(),
+                email_confirmed: true,
+                email_confirmed_at: Date.now(),
             });
+
+            jwt.sign(
+                {
+                    userId: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    role: user.role,
+                    profile_photo: user.profile_photo,
+                },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: "7d",
+                }
+            );
+
+            await persistCourses(purchase, user)
+
+
+            return res.redirect(301, '/payment-successful')
+
+
         }
+
+
+        await persistCourses(purchase, user)
+
+        // for (const cart of purchase.items) {
+        //
+        //     if (cart.type === 'sub'){
+        //
+        //         const courses = await Course.findAll()
+        //
+        //         for (const course of courses){
+        //             await Enrolment.create({
+        //                 bought_price: course.latest_price,
+        //                 payment_method: "Getnet",
+        //                 buyer_name: purchase.buyerName,
+        //                 buyer_email: user.email,
+        //                 buyer_avatar: user.profile_photo,
+        //                 userId: user.id,
+        //                 courseId: course.id,
+        //                 status: "paid",
+        //             })
+        //         }
+        //         continue
+        //     }
+        //
+        //     const enrol = await Enrolment.findOne({
+        //         where: {userId: purchase.userId, courseId: cart.id}
+        //     })
+        //
+        //     if (enrol) throw new Error("Enrolment already exists")
+        //
+        //     await Enrolment.create({
+        //
+        //         bought_price: cart.price,
+        //         payment_method: "Getnet",
+        //         buyer_name: purchase.buyerName,
+        //         buyer_email: user.email,
+        //         buyer_avatar: user.profile_photo,
+        //         userId: user.id,
+        //         courseId: cart.id,
+        //         status: "paid",
+        //
+        //     });
+        // }
 
         // console.log(purchase.items, purchase.buyerName, purchase.buyerEmail)
 
         await checkoutConfirmation(purchase.items, purchase.buyerName, purchase.buyerEmail);
 
 
-        return res.redirect(301, "/payment-successful")
+        return res.redirect(301, "/payment-successful",)
 
 
-        res.status(201).json({
-            message: "ok",
-            purchase: purchase
-        })
+        // res.status(201).json({
+        //     message: "ok",
+        //     purchase: purchase
+        // })
 
 
 

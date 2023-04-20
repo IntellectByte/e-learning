@@ -9,21 +9,6 @@ import {useTranslation} from 'next-i18next';
 import {v4 as uuidv4} from "uuid";
 import {useSelector} from "react-redux";
 
-const validationSchema = Yup.object().shape({
-    doc: Yup.string().required('Required'),
-    documentNumber: Yup.string().required('Required'),
-    phoneNumber: Yup.string().required('Required'),
-    streetNumber: Yup.string().required('Required'),
-    street: Yup.string().required('Required'),
-    addressComplementary: Yup.string().required('Required'),
-    neighborhood: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
-    state: Yup.string().required('Required'),
-    zipCode: Yup.string().required('Required'),
-    customerFirstName: Yup.string().required('Required'),
-    customerLastName: Yup.string().required('Required'),
-    customerEmail: Yup.string().required('Required'),
-});
 
 const PaymentField = ({user, onFormComplete}) => {
     const {elarniv_users_token} = parseCookies();
@@ -31,12 +16,44 @@ const PaymentField = ({user, onFormComplete}) => {
     const [isMounted, setIsMounted] = React.useState(false);
     const {cartItems} = useSelector(state => state.cart)
 
+    const validationSchema = Yup.object().shape({
+
+        doc: Yup.string().required('Required'),
+        documentNumber: Yup.string().required('Required'),
+        phoneNumber: Yup.string().required('Required'),
+        streetNumber: Yup.string().required('Required'),
+        street: Yup.string().required('Required'),
+        addressComplementary: Yup.string().required('Required'),
+        neighborhood: Yup.string().required('Required'),
+        city: Yup.string().required('Required'),
+        state: Yup.string().required('Required'),
+        zipCode: Yup.string().required('Required'), // customerFirstName: Yup.string().when('shouldValidateCustomer', {
+        //     is: "true",
+        //     then: Yup.string().required('Required')
+        // }),
+        // customerLastName: Yup.string().when('shouldValidateCustomer', {
+        //     is: "true",
+        //     then: Yup.string().required('Required')
+        // }),
+        // customerEmail: Yup.string().when('shouldValidateCustomer', {
+        //     is: "true",
+        //     then: Yup.string().required('Required')
+        // }),
+        customerFirstName: Yup.string().required('Required'),
+        customerLastName: Yup.string().required('Required'),
+        customerEmail: Yup.string().required('Required'),
+
+    });
+
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
     const validateForm = async (values) => {
         try {
+
+            // console.log(values)
+
             await validationSchema.validate(values, {abortEarly: false});
 
             setTimeout(() => {
@@ -129,9 +146,9 @@ const PaymentField = ({user, onFormComplete}) => {
                                         city: '',
                                         state: '',
                                         zipCode: '',
-                                        customerFirstName: '',
-                                        customerLastName: '',
-                                        customerEmail: '',
+                                        customerFirstName: user ? user.first_name : '',
+                                        customerLastName: user ? user.last_name : '',
+                                        customerEmail: user ? user.email : '', // shouldValidateCustomer: user ? "false" : "true",
                                     }}
                                     validationSchema={validationSchema}
                                     validateOnMount
@@ -139,57 +156,77 @@ const PaymentField = ({user, onFormComplete}) => {
                                 >
 
 
-                                    { ({isSubmitting}) => (<Form>
+                                    {({isSubmitting}) => (<Form>
                                         <div className='form-outline mb-4'>
 
-                                            {!user && <div>
-                                                <label htmlFor='customerFirstName'>
-                                                    {t('customerFirstName', {
-                                                        defaultValue: 'First Name',
-                                                    })}
-                                                </label>
+                                            {/*{!user && <div>*/}
 
-                                                <Field
-                                                    type='text'
-                                                    name='customerFirstName'
-                                                    id='customerFirstName'
-                                                    className='form-control'
-                                                    placeholder='John'
-                                                />
-                                                <ErrorMessage
-                                                    name='customerFirstName'
-                                                    component='div'
-                                                    style={{
-                                                        color: 'red',
-                                                    }}
-                                                />
-                                                <label htmlFor='customerLastName'>
-                                                    {t('customerLastName', {
-                                                        defaultValue: 'Last Name',
-                                                    })}
-                                                </label>
+                                            <label htmlFor='customerFirstName'>
+                                                {t('customerFirstName', {
+                                                    defaultValue: 'First Name',
+                                                })}
+                                            </label>
 
-                                                <Field
-                                                    type='text'
-                                                    name='customerLastName'
-                                                    id='customerLastName'
-                                                    className='form-control'
-                                                    placeholder='Doe'
-                                                />
-                                                <label htmlFor='customerEmail'>
-                                                    {t('customerEmail', {
-                                                        defaultValue: 'Email',
-                                                    })}
-                                                </label>
+                                            <Field
+                                                type={user ? 'hidden' : "text"}
+                                                name='customerFirstName'
+                                                id='customerFirstName'
+                                                className='form-control'
+                                                placeholder='John'
+                                                // value={user && user.first_name}
+                                            />
+                                            <ErrorMessage
+                                                name='customerFirstName'
+                                                component='div'
+                                                style={{
+                                                    color: 'red',
+                                                }}
+                                            />
+                                            <label htmlFor='customerLastName'>
+                                                {t('customerLastName', {
+                                                    defaultValue: 'Last Name',
+                                                })}
+                                            </label>
 
-                                                <Field
-                                                    type='text'
-                                                    name='customerEmail'
-                                                    id='customerEmail'
-                                                    className='form-control'
-                                                    placeholder='johndoe@example.com'
-                                                />
-                                            </div>}
+                                            <Field
+                                                type={user ? 'hidden' : "text"}
+                                                name='customerLastName'
+                                                id='customerLastName'
+                                                className='form-control'
+                                                placeholder='Doe'
+                                                // value={user && user.last_name}
+
+                                            />
+                                            <ErrorMessage
+                                                name='customerLastName'
+                                                component='div'
+                                                style={{
+                                                    color: 'red',
+                                                }}
+                                            />
+                                            <label htmlFor='customerEmail'>
+                                                {t('customerEmail', {
+                                                    defaultValue: 'Email',
+                                                })}
+                                            </label>
+
+                                            <Field
+                                                type={user ? 'hidden' : "text"}
+                                                name='customerEmail'
+                                                id='customerEmail'
+                                                className='form-control'
+                                                placeholder='johndoe@example.com'
+                                                // value={user && user.email}
+                                            />
+                                            <ErrorMessage
+                                                name='customerEmail'
+                                                component='div'
+                                                style={{
+                                                    color: 'red',
+                                                }}
+                                            />
+                                            {/*</div>*/}
+                                            {/*}*/}
 
 
                                             <label htmlFor='doc'>
