@@ -7,6 +7,7 @@ import Partner from '@/components/eLearningSchool/Partner';
 import Footer from '../components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function AbourUsPage({ user }) {
     return (
@@ -29,6 +30,8 @@ export default function AbourUsPage({ user }) {
             <FeedbackSliderWithFunFacts />
 
             <Partner />
+
+            <SubscribeForm />
 
             <Footer />
         </>
