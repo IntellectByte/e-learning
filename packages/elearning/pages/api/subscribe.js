@@ -7,7 +7,6 @@ Mailchimp.setConfig({
 
 export default async (req, res) => {
     const { email, name } = req.body;
-
     try {
         const response = await Mailchimp.lists.addListMember('69cfcfd45d', {
             email_address: email,
@@ -19,6 +18,7 @@ export default async (req, res) => {
 
         res.status(200).json({ status: response.status });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+
+        res.status(500).json({ error: 'Usuário já cadastrado' });
     }
 };
