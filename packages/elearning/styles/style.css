@@ -8649,3 +8649,29 @@ Go Top CSS
     animation: borderColorsPaymentField 4s linear infinite;
     border-radius: 10px;
 }
+
+@media (max-width: 767px) {
+    .textoCertificadoMobile {
+        font-size: 10px;
+        text-align: center;
+        position: relative;
+        left: 5px;
+    }
+
+    .textoStudentMobile {
+        font-size: 10px;
+        position: relative;
+        left: 9px;
+        top: 2.5px;
+    }
+
+    .textoDateMobile {
+        font-size: 15px;
+        position: relative;
+        left: 8.5px;
+    }
+
+    .textoNomeCert {
+        font-size: 10px;
+    }
+}
