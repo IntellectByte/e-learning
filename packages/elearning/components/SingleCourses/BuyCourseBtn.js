@@ -22,7 +22,9 @@ const BuyCourseBtn = ({ current_user, course }) => {
 
     useEffect(() => {
         const courseExist = cartItems.find((cart) => {
+
             return course.id === cart.id;
+
         });
         courseExist && setAdd(true);
         if (current_user && course && course.id) {

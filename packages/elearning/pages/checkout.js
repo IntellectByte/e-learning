@@ -41,7 +41,7 @@ export default function CheckoutPage({ user }) {
                 isPaymentFormComplete={isPaymentFormComplete}
             />
 
-            <PaymentField onFormComplete={setIsPaymentFormComplete} />
+            <PaymentField user={user} onFormComplete={setIsPaymentFormComplete} />
 
             <SubscribeForm />
 

@@ -112,6 +112,9 @@ const purchaseCreate = async (req, res) => {
             data: {id, userId, paymentState}
         });
     } catch (err) {
+
+        // console.log(err)
+
         return res.status(400).json({
             error_code: "purchase_creation_error",
             message: err.message
