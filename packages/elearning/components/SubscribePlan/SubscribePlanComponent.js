@@ -206,7 +206,7 @@ const SubscribePlanComponent = () => {
                                             </a>
                                         )
                                     }
-                                    //priceText='Bring your designs to the next level and export them.'
+                                    priceText='Disponível em prestações'
                                     headerText='Plano Básico'
                                 />
 
@@ -298,7 +298,7 @@ const SubscribePlanComponent = () => {
                                             </a>
                                         )
                                     }
-                                    //priceText='Bring your designs to the next level and export them.'
+                                    priceText='Disponível em prestações'
                                     headerText='Plano Intermediário'
                                 />
 
@@ -390,7 +390,7 @@ const SubscribePlanComponent = () => {
                                             </a>
                                         )
                                     }
-                                    // priceText='mo/year'
+                                    priceText='Disponível em prestações'
                                     headerText='Plano Premium'
                                 />
                             </div>
