@@ -22,6 +22,12 @@
     height: 40px;
 }
 
+@media (max-width: 767px) {
+    .topBanner {
+        height: 85px;
+    }
+}
+
 .topBanner p {
     color: #ffffff;
 }
