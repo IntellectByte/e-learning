@@ -59,7 +59,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
         const isProtectedRoute =
             ctx.pathname === '/profile/basic-information' ||
             ctx.pathname === '/profile/photo' ||
-            ctx.pathname === '/checkout' ||
+            // ctx.pathname === '/checkout' ||
             ctx.pathname === '/become-an-instructor' ||
             ctx.pathname === '/learning/my-courses' ||
             ctx.pathname === '/instructor/courses' ||
@@ -69,7 +69,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
             ctx.pathname === '/admin/partners' ||
             ctx.pathname === '/admin/testimonials' ||
             ctx.pathname === '/admin/categories' ||
-            ctx.pathname === '/checkout' ||
+            // ctx.pathname === '/checkout' ||
             ctx.pathname === '/learning/wishlist';
 
         if (isProtectedRoute) {

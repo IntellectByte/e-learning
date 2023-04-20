@@ -18,54 +18,54 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     const router = useRouter();
 
 
-    const handlePersistCourse = async () => {
-        try {
-            const payload = {
-                cartItems,
-                userId: user.id,
-                buyer_name: user.first_name,
-                buyer_email: user.email,
-                buyer_avatar: user.profile_photo,
-            };
-            const url = `${baseUrl}/api/checkout`;
-            const response = await axios.post(url, payload);
-            toast.success(response.data.message, {
-                style: {
-                    border: '1px solid #4BB543',
-                    padding: '16px',
-                    color: '#4BB543',
-                },
-                iconTheme: {
-                    primary: '#4BB543',
-                    secondary: '#FFFAEE',
-                },
-            });
-            dispatch({
-                type: 'RESET_CART',
-            });
-            setLoading(false);
-
-            router.push('/learning/my-courses');
-        } catch (err) {
-            // console.log(err.response);
-            let {
-                response: {
-                    data: {message},
-                },
-            } = err;
-            toast.error(message, {
-                style: {
-                    border: '1px solid #ff0033',
-                    padding: '16px',
-                    color: '#ff0033',
-                },
-                iconTheme: {
-                    primary: '#ff0033',
-                    secondary: '#FFFAEE',
-                },
-            });
-        }
-    };
+    // const handlePersistCourse = async () => {
+    //     try {
+    //         const payload = {
+    //             cartItems,
+    //             userId: user.id,
+    //             buyer_name: user.first_name,
+    //             buyer_email: user.email,
+    //             buyer_avatar: user.profile_photo,
+    //         };
+    //         const url = `${baseUrl}/api/checkout`;
+    //         const response = await axios.post(url, payload);
+    //         toast.success(response.data.message, {
+    //             style: {
+    //                 border: '1px solid #4BB543',
+    //                 padding: '16px',
+    //                 color: '#4BB543',
+    //             },
+    //             iconTheme: {
+    //                 primary: '#4BB543',
+    //                 secondary: '#FFFAEE',
+    //             },
+    //         });
+    //         dispatch({
+    //             type: 'RESET_CART',
+    //         });
+    //         setLoading(false);
+    //
+    //         router.push('/learning/my-courses');
+    //     } catch (err) {
+    //         // console.log(err.response);
+    //         let {
+    //             response: {
+    //                 data: {message},
+    //             },
+    //         } = err;
+    //         toast.error(message, {
+    //             style: {
+    //                 border: '1px solid #ff0033',
+    //                 padding: '16px',
+    //                 color: '#ff0033',
+    //             },
+    //             iconTheme: {
+    //                 primary: '#ff0033',
+    //                 secondary: '#FFFAEE',
+    //             },
+    //         });
+    //     }
+    // };
 
 
     const fetchAccessToken = async () => {
@@ -116,14 +116,14 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             script.dataset.getnetSellerid = '39ee6be0-a7fb-43b7-b799-5f45d8d87bdd';
             script.dataset.getnetToken = `${data.token_type} ${data.access_token}`
             script.dataset.getnetAmount = cartTotal;
-            script.dataset.getnetCustomerid = user.id;
             script.dataset.getnetOrderid = token;
             // script.dataset.getnetPaymentMethodsDisabled = ["pix", "credito", "qr-code"];
             script.dataset.getnetButtonClass = 'pay-button-getnet';
             script.dataset.getnetInstallments = '6';
-            script.dataset.getnetCustomerFirstName = user.first_name;
-            script.dataset.getnetCustomerLastName = user.last_name;
-            script.dataset.getnetCustomerEmail = user.email;
+            script.dataset.getnetCustomerid = user && user.id;
+            script.dataset.getnetCustomerFirstName = user && user.first_name;
+            script.dataset.getnetCustomerLastName = user && user.last_name;
+            script.dataset.getnetCustomerEmail = user && user.email;
             script.dataset.getnetItems = JSON.stringify(getnetItems);
             script.dataset.getnetUrlCallback = `${baseUrl}/api/purchases/update?orderId=${token}`;
             script.dataset.getnetPreAuthorizationCredit = '';

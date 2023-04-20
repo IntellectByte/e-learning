@@ -34,7 +34,6 @@ const purchase = async (req, res) => {
             });
         }
 
-
         // console.log(req.body)
         // return console.log(req.body.data.paymentStatus)
 
@@ -47,6 +46,13 @@ const purchase = async (req, res) => {
         const user = await User.findOne({
             where: {id: purchase.userId}
         })
+
+        if (!user){
+
+            /// TODO: create user if does not exists
+
+        }
+
 
         for (const cart of purchase.items) {
 
