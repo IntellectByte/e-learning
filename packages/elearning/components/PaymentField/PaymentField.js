@@ -35,8 +35,11 @@ const PaymentField = ({user, onFormComplete}) => {
                 'Email already exists',
                 async function (value) {
                     try {
-                        const response = await axios.get(`/api/users/email-already-exists?email=${value}`);
-                        return response.data.exists === false;
+                        if (!user){
+                            const response = await axios.get(`/api/users/email-already-exists?email=${value}`);
+                            return response.data.exists === false;
+                        }
+                        return true
                     } catch (error) {
                         console.log(error);
                         return false;
@@ -57,7 +60,7 @@ const PaymentField = ({user, onFormComplete}) => {
     const validateForm = async (values) => {
         try {
 
-            // console.log(values)
+            console.log(values)
 
             await validationSchema.validate(values, {abortEarly: false});
 
