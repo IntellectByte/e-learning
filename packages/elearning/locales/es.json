@@ -179,5 +179,16 @@
     "paymentfield-page-bairro": "Barrio",
     "paymentfield-page-cityname": "Ciudad",
     "paymentfield-page-statename": "Estado o Provincia",
-    "paymentfield-page-zipcode": "Codigo Postal"
+    "paymentfield-page-zipcode": "Codigo Postal",
+    "contact-us-page-span": "Detalles de contacto",
+    "contact-us-page-h2": "Ponerse en contacto",
+    "contact-us-page-h3": "Nuestra dirección",
+    "contact-us-page-diretext": "Rua Barra Funda, 209 - Barra Funda, São Paulo - SP. 01152-000",
+    "contact-us-page-contact": "Contacto",
+    "contact-us-page-phone": "+55 (11) 3862-1698",
+    "contact-us-page-mailtext": "Correo:",
+    "contact-us-page-emailaddress": "contato@escolasorvete.com.br",
+    "contactform-text1": "¿Listo para empezar?",
+    "contactform-text2": "Su dirección de correo electrónico no será publicada. Los campos obligatorios están marcados *",
+    "contactform-text3": "Enviar mensaje"
 }
