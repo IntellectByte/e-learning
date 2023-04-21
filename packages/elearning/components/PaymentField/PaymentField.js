@@ -28,20 +28,25 @@ const PaymentField = ({user, onFormComplete}) => {
         city: Yup.string().required('Required'),
         state: Yup.string().required('Required'),
         zipCode: Yup.string().required('Required'), // customerFirstName: Yup.string().when('shouldValidateCustomer', {
-        //     is: "true",
-        //     then: Yup.string().required('Required')
-        // }),
-        // customerLastName: Yup.string().when('shouldValidateCustomer', {
-        //     is: "true",
-        //     then: Yup.string().required('Required')
-        // }),
-        // customerEmail: Yup.string().when('shouldValidateCustomer', {
-        //     is: "true",
-        //     then: Yup.string().required('Required')
-        // }),
+
+        customerEmail: Yup.string().email('Invalid email').required('Email is required')
+            .test(
+                'unique-email',
+                'Email already exists',
+                async function (value) {
+                    try {
+                        const response = await axios.get(`/api/users/email-already-exists?email=${value}`);
+                        return response.data.exists === false;
+                    } catch (error) {
+                        console.log(error);
+                        return false;
+                    }
+                }
+            ),
+
         customerFirstName: Yup.string().required('Required'),
         customerLastName: Yup.string().required('Required'),
-        customerEmail: Yup.string().required('Required'),
+        // customerEmail: Yup.string().required('Required'),
 
     });
 
