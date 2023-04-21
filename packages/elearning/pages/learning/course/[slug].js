@@ -195,7 +195,7 @@ const Index = ({ user }) => {
                                         <h4 className='title mb-3'>
                                             {course && course.title}
                                         </h4>
-                                        <ul>
+                                        <ul style={{ cursor: 'pointer' }}>
                                             {videos.length > 0 &&
                                                 videos.map((video) => (
                                                     <VideoList

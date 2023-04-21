@@ -44,10 +44,9 @@ const ViewAllCourses = () => {
                                         }}
                                     />
 
-                                    {/* FALTAN LOS LINKS A LAS DIFERENTES REDES SOCIALES */}
                                     <div>
                                         <a
-                                            href='https://www.youtube.com/channel/your_channel_id'
+                                            href='https://www.youtube.com/channel/UCBk5AcuUG7mIsO9RETL9iGw'
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             style={{
@@ -61,7 +60,7 @@ const ViewAllCourses = () => {
                                             ></i>
                                         </a>
                                         <a
-                                            href='https://www.instagram.com/your_instagram_username'
+                                            href='https://www.instagram.com/escolasorvete/'
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             style={{
@@ -89,7 +88,7 @@ const ViewAllCourses = () => {
                                             ></i>
                                         </a>
                                         <a
-                                            href='https://www.pinterest.com/your_pinterest_username'
+                                            href='https://pin.it/1WALa0x'
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             style={{
@@ -103,7 +102,7 @@ const ViewAllCourses = () => {
                                             ></i>
                                         </a>
                                         <a
-                                            href='https://www.linkedin.com/in/your_linkedin_username'
+                                            href='https://www.linkedin.com/company/escola-sorvete'
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             style={{
@@ -117,7 +116,7 @@ const ViewAllCourses = () => {
                                             ></i>
                                         </a>
                                         <a
-                                            href='https://www.facebook.com/your_facebook_username'
+                                            href='https://es-la.facebook.com/escolasorvete/'
                                             target='_blank'
                                             rel='noopener noreferrer'
                                             style={{

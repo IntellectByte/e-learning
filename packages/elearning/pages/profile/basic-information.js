@@ -9,6 +9,7 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import baseUrl from '@/utils/baseUrl';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 const BasicInformation = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -245,6 +246,8 @@ const BasicInformation = ({ user }) => {
                     </div>
                 </div>
             </div>
+
+            <SubscribeForm />
 
             <Footer />
         </>

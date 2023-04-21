@@ -5,6 +5,7 @@ import Footer from '@/components/_App/Footer';
 import { useTranslation } from 'next-i18next';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 export default function PrivacyPolicyPage({ user }) {
     const { t } = useTranslation();
@@ -169,6 +170,8 @@ export default function PrivacyPolicyPage({ user }) {
                     </div>
                 )}
             </>
+
+            <SubscribeForm />
 
             <Footer />
         </>

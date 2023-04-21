@@ -5,6 +5,7 @@ import Link from 'next/link';
 import CourseCreateForm from '@/components/Instructor/CourseCreateForm';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
 
 const Create = ({ user }) => {
     return (
@@ -45,6 +46,8 @@ const Create = ({ user }) => {
                     </div>
                 </div>
             </div>
+
+            <SubscribeForm />
 
             <Footer />
         </>
