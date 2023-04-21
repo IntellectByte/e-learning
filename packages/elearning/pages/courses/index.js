@@ -28,7 +28,6 @@ export default function CoursesPage({ user }) {
 
             {/* DESCOMENTAR ESTE COMPONENTE CUANDO ANDE LA SUBSCRIPCION Y TENGA UN FLUJO IMPLEMENTADO */}
 
-            <SubscribePlanComponent />
 
             <hr />
 
