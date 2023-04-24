@@ -171,7 +171,7 @@ const SubscribePlanComponent = () => {
                                         value: false,
                                     },
                                 ]}
-                                price='1589'
+                                price='3.999'
                                 duration='y'
                                 background='linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)'
                                 shadow='#F5BCD7'
@@ -259,7 +259,7 @@ const SubscribePlanComponent = () => {
                                         value: false,
                                     },
                                 ]}
-                                price='2331'
+                                price='4.999'
                                 duration='y'
                                 background='linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)'
                                 shadow='#F5BCD7'
@@ -347,7 +347,7 @@ const SubscribePlanComponent = () => {
                                         value: true,
                                     },
                                 ]}
-                                price='3482'
+                                price='5.999'
                                 duration='y'
                                 background='linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%)'
                                 shadow='#F5BCD7'
