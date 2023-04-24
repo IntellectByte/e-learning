@@ -199,7 +199,7 @@ const SubscribePlanComponent = () => {
                                         </a>
                                     )
                                 }
-                                priceText='Disponível em prestações'
+                                priceText='Até 10x'
                                 headerText='Plano Baunilha'
                             />
 
@@ -287,7 +287,7 @@ const SubscribePlanComponent = () => {
                                         </a>
                                     )
                                 }
-                                priceText='Disponível em prestações'
+                                priceText='Até 10x'
                                 headerText='Plano Chocolate'
                             />
 
@@ -375,7 +375,7 @@ const SubscribePlanComponent = () => {
                                         </a>
                                     )
                                 }
-                                priceText='Disponível em prestações'
+                                priceText='Até 10x'
                                 headerText='Plano Pistache'
                             />
                         </div>
