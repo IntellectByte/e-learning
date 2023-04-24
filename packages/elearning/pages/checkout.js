@@ -9,6 +9,7 @@ import PaymentField from '@/components/PaymentField/PaymentField';
 import TopBanner from '@/components/TopBanner/TopBanner';
 import SubscribeForm from '@/components/Common/SubscribeForm';
 import Footer from '@/components/_App/Footer';
+import SnackBar from '@/components/SnackBar/SnackBar';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
@@ -28,7 +29,9 @@ export default function CheckoutPage({ user }) {
 
             <Navbar user={user} />
 
-            <SupportButton />
+            {/* <SupportButton /> */}
+
+            <SnackBar />
 
             {/* COMMENTING POP UP BECAUSE IT WAS USED WHEN WE HAD HOTMART CHECKOUT */}
             {/* {showChackoutPopUp && (
@@ -41,7 +44,10 @@ export default function CheckoutPage({ user }) {
                 isPaymentFormComplete={isPaymentFormComplete}
             />
 
-            <PaymentField user={user} onFormComplete={setIsPaymentFormComplete} />
+            <PaymentField
+                user={user}
+                onFormComplete={setIsPaymentFormComplete}
+            />
 
             <SubscribeForm />
 
