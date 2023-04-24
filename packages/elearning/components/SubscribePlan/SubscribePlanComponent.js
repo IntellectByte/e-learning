@@ -21,7 +21,7 @@ const SubscribePlanComponent = () => {
             id: '1',
             title: 'Plano de Assinatura BÁSICO',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
-            price: 1589,
+            price: 3.999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/sraiyjbchapm2j1qj6at.jpg',
             duration: 'Assinatura de 1 año',
             quantity: 1,
@@ -46,9 +46,9 @@ const SubscribePlanComponent = () => {
     const subscribePlan2 = () => {
         const planObj = {
             id: '2',
-            title: 'Plano de Assinatura INTERMEDIÁRIO',
+            title: 'Plano de Assinatura Baunilha',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
-            price: 2331,
+            price: 4.999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/wciqvy7atnoxeo0sib9v.jpg',
             duration: 'Assinatura de 1 año',
             quantity: 1,
@@ -73,9 +73,9 @@ const SubscribePlanComponent = () => {
     const subscribePlan3 = () => {
         const planObj = {
             id: '3',
-            title: 'Plano de Assinatura PREMIUM',
+            title: 'Plano de Assinatura Pistache',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
-            price: 3482,
+            price: 5.999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/rvp8oa1xkg2zx65qouud.jpg',
             duration: 'Assinatura de 1 año',
             quantity: 1,
@@ -123,11 +123,11 @@ const SubscribePlanComponent = () => {
                                     },
                                     { text: 'Receita do mês', value: true },
                                     {
-                                        text: 'acesso à comunidade (WA)',
+                                        text: 'ACESSO À COMUNIDADE',
                                         value: true,
                                     },
                                     {
-                                        text: 'material de apoio',
+                                        text: 'MATERIAL DE APOIO',
                                         value: true,
                                     },
                                     {
@@ -155,7 +155,7 @@ const SubscribePlanComponent = () => {
                                         value: false,
                                     },
                                     {
-                                        text: '1 consultoria com SF',
+                                        text: 'Mentoria com Francisco (1h)',
                                         value: false,
                                     },
                                     {
@@ -200,7 +200,7 @@ const SubscribePlanComponent = () => {
                                     )
                                 }
                                 priceText='Disponível em prestações'
-                                headerText='Plano Básico'
+                                headerText='Plano Baunilha'
                             />
 
                             <Pricing
@@ -211,11 +211,11 @@ const SubscribePlanComponent = () => {
                                     },
                                     { text: 'Receita do mês', value: true },
                                     {
-                                        text: 'acesso à comunidade (WA)',
+                                        text: 'ACESSO À COMUNIDADE',
                                         value: true,
                                     },
                                     {
-                                        text: 'material de apoio',
+                                        text: 'MATERIAL DE APOIO',
                                         value: true,
                                     },
                                     {
@@ -243,7 +243,7 @@ const SubscribePlanComponent = () => {
                                         value: false,
                                     },
                                     {
-                                        text: '1 consultoria com SF',
+                                        text: 'Mentoria com Francisco (1h)',
                                         value: false,
                                     },
                                     {
@@ -288,7 +288,7 @@ const SubscribePlanComponent = () => {
                                     )
                                 }
                                 priceText='Disponível em prestações'
-                                headerText='Plano Intermediário'
+                                headerText='Plano Chocolate'
                             />
 
                             <Pricing
@@ -299,11 +299,11 @@ const SubscribePlanComponent = () => {
                                     },
                                     { text: 'Receita do mês', value: true },
                                     {
-                                        text: 'acesso à comunidade (WA)',
+                                        text: 'ACESSO À COMUNIDADE',
                                         value: true,
                                     },
                                     {
-                                        text: 'material de apoio',
+                                        text: 'MATERIAL DE APOIO',
                                         value: true,
                                     },
                                     {
@@ -331,7 +331,7 @@ const SubscribePlanComponent = () => {
                                         value: true,
                                     },
                                     {
-                                        text: '1 consultoria com SF',
+                                        text: 'Mentoria com Francisco (1h)',
                                         value: true,
                                     },
                                     {
@@ -376,7 +376,7 @@ const SubscribePlanComponent = () => {
                                     )
                                 }
                                 priceText='Disponível em prestações'
-                                headerText='Plano Premium'
+                                headerText='Plano Pistache'
                             />
                         </div>
                     </div>
