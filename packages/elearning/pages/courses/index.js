@@ -18,16 +18,15 @@ export default function CoursesPage({ user }) {
 
             <Navbar user={user} />
 
-            <PageBanner
+            {/* <PageBanner
                 pageTitle='Cursos'
                 a
                 homePageUrl='/'
                 homePageText='Home'
                 activePageText='Cursos'
-            />
+            /> */}
 
-            {/* DESCOMENTAR ESTE COMPONENTE CUANDO ANDE LA SUBSCRIPCION Y TENGA UN FLUJO IMPLEMENTADO */}
-
+            <SubscribePlanComponent />
 
             <hr />
 
