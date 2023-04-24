@@ -104,299 +104,283 @@ const SubscribePlanComponent = () => {
     return (
         <>
             {isMounted && (
-                <a
-                    onClick={() => router.push('/checkout')}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <div className={styles['main-component-background']}>
-                        <div className={styles.wrapper}>
-                            <h2>
-                                {t('subcomponent-h2', {
-                                    defaultValue: 'Subscribe to our plans',
-                                })}
-                                <br />
-                            </h2>
+                <div className={styles['main-component-background']}>
+                    <div className={styles.wrapper}>
+                        <h2>
+                            {t('subcomponent-h2', {
+                                defaultValue: 'Subscribe to our plans',
+                            })}
                             <br />
-                            <div className={styles['pricing-table']}>
-                                <Pricing
-                                    data={[
-                                        {
-                                            text: 'Aulas gravadas',
-                                            value: true,
-                                        },
-                                        { text: 'Receita do mês', value: true },
-                                        {
-                                            text: 'acesso à comunidade (WA)',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'material de apoio',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Certificado digital',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Aulas práticas gravadas',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Desconto na loja online',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Eventos com descontos exclusivos',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Cursos Transmitidos',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Aulas práticas ao vivo',
-                                            value: false,
-                                        },
-                                        {
-                                            text: '1 consultoria com SF',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Uma aula prática na escola (opcional)*',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Grupo de ex-alunos do LinkedIn',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Cerimônia de formatura com diploma físico',
-                                            value: false,
-                                        },
-                                    ]}
-                                    price="1589"
-                                    duration='y'
-                                    background='linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)'
-                                    shadow='#F5BCD7'
-                                    currency='R$'
-                                    buttonContent={
-                                        alreadySubscribe ? (
-                                            <a
-                                                onClick={() =>
-                                                    router.push('/checkout')
-                                                }
-                                            >
-                                                {t(
-                                                    'subcomponent-already-subscribe',
-                                                    {
-                                                        defaultValue:
-                                                            'View My Subscription',
-                                                    }
-                                                )}
-                                            </a>
-                                        ) : (
-                                            <a onClick={subscribePlan1}>
-                                                {t(
-                                                    'subcomponent-subscribe-btn',
-                                                    {
-                                                        defaultValue:
-                                                            'INSCREVER',
-                                                    }
-                                                )}
-                                            </a>
-                                        )
-                                    }
-                                    priceText='Disponível em prestações'
-                                    headerText='Plano Básico'
-                                />
+                        </h2>
+                        <br />
 
-                                <Pricing
-                                    data={[
-                                        {
-                                            text: 'Aulas gravadas',
-                                            value: true,
-                                        },
-                                        { text: 'Receita do mês', value: true },
-                                        {
-                                            text: 'acesso à comunidade (WA)',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'material de apoio',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Certificado digital',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Aulas práticas gravadas',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Desconto na loja online',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Eventos com descontos exclusivos',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Cursos Transmitidos',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Aulas práticas ao vivo',
-                                            value: false,
-                                        },
-                                        {
-                                            text: '1 consultoria com SF',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Uma aula prática na escola (opcional)*',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Grupo de ex-alunos do LinkedIn',
-                                            value: false,
-                                        },
-                                        {
-                                            text: 'Cerimônia de formatura com diploma físico',
-                                            value: false,
-                                        },
-                                    ]}
-                                    price="2331"
-                                    duration='y'
-                                    background='linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)'
-                                    shadow='#F5BCD7'
-                                    currency='R$'
-                                    buttonContent={
-                                        alreadySubscribe ? (
-                                            <a
-                                                onClick={() =>
-                                                    router.push('/checkout')
+                        <div className={styles['pricing-table']}>
+                            <Pricing
+                                data={[
+                                    {
+                                        text: 'Aulas gravadas',
+                                        value: true,
+                                    },
+                                    { text: 'Receita do mês', value: true },
+                                    {
+                                        text: 'acesso à comunidade (WA)',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'material de apoio',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Certificado digital',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Aulas práticas gravadas',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Desconto na loja online',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Eventos com descontos exclusivos',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Cursos Transmitidos',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Aulas práticas ao vivo',
+                                        value: false,
+                                    },
+                                    {
+                                        text: '1 consultoria com SF',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Uma aula prática na escola (opcional)*',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Grupo de ex-alunos do LinkedIn',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Cerimônia de formatura com diploma físico',
+                                        value: false,
+                                    },
+                                ]}
+                                price='1589'
+                                duration='y'
+                                background='linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)'
+                                shadow='#F5BCD7'
+                                currency='R$'
+                                buttonContent={
+                                    alreadySubscribe ? (
+                                        <a
+                                            onClick={() =>
+                                                router.push('/checkout')
+                                            }
+                                        >
+                                            {t(
+                                                'subcomponent-already-subscribe',
+                                                {
+                                                    defaultValue:
+                                                        'View My Subscription',
                                                 }
-                                            >
-                                                {t(
-                                                    'subcomponent-already-subscribe',
-                                                    {
-                                                        defaultValue:
-                                                            'View My Subscription',
-                                                    }
-                                                )}
-                                            </a>
-                                        ) : (
-                                            <a onClick={subscribePlan2}>
-                                                {t(
-                                                    'subcomponent-subscribe-btn',
-                                                    {
-                                                        defaultValue:
-                                                            'INSCREVER',
-                                                    }
-                                                )}
-                                            </a>
-                                        )
-                                    }
-                                    priceText='Disponível em prestações'
-                                    headerText='Plano Intermediário'
-                                />
+                                            )}
+                                        </a>
+                                    ) : (
+                                        <a onClick={subscribePlan1}>
+                                            {t('subcomponent-subscribe-btn', {
+                                                defaultValue: 'INSCREVER',
+                                            })}
+                                        </a>
+                                    )
+                                }
+                                priceText='Disponível em prestações'
+                                headerText='Plano Básico'
+                            />
 
-                                <Pricing
-                                    data={[
-                                        {
-                                            text: 'Aulas gravadas',
-                                            value: true,
-                                        },
-                                        { text: 'Receita do mês', value: true },
-                                        {
-                                            text: 'acesso à comunidade (WA)',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'material de apoio',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Certificado digital',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Aulas práticas gravadas',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Desconto na loja online',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Eventos com descontos exclusivos',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Cursos Transmitidos',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Aulas práticas ao vivo',
-                                            value: true,
-                                        },
-                                        {
-                                            text: '1 consultoria com SF',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Uma aula prática na escola (opcional)*',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Grupo de ex-alunos do LinkedIn',
-                                            value: true,
-                                        },
-                                        {
-                                            text: 'Cerimônia de formatura com diploma físico',
-                                            value: true,
-                                        },
-                                    ]}
-                                    price="3482"
-                                    duration='y'
-                                    background='linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%)'
-                                    shadow='#F5BCD7'
-                                    currency='R$'
-                                    buttonContent={
-                                        alreadySubscribe ? (
-                                            <a
-                                                onClick={() =>
-                                                    router.push('/checkout')
+                            <Pricing
+                                data={[
+                                    {
+                                        text: 'Aulas gravadas',
+                                        value: true,
+                                    },
+                                    { text: 'Receita do mês', value: true },
+                                    {
+                                        text: 'acesso à comunidade (WA)',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'material de apoio',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Certificado digital',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Aulas práticas gravadas',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Desconto na loja online',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Eventos com descontos exclusivos',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Cursos Transmitidos',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Aulas práticas ao vivo',
+                                        value: false,
+                                    },
+                                    {
+                                        text: '1 consultoria com SF',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Uma aula prática na escola (opcional)*',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Grupo de ex-alunos do LinkedIn',
+                                        value: false,
+                                    },
+                                    {
+                                        text: 'Cerimônia de formatura com diploma físico',
+                                        value: false,
+                                    },
+                                ]}
+                                price='2331'
+                                duration='y'
+                                background='linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)'
+                                shadow='#F5BCD7'
+                                currency='R$'
+                                buttonContent={
+                                    alreadySubscribe ? (
+                                        <a
+                                            onClick={() =>
+                                                router.push('/checkout')
+                                            }
+                                        >
+                                            {t(
+                                                'subcomponent-already-subscribe',
+                                                {
+                                                    defaultValue:
+                                                        'View My Subscription',
                                                 }
-                                            >
-                                                {t(
-                                                    'subcomponent-already-subscribe',
-                                                    {
-                                                        defaultValue:
-                                                            'View My Subscription',
-                                                    }
-                                                )}
-                                            </a>
-                                        ) : (
-                                            <a onClick={subscribePlan3}>
-                                                {t(
-                                                    'subcomponent-subscribe-btn',
-                                                    {
-                                                        defaultValue:
-                                                            'INSCREVER',
-                                                    }
-                                                )}
-                                            </a>
-                                        )
-                                    }
-                                    priceText='Disponível em prestações'
-                                    headerText='Plano Premium'
-                                />
-                            </div>
+                                            )}
+                                        </a>
+                                    ) : (
+                                        <a onClick={subscribePlan2}>
+                                            {t('subcomponent-subscribe-btn', {
+                                                defaultValue: 'INSCREVER',
+                                            })}
+                                        </a>
+                                    )
+                                }
+                                priceText='Disponível em prestações'
+                                headerText='Plano Intermediário'
+                            />
+
+                            <Pricing
+                                data={[
+                                    {
+                                        text: 'Aulas gravadas',
+                                        value: true,
+                                    },
+                                    { text: 'Receita do mês', value: true },
+                                    {
+                                        text: 'acesso à comunidade (WA)',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'material de apoio',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Certificado digital',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Aulas práticas gravadas',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Desconto na loja online',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Eventos com descontos exclusivos',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Cursos Transmitidos',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Aulas práticas ao vivo',
+                                        value: true,
+                                    },
+                                    {
+                                        text: '1 consultoria com SF',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Uma aula prática na escola (opcional)*',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Grupo de ex-alunos do LinkedIn',
+                                        value: true,
+                                    },
+                                    {
+                                        text: 'Cerimônia de formatura com diploma físico',
+                                        value: true,
+                                    },
+                                ]}
+                                price='3482'
+                                duration='y'
+                                background='linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%)'
+                                shadow='#F5BCD7'
+                                currency='R$'
+                                buttonContent={
+                                    alreadySubscribe ? (
+                                        <a
+                                            onClick={() =>
+                                                router.push('/checkout')
+                                            }
+                                        >
+                                            {t(
+                                                'subcomponent-already-subscribe',
+                                                {
+                                                    defaultValue:
+                                                        'View My Subscription',
+                                                }
+                                            )}
+                                        </a>
+                                    ) : (
+                                        <a onClick={subscribePlan3}>
+                                            {t('subcomponent-subscribe-btn', {
+                                                defaultValue: 'INSCREVER',
+                                            })}
+                                        </a>
+                                    )
+                                }
+                                priceText='Disponível em prestações'
+                                headerText='Plano Premium'
+                            />
                         </div>
                     </div>
-                </a>
+                </div>
             )}
         </>
     );
