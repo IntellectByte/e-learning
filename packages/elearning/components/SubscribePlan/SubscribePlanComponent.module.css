@@ -58,3 +58,29 @@
         font-size: 20px;
     }
 }
+
+.button-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.button-class {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

@@ -19,7 +19,7 @@ const SubscribePlanComponent = () => {
     const subscribePlan1 = () => {
         const planObj = {
             id: '1',
-            title: 'Plano de Assinatura Baunilha',
+            title: 'Plano de Assinatura BAUNILHA',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
             price: 3999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/sraiyjbchapm2j1qj6at.jpg',
@@ -46,7 +46,7 @@ const SubscribePlanComponent = () => {
     const subscribePlan2 = () => {
         const planObj = {
             id: '2',
-            title: 'Plano de Assinatura Chocolate',
+            title: 'Plano de Assinatura Baunilha',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
             price: 4999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/wciqvy7atnoxeo0sib9v.jpg',
@@ -116,6 +116,7 @@ const SubscribePlanComponent = () => {
 
                         <div className={styles['pricing-table']}>
                             <Pricing
+                                id='custom-pricing-component'
                                 data={[
                                     {
                                         text: 'Aulas gravadas',

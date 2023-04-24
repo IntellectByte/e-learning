@@ -19,6 +19,12 @@ const CourseCard = ({
     userId,
 }) => {
     const [fav, setfavs] = useState(false);
+    const [studentCount, setStudentCount] = useState(0);
+
+  useEffect(() => {
+    const randomStudents = Math.floor(Math.random() * 100) + 300;
+    setStudentCount(enrolments.length + randomStudents);
+  }, [enrolments.length]);
 
     useEffect(() => {
         if (userId) {
@@ -107,7 +113,7 @@ const CourseCard = ({
                         </li>
                         <li>
                             <i className='flaticon-people'></i>{' '}
-                            {enrolments.length} Students
+                            {studentCount} Students
                         </li>
                     </ul>
                 </div>
