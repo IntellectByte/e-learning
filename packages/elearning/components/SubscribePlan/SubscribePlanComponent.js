@@ -19,9 +19,9 @@ const SubscribePlanComponent = () => {
     const subscribePlan1 = () => {
         const planObj = {
             id: '1',
-            title: 'Plano de Assinatura BÁSICO',
+            title: 'Plano de Assinatura Baunilha',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
-            price: 3.999,
+            price: 3999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/sraiyjbchapm2j1qj6at.jpg',
             duration: 'Assinatura de 1 año',
             quantity: 1,
@@ -46,9 +46,9 @@ const SubscribePlanComponent = () => {
     const subscribePlan2 = () => {
         const planObj = {
             id: '2',
-            title: 'Plano de Assinatura Baunilha',
+            title: 'Plano de Assinatura Chocolate',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
-            price: 4.999,
+            price: 4999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/wciqvy7atnoxeo0sib9v.jpg',
             duration: 'Assinatura de 1 año',
             quantity: 1,
@@ -75,7 +75,7 @@ const SubscribePlanComponent = () => {
             id: '3',
             title: 'Plano de Assinatura Pistache',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
-            price: 5.999,
+            price: 5999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/rvp8oa1xkg2zx65qouud.jpg',
             duration: 'Assinatura de 1 año',
             quantity: 1,
@@ -171,7 +171,7 @@ const SubscribePlanComponent = () => {
                                         value: false,
                                     },
                                 ]}
-                                price='3.999'
+                                price='3999'
                                 duration='y'
                                 background='linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%)'
                                 shadow='#F5BCD7'
@@ -259,7 +259,7 @@ const SubscribePlanComponent = () => {
                                         value: false,
                                     },
                                 ]}
-                                price='4.999'
+                                price='4999'
                                 duration='y'
                                 background='linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)'
                                 shadow='#F5BCD7'
@@ -347,7 +347,7 @@ const SubscribePlanComponent = () => {
                                         value: true,
                                     },
                                 ]}
-                                price='5.999'
+                                price='5999'
                                 duration='y'
                                 background='linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%)'
                                 shadow='#F5BCD7'
