@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 
 const GetInstantCourses = ({ user }) => {
     const [email, setEmail] = useState('');
-
     const { t } = useTranslation();
     const [isMounted, setIsMounted] = useState(false);
 
@@ -17,13 +15,14 @@ const GetInstantCourses = ({ user }) => {
             '_blank',
             'noopener noreferrer'
         );
+        const audienceId = '30ec86df3b'; // Clase Gratuita Audience
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, audienceId }),
             });
 
             const data = await response.json();

@@ -13,26 +13,28 @@ const PopUp = ({ onClose }) => {
         setIsMounted(true);
     }, []);
 
-    const addToMailchimp = async (email, name) => {
+    const addToMailchimp = async (email, name, audienceId) => {
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, name }),
+                body: JSON.stringify({ email, name, audienceId }),
             });
 
-            //a
             const data = await response.json();
 
-            if (response.ok && data.status === 'subscribed') {
+            if (response.ok) {
                 toast.success('Email submitted successfully!');
                 setTimeout(() => {
                     onClose();
                 }, 2000);
             } else {
-                toast.error('An error occurred. Please try again.');
+                console.error('Response JSON:', data); // Add this line to log the JSON response
+                toast.error(
+                    data.error || 'An error occurred. Please try again.'
+                );
             }
         } catch (error) {
             console.error('Mailchimp error:', error);
@@ -66,7 +68,8 @@ const PopUp = ({ onClose }) => {
             return;
         }
 
-        await addToMailchimp(email, name);
+        const audienceId = '508bd65738';
+        await addToMailchimp(email, name, audienceId);
     };
 
     return (

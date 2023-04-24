@@ -5,20 +5,38 @@ Mailchimp.setConfig({
     server: 'us17',
 });
 
-export default async (req, res) => {
-    const { email, name } = req.body;
+async function addMemberToList(listId, email, name) {
     try {
-        const response = await Mailchimp.lists.addListMember('69cfcfd45d', {
+        const response = await Mailchimp.lists.addListMember(listId, {
             email_address: email,
             status: 'subscribed',
             merge_fields: {
                 MERGE1: name,
             },
         });
-
-        res.status(200).json({ status: response.status });
+        return { status: response.status };
     } catch (error) {
+        return { error: error.message || 'Usuário já cadastrado' };
+    }
+}
 
-        res.status(500).json({ error: 'Usuário já cadastrado' });
+export default async (req, res) => {
+    const { email, name, audienceId } = req.body;
+
+    try {
+        const results = await Promise.all([
+            addMemberToList(audienceId, email, name),
+        ]);
+
+        const hasError = results.some((result) => result.error);
+        if (hasError) {
+            res.status(500).json({ error: 'An error occurred', results });
+        } else {
+            res.status(200).json({ results });
+        }
+    } catch (error) {
+        res.status(500).json({
+            error: error.message || 'Something went wrong',
+        });
     }
 };

@@ -15,13 +15,14 @@ const SubscribeForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const audienceId = '69cfcfd45d';
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, audienceId }),
             });
 
             const data = await response.json();
