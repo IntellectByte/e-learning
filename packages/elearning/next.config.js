@@ -15,15 +15,12 @@ const nextConfig = {
     env: {
         GETNET_CHECKOUT_ENDPOINT: process.env.GETNET_CHECKOUT_ENDPOINT,
         BASIC_AUTH_GETNET: process.env.BASIC_AUTH_GETNET,
-        JWT_SECRET: 'asdfghjklnbvcxzqwertyuiopmkioprewqasderfgnujm',
-        CLOUD_NAME: 'dnunzwnex',
-        UPLOAD_PRESETS: 'images',
-        CLOUDINARY_URL:
-            'https://api.cloudinary.com/v1_1/dnunzwnex/image/upload',
-        CLOUDINARY_VIDEO_URL:
-            'https://api.cloudinary.com/v1_1/dnunzwnex/video/upload',
-        CLOUDINARY_ZIP_URL:
-            'https://api.cloudinary.com/v1_1/dnneps5f/raw/upload?api_key=284888778249526',
+        JWT_SECRET: process.env.JWT_SECRET,
+        CLOUD_NAME: process.env.CLOUD_NAME,
+        UPLOAD_PRESETS: process.env.UPLOAD_PRESETS,
+        CLOUDINARY_URL: process.env.CLOUDINARY_URL,
+        CLOUDINARY_VIDEO_URL: process.env.CLOUDINARY_VIDEO_URL,
+        CLOUDINARY_ZIP_URL: process.env.CLOUDINARY_ZIP_URL,
     },
     webpack: (config, { isServer }) => {
         config.module.rules.push({
