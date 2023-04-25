@@ -190,5 +190,10 @@
     "contact-us-page-emailaddress": "contato@escolasorvete.com.br",
     "contactform-text1": "Ready to Get Started?",
     "contactform-text2": "Your email address will not be published. Required fields are marked *",
-    "contactform-text3": "Send Message"
+    "contactform-text3": "Send Message",
+    "registerform-confirm-alert": "Please confirm your email first.",
+    "registerform-confirm-conf-email": "Didnt receive a confirmation email?",
+    "registerform-confirm-already-request": "Already sent a request, please wait.",
+    "registerform-confirm-register-as-instructor": "Register to Become an Intructor",
+    "registerform-confirm-email-wont-publish": "Your email address will not be published. All fields are required."
 }

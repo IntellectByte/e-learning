@@ -190,5 +190,10 @@
     "contact-us-page-emailaddress": "contato@escolasorvete.com.br",
     "contactform-text1": "¿Listo para empezar?",
     "contactform-text2": "Su dirección de correo electrónico no será publicada. Los campos obligatorios están marcados *",
-    "contactform-text3": "Enviar mensaje"
+    "contactform-text3": "Enviar mensaje",
+    "registerform-confirm-alert": "Primero confirme su correo electrónico.",
+    "registerform-confirm-conf-email": "¿No recibiste un correo electrónico de confirmación?",
+    "registerform-confirm-already-request": "Ya se ha enviado una solicitud, por favor espere.",
+    "registerform-confirm-register-as-instructor": "Regístrate para convertirte en instructor",
+    "registerform-confirm-email-wont-publish": "Su dirección de correo electrónico no será publicada. Todos los campos son obligatorios."
 }
