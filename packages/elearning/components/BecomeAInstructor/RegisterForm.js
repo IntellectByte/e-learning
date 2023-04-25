@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import toast from 'react-hot-toast';
 import { parseCookies } from 'nookies';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const RegisterForm = ({
     user: {
@@ -23,6 +24,13 @@ const RegisterForm = ({
         instructor_subject: '',
         instructor_description: '',
     };
+
+    const { t } = useTranslation();
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const router = useRouter();
     const { elarniv_users_token } = parseCookies();
@@ -90,138 +98,168 @@ const RegisterForm = ({
 
     return (
         <>
-            <div className='teacher-register-area ptb-100'>
-                <div className='container'>
-                    <div className='row align-items-center'>
-                        <div className='col-lg-6'>
-                            <div className='d-none d-lg-block'>
-                                <img
-                                    src='/images/become-a-instructor.png'
-                                    alt='instructor'
-                                />
+            {isMounted && (
+                <div className='teacher-register-area ptb-100'>
+                    <div className='container'>
+                        <div className='row align-items-center'>
+                            <div className='col-lg-6'>
+                                <div className='d-none d-lg-block'>
+                                    <img
+                                        src='/images/become-a-instructor.png'
+                                        alt='instructor'
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        <div className='col-lg-6'>
-                            <div className='teacher-register-box'>
-                                {!email_confirmed && (
-                                    <div
-                                        className='alert alert-danger'
-                                        role='alert'
-                                    >
-                                        Please confirm your email first.{' '}
-                                        <a href='/send-confirmation-email'>
-                                            Didn't receive a confirmation email?
-                                        </a>
-                                    </div>
-                                )}
-
-                                {instructor_request && (
-                                    <div
-                                        className='alert alert-danger'
-                                        role='alert'
-                                    >
-                                        Already sent a request, please wait.
-                                    </div>
-                                )}
-                                <h2>Register to Become an Intructor</h2>
-                                <p>
-                                    Your email address will not be published.
-                                    All fields are required.
-                                </p>
-
-                                <form onSubmit={handleSubmit}>
-                                    <div className='row'>
-                                        <div className='col-lg-6 col-md-6'>
-                                            <div className='form-group'>
-                                                <input
-                                                    type='text'
-                                                    name='name'
-                                                    placeholder='Your Name'
-                                                    value={instructor.name}
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-6 col-md-6'>
-                                            <div className='form-group'>
-                                                <input
-                                                    type='text'
-                                                    name='email'
-                                                    placeholder='Your email address'
-                                                    value={instructor.email}
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-12 col-md-6'>
-                                            <div className='form-group'>
-                                                <input
-                                                    type='text'
-                                                    name='phone'
-                                                    placeholder='Your phone number'
-                                                    value={instructor.phone}
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-12 col-md-6'>
-                                            <div className='form-group'>
-                                                <input
-                                                    type='text'
-                                                    name='instructor_subject'
-                                                    placeholder='Your Subject'
-                                                    value={
-                                                        instructor.instructor_subject
+                            <div className='col-lg-6'>
+                                <div className='teacher-register-box'>
+                                    {!email_confirmed && (
+                                        <div
+                                            className='alert alert-danger'
+                                            role='alert'
+                                        >
+                                            {t('registerform-confirm-alert', {
+                                                defaultValue:
+                                                    'Please confirm your email first.',
+                                            })}{' '}
+                                            <a href='/send-confirmation-email'>
+                                                {t(
+                                                    'registerform-confirm-conf-email',
+                                                    {
+                                                        defaultValue:
+                                                            'Didnt receive a confirmation email?',
                                                     }
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-12 col-md-12'>
-                                            <div className='form-group'>
-                                                <textarea
-                                                    name='instructor_description'
-                                                    cols='30'
-                                                    rows='5'
-                                                    placeholder='Write your message...'
-                                                    value={
-                                                        instructor.instructor_description
-                                                    }
-                                                    onChange={handleChange}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className='col-lg-12 col-sm-12 text-center'>
-                                            <button
-                                                type='submit'
-                                                className='default-btn'
-                                                disabled={
-                                                    disabled ||
-                                                    !email_confirmed ||
-                                                    instructor_request
-                                                }
-                                            >
-                                                Submit Request
-                                                {loading ? (
-                                                    <LoadingSpinner />
-                                                ) : (
-                                                    ''
                                                 )}
-                                            </button>
+                                            </a>
                                         </div>
-                                    </div>
-                                </form>
+                                    )}
+
+                                    {instructor_request && (
+                                        <div
+                                            className='alert alert-danger'
+                                            role='alert'
+                                        >
+                                            {t(
+                                                'registerform-confirm-already-request',
+                                                {
+                                                    defaultValue:
+                                                        'Already sent a request, please wait.',
+                                                }
+                                            )}
+                                        </div>
+                                    )}
+                                    <h2>
+                                        {t(
+                                            'registerform-confirm-register-as-instructor',
+                                            {
+                                                defaultValue:
+                                                    'Register to Become an Intructor',
+                                            }
+                                        )}
+                                    </h2>
+                                    <p>
+                                        {t(
+                                            'registerform-confirm-email-wont-publish',
+                                            {
+                                                defaultValue:
+                                                    'Your email address will not be published. All fields are required.',
+                                            }
+                                        )}
+                                    </p>
+
+                                    <form onSubmit={handleSubmit}>
+                                        <div className='row'>
+                                            <div className='col-lg-6 col-md-6'>
+                                                <div className='form-group'>
+                                                    <input
+                                                        type='text'
+                                                        name='name'
+                                                        placeholder='Your Name'
+                                                        value={instructor.name}
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className='col-lg-6 col-md-6'>
+                                                <div className='form-group'>
+                                                    <input
+                                                        type='text'
+                                                        name='email'
+                                                        placeholder='Your email address'
+                                                        value={instructor.email}
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className='col-lg-12 col-md-6'>
+                                                <div className='form-group'>
+                                                    <input
+                                                        type='text'
+                                                        name='phone'
+                                                        placeholder='Your phone number'
+                                                        value={instructor.phone}
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className='col-lg-12 col-md-6'>
+                                                <div className='form-group'>
+                                                    <input
+                                                        type='text'
+                                                        name='instructor_subject'
+                                                        placeholder='Your Subject'
+                                                        value={
+                                                            instructor.instructor_subject
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className='col-lg-12 col-md-12'>
+                                                <div className='form-group'>
+                                                    <textarea
+                                                        name='instructor_description'
+                                                        cols='30'
+                                                        rows='5'
+                                                        placeholder='Write your message...'
+                                                        value={
+                                                            instructor.instructor_description
+                                                        }
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className='col-lg-12 col-sm-12 text-center'>
+                                                <button
+                                                    type='submit'
+                                                    className='default-btn'
+                                                    disabled={
+                                                        disabled ||
+                                                        !email_confirmed ||
+                                                        instructor_request
+                                                    }
+                                                >
+                                                    Submit Request
+                                                    {loading ? (
+                                                        <LoadingSpinner />
+                                                    ) : (
+                                                        ''
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };
