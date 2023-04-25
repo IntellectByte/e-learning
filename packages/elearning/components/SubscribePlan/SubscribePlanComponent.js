@@ -12,9 +12,46 @@ const SubscribePlanComponent = () => {
     const cartItems = useSelector((state) => state.cart.cartItems);
     const router = useRouter();
 
+    const [yr, setYr] = useState({
+        xpathResult1: '',
+    })
+
     useEffect(() => {
         setIsMounted(true);
-    }, []);
+
+        setTimeout(getElementsWithXPath, 500);
+
+// Check if the element was found
+
+        if (yr.xpathResult1.singleNodeValue) {
+            // Access the element
+            const element = yr.xpathResult1.singleNodeValue;
+            const spans = Array.from(element.querySelectorAll('div span')).map(e => {
+                if (e.innerHTML === ' / yr'){
+                    return e
+                }
+            })
+            console.log(spans)
+
+            for (const span of spans) {
+                if (span){
+                    span.innerHTML = '/ano'
+                }
+            }
+
+        } else {
+            console.log("Element not found.");
+        }
+
+
+
+    }, [yr]);
+
+
+    function getElementsWithXPath() {
+        setYr({ xpathResult1: document.evaluate("//*[@id=\"__next\"]/div[4]/div/div", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)})
+    }
+
 
     const subscribePlan1 = () => {
         const planObj = {
