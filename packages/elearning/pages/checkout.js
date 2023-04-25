@@ -1,51 +1,57 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // INTERNALS
-import Navbar from "@/components/_App/Navbar";
-import CheckoutForm from "@/components/Checkout/CheckoutForm";
+import Navbar from '@/components/_App/Navbar';
+import CheckoutForm from '@/components/Checkout/CheckoutForm';
 // import PopUpCheck from '@/components/PopUp/PopupCheckout';
-import SupportButton from "@/components/ContactUs/SupportBtn";
-import PaymentField from "@/components/PaymentField/PaymentField";
-import TopBanner from "@/components/TopBanner/TopBanner";
-import SubscribeForm from "@/components/Common/SubscribeForm";
-import Footer from "@/components/_App/Footer";
+import SupportButton from '@/components/ContactUs/SupportBtn';
+import PaymentField from '@/components/PaymentField/PaymentField';
+import TopBanner from '@/components/TopBanner/TopBanner';
+import SubscribeForm from '@/components/Common/SubscribeForm';
+import Footer from '@/components/_App/Footer';
+import SnackBar from '@/components/SnackBar/SnackBar';
 
 export default function CheckoutPage({ user }) {
-  const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
-  const [isPaymentFormComplete, setIsPaymentFormComplete] = useState(false);
+    const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
+    const [isPaymentFormComplete, setIsPaymentFormComplete] = useState(false);
 
-  const handleCloseCheckOutPopUP = () => {
-    setShowChackoutPopUp(false);
-  };
+    const handleCloseCheckOutPopUP = () => {
+        setShowChackoutPopUp(false);
+    };
 
-  const handleShowCheckOutPopUP = () => {
-    setShowChackoutPopUp(true);
-  };
+    const handleShowCheckOutPopUP = () => {
+        setShowChackoutPopUp(true);
+    };
 
-  return (
-    <>
-      <TopBanner />
+    return (
+        <>
+            <TopBanner />
 
-      <Navbar user={user} />
+            <Navbar user={user} />
 
-      <SupportButton />
+            {/* <SupportButton /> */}
 
-      {/* COMMENTING POP UP BECAUSE IT WAS USED WHEN WE HAD HOTMART CHECKOUT */}
-      {/* {showChackoutPopUp && (
+            <SnackBar />
+
+            {/* COMMENTING POP UP BECAUSE IT WAS USED WHEN WE HAD HOTMART CHECKOUT */}
+            {/* {showChackoutPopUp && (
                 <PopUpCheck onClose={handleCloseCheckOutPopUP} />
             )} */}
 
-      <PaymentField user={user} onFormComplete={setIsPaymentFormComplete} />
+            <CheckoutForm
+                user={user}
+                onButtonClick={handleShowCheckOutPopUP}
+                isPaymentFormComplete={isPaymentFormComplete}
+            />
 
-      <CheckoutForm
-        user={user}
-        onButtonClick={handleShowCheckOutPopUP}
-        isPaymentFormComplete={isPaymentFormComplete}
-      />
+            <PaymentField
+                user={user}
+                onFormComplete={setIsPaymentFormComplete}
+            />
 
-      <SubscribeForm />
+            <SubscribeForm />
 
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    );
 }
