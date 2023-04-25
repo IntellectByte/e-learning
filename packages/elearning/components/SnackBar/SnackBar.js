@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 import styles from './SnackBar.module.css';
 import baseUrl from '../../utils/baseUrl';
 import axios from 'axios';
 
-const SnackBar = () => {
+const SnackBar = ({ current_user, course }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [courses, setCourses] = useState([]);
+    const [add, setAdd] = useState(false);
+    const discount = useSelector((state) => state.cart.discount);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchRecommendedCourses = async () => {
@@ -27,6 +31,29 @@ const SnackBar = () => {
     const handleClose = (e) => {
         e.stopPropagation();
         setIsOpen(false);
+    };
+
+    const addToCart = (courseCart) => {
+        let courseObj = {};
+        courseObj['id'] = courseCart.id;
+        courseObj['title'] = courseCart.title;
+        courseObj['slug'] = courseCart.slug;
+        courseObj['price'] = discount > 0 ? discount : courseCart.latest_price;
+        courseObj['regular_price'] = courseCart.before_price;
+        courseObj['image'] = courseCart.image;
+        courseObj['lessons'] = courseCart.lessons;
+        courseObj['duration'] = courseCart.duration;
+        courseObj['access_time'] = courseCart.access_time;
+        courseObj['quantity'] = 1;
+        courseObj['hotmartId'] = courseCart.hotmartId;
+
+        // courseObj[
+        //     'instructor'
+        // ] = `${courseCart.user.first_name} ${courseCart.user.last_name}`;
+        dispatch({
+            type: 'ADD_TO_CART',
+            data: courseObj,
+        });
     };
 
     return (
@@ -60,8 +87,14 @@ const SnackBar = () => {
                                         {course.title}
                                     </h4>
                                 </div>
-                                <button className={styles.buttonRecommends}>
-                                    Add to Cart
+                                <button
+                                    onClick={() => addToCart(course)}
+                                    className={styles.buttonRecommends}
+                                    disabled={add}
+                                >
+                                    {' '}
+                                    <i className='flaticon-shopping-cart'></i>{' '}
+                                    <span></span>
                                 </button>
                             </div>
                         ))}
