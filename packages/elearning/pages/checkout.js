@@ -38,16 +38,20 @@ export default function CheckoutPage({ user }) {
                 <PopUpCheck onClose={handleCloseCheckOutPopUP} />
             )} */}
 
+            <PaymentField
+                user={user}
+                onFormComplete={setIsPaymentFormComplete}
+            />
+
+            <hr className='payment-field-border' />
+
             <CheckoutForm
                 user={user}
                 onButtonClick={handleShowCheckOutPopUP}
                 isPaymentFormComplete={isPaymentFormComplete}
             />
 
-            <PaymentField
-                user={user}
-                onFormComplete={setIsPaymentFormComplete}
-            />
+            <hr className='payment-field-border' />
 
             <SubscribeForm />
 
