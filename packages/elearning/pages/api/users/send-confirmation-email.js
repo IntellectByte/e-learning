@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 			break;
 		default:
 			res.status(405).json({
-				message: `Method ${req.method} not allowed`,
+				message: `Método ${req.method} não permitido`,
 			});
 	}
 }
@@ -19,7 +19,7 @@ const userConfirmationEmailSend = async (req, res) => {
 	try {
 		if (!isEmail(email)) {
 			return res.status(422).json({
-				message: "Email should be a valid email address",
+				message: "O e-mail deve ser um endereço de e-mail válido",
 			});
 		}
 
@@ -32,12 +32,12 @@ const userConfirmationEmailSend = async (req, res) => {
 			confirmEmailAddress(user);
 
 			res.status(200).json({
-				message: "Please check your email and confirm.",
+				message: "Verifique seu e-mail e confirme.",
 			});
 		} else {
 			res.status(422).json({
 				message:
-					"Email does not exist! Plecase check again if the email is correct",
+					"E-mail não existe! Verifique novamente se o e-mail está correto",
 			});
 		}
 	} catch (e) {
