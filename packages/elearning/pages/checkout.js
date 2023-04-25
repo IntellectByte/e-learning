@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 // INTERNALS
 import Navbar from '@/components/_App/Navbar';
 import CheckoutForm from '@/components/Checkout/CheckoutForm';
-// import PopUpCheck from '@/components/PopUp/PopupCheckout';
-import SupportButton from '@/components/ContactUs/SupportBtn';
 import PaymentField from '@/components/PaymentField/PaymentField';
 import TopBanner from '@/components/TopBanner/TopBanner';
 import SubscribeForm from '@/components/Common/SubscribeForm';
@@ -29,14 +27,7 @@ export default function CheckoutPage({ user }) {
 
             <Navbar user={user} />
 
-            {/* <SupportButton /> */}
-
             <SnackBar />
-
-            {/* COMMENTING POP UP BECAUSE IT WAS USED WHEN WE HAD HOTMART CHECKOUT */}
-            {/* {showChackoutPopUp && (
-                <PopUpCheck onClose={handleCloseCheckOutPopUP} />
-            )} */}
 
             <PaymentField
                 user={user}
