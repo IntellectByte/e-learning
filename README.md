@@ -16,5 +16,8 @@ Marketing: Sabrina.
 
 Escola Sorvete: Francisco Sant'Ana.
 
+## Logins
+
 Cuentas Admin: Todos los devs , QA y Mila
+
 Cuentas Teacher: Francisco Sant' Ana
