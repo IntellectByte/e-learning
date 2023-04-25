@@ -66,21 +66,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                     </Link>
                                                 )}
                                             </li>
-                                            {/* <li>
-                                                <i className='bx bx-group'></i>
-                                                <span>
-                                                    {t('course-page-span2', {
-                                                        defaultValue:
-                                                            'Students Enrolled',
-                                                    })}
-                                                </span>
-                                                <Link href='#'>
-                                                    <a>
-                                                        {enrolments &&
-                                                            enrolments.length}
-                                                    </a>
-                                                </Link>
-                                            </li> */}
+
                                             <li>
                                                 <i className='bx bx-calendar'></i>
                                                 <span>
@@ -108,10 +94,10 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                 : latest_price}
                                         </div>
 
-                                        <BuyCourseBtn
+                                        {/* <BuyCourseBtn
                                             current_user={current_user}
                                             course={course}
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
                             </div>

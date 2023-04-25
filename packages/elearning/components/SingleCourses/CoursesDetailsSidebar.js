@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import SocialShareBtns from './SocialShareBtns';
 import { calculateDiscount } from '@/utils/helper';
 import { useTranslation } from 'next-i18next';
+import BuyCourseBtn from './BuyCourseBtn';
 
 const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
     const cartItems = useSelector((state) => state.cart.cartItems);
@@ -156,17 +157,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                         {course.user && course.user.last_name}
                                     </div>
                                 </li>
-                                {/* <li>
-                                    <div className='d-flex justify-content-between align-items-center'>
-                                        <span>
-                                            <i className='flaticon-time'></i>{' '}
-                                            {t('course-page-details-duration', {
-                                                defaultValue: 'Duration',
-                                            })}
-                                        </span>
-                                        {course.duration}
-                                    </div>
-                                </li> */}
+
                                 <li>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <span>
@@ -283,24 +274,30 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                                 </a>
                                             </Link>
                                         ) : (
-                                            <button
-                                                onClick={() =>
-                                                    addToCart(course)
-                                                }
-                                                className='default-btn'
-                                                disabled={add}
-                                            >
-                                                {' '}
-                                                <i className='flaticon-shopping-cart'></i>{' '}
-                                                {t(
-                                                    'course-page-details-addtomycart',
-                                                    {
-                                                        defaultValue:
-                                                            'Add to cart',
+                                            <>
+                                                <button
+                                                    onClick={() =>
+                                                        addToCart(course)
                                                     }
-                                                )}
-                                                <span></span>
-                                            </button>
+                                                    className='default-btn'
+                                                    disabled={add}
+                                                >
+                                                    {' '}
+                                                    <i className='flaticon-shopping-cart'></i>{' '}
+                                                    {t(
+                                                        'course-page-details-addtomycart',
+                                                        {
+                                                            defaultValue:
+                                                                'Add to cart',
+                                                        }
+                                                    )}
+                                                    <span></span>
+                                                </button>
+                                                <BuyCourseBtn
+                                                    current_user={current_user}
+                                                    course={course}
+                                                />
+                                            </>
                                         )}
                                     </>
                                 )}
