@@ -15,7 +15,7 @@ export default async function handler(req, res) {
             break;
         default:
             res.status(405).json({
-                message: `Method ${req.method} not allowed`,
+                message: `Método ${req.method} não permitido`,
             });
     }
 }
@@ -27,20 +27,20 @@ const userSignup = async (req, res) => {
         if (!isLength(first_name, {min: 3})) {
             return res.status(422).json({
                 message:
-                    "The first name should be a minimum of three characters long",
+                    "O primeiro nome deve ter no mínimo três caracteres",
             });
         } else if (!isLength(last_name, {min: 3})) {
             return res.status(422).json({
                 message:
-                    "The last name should be a minimum of three characters long",
+                    "O sobrenome deve ter no mínimo três caracteres",
             });
         } else if (!isEmail(email)) {
             return res
                 .status(422)
-                .json({message: "Email should be a valid email address"});
+                .json({message: "O e-mail deve ser um endereço de e-mail válido"});
         } else if (!isLength(password, {min: 6})) {
             return res.status(422).json({
-                message: "Password should be minimum of six characters long",
+                message: "A senha deve ter no mínimo seis caracteres",
             });
         }
 
@@ -52,7 +52,7 @@ const userSignup = async (req, res) => {
         if (user) {
             return res
                 .status(422)
-                .json({message: `User already exist with email ${email}`});
+                .json({message: `O usuário já existe com e-mail ${email}`});
         }
 
         // Encrypt password with bcrypt
@@ -85,7 +85,7 @@ const userSignup = async (req, res) => {
         );
 
         res.status(200).json({
-            message: "Registration Successful!",
+            message: "Registro bem-sucedido!",
             elarniv_users_token,
         });
     } catch (e) {
