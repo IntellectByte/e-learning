@@ -31,9 +31,9 @@ const CartItems = ({
 							<p className="fs-13 mb-2">By: {instructor}</p>
 							<div className="price fs-13">
 								<strong>${price}</strong>{" "}
-								<del className="fs-12 text-muted ms-1">
+								{/* <del className="fs-12 text-muted ms-1">
 									${regular_price}
-								</del>
+								</del> */}
 							</div>
 						</div>
 					</div>
