@@ -84,7 +84,8 @@ const Navbar = ({ user }) => {
                                     className={classOne}
                                     id='navbarSupportedContent'
                                 >
-                                    <SearchForm />
+                                    {/* Creo que el component de search seria mas util cuando haya mas cursos */}
+                                    {/* <SearchForm /> */}
 
                                     <ul className='navbar-nav'>
                                         <motion.li
@@ -182,68 +183,11 @@ const Navbar = ({ user }) => {
                                                 </a>
                                             </Link>
                                         </motion.li>
-
-                                        {/* {user ? (
-                                            !user.instructor_request && (
-                                                <motion.li
-                                                    className='nav-item'
-                                                    whileHover={{
-                                                        scale: 1.1,
-                                                        transition: {
-                                                            duration: 0.5,
-                                                        },
-                                                    }}
-                                                    whileTap={{ scale: 0.9 }}
-                                                >
-                                                    <Link
-                                                        href='/become-an-instructor'
-                                                        activeClassName='active'
-                                                    >
-                                                        <a
-                                                            onClick={
-                                                                toggleNavbar
-                                                            }
-                                                            className='nav-link'
-                                                        >
-                                                            {t('navMedia', {
-                                                                defaultValue:
-                                                                    'Media',
-                                                            })}
-                                                        </a>
-                                                    </Link>
-                                                </motion.li>
-                                            )
-                                        ) : (
-                                            <motion.li
-                                                className='nav-item'
-                                                whileHover={{
-                                                    scale: 1.1,
-                                                    transition: {
-                                                        duration: 0.5,
-                                                    },
-                                                }}
-                                                whileTap={{ scale: 0.9 }}
-                                            >
-                                                <Link
-                                                    href='/become-an-instructor'
-                                                    activeClassName='active'
-                                                >
-                                                    <a
-                                                        onClick={toggleNavbar}
-                                                        className='nav-link'
-                                                    >
-                                                        {t('navMedia', {
-                                                            defaultValue:
-                                                                'Media',
-                                                        })}
-                                                    </a>
-                                                </Link>
-                                            </motion.li>
-                                        )} */}
                                     </ul>
                                 </div>
 
                                 <div className='others-option d-flex align-items-center '>
+                                    {/* NOTIFICATIONS COMPONENT */}
                                     {/*{user && <NotificationIcon />}*/}
 
                                     <Cart />
