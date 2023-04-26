@@ -29,7 +29,7 @@ const CartItems = ({
 							<h6 className="fw-bold fs-14 mb-1">
 								{title.slice(0, 40)}...
 							</h6>
-							<p className="fs-13 mb-2">By: {instructor}</p>
+							<p className="fs-13 mb-2">{instructor}</p>
 							<div className="price fs-13">
 								<strong>${price}</strong>{" "}
 								{/* <del className="fs-12 text-muted ms-1">
