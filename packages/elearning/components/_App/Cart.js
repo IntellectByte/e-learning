@@ -44,9 +44,9 @@ const Cart = () => {
 						<li className="px-4 pb-2">
 							<h5 className="pt-2 fw-bold">
 								Total: ${cartAmout}{" "}
-								<del className="fs-14 ms-1 text-muted">
+								{/* <del className="fs-14 ms-1 text-muted">
 									${cartAmoutMinus}
-								</del>
+								</del> */}
 							</h5>
 							<Link href="/checkout">
 								<a className="default-btn-style-3 d-block">
