@@ -9,10 +9,11 @@ const CartItems = ({
 	regular_price,
 	image,
 	instructor,
+	type
 }) => {
 	return (
 		<li>
-			<Link href={`/course/${slug}`}>
+			<Link href={type === 'sub' ? '/learning/sub-form/' : `/course/${slug}`}>
 				<a className="dropdown-item">
 					<div className="d-flex align-items-center">
 						<div>
