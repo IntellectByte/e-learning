@@ -13,8 +13,8 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     env: {
-        GETNET_CHECKOUT_ENDPOINT: process.env.GETNET_CHECKOUT_ENDPOINT,
-        BASIC_AUTH_GETNET: process.env.BASIC_AUTH_GETNET,
+        GETNET_CHECKOUT_ENDPOINT: 'https://api.getnet.com.br/auth/oauth/v2/token',
+        BASIC_AUTH_GETNET: 'Basic NTg1ZGMwYmMtN2Y0OS00NWRlLTk2OGItNTk0M2VhMThmMjI4OjIzMTI1NDk5LWNkYzYtNGFjOC1hOGZlLWVmY2UwMmVmMmRlNQ==',
         JWT_SECRET: process.env.JWT_SECRET,
         CLOUD_NAME: 'dnneps5fo',
         UPLOAD_PRESETS: "images",
