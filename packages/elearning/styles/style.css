@@ -8289,8 +8289,8 @@ Go Top CSS
     background-color: #fff;
     padding: 2rem;
     border: 3.8px solid #ce417d;
-    animation: borderColors 4s linear infinite, popupFadeIn 0.5s forwards,
-        slideInFromLeft 0.5s forwards;
+    animation: borderColorsPaymentField 4s linear infinite,
+        popupFadeIn 0.5s forwards, slideInFromLeft 0.5s forwards;
     animation-delay: 1s, 1s, 1s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     z-index: 9999999;
