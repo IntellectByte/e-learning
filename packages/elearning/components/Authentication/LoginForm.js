@@ -143,9 +143,15 @@ const LoginForm = () => {
                                     </a>
                                 </Link>
                             </div>
+
                             <div className='col-lg-6 col-md-6 col-sm-12 forgot-password-wrap'>
                                 <Link href='/forgot-password-page'>
-                                    <a className='forgot-password'>
+                                    <a
+                                        className='forgot-password'
+                                        style={{
+                                            color: 'blue',
+                                        }}
+                                    >
                                         {t('loginpage-forgotpassword', {
                                             defaultValue: 'Forgot password?',
                                         })}
