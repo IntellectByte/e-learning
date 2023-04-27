@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import styles from './WhatYouWillLearn.module.css';
 
 const WhatYouWillLearn = ({ what_you_will_learn }) => {
     const { t } = useTranslation();
@@ -18,11 +19,13 @@ const WhatYouWillLearn = ({ what_you_will_learn }) => {
                             defaultValue: 'What will you learn',
                         })}
                     </h3>
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: what_you_will_learn,
-                        }}
-                    ></div>
+                    <div className={styles.learnContent}>
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: what_you_will_learn,
+                            }}
+                        ></div>
+                    </div>
                 </>
             )}
         </>

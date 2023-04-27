@@ -93,11 +93,6 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                 ? discount
                                                 : latest_price}
                                         </div>
-
-                                        {/* <BuyCourseBtn
-                                            current_user={current_user}
-                                            course={course}
-                                        /> */}
                                     </div>
                                 </div>
                             </div>
