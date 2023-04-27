@@ -132,7 +132,24 @@ const LoginForm = () => {
                             />
                         </div>
 
-                        <div className='row align-items-center'>
+                        <motion.button
+                            type='submit'
+                            disabled={disabled}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            {t('loginpage-logintwo', {
+                                defaultValue: 'Log In',
+                            })}
+
+                            {loading ? <LoadingSpinner /> : ''}
+                        </motion.button>
+
+                        <div
+                            className='row align-items-center'
+                            style={{
+                                marginTop: '20px',
+                            }}
+                        >
                             <div className='col-lg-12 col-md-12 col-sm-12 remember-me-wrap'>
                                 <Link href='/send-confirmation-email'>
                                     <a className='lost-your-password'>
@@ -159,18 +176,6 @@ const LoginForm = () => {
                                 </Link>
                             </div>
                         </div>
-
-                        <motion.button
-                            type='submit'
-                            disabled={disabled}
-                            whileTap={{ scale: 0.9 }}
-                        >
-                            {t('loginpage-logintwo', {
-                                defaultValue: 'Log In',
-                            })}
-
-                            {loading ? <LoadingSpinner /> : ''}
-                        </motion.button>
                     </form>
                 </div>
             )}
