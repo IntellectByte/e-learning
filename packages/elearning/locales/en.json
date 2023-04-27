@@ -195,5 +195,7 @@
     "registerform-confirm-conf-email": "Didnt receive a confirmation email?",
     "registerform-confirm-already-request": "Already sent a request, please wait.",
     "registerform-confirm-register-as-instructor": "Register to Become an Intructor",
-    "registerform-confirm-email-wont-publish": "Your email address will not be published. All fields are required."
+    "registerform-confirm-email-wont-publish": "Your email address will not be published. All fields are required.",
+    "coursecard-lessons": "Lessons",
+    "coursecard-students": "Students"
 }

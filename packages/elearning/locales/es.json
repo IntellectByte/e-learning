@@ -195,5 +195,7 @@
     "registerform-confirm-conf-email": "¿No recibiste un correo electrónico de confirmación?",
     "registerform-confirm-already-request": "Ya se ha enviado una solicitud, por favor espere.",
     "registerform-confirm-register-as-instructor": "Regístrate para convertirte en instructor",
-    "registerform-confirm-email-wont-publish": "Su dirección de correo electrónico no será publicada. Todos los campos son obligatorios."
+    "registerform-confirm-email-wont-publish": "Su dirección de correo electrónico no será publicada. Todos los campos son obligatorios.",
+    "coursecard-lessons": "Lecciones",
+    "coursecard-students": "Estudiantes"
 }
