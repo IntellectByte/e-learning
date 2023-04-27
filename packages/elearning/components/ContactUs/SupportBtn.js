@@ -3,7 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 const SupportButton = () => {
     const handleWhatsAppClick = () => {
-        window.open('https://wa.me/+551138621698', '_blank');
+        window.open('https://wa.me/+5511974025414', '_blank');
     };
 
     return (
