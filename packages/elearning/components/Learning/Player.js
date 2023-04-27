@@ -14,6 +14,7 @@ const Player = ({ videoSrc }) => {
                 height='100%'
                 controls
                 controlsList='nodownload'
+                preload='auto'
             >
                 <source src={src && src} type='video/mp4' />
             </video>
