@@ -5597,7 +5597,7 @@ Get Instant Courses Area CSS
 .get-instant-courses-inner-area {
     position: relative;
     z-index: 1;
-    animation: borderColorsInstantCourses 8s linear infinite;
+    animation: borderColorsPaymentField 8s linear infinite;
     border: 3px solid;
     background: rgb(255, 255, 255);
     background: linear-gradient(
