@@ -17,13 +17,6 @@ export default function AuthenticationPage({ user }) {
 
             <Navbar user={user} />
 
-            {/* <PageBanner
-                pageTitle='Authentication'
-                homePageUrl='/'
-                homePageText='Home'
-                activePageText='Authentication'
-            /> */}
-
             <div className='profile-authentication-area ptb-100'>
                 <div className='container'>
                     <div className='row'>

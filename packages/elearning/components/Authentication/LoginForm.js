@@ -132,28 +132,6 @@ const LoginForm = () => {
                             />
                         </div>
 
-                        <div className='row align-items-center'>
-                            <div className='col-lg-12 col-md-12 col-sm-12 remember-me-wrap'>
-                                <Link href='/send-confirmation-email'>
-                                    <a className='lost-your-password'>
-                                        {t('loginpage-confirmationemail', {
-                                            defaultValue:
-                                                'Didnt receive a confirmation email?',
-                                        })}
-                                    </a>
-                                </Link>
-                            </div>
-                            <div className='col-lg-6 col-md-6 col-sm-12 forgot-password-wrap'>
-                                <Link href='/forgot-password-page'>
-                                    <a className='forgot-password'>
-                                        {t('loginpage-forgotpassword', {
-                                            defaultValue: 'Forgot password?',
-                                        })}
-                                    </a>
-                                </Link>
-                            </div>
-                        </div>
-
                         <motion.button
                             type='submit'
                             disabled={disabled}
@@ -165,6 +143,39 @@ const LoginForm = () => {
 
                             {loading ? <LoadingSpinner /> : ''}
                         </motion.button>
+
+                        <div
+                            className='row align-items-center'
+                            style={{
+                                marginTop: '20px',
+                            }}
+                        >
+                            <div className='col-lg-12 col-md-12 col-sm-12 remember-me-wrap'>
+                                <Link href='/send-confirmation-email'>
+                                    <a className='lost-your-password'>
+                                        {t('loginpage-confirmationemail', {
+                                            defaultValue:
+                                                'Didnt receive a confirmation email?',
+                                        })}
+                                    </a>
+                                </Link>
+                            </div>
+
+                            <div className='col-lg-6 col-md-6 col-sm-12 forgot-password-wrap'>
+                                <Link href='/forgot-password-page'>
+                                    <a
+                                        className='forgot-password'
+                                        style={{
+                                            color: 'blue',
+                                        }}
+                                    >
+                                        {t('loginpage-forgotpassword', {
+                                            defaultValue: 'Forgot password?',
+                                        })}
+                                    </a>
+                                </Link>
+                            </div>
+                        </div>
                     </form>
                 </div>
             )}
