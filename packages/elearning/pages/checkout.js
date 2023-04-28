@@ -29,22 +29,28 @@ export default function CheckoutPage({ user }) {
 
             <SnackBar />
 
-            <PaymentField
-                user={user}
-                onFormComplete={setIsPaymentFormComplete}
-            />
+            <div style={{display: "flex"}}>
+                <PaymentField
+                    user={user}
+                    onFormComplete={setIsPaymentFormComplete}
+                />
 
-            <hr className='payment-field-border' />
+                <hr className='payment-field-border' />
 
-            <CheckoutForm
-                user={user}
-                onButtonClick={handleShowCheckOutPopUP}
-                isPaymentFormComplete={isPaymentFormComplete}
-            />
+                <CheckoutForm
+                    user={user}
+                    onButtonClick={handleShowCheckOutPopUP}
+                    isPaymentFormComplete={isPaymentFormComplete}
+                />
 
-            <hr className='payment-field-border' />
+                <hr className='payment-field-border' />
 
-            <SubscribeForm />
+            </div>
+
+
+            {/*<SubscribeForm />*/}
+
+
 
             <Footer />
         </>

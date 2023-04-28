@@ -31,11 +31,36 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
 
     return (
         <>
-            <div className='checkout-area ptb-100'>
+            <div style={
+                {
+                    maxWidth: "33%",
+                    // backgroundColor: "red",
+                    display: "flex",
+
+
+                }
+            } className='checkout-area ptb-100'>
                 <div className='container'>
-                    <div className='row justify-content-center'>
-                        <div className='col-lg-9 col-md-12'>
-                            <div className='shopping-cart'>
+                    <div style={
+                        {
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignContent: "center",
+                            // backgroundColor: "red"
+
+                        }
+                    } className='row justify-content-center'>
+                        <div style={
+                            {
+                                // backgroundColor: "red",
+                            }
+                        } className='col-lg-9 col-md-12'>
+                            <div style={
+                                {
+                                    // backgroundColor: "red",
+                                }
+                            } className='shopping-cart'>
                                 <p>{cartItems.length} Course in Cart</p>
 
                                 <div className='shopping-cart-list'>
@@ -52,7 +77,11 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                                             ))
                                         ) : (
                                             <>
-                                                <div className='col-lg-12 text-center'>
+                                                <div style={
+                                                    {
+                                                        // backgroundColor: "red",
+                                                    }
+                                                } className='col-lg-12 text-center'>
                                                     <h3
                                                         style={{
                                                             textAlign: 'center',
@@ -78,7 +107,12 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                         </div>
 
                         {cartItems.length > 0 && (
-                            <div className='col-lg-3 col-md-12'>
+                            <div style={
+                                {
+                                    // backgroundColor: "red",
+                                    padding: "5px"
+                                }
+                            } className='col-lg-6 col-md-12'>
                                 <p className='fs-18 mb-2'>Subtotal:</p>
                                 <h1 className='fw-bold'>
                                     ${cartAmout}
