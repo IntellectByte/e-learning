@@ -161,7 +161,11 @@ const PaymentField = ({ user, onFormComplete }) => {
                             >
                                 Complete The form before checkout
                             </h2>
-                            <div className='col-md-8 mb-4'>
+                            <div style={
+                                {
+                                    minWidth: '80%'
+                                }
+                            } className='col-md-8 mb-4'>
                                 <div className='card mb-4 payment-field-border'>
                                     <div className='card-header py-3'>
                                         <h5 className='mb-0'>
@@ -198,9 +202,8 @@ const PaymentField = ({ user, onFormComplete }) => {
                                             validate={validateForm}
                                         >
                                             {({ isSubmitting }) => (
-                                                <Form>
+                                                <Form className='min-w'>
                                                     <div className='form-outline mb-4'>
-                                                        {/*{!user && <div>*/}
 
                                                         <label htmlFor='customerFirstName'>
                                                             {t(
