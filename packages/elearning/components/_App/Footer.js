@@ -40,7 +40,7 @@ const Footer = () => {
                                     <ul className='social-link'>
                                         <li>
                                             <a
-                                                href='https://www.facebook.com/'
+                                                href='https://es-la.facebook.com/escolasorvete/'
                                                 className='d-block'
                                                 target='_blank'
                                                 rel='noreferrer'
@@ -48,7 +48,7 @@ const Footer = () => {
                                                 <i className='bx bxl-facebook'></i>
                                             </a>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <a
                                                 href='https://www.twitter.com/'
                                                 className='d-block'
@@ -57,10 +57,10 @@ const Footer = () => {
                                             >
                                                 <i className='bx bxl-twitter'></i>
                                             </a>
-                                        </li>
+                                        </li> */}
                                         <li>
                                             <a
-                                                href='https://www.instagram.com/'
+                                                href='https://www.instagram.com/escolasorvete/'
                                                 className='d-block'
                                                 target='_blank'
                                                 rel='noreferrer'
@@ -70,7 +70,7 @@ const Footer = () => {
                                         </li>
                                         <li>
                                             <a
-                                                href='https://www.linkedin.com/'
+                                                href='https://www.linkedin.com/company/escola-sorvete'
                                                 className='d-block'
                                                 target='_blank'
                                                 rel='noreferrer'
