@@ -197,5 +197,8 @@
     "registerform-confirm-register-as-instructor": "Registre-se para se tornar um instrutor",
     "registerform-confirm-email-wont-publish": "Seu endereço de e-mail não será publicado. Todos os campos são necessários.",
     "coursecard-lessons": "Lições",
-    "coursecard-students": "Alunos"
+    "coursecard-students": "Alunos",
+    "checkout-form-coursecart": "Cursos no Carrinho",
+    "checkout-form-empty": "Vazio",
+    "checkout-form-continueshopping": "Continue comprando"
 }
