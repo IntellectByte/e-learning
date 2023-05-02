@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // INTERNALS
 import Navbar from '@/components/_App/Navbar';
@@ -13,6 +13,21 @@ import SupportButton from '@/components/ContactUs/SupportBtn';
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
     const [isPaymentFormComplete, setIsPaymentFormComplete] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const handleCloseCheckOutPopUP = () => {
         setShowChackoutPopUp(false);
@@ -32,7 +47,11 @@ export default function CheckoutPage({ user }) {
 
             <SnackBar />
 
-            <div style={{ display: 'flex' }}>
+            <div
+                style={{
+                    display: isMobile ? 'block' : 'flex',
+                }}
+            >
                 <PaymentField
                     user={user}
                     onFormComplete={setIsPaymentFormComplete}
@@ -45,11 +64,7 @@ export default function CheckoutPage({ user }) {
                     onButtonClick={handleShowCheckOutPopUP}
                     isPaymentFormComplete={isPaymentFormComplete}
                 />
-
-                <hr className='payment-field-border' />
             </div>
-
-            {/*<SubscribeForm />*/}
 
             <Footer />
         </>
