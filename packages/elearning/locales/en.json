@@ -197,5 +197,8 @@
     "registerform-confirm-register-as-instructor": "Register to Become an Intructor",
     "registerform-confirm-email-wont-publish": "Your email address will not be published. All fields are required.",
     "coursecard-lessons": "Lessons",
-    "coursecard-students": "Students"
+    "coursecard-students": "Students",
+    "checkout-form-coursecart": "Course in Cart",
+    "checkout-form-empty": "Empty",
+    "checkout-form-continueshopping": "Continue Shopping"
 }

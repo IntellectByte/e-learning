@@ -197,5 +197,8 @@
     "registerform-confirm-register-as-instructor": "Regístrate para convertirte en instructor",
     "registerform-confirm-email-wont-publish": "Su dirección de correo electrónico no será publicada. Todos los campos son obligatorios.",
     "coursecard-lessons": "Lecciones",
-    "coursecard-students": "Estudiantes"
+    "coursecard-students": "Estudiantes",
+    "checkout-form-coursecart": "Cursos en el carrito",
+    "checkout-form-empty": "Vacío",
+    "checkout-form-continueshopping": "Seguir comprando"
 }
