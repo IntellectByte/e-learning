@@ -112,7 +112,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                     </h3>
                                     <CourseOverview overview={overview} />
 
-                                    {!is_class && (
+                                    {/* {!is_class && (
                                         <>
                                             <h3>
                                                 {t('course-page-h31', {
@@ -126,7 +126,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                 />
                                             )}
                                         </>
-                                    )}
+                                    )} */}
 
                                     <WhatYouWillLearn
                                         what_you_will_learn={
