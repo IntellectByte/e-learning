@@ -61,26 +61,11 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                             flexDirection: 'column',
                             justifyContent: 'center',
                             alignContent: 'center',
-                            // backgroundColor: "red"
                         }}
                         className='row justify-content-center'
                     >
-                        <div
-                            style={
-                                {
-                                    // backgroundColor: "red",
-                                }
-                            }
-                            className='col-lg-9 col-md-12'
-                        >
-                            <div
-                                style={
-                                    {
-                                        // backgroundColor: "red",
-                                    }
-                                }
-                                className='shopping-cart'
-                            >
+                        <div className='col-lg-9 col-md-12'>
+                            <div className='shopping-cart'>
                                 <p>{cartItems.length} Course in Cart</p>
 
                                 <div className='shopping-cart-list'>
@@ -98,11 +83,15 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                                         ) : (
                                             <>
                                                 <div
-                                                    style={
-                                                        {
-                                                            // backgroundColor: "red",
-                                                        }
-                                                    }
+                                                    style={{
+                                                        display: 'flex',
+                                                        flexDirection: 'column',
+                                                        justifyContent:
+                                                            'center',
+                                                        alignItems: 'center',
+                                                        height: '100%',
+                                                        width: '100%',
+                                                    }}
                                                     className='col-lg-12 text-center'
                                                 >
                                                     <h3
@@ -110,7 +99,7 @@ const CheckoutForm = ({ user, isPaymentFormComplete }) => {
                                                             textAlign: 'center',
                                                             fontWeight: 'bold',
                                                             color: '#0000001f',
-                                                            fontSize: '93px',
+                                                            fontSize: '50px',
                                                         }}
                                                     >
                                                         Empty
