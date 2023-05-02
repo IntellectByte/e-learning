@@ -161,11 +161,12 @@ const PaymentField = ({ user, onFormComplete }) => {
                             >
                                 Complete The form before checkout
                             </h2>
-                            <div style={
-                                {
-                                    minWidth: '80%'
-                                }
-                            } className='col-md-8 mb-4'>
+                            <div
+                                style={{
+                                    minWidth: '80%',
+                                }}
+                                className='col-md-8 mb-4'
+                            >
                                 <div className='card mb-4 payment-field-border'>
                                     <div className='card-header py-3'>
                                         <h5 className='mb-0'>
@@ -204,7 +205,6 @@ const PaymentField = ({ user, onFormComplete }) => {
                                             {({ isSubmitting }) => (
                                                 <Form className='min-w'>
                                                     <div className='form-outline mb-4'>
-
                                                         <label htmlFor='customerFirstName'>
                                                             {t(
                                                                 'customerFirstName',
@@ -349,7 +349,7 @@ const PaymentField = ({ user, onFormComplete }) => {
 
                                                     <div className='form-outline'>
                                                         <Field
-                                                            type='number'
+                                                            type='text'
                                                             name='documentNumber'
                                                             id='formNameOnCard'
                                                             className='form-control'
@@ -380,7 +380,7 @@ const PaymentField = ({ user, onFormComplete }) => {
 
                                                     <div className='form-outline mb-4'>
                                                         <Field
-                                                            type='number'
+                                                            type='text'
                                                             name='phoneNumber'
                                                             id='form6Example3'
                                                             className='form-control'
@@ -454,7 +454,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                         <div className='col'>
                                                             <div className='form-outline'>
                                                                 <Field
-                                                                    type='number'
+                                                                    type='text'
                                                                     name='streetNumber'
                                                                     id='formStreetNumber'
                                                                     className='form-control'

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
-// internals
 
 const ContactInfo = () => {
     const { t } = useTranslation();
@@ -24,12 +23,6 @@ const ContactInfo = () => {
                             defaultValue: 'Get in Touch',
                         })}
                     </h2>
-                    {/* <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                    commodo viverra.
-                </p> */}
 
                     <ul>
                         <li>
@@ -77,14 +70,6 @@ const ContactInfo = () => {
                                 </a>
                             </p>
                         </li>
-                        {/* <li>
-                        <div className='icon'>
-                            <i className='bx bx-time-five'></i>
-                        </div>
-                        <h3>Hours of Operation</h3>
-                        <p>Monday - Friday: 09:00 - 20:00</p>
-                        <p>Sunday & Saturday: 10:30 - 22:00</p>
-                    </li> */}
                     </ul>
                 </div>
             )}
