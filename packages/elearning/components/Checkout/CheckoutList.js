@@ -33,11 +33,11 @@ const CheckoutList = ({
 
                     <p className='fs-14 mb-2'>{instructor}</p>
 
-                    <ul className='list'>
+                    {/* <ul className='list'>
                         <li>{duration}</li>
                         <li>{lessons} lectures</li>
                         <li>{access_time}</li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
             <div className='col-lg-2 col-6'>
