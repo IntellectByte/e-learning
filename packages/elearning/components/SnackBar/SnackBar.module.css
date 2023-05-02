@@ -1,15 +1,19 @@
 .snackbarContainer {
     position: fixed;
     bottom: 20px;
-    right: 20px;
-    border-radius: 50%;
-    background-color: #ce578f;
+    right: 100px;
+    border-radius: 10px;
+    background-color: #ee8ab8;
     color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s;
     z-index: 1000;
+}
+
+.snackbarContainer:hover {
+    background-color: #ce417d;
 }
 
 .snackbarCollapsed {

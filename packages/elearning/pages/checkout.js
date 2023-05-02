@@ -8,6 +8,7 @@ import TopBanner from '@/components/TopBanner/TopBanner';
 import SubscribeForm from '@/components/Common/SubscribeForm';
 import Footer from '@/components/_App/Footer';
 import SnackBar from '@/components/SnackBar/SnackBar';
+import SupportButton from '@/components/ContactUs/SupportBtn';
 
 export default function CheckoutPage({ user }) {
     const [showChackoutPopUp, setShowChackoutPopUp] = useState(true);
@@ -27,9 +28,11 @@ export default function CheckoutPage({ user }) {
 
             <Navbar user={user} />
 
+            <SupportButton />
+
             <SnackBar />
 
-            <div style={{display: "flex"}}>
+            <div style={{ display: 'flex' }}>
                 <PaymentField
                     user={user}
                     onFormComplete={setIsPaymentFormComplete}
@@ -44,13 +47,9 @@ export default function CheckoutPage({ user }) {
                 />
 
                 <hr className='payment-field-border' />
-
             </div>
 
-
             {/*<SubscribeForm />*/}
-
-
 
             <Footer />
         </>
