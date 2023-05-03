@@ -7,6 +7,7 @@ import {confirmEmailAddress} from "../../../email-templates/account-confirmation
 import passwordGenerator from "password-generator";
 import {passwordResetConfirmation} from "../../../email-templates/password-reset-confirmation";
 import jwt from "jsonwebtoken";
+import {passwordNewUserUnloggedAfterPurchase} from "../../../email-templates/password-new-user-unlogged-after-purchase";
 
 export default async (req, res) => {
 
@@ -110,7 +111,7 @@ const purchase = async (req, res) => {
 
             const passwordRandom = passwordGenerator(12, false)
 
-            await passwordResetConfirmation(passwordRandom, purchase.buyerName, purchase.buyerEmail)
+            await passwordNewUserUnloggedAfterPurchase(passwordRandom, purchase.buyerName, purchase.buyerEmail)
 
             const passwordHash = await bcrypt.hash(passwordRandom, 10);
 
