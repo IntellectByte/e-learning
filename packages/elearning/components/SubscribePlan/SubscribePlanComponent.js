@@ -83,7 +83,7 @@ const SubscribePlanComponent = () => {
     const subscribePlan2 = () => {
         const planObj = {
             id: '2',
-            title: 'Plano de Assinatura Baunilha',
+            title: 'Plano de Assinatura CHOCOLATE',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
             price: 4999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/wciqvy7atnoxeo0sib9v.jpg',
@@ -110,7 +110,7 @@ const SubscribePlanComponent = () => {
     const subscribePlan3 = () => {
         const planObj = {
             id: '3',
-            title: 'Plano de Assinatura Pistache',
+            title: 'Plano de Assinatura PISTACHE',
             slug: 'picol-para-todos-como-inovar-no-mercado-de-picols',
             price: 5999,
             image: 'https://res.cloudinary.com/dnunzwnex/image/upload/v1681935323/rvp8oa1xkg2zx65qouud.jpg',
