@@ -73,31 +73,43 @@ function Index({ courses, user }) {
 
     return (
         <>
+            {/* POP UP HOME, DISCOUNT CODE FORM */}
             {showPopup && <PopUp onClose={handleClosePopup} />}
 
+            {/* TOP BANNER */}
             <TopBanner />
 
+            {/* WHATSAPP BUTTON */}
             <SupportButton />
 
+            {/* NAVBAR */}
             <Navbar user={user} />
 
+            {/* MAINBANNER */}
             <MainBanner user={user} courses={courses} />
 
+            {/* CARDS WITH INFO */}
             <Features />
 
+            {/* PIC SLIDER */}
             <AboutUs />
 
-            {/* <StudentReviewSlider /> */}
-
+            {/* POPULAR COURSES */}
             <PopularCourses user={user} />
 
-            {/* <FeedbackSliderWithFunFacts /> */}
+            {/* EXPERIMENTAL CLASS FORM */}
             <GetInstantCourses user={user} />
+
+            {/* IN THE MEDIA */}
             <ViewAllCourses />
+
+            {/* +1500 STUDENTS */}
             <FunFacts />
 
-            {/* <Partner /> */}
+            {/* NEWSLETTER SUBS */}
             <SubscribeForm />
+
+            {/* FOOTER */}
             <Footer />
         </>
     );

@@ -73,20 +73,7 @@ const ViewAllCourses = () => {
                                                 style={{ fontSize: '26px' }}
                                             ></i>
                                         </a>
-                                        <a
-                                            href='https://www.tiktok.com/@your_tiktok_username'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            style={{
-                                                marginRight: '32px',
-                                                color: '#ce417d',
-                                            }}
-                                        >
-                                            <i
-                                                className='bx bxl-tiktok'
-                                                style={{ fontSize: '26px' }}
-                                            ></i>
-                                        </a>
+
                                         <a
                                             href='https://pin.it/1WALa0x'
                                             target='_blank'
