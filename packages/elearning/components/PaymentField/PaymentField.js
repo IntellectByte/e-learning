@@ -8,24 +8,55 @@ import { parseCookies } from 'nookies';
 import { useTranslation } from 'next-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
+import cpfCheck from 'cpf-check';
+import phone from 'phone';
+import cep from 'cep-promise';
 
 const PaymentField = ({ user, onFormComplete }) => {
     const { elarniv_users_token } = parseCookies();
     const { t } = useTranslation();
     const [isMounted, setIsMounted] = React.useState(false);
     const { cartItems } = useSelector((state) => state.cart);
+    const cityRegex = /^([A-ZÀ-Ú][a-zà-ú]+[- ]?)+$/;
+    const stateRegex = /^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/; // Regular expression for Brazilian state abbreviations
+
 
     const validationSchema = Yup.object().shape({
         doc: Yup.string().required('Required'),
-        documentNumber: Yup.string().required('Required'),
-        phoneNumber: Yup.string().required('Required'),
+        documentNumber: Yup.string()
+            .required('Required')
+            .test('cpf-validation', 'Invalid CPF number', value =>
+                cpfCheck.validate(value)
+            ),
+        // phoneNumber: Yup.string().required('Required'),
+
+        phoneNumber: Yup.string()
+            .test('phone-validation', 'Invalid phone number', value => {
+                const {phoneNumber} = phone(value);
+                return !!phoneNumber;
+            })
+            .required('Phone number is required with country area code'),
+
         streetNumber: Yup.string().required('Required'),
         street: Yup.string().required('Required'),
-        addressComplementary: Yup.string().required('Required'),
+        addressComplementary: Yup.string(),
         neighborhood: Yup.string().required('Required'),
-        city: Yup.string().required('Required'),
-        state: Yup.string().required('Required'),
-        zipCode: Yup.string().required('Required'), // customerFirstName: Yup.string().when('shouldValidateCustomer', {
+        city: Yup.string()
+            .matches(cityRegex, 'Invalid city name')
+            .required('Required'),
+        state: Yup.string()
+            .matches(stateRegex, 'Invalid state abbreviation')
+            .required('Required'),
+        zipCode: Yup.string()
+            .test('zipCode-validation', 'Invalid zip code', async function(value) {
+                try {
+                    const address = await cep(value.replace('-', ''));
+                    return !!address;
+                } catch (err) {
+                    return false;
+                }
+            })
+            .required('Required'), // customerFirstName: Yup.string().when('shouldValidateCustomer', {
 
         customerEmail: Yup.string()
             .email('Invalid email')
