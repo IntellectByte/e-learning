@@ -68,6 +68,8 @@ Video.hasMany(Course_Progress, {
 });
 Course_Progress.belongsTo(Video, { foreignKey: "videoId", as: "video" });
 
+User.hasMany(Purchase, { onDelete: 'CASCADE' });
+
 export {
 	User,
 	Course,
