@@ -8681,3 +8681,7 @@ Go Top CSS
         font-size: 10px;
     }
 }
+
+.register-btn-hover {
+    cursor: pointer;
+}
