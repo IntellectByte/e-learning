@@ -7,6 +7,7 @@ import isLength from "validator/lib/isLength";
 import User from "database/models/user";
 
 import {confirmEmailAddress} from "email-templates/account-confirmation";
+import phone from "phone";
 
 export default async function handler(req, res) {
     switch (req.method) {
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
 
 const userSignup = async (req, res) => {
     const confirmToken = uuidv4();
-    let {first_name, last_name, email, password} = req.body;
+    let {first_name, last_name, email, password, phone} = req.body;
     try {
         if (!isLength(first_name, {min: 3})) {
             return res.status(422).json({
@@ -42,7 +43,12 @@ const userSignup = async (req, res) => {
             return res.status(422).json({
                 message: "A senha deve ter no mínimo seis caracteres",
             });
+        } else if (!/^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/.test(phone)) {
+            return res.status(422).json({
+                message: "O número de telefone deve ser um número válido",
+            });
         }
+
 
         // Check if user with that email if already exists
         const user = await User.findOne({
