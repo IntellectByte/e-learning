@@ -11,6 +11,9 @@ import { useSelector } from 'react-redux';
 import cpfCheck from 'cpf-check';
 import phone from 'phone';
 import cep from 'cep-promise';
+import PhoneInput, { Flag } from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
+
 
 const PaymentField = ({ user, onFormComplete }) => {
     const { elarniv_users_token } = parseCookies();
@@ -439,14 +442,30 @@ const PaymentField = ({ user, onFormComplete }) => {
 
                                                     <hr className='my-4 payment-field-border' />
 
-                                                    <div className='form-outline mb-4'>
+                                                    <div
+                                                        className='form-outline mb-4'>
+
                                                         <Field
-                                                            type='text'
-                                                            name='phoneNumber'
-                                                            id='form6Example3'
-                                                            className='form-control'
-                                                            placeholder='XX XXXX-XXXX'
+                                                            name="phone"
+                                                            render={({ field, form }) => (
+                                                                <PhoneInput
+                                                                    className={'phone-input'}
+                                                                    inputStyle={{ height: '45px' }}
+                                                                    dropdownStyle={{ marginTop: '4px', width: '10%' }}
+                                                                    countrySelectProps={{ style: { height: '45px' }, imgStyle: { height: '14px' } }}
+                                                                    defaultCountry={"BR"}
+                                                                    {...field}
+                                                                    placeholder="Enter phone number"
+                                                                    onChange={(value) => {
+                                                                        form.setFieldValue('phone', value);
+                                                                    }}
+                                                                    onBlur={() => {
+                                                                        form.setFieldTouched('phone', true);
+                                                                    }}
+                                                                />
+                                                            )}
                                                         />
+
                                                         <label
                                                             className='form-label'
                                                             htmlFor='form6Example3'
@@ -731,3 +750,5 @@ const PaymentField = ({ user, onFormComplete }) => {
 };
 
 export default PaymentField;
+
+
