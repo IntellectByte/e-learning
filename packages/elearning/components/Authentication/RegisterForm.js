@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next';
 const INITIAL_USER = {
     first_name: '',
     last_name: '',
+    phone_number: '',
     email: '',
     password: '',
 };
@@ -119,6 +120,21 @@ const RegisterForm = () => {
                         </div>
 
                         <div className='form-group'>
+                            <label>
+                                {t('registerpage-phonenumber', {
+                                    defaultValue: 'Phone Number',
+                                })}
+                            </label>
+                            <input
+                                type='tel'
+                                className='form-control'
+                                name='phone_number'
+                                value={user.phone_number}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className='form-group'>
                             <label>Email</label>
                             <input
                                 type='email'
@@ -155,6 +171,7 @@ const RegisterForm = () => {
                             type='submit'
                             disabled={disabled}
                             whileTap={{ scale: 0.9 }}
+                            className='register-btn-hover'
                         >
                             {t('registerpage-regster', {
                                 defaultValue: 'Register',
