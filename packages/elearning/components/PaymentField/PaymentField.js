@@ -19,6 +19,36 @@ const PaymentField = ({ user, onFormComplete }) => {
     const { cartItems } = useSelector((state) => state.cart);
     const cityRegex = /^([A-ZÀ-Ú][a-zà-ú]+[- ]?)+$/;
     const stateRegex = /^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/; // Regular expression for Brazilian state abbreviations
+    const stateOptions = [
+        { value: '---', label: '----' },
+        { value: 'AC', label: 'AC' },
+        { value: 'AL', label: 'AL' },
+        { value: 'AP', label: 'AP' },
+        { value: 'AM', label: 'AM' },
+        { value: 'BA', label: 'BA' },
+        { value: 'CE', label: 'CE' },
+        { value: 'DF', label: 'DF' },
+        { value: 'ES', label: 'ES' },
+        { value: 'GO', label: 'GO' },
+        { value: 'MA', label: 'MA' },
+        { value: 'MT', label: 'MT' },
+        { value: 'MS', label: 'MS' },
+        { value: 'MG', label: 'MG' },
+        { value: 'PA', label: 'PA' },
+        { value: 'PB', label: 'PB' },
+        { value: 'PR', label: 'PR' },
+        { value: 'PE', label: 'PE' },
+        { value: 'PI', label: 'PI' },
+        { value: 'RJ', label: 'RJ' },
+        { value: 'RN', label: 'RN' },
+        { value: 'RS', label: 'RS' },
+        { value: 'RO', label: 'RO' },
+        { value: 'RR', label: 'RR' },
+        { value: 'SC', label: 'SC' },
+        { value: 'SP', label: 'SP' },
+        { value: 'SE', label: 'SE' },
+        { value: 'TO', label: 'TO' },
+    ];
 
 
     const validationSchema = Yup.object().shape({
@@ -611,12 +641,27 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                         <div className='col'>
                                                             <div className='form-outline'>
                                                                 <Field
+                                                                    as={'select'}
                                                                     type='text'
                                                                     name='state'
                                                                     id='formState'
                                                                     className='form-control'
                                                                     placeholder='State'
-                                                                />
+                                                                >
+                                                                    {stateOptions.map(option => (
+                                                                        <option key={option.value} value={option.value}>
+                                                                            {option.label}
+                                                                        </option>
+                                                                    ))}
+                                                                </Field>
+                                                                {/*<Field*/}
+                                                                {/*    type='text'*/}
+                                                                {/*    name='state'*/}
+                                                                {/*    id='formState'*/}
+                                                                {/*    className='form-control'*/}
+                                                                {/*    placeholder='State'*/}
+                                                                {/*/>*/}
+
                                                                 <label
                                                                     className='form-label'
                                                                     htmlFor='formState'
@@ -640,6 +685,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                         </div>
                                                         <div className='col'>
                                                             <div className='form-outline'>
+
                                                                 <Field
                                                                     type='text'
                                                                     name='zipCode'
@@ -647,6 +693,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                     className='form-control'
                                                                     placeholder='Zip Code'
                                                                 />
+
                                                                 <label
                                                                     className='form-label'
                                                                     htmlFor='formZipCode'
