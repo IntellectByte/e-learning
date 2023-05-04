@@ -5,3 +5,4 @@ node_modules
 /utils/baseUrl.js
 .idea
 /package-lock.json
+package-lock.json

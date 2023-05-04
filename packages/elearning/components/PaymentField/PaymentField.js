@@ -266,7 +266,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                             {({ isSubmitting }) => (
                                                 <Form className='min-w'>
                                                     <div className='form-outline mb-4'>
-                                                        <label htmlFor='customerFirstName'>
+                                                        {!user && <label htmlFor='customerFirstName'>
                                                             {t(
                                                                 'customerFirstName',
                                                                 {
@@ -274,7 +274,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                         'First Name',
                                                                 }
                                                             )}
-                                                        </label>
+                                                        </label>}
 
                                                         <Field
                                                             type={
@@ -295,7 +295,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                 color: 'red',
                                                             }}
                                                         />
-                                                        <label htmlFor='customerLastName'>
+                                                        {!user && <label htmlFor='customerLastName'>
                                                             {t(
                                                                 'customerLastName',
                                                                 {
@@ -303,7 +303,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                         'Last Name',
                                                                 }
                                                             )}
-                                                        </label>
+                                                        </label>}
 
                                                         <Field
                                                             type={
@@ -324,7 +324,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                 color: 'red',
                                                             }}
                                                         />
-                                                        <label htmlFor='customerEmail'>
+                                                        {!user && <label htmlFor='customerEmail'>
                                                             {t(
                                                                 'customerEmail',
                                                                 {
@@ -332,7 +332,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                         'Email',
                                                                 }
                                                             )}
-                                                        </label>
+                                                        </label>}
 
                                                         <Field
                                                             type={
