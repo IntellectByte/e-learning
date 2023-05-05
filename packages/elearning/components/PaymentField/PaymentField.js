@@ -457,10 +457,10 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                                     {...field}
                                                                     placeholder="Enter phone number"
                                                                     onChange={(value) => {
-                                                                        form.setFieldValue('phone', value);
+                                                                        form.setFieldValue('phoneNumber', value);
                                                                     }}
                                                                     onBlur={() => {
-                                                                        form.setFieldTouched('phone', true);
+                                                                        form.setFieldTouched('phoneNumber', true);
                                                                     }}
                                                                 />
                                                             )}
