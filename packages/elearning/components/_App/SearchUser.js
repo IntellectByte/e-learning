@@ -6,6 +6,7 @@ import GeneralLoader from '@/utils/GeneralLoader';
 import StudentsRaw from '@/components/Admin/StudentsRaw';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
+import toast from "react-hot-toast";
 
 const SearchUser = () => {
     const [search, setSearch] = useState('');
