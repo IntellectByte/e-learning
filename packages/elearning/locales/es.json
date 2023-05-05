@@ -201,5 +201,6 @@
     "checkout-form-coursecart": "Cursos en el carrito",
     "checkout-form-empty": "Vacío",
     "checkout-form-continueshopping": "Seguir comprando",
-    "registerpage-phonenumber": "Número de teléfono"
+    "registerpage-phonenumber": "Número de teléfono",
+    "search-user-students": "Buscar Usuario"
 }

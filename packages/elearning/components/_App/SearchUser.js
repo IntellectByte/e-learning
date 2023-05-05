@@ -155,18 +155,38 @@ const SearchUser = () => {
                         <input
                             type='text'
                             className='input-search'
-                            placeholder={t('searchCourses', {
+                            placeholder={t('search-user-students', {
                                 defaultValue: 'Search Students',
                             })}
                             name='search'
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
+                            style={{
+                                border: '2px solid #ccc',
+                                borderRadius: '5px',
+                                padding: '10px 20px',
+                                fontSize: '16px',
+                                width: '30%',
+                                boxSizing: 'border-box',
+                            }}
                         />
 
-                        <button type='submit'>
+                        <button
+                            type='submit'
+                            style={{
+                                backgroundColor: '#CE4F88',
+                                border: 'none',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                marginLeft: '10px',
+                                cursor: 'pointer',
+                            }}
+                        >
                             <i className='flaticon-search'></i>
                         </button>
                     </form>
+                    <hr className='payment-field-border' />
                     {loading ? (
                         <GeneralLoader />
                     ) : (
