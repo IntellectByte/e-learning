@@ -84,7 +84,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
             script.dataset.getnetToken = `${data.token_type} ${data.access_token}`
             script.dataset.getnetAmount = cartTotal;
             script.dataset.getnetOrderid = token;
-            // script.dataset.getnetPaymentMethodsDisabled = ["pix", "credito", "qr-code"];
+            script.dataset.getnetPaymentMethodsDisabled = '["credito-autenticado", "debito-autenticado", "pix", "boleto"]';
             script.dataset.getnetButtonClass = 'pay-button-getnet';
             script.dataset.getnetInstallments = '6';
             script.dataset.getnetCustomerid = user && user.id;
