@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { parseCookies } from 'nookies';
 import GeneralLoader from '@/utils/GeneralLoader';
-import StudentsRaw from '@/components/Admin/StudentsRaw';
+import ManageRaw from '@/components/Admin/ManageRaw';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
 import toast from "react-hot-toast";
@@ -208,7 +208,7 @@ const SearchUser = () => {
                                     {users.length > 0 ? (
                                         filterUsers(users, search).map(
                                             (user) => (
-                                                <StudentsRaw
+                                                <ManageRaw
                                                     key={user.id}
                                                     {...user}
                                                 />
