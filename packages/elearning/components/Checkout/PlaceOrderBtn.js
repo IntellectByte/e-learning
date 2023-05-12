@@ -3,7 +3,7 @@ import LoadingSpinner from '@/utils/LoadingSpinner';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import {useRouter} from 'next/router';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {calculateCartTotal} from '@/utils/calculateCartTotal';
 import {NavLink} from '@mantine/core';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ import {v4 as uuidv4} from "uuid";
 const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    const {purchase} = useSelector(state => state.cart)
     const router = useRouter();
 
 
@@ -146,10 +147,20 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
     }, [])
 
+    const handleSubmit = () => {
+
+        console.log(purchase)
+
+        dispatch({
+            type: "PURCHASE_SEND",
+            data: purchase
+        })
+    }
+
 
     return (
         <div>
-            <button disabled={loading ? true : disabled} className={`default-btn-style-${btnColor} d-block w-100 mt-3 pay-button-getnet`}>
+            <button onClick={handleSubmit} disabled={loading ? true : disabled} className={`default-btn-style-${btnColor} d-block w-100 mt-3 pay-button-getnet`}>
                 {inner} <span></span> {loading && <LoadingSpinner />}
             </button>
         </div>
