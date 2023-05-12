@@ -115,7 +115,6 @@ const PaymentField = ({ user, onFormComplete }) => {
 
         customerFirstName: Yup.string().required('Required'),
         customerLastName: Yup.string().required('Required'),
-        // customerEmail: Yup.string().required('Required'),
     });
 
     useEffect(() => {

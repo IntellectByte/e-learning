@@ -2,8 +2,10 @@
 import { combineReducers } from "redux";
 import * as types from "./types";
 
+import Cookies from 'js-cookie';
+
 const initialState = {
-	cartItems: [],
+	cartItems: Cookies.get("cart_items") ? JSON.parse(Cookies.get("cart_items")) : [],
 	discount: 0.0,
 };
 
@@ -20,9 +22,13 @@ const cartReducer = (state = initialState, action) => {
 					...state,
 				};
 			} else {
+
+				const updatedCartItems = [...state.cartItems, action.data];
+				Cookies.set("cart_items", JSON.stringify(updatedCartItems));
+
 				return {
 					...state,
-					cartItems: [...state.cartItems, action.data],
+					cartItems: updatedCartItems,
 				};
 			}
 
@@ -36,11 +42,13 @@ const cartReducer = (state = initialState, action) => {
 			let new_items = state.cartItems.filter(
 				(item) => action.id !== item.id
 			);
+			Cookies.set("cart_items", JSON.stringify(new_items))
 			return {
 				...state,
 				cartItems: new_items,
 			};
 		case types.RESET_CART:
+			Cookies.remove("cart_items")
 			return {
 				...state,
 				cartItems: [],
