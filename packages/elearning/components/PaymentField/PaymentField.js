@@ -7,7 +7,7 @@ import baseUrl from '@/utils/baseUrl';
 import { parseCookies } from 'nookies';
 import { useTranslation } from 'next-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import cpfCheck from 'cpf-check';
 import phone from 'phone';
 import cep from 'cep-promise';
@@ -16,6 +16,7 @@ import 'react-phone-number-input/style.css'
 
 
 const PaymentField = ({ user, onFormComplete }) => {
+    const dispatch = useDispatch()
     const { elarniv_users_token } = parseCookies();
     const { t } = useTranslation();
     const [isMounted, setIsMounted] = React.useState(false);
@@ -183,20 +184,29 @@ const PaymentField = ({ user, onFormComplete }) => {
                     paymentState: 'PENDANT',
                 };
 
-                axios
-                    .post(`${baseUrl}/api/purchases`, payment, {
-                        headers: { authorization: elarniv_users_token },
-                    })
-                    .then((data) => {
-                        // console.log(data)
-                    })
-                    .catch((err) => {
-                        // console.log(err)
-                    });
+                // axios
+                //     .post(`${baseUrl}/api/purchases`, payment, {
+                //         headers: { authorization: elarniv_users_token },
+                //     })
+                //     .then((data) => {
+                //         // console.log(data)
+                //     })
+                //     .catch((err) => {
+                //         // console.log(err)
+                //     });
+
+                dispatch(
+                    {
+                        type: 'PURCHASE_ADD',
+                        data: payment
+                    }
+                )
+
             }, 2000);
 
             onFormComplete(true);
         } catch (error) {
+            console.log(error)
             onFormComplete(false);
         }
     };

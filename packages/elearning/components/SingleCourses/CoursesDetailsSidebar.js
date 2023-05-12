@@ -28,6 +28,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
         setIsMounted(true);
     }, []);
 
+
     useEffect(() => {
         const courseExist = cartItems.find((cart) => {
             return course.id === cart.id;

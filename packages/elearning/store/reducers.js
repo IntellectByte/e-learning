@@ -3,10 +3,14 @@ import { combineReducers } from "redux";
 import * as types from "./types";
 
 import Cookies from 'js-cookie';
+import baseUrl from "@/utils/baseUrl";
+import axios from "axios";
+import {parseCookies} from "nookies";
 
 const initialState = {
 	cartItems: Cookies.get("cart_items") ? JSON.parse(Cookies.get("cart_items")) : [],
 	discount: 0.0,
+	purchase: {}
 };
 
 // COUNTER REDUCER
@@ -53,6 +57,34 @@ const cartReducer = (state = initialState, action) => {
 				...state,
 				cartItems: [],
 			};
+		case types.PURCHASE_ADD:
+			// console.log(action)
+			return {
+				...state,
+				purchase: action.data
+			}
+			case types.PURCHASE_SEND:
+			console.log(action)
+
+			const {elarniv_users_token} = parseCookies()
+
+				axios
+				    .post(`${baseUrl}/api/purchases`, action.data, {
+				        headers: { authorization: elarniv_users_token },
+				    })
+				    .then((data) => {
+				        console.log(data)
+				    })
+				    .catch((err) => {
+				        console.log(err)
+				    });
+
+
+			return {
+				...state
+			}
+
+
 		default:
 			return state;
 	}
