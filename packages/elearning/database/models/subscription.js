@@ -19,8 +19,15 @@ const initSubscription = (sequelize, Types) => {
 				defaultValue: Types.UUIDV4,
 				primaryKey: true,
 			},
-			email: DataTypes.STRING,
-			active: DataTypes.BOOLEAN,
+			title: DataTypes.STRING,
+			slug: DataTypes.STRING,
+			price: DataTypes.FLOAT,
+			image: DataTypes.STRING,
+			duration: DataTypes.STRING,
+			instructor: DataTypes.STRING,
+			type: DataTypes.STRING,
+			perks: DataTypes.JSON,
+			background: DataTypes.STRING
 		},
 		{
 			sequelize,
@@ -30,6 +37,8 @@ const initSubscription = (sequelize, Types) => {
 			updatedAt: "updated_at",
 		}
 	);
+
+
 	return Subscription;
 };
 
