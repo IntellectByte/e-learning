@@ -43,7 +43,7 @@ const SubscribePlanComponent = () => {
 
         setTimeout(() => {
             getElementsWithXPath()
-        }, 1000);
+        }, 1200);
 // Check if the element was found
 
 
