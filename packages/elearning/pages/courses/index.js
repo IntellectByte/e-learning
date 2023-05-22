@@ -26,9 +26,9 @@ export default function CoursesPage({ user }) {
                 activePageText='Cursos'
             /> */}
 
-            <SubscribePlanComponent />
+//             <SubscribePlanComponent />
 
-            <hr />
+//             <hr />
 
             <CoursesList user={user} />
 
