@@ -6,8 +6,9 @@ import CourseCreateForm from '@/components/Instructor/CourseCreateForm';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
 import SubscribeForm from '@/components/Common/SubscribeForm';
+import SubscriptionCreateForm from '@/components/Instructor/SubscriptionCreateForm';
 
-const Create = ({ user }) => {
+const subscriptioncreate = ({ user }) => {
     return (
         <>
             <SupportButton />
@@ -18,7 +19,7 @@ const Create = ({ user }) => {
 
             <div className='ptb-100'>
                 <div className='container'>
-                    <h2 className='fw-bold mb-4'>Create the Course</h2>
+                    <h2 className='fw-bold mb-4'>Create Subscriptions</h2>
 
                     <ul className='nav-style1'>
                         <li>
@@ -28,12 +29,12 @@ const Create = ({ user }) => {
                         </li>
                         <li>
                             <Link href='/instructor/course/create/'>
-                                <a className='active'>Create a Course</a>
+                                <a>Create a Course</a>
                             </Link>
                         </li>
                         <li>
                             <Link href='/instructor/subscriptions/subscriptioncreate/'>
-                                <a>Create Subscription</a>
+                                <a className='active'>Create Subscription</a>
                             </Link>
                         </li>
                         <li>
@@ -44,7 +45,7 @@ const Create = ({ user }) => {
                     </ul>
 
                     <div className='create-course-form'>
-                        <CourseCreateForm />
+                        <SubscriptionCreateForm />
                     </div>
                 </div>
             </div>
@@ -56,4 +57,4 @@ const Create = ({ user }) => {
     );
 };
 
-export default Create;
+export default subscriptioncreate;
