@@ -111,9 +111,9 @@ const PopularCourses = ({ user }) => {
                                     />
                                 ))}
 
-                            <div className='col-lg-12 col-md-12'>
+                            {/* <div className='col-lg-12 col-md-12'>
                                 <div className='courses-info'>
-                                    <p>
+                                    <p style={{ fontSize: '20px' }}>
                                         {t('popular-text-2', {
                                             defaultValue:
                                                 'Dive deep into a specific topic or explore the entire universe of ice cream making. Here, you can customize your curriculum and choose what is best for your business.',
@@ -130,7 +130,7 @@ const PopularCourses = ({ user }) => {
                                         )}
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

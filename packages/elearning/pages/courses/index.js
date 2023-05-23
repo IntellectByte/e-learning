@@ -18,17 +18,9 @@ export default function CoursesPage({ user }) {
 
             <Navbar user={user} />
 
-            {/* <PageBanner
-                pageTitle='Cursos'
-                a
-                homePageUrl='/'
-                homePageText='Home'
-                activePageText='Cursos'
-            /> */}
+            {/* <SubscribePlanComponent />
 
-//             <SubscribePlanComponent />
-
-//             <hr />
+            <hr /> */}
 
             <CoursesList user={user} />
 
