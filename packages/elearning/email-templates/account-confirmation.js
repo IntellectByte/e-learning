@@ -442,7 +442,7 @@ export const confirmEmailAddress = async (user) => {
         <td style="text-align: center;">
           <h3 style="margin-bottom: 5px;">Escola Sorvete</h3>
           <p style="text-align: center; margin-bottom: 0;">
-            <a href="https://yourwebsite.com/" target="_blank" style="color: #CE417D;">www.escolasorvete.com.br</a>
+            <a href="https://www.escolasorvete.com.br/" target="_blank" style="color: #CE417D;">www.escolasorvete.com.br</a>
           </p>
           <p style="text-align: center; margin-top: 5px;">Rua Barra Funda, 209 - Barra Funda, São Paulo</p>
         </td>
