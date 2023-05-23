@@ -32,6 +32,11 @@ const Create = ({ user }) => {
                             </Link>
                         </li>
                         <li>
+                            <Link href='/instructor/subscriptions/subscriptioncreate/'>
+                                <a>Create Subscription</a>
+                            </Link>
+                        </li>
+                        <li>
                             <Link href='/instructor/course/create-class/'>
                                 <a className='active'>Create Class Room</a>
                             </Link>
