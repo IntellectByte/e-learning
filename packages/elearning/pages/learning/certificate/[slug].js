@@ -18,6 +18,16 @@ const slug = ({ user }) => {
     const router = useRouter();
     const { slug } = router.query;
 
+    // QUIZ STUFF
+    const [passedQuiz, setPassedQuiz] = useState(false);
+
+    async function checkQuiz() {
+        const res = await axios.post('/api/checkQuiz');
+        if (res.data.success) {
+            setPassedQuiz(true);
+        }
+    }
+
     const getCurrentDate = () => {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
@@ -86,48 +96,101 @@ const slug = ({ user }) => {
     return (
         <>
             <SupportButton />
-
             <TopBanner />
-
             <Navbar user={user} />
 
             <div className='ptb-100 get-certificate'>
                 <div className='container'>
                     <div className='form-box'>
-                        <form>
-                            <label className='mb-2 textoNomeCert'>
-                                Seu Nome
-                            </label>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Seu Nome'
-                                value={student}
-                                onChange={(e) => setStudent(e.target.value)}
-                            />
-                        </form>
-                    </div>
-                    <div id='domEl' ref={domEl} className='certificate-img'>
-                        <div className='content'>
-                            <h2 className='textoStudentMobile'>{student}</h2>
-                            <p className='date textoDateMobile'>
-                                {getCurrentDate()}
-                            </p>
-                            <p className='textoCertificadoMobile'>
-                                Por completar o <b>{course && course.title}</b>
-                            </p>
-                        </div>
-                        <img src='/images/certificate2.jpg' alt='' />
-                    </div>
+                        {passedQuiz ? (
+                            <>
+                                <form>
+                                    <label className='mb-2 textoNomeCert'>
+                                        Seu Nome
+                                    </label>
+                                    <input
+                                        type='text'
+                                        className='form-control'
+                                        placeholder='Seu Nome'
+                                        value={student}
+                                        onChange={(e) =>
+                                            setStudent(e.target.value)
+                                        }
+                                    />
+                                </form>
+                                <div
+                                    id='domEl'
+                                    ref={domEl}
+                                    className='certificate-img'
+                                >
+                                    <div className='content'>
+                                        <h2 className='textoStudentMobile'>
+                                            {student}
+                                        </h2>
+                                        <p className='date textoDateMobile'>
+                                            {getCurrentDate()}
+                                        </p>
+                                        <p className='textoCertificadoMobile'>
+                                            Por completar o{' '}
+                                            <b>{course && course.title}</b>
+                                        </p>
+                                    </div>
+                                    <img
+                                        src='/images/certificate2.jpg'
+                                        alt=''
+                                    />
+                                </div>
 
-                    <div className='caption'>
-                        <button
-                            className='download-btn download-btn-jpg visible'
-                            onClick={downloadCertificate}
-                            title='JPEG Image'
-                        >
-                            Download as JPG
-                        </button>
+                                <div className='caption'>
+                                    <button
+                                        className='download-btn download-btn-jpg visible'
+                                        onClick={downloadCertificate}
+                                        title='JPEG Image'
+                                    >
+                                        Download as JPG
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div
+                                    style={{
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        paddingTop: '140%', // This determines the aspect ratio. Adjust as needed.
+                                        width: '100%',
+                                    }}
+                                >
+                                    <iframe
+                                        src='https://docs.google.com/forms/d/e/[your_form_ID]/viewform?embedded=true'
+                                        frameborder='0'
+                                        style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            width: '100%',
+                                            height: '100%',
+                                            border: 'none',
+                                        }}
+                                    >
+                                        Loading…
+                                    </iframe>
+                                </div>
+                                <div
+                                    style={{
+                                        position: 'relative',
+                                        top: '30px',
+                                    }}
+                                >
+                                    <button
+                                        onClick={checkQuiz}
+                                        className='button-21'
+                                    >
+                                        Submit Quiz
+                                    </button>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
