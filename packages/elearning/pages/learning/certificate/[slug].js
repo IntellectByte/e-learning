@@ -9,6 +9,7 @@ import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import QuizBuild from '@/components/Quiz/QuizBuild';
 
 const slug = ({ user }) => {
     const [student, setStudent] = useState(
@@ -17,6 +18,9 @@ const slug = ({ user }) => {
     const [course, setCourse] = useState({});
     const router = useRouter();
     const { slug } = router.query;
+
+    // QUIZ STUFF
+    const [passedQuiz, setPassedQuiz] = useState(false);
 
     const getCurrentDate = () => {
         const today = new Date();
@@ -86,48 +90,69 @@ const slug = ({ user }) => {
     return (
         <>
             <SupportButton />
-
             <TopBanner />
-
             <Navbar user={user} />
 
             <div className='ptb-100 get-certificate'>
                 <div className='container'>
                     <div className='form-box'>
-                        <form>
-                            <label className='mb-2 textoNomeCert'>
-                                Seu Nome
-                            </label>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Seu Nome'
-                                value={student}
-                                onChange={(e) => setStudent(e.target.value)}
-                            />
-                        </form>
-                    </div>
-                    <div id='domEl' ref={domEl} className='certificate-img'>
-                        <div className='content'>
-                            <h2 className='textoStudentMobile'>{student}</h2>
-                            <p className='date textoDateMobile'>
-                                {getCurrentDate()}
-                            </p>
-                            <p className='textoCertificadoMobile'>
-                                Por completar o <b>{course && course.title}</b>
-                            </p>
-                        </div>
-                        <img src='/images/certificate2.jpg' alt='' />
-                    </div>
+                        {passedQuiz ? (
+                            <>
+                                <form>
+                                    <label className='mb-2 textoNomeCert labelCertificado'>
+                                        Seu Nome
+                                    </label>
+                                    <input
+                                        type='text'
+                                        className='form-control inputCertificado'
+                                        placeholder='Seu Nome'
+                                        value={student}
+                                        onChange={(e) =>
+                                            setStudent(e.target.value)
+                                        }
+                                    />
+                                </form>
+                                <div
+                                    id='domEl'
+                                    ref={domEl}
+                                    className='certificate-img'
+                                >
+                                    <div className='content'>
+                                        <h2 className='textoStudentMobile'>
+                                            {student}
+                                        </h2>
+                                        <p className='date textoDateMobile'>
+                                            {getCurrentDate()}
+                                        </p>
+                                        <p className='textoCertificadoMobile'>
+                                            Por completar o{' '}
+                                            <b>{course && course.title}</b>
+                                        </p>
+                                    </div>
+                                    <img
+                                        src='/images/certificate2.jpg'
+                                        alt=''
+                                    />
+                                </div>
 
-                    <div className='caption'>
-                        <button
-                            className='download-btn download-btn-jpg visible'
-                            onClick={downloadCertificate}
-                            title='JPEG Image'
-                        >
-                            Download as JPG
-                        </button>
+                                <div className='caption'>
+                                    <button
+                                        className='download-btn download-btn-jpg visible'
+                                        onClick={downloadCertificate}
+                                        title='JPEG Image'
+                                    >
+                                        Download as JPG
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <h2 style={{ textTransform: 'capitalize' }}>
+                                    <u>Answer before certificate</u>
+                                </h2>
+                                <QuizBuild setPassedQuiz={setPassedQuiz} />
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
