@@ -9,6 +9,7 @@ import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import QuizBuild from '@/components/Quiz/QuizBuild';
 
 const slug = ({ user }) => {
     const [student, setStudent] = useState(
@@ -20,13 +21,6 @@ const slug = ({ user }) => {
 
     // QUIZ STUFF
     const [passedQuiz, setPassedQuiz] = useState(false);
-
-    async function checkQuiz() {
-        const res = await axios.post('/api/checkQuiz');
-        if (res.data.success) {
-            setPassedQuiz(true);
-        }
-    }
 
     const getCurrentDate = () => {
         const today = new Date();
@@ -105,12 +99,12 @@ const slug = ({ user }) => {
                         {passedQuiz ? (
                             <>
                                 <form>
-                                    <label className='mb-2 textoNomeCert'>
+                                    <label className='mb-2 textoNomeCert labelCertificado'>
                                         Seu Nome
                                     </label>
                                     <input
                                         type='text'
-                                        className='form-control'
+                                        className='form-control inputCertificado'
                                         placeholder='Seu Nome'
                                         value={student}
                                         onChange={(e) =>
@@ -153,42 +147,10 @@ const slug = ({ user }) => {
                             </>
                         ) : (
                             <>
-                                <div
-                                    style={{
-                                        position: 'relative',
-                                        overflow: 'hidden',
-                                        paddingTop: '140%', // This determines the aspect ratio. Adjust as needed.
-                                        width: '100%',
-                                    }}
-                                >
-                                    <iframe
-                                        src='https://docs.google.com/forms/d/e/[your_form_ID]/viewform?embedded=true'
-                                        frameborder='0'
-                                        style={{
-                                            position: 'absolute',
-                                            top: 0,
-                                            left: 0,
-                                            width: '100%',
-                                            height: '100%',
-                                            border: 'none',
-                                        }}
-                                    >
-                                        Loading…
-                                    </iframe>
-                                </div>
-                                <div
-                                    style={{
-                                        position: 'relative',
-                                        top: '30px',
-                                    }}
-                                >
-                                    <button
-                                        onClick={checkQuiz}
-                                        className='button-21'
-                                    >
-                                        Submit Quiz
-                                    </button>
-                                </div>
+                                <h2 style={{ textTransform: 'capitalize' }}>
+                                    <u>Answer before certificate</u>
+                                </h2>
+                                <QuizBuild setPassedQuiz={setPassedQuiz} />
                             </>
                         )}
                     </div>
