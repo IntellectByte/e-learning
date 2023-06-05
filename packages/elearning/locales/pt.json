@@ -202,5 +202,15 @@
     "checkout-form-empty": "Vazio",
     "checkout-form-continueshopping": "Continue comprando",
     "registerpage-phonenumber": "Número de telefone",
-    "search-user-students": "Pesquisar Usuário"
+    "search-user-students": "Pesquisar Usuário",
+    "profile-dropdown-nav-courses": "Meus cursos",
+    "profile-dropdown-nav-create-new": "Criar novo curso",
+    "profile-dropdown-nav-my-dash": "Meu Painel",
+    "profile-dropdown-nav-my-lear-student": "Meu aprendizado",
+    "profile-dropdown-nav-my-wishlist": "Lista de Desejos",
+    "profile-dropdown-nav-acc-settings": "Configurações de Conta",
+    "profile-dropdown-nav-log-out": "Sair",
+    "my-learning-page-my-learning": "Meu aprendizado",
+    "my-learning-page-all-courses": "Todos os Cursos",
+    "my-learning-page-wishlist": "Lista de Desejos"
 }

@@ -48,16 +48,7 @@ const Footer = () => {
                                                 <i className='bx bxl-facebook'></i>
                                             </a>
                                         </li>
-                                        {/* <li>
-                                            <a
-                                                href='https://www.twitter.com/'
-                                                className='d-block'
-                                                target='_blank'
-                                                rel='noreferrer'
-                                            >
-                                                <i className='bx bxl-twitter'></i>
-                                            </a>
-                                        </li> */}
+
                                         <li>
                                             <a
                                                 href='https://www.instagram.com/escolasorvete/'
@@ -99,16 +90,7 @@ const Footer = () => {
                                                 </a>
                                             </Link>
                                         </li>
-                                        <li>
-                                            <Link href='/about-us'>
-                                                <a>
-                                                    {t('footer-link2', {
-                                                        defaultValue:
-                                                            'Historia',
-                                                    })}
-                                                </a>
-                                            </Link>
-                                        </li>
+
                                         <li>
                                             <Link href='/courses'>
                                                 <a>
@@ -127,11 +109,6 @@ const Footer = () => {
                                                 </a>
                                             </Link>
                                         </li>
-                                        {/* <li>
-                                            <Link href='/faq'>
-                                                <a>FAQ</a>
-                                            </Link>
-                                        </li> */}
                                     </ul>
                                 </div>
                             </div>
