@@ -29,7 +29,7 @@ const handleGetRequest = async (req, res) => {
 				{
 					model: Course,
 					as: "course",
-					attributes: ["id", "title", "slug", "image", "is_class"],
+					attributes: ["id", "title", "slug", "image", "orderNumber", "is_class"],
 					include: [
 						{
 							model: User,

@@ -28,6 +28,7 @@ const Index = ({ user }) => {
             );
 
             setEnrolments(response.data.enrolments);
+
             setLoading(false);
         };
 
