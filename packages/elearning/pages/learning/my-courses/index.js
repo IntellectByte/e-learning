@@ -10,6 +10,8 @@ import GeneralLoader from '@/utils/GeneralLoader';
 import CourseCard from '@/components/Learning/CourseCard';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+// PARA PONER LOS CURSOS DESABILITADOS
+// import DisabledCourseCard from '@/components/Learning/DisabledCourseCard';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
@@ -31,7 +33,7 @@ const Index = ({ user }) => {
 
             setLoading(false);
 
-            console.log(user)
+            console.log(user);
         };
 
         fetchEnrols();
