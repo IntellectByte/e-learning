@@ -68,14 +68,18 @@ const Index = ({ user }) => {
                         ) : (
                             <>
                                 {enrolments &&
-                                    enrolments.map((enrol) => (
-                                        <CourseCard key={enrol.id} {...enrol} />
-                                    ))}
-                                {/* <div className="col-lg-12 col-md-12">
-									<div className="pagination-area text-center">
-										<Pagination sizes={[1]} total={pages} />
-									</div>
-								</div> */}
+                                    enrolments
+                                        .sort(
+                                            (a, b) =>
+                                                a.course.orderNumber -
+                                                b.course.orderNumber
+                                        )
+                                        .map((enrol) => (
+                                            <CourseCard
+                                                key={enrol.id}
+                                                {...enrol}
+                                            />
+                                        ))}
                             </>
                         )}
                     </div>
