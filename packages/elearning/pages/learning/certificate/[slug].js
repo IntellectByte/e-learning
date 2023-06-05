@@ -96,63 +96,58 @@ const slug = ({ user }) => {
             <div className='ptb-100 get-certificate'>
                 <div className='container'>
                     <div className='form-box'>
-                        {passedQuiz ? (
-                            <>
-                                <form>
-                                    <label className='mb-2 textoNomeCert labelCertificado'>
-                                        Seu Nome
-                                    </label>
-                                    <input
-                                        type='text'
-                                        className='form-control inputCertificado'
-                                        placeholder='Seu Nome'
-                                        value={student}
-                                        onChange={(e) =>
-                                            setStudent(e.target.value)
-                                        }
-                                    />
-                                </form>
-                                <div
-                                    id='domEl'
-                                    ref={domEl}
-                                    className='certificate-img'
-                                >
-                                    <div className='content'>
-                                        <h2 className='textoStudentMobile'>
-                                            {student}
-                                        </h2>
-                                        <p className='date textoDateMobile'>
-                                            {getCurrentDate()}
-                                        </p>
-                                        <p className='textoCertificadoMobile'>
-                                            Por completar o{' '}
-                                            <b>{course && course.title}</b>
-                                        </p>
-                                    </div>
-                                    <img
-                                        src='/images/certificate2.jpg'
-                                        alt=''
-                                    />
+                        {/* {passedQuiz ? ( */}
+                        <>
+                            <form>
+                                <label className='mb-2 textoNomeCert labelCertificado'>
+                                    Seu Nome
+                                </label>
+                                <input
+                                    type='text'
+                                    className='form-control inputCertificado'
+                                    placeholder='Seu Nome'
+                                    value={student}
+                                    onChange={(e) => setStudent(e.target.value)}
+                                />
+                            </form>
+                            <div
+                                id='domEl'
+                                ref={domEl}
+                                className='certificate-img'
+                            >
+                                <div className='content'>
+                                    <h2 className='textoStudentMobile'>
+                                        {student}
+                                    </h2>
+                                    <p className='date textoDateMobile'>
+                                        {getCurrentDate()}
+                                    </p>
+                                    <p className='textoCertificadoMobile'>
+                                        Por completar o{' '}
+                                        <b>{course && course.title}</b>
+                                    </p>
                                 </div>
+                                <img src='/images/certificate2.jpg' alt='' />
+                            </div>
 
-                                <div className='caption'>
-                                    <button
-                                        className='download-btn download-btn-jpg visible'
-                                        onClick={downloadCertificate}
-                                        title='JPEG Image'
-                                    >
-                                        Download as JPG
-                                    </button>
-                                </div>
-                            </>
-                        ) : (
+                            <div className='caption'>
+                                <button
+                                    className='download-btn download-btn-jpg visible'
+                                    onClick={downloadCertificate}
+                                    title='JPEG Image'
+                                >
+                                    Download as JPG
+                                </button>
+                            </div>
+                        </>
+                        {/* ) : (
                             <>
                                 <h2 style={{ textTransform: 'capitalize' }}>
                                     <u>Answer before certificate</u>
                                 </h2>
                                 <QuizBuild setPassedQuiz={setPassedQuiz} />
                             </>
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>
