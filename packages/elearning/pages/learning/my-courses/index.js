@@ -32,8 +32,6 @@ const Index = ({ user }) => {
             setEnrolments(response.data.enrolments);
 
             setLoading(false);
-
-            console.log(user);
         };
 
         fetchEnrols();
