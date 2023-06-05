@@ -18,13 +18,6 @@ export default function AbourUsPage({ user }) {
 
             <Navbar user={user} />
 
-            <PageBanner
-                pageTitle='Nossa História'
-                homePageUrl='/'
-                homePageText='Home'
-                activePageText='Nossa História'
-            />
-
             <AboutUs />
 
             <FeedbackSliderWithFunFacts />
