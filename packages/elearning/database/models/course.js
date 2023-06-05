@@ -29,6 +29,7 @@ const initCourse = (sequelize, Types) => {
 			duration: DataTypes.STRING,
 			image: DataTypes.STRING,
 			hotmartId: DataTypes.STRING,
+			orderNumber: DataTypes.NUMBER,
 			access_time: {
 				type: DataTypes.ENUM,
 				values: ["Lifetime", "Three Months", "Six Months", "1 Year"],
