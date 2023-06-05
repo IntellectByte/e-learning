@@ -42,6 +42,7 @@ const initUser = (sequelize, Types) => {
 				values: ["student", "admin", "instructor"],
 				defaultValue: "student",
 			},
+			isSub: Types.BOOLEAN,
 			email_confirmed: Types.BOOLEAN,
 			email_confirmed_at: Types.DATE,
 			instructor_request: Types.BOOLEAN,
