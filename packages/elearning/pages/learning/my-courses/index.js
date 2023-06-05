@@ -31,7 +31,6 @@ const Index = ({ user }) => {
 
             setLoading(false);
 
-            console.log(user)
         };
 
         fetchEnrols();
