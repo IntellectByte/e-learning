@@ -18,13 +18,6 @@ export default function ContactUsPage({ user }) {
 
             <Navbar user={user} />
 
-            <PageBanner
-                pageTitle='Contact Us'
-                homePageUrl='/'
-                homePageText='Home'
-                activePageText='Contact Us'
-            />
-
             <div className='contact-area ptb-100'>
                 <div className='container'>
                     <div className='row align-items-center'>

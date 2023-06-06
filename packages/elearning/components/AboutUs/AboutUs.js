@@ -27,11 +27,6 @@ const AboutUs = () => {
                                     development report career benefits like
                                     getting a promotion, starting a new career
                                 </h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                </p>
 
                                 <p>
                                     Sed ut perspiciatis unde omnis iste natus
@@ -52,7 +47,7 @@ const AboutUs = () => {
                                     <li>
                                         <span>
                                             <i className='flaticon-time-left'></i>{' '}
-                                            Lifetime Acces
+                                            Lifetime Access
                                         </span>
                                     </li>
                                     <li>
