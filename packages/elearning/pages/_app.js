@@ -62,6 +62,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
             // ctx.pathname === '/checkout' ||
             ctx.pathname === '/become-an-instructor' ||
             ctx.pathname === '/learning/my-courses' ||
+            ctx.pathname === '/learning/course' ||
             ctx.pathname === '/instructor/courses' ||
             ctx.pathname === '/admin' ||
             ctx.pathname === '/admin/instructor' ||
