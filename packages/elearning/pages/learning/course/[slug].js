@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from '@/components/_App/Navbar';
 import Footer from '@/components/_App/Footer';
 import StickyBox from 'react-sticky-box';
 import Player from '@/components/Learning/Player';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import baseUrl from '@/utils/baseUrl';
 import axios from 'axios';
 import VideoList from '@/components/Learning/VideoList';
@@ -16,27 +16,56 @@ import CourseRating from '@/components/Learning/CourseRating';
 import CourseFeedback from '@/components/Learning/CourseFeedback';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
+import {redirectUser} from "@/utils/auth";
+import App from "next/app";
+import {progress} from "@/utils/helper";
 
-const Index = ({ user }) => {
+const Index = ({user}) => {
     const [videos, setVideos] = useState([]);
     const [course, setCourse] = useState({});
     const [selectedVideo, setSelectedVideo] = useState('');
     const [active, setActive] = useState('');
     const [tab, setTab] = useState('overview');
     const {
-        query: { slug },
+        query: {slug},
     } = useRouter();
+    const router = useRouter()
+
 
     const fetchVideos = async () => {
+
+
         const url = `${baseUrl}/api/learnings/videos/${slug}`;
         const response = await axios.get(url);
         setVideos(response.data.videos);
         setSelectedVideo(response.data.videos[0].video);
         setActive(response.data.videos[0].id);
         setCourse(response.data.course);
+
+        if (response.data.course.orderNumber > 1) {
+            const url1 = `${baseUrl}/api/courses/course/find-one?orderNumber=${response.data.course.orderNumber - 1}`;
+            const response1 = await axios.get(url1);
+            const previousCourse = response1.data.course
+            // console.log(previousCourse)
+
+            const url2 = `${baseUrl}/api/learnings/progress?courseId=${previousCourse.id}&userId=${user.id}`;
+            const response2 = await axios.get(url2);
+            const previousCourseData = response2.data
+            const previousCourseProgress = progress(previousCourseData.courseProgress.length, previousCourseData.totalVideos)
+            if (previousCourseProgress < 100){
+                alert("No has terminado el curso anterior")
+                router.push('/learning/my-courses/')
+            }
+            // console.log(response2.data)
+        }
+
+        // console.log(user, response.data.course)
+
     };
 
+
     useEffect(() => {
+        if (!user) router.push('/')
         fetchVideos();
     }, [slug]);
 
@@ -44,12 +73,12 @@ const Index = ({ user }) => {
         // console.log(videoId);
         try {
             const payload = {
-                params: { userId: user.id, courseId: course.id },
+                params: {userId: user.id, courseId: course.id},
             };
             const url = `${baseUrl}/api/learnings/video/${videoId}`;
             const response = await axios.get(url, payload);
             const {
-                data: { video },
+                data: {video},
             } = response;
 
             setSelectedVideo(video.video);
@@ -63,11 +92,11 @@ const Index = ({ user }) => {
 
     return (
         <>
-            <SupportButton />
+            <SupportButton/>
 
-            <TopBanner />
+            <TopBanner/>
 
-            <Navbar user={user} />
+            <Navbar user={user}/>
 
             <div className='mt-5 pb-5 video-area'>
                 <div className='container-fluid'>
@@ -75,10 +104,10 @@ const Index = ({ user }) => {
                         <div className='col-lg-9 col-md-8'>
                             <div className='video-content'>
                                 {selectedVideo && (
-                                    <Player videoSrc={selectedVideo} />
+                                    <Player videoSrc={selectedVideo}/>
                                 )}
 
-                                <br />
+                                <br/>
                                 <ul className='nav-style1'>
                                     <li>
                                         <Link href={`/learning/course/${slug}`}>
@@ -186,7 +215,7 @@ const Index = ({ user }) => {
                                 <div className='video-sidebar'>
                                     <ProgressManager
                                         videos_count={videos.length}
-                                        userId={user.id}
+                                        userId={user && user.id}
                                         courseId={course.id}
                                         selectedVideo={selectedVideo}
                                     />
@@ -195,7 +224,7 @@ const Index = ({ user }) => {
                                         <h4 className='title mb-3'>
                                             {course && course.title}
                                         </h4>
-                                        <ul style={{ cursor: 'pointer' }}>
+                                        <ul style={{cursor: 'pointer'}}>
                                             {videos.length > 0 &&
                                                 videos.map((video) => (
                                                     <VideoList
@@ -218,7 +247,7 @@ const Index = ({ user }) => {
                 </div>
             </div>
 
-            <Footer />
+            <Footer/>
         </>
     );
 };
