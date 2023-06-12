@@ -33,9 +33,9 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
         let fileSize;
         if (name === 'lecture_file') {
             fileSize = files[0].size / 1024 / 1024;
-            if (fileSize > 5) {
+            if (fileSize > 100) {
                 toast.error(
-                    'The file size greater than 5 MB. Make sure less than 5 MB.',
+                    'The file size greater than 100 MB. Make sure less than 100 MB.',
                     {
                         style: {
                             border: '1px solid #ff0033',
