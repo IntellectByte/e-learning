@@ -212,5 +212,9 @@
     "profile-dropdown-nav-log-out": "Sair",
     "my-learning-page-my-learning": "Meu aprendizado",
     "my-learning-page-all-courses": "Todos os Cursos",
-    "my-learning-page-wishlist": "Lista de Desejos"
+    "my-learning-page-wishlist": "Lista de Desejos",
+    "confirm-email-textone": "Insira o endereço de e-mail.",
+    "confirm-email-send-email": "Enviar e-mail de confirmação",
+    "forgotpasspage-textone": "Por favor, digite seu e-mail e o token que você recebeu em seu endereço de e-mail.",
+    "forgotpasspage-reset-pass": "Redefinir Senha"
 }

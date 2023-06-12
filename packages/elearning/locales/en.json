@@ -212,5 +212,9 @@
     "profile-dropdown-nav-log-out": "Log out",
     "my-learning-page-my-learning": "My learning",
     "my-learning-page-all-courses": "All Courses",
-    "my-learning-page-wishlist": "Wishlist"
+    "my-learning-page-wishlist": "Wishlist",
+    "confirm-email-textone": "Please enter Email address.",
+    "confirm-email-send-email": "Send Confirmation Email",
+    "forgotpasspage-textone": "Please enter your email and the token that you received in your email address.",
+    "forgotpasspage-reset-pass": "Reset Password"
 }

@@ -212,5 +212,9 @@
     "profile-dropdown-nav-log-out": "Cerrar sesión",
     "my-learning-page-my-learning": "Mi aprendizaje",
     "my-learning-page-all-courses": "Todos los cursos",
-    "my-learning-page-wishlist": "Lista de deseos"
+    "my-learning-page-wishlist": "Lista de deseos",
+    "confirm-email-textone": "Por favor, introduzca la dirección de correo electrónico.",
+    "confirm-email-send-email": "Enviar correo electrónico de confirmación",
+    "forgotpasspage-textone": "Ingrese su correo electrónico y el token que recibió en su dirección de correo electrónico.",
+    "forgotpasspage-reset-pass": "Restablecer la contraseña"
 }
