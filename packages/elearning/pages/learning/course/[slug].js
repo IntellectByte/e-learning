@@ -22,6 +22,7 @@ import {progress} from "@/utils/helper";
 
 const Index = ({user}) => {
     const [videos, setVideos] = useState([]);
+    const [modules, setModules] = useState([]);
     const [course, setCourse] = useState({});
     const [selectedVideo, setSelectedVideo] = useState('');
     const [active, setActive] = useState('');
@@ -30,7 +31,6 @@ const Index = ({user}) => {
         query: {slug},
     } = useRouter();
     const router = useRouter()
-
 
     const fetchVideos = async () => {
 
@@ -52,7 +52,7 @@ const Index = ({user}) => {
             const response2 = await axios.get(url2);
             const previousCourseData = response2.data
             const previousCourseProgress = progress(previousCourseData.courseProgress.length, previousCourseData.totalVideos)
-            if (previousCourseProgress < 100){
+            if (previousCourseProgress < 100) {
                 alert("No has terminado el curso anterior")
                 router.push('/learning/my-courses/')
             }
@@ -63,6 +63,26 @@ const Index = ({user}) => {
 
     };
 
+    ///TODO: logica para que los modulos sean correlativos (bloquear los siguientes a los que no estan terminados aun)
+
+
+    useEffect(() => {
+        const groups = videos.map(e => e.group_name)
+        const hashset = new Set(groups)
+
+        let i = 1
+
+        const modulesVideos = [...hashset].map(mod => {
+            return {
+                group_name: mod,
+                videos: videos.filter(e => e.group_name === mod),
+                active: i === 1,
+                index: i++
+            }
+        })
+        setModules(modulesVideos)
+        // console.log(modulesVideos)
+    }, [videos]);
 
     useEffect(() => {
         if (!user) router.push('/')
@@ -90,166 +110,139 @@ const Index = ({user}) => {
         }
     };
 
-    return (
-        <>
-            <SupportButton/>
+    return (<>
+        <SupportButton/>
 
-            <TopBanner/>
+        <TopBanner/>
 
-            <Navbar user={user}/>
+        <Navbar user={user}/>
 
-            <div className='mt-5 pb-5 video-area'>
-                <div className='container-fluid'>
-                    <div className='row'>
-                        <div className='col-lg-9 col-md-8'>
-                            <div className='video-content'>
-                                {selectedVideo && (
-                                    <Player videoSrc={selectedVideo}/>
-                                )}
+        <div className='mt-5 pb-5 video-area'>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className='col-lg-9 col-md-8'>
+                        <div className='video-content'>
+                            {selectedVideo && (<Player videoSrc={selectedVideo}/>)}
 
-                                <br/>
-                                <ul className='nav-style1'>
-                                    <li>
-                                        <Link href={`/learning/course/${slug}`}>
-                                            <a
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setTab('overview');
-                                                }}
-                                                className={
-                                                    tab == 'overview'
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                            >
-                                                Overview
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href={`/learning/course/${slug}`}>
-                                            <a
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setTab('asset');
-                                                }}
-                                                className={
-                                                    tab == 'asset'
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                            >
-                                                Assets
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href={`/learning/course/${slug}`}>
-                                            <a
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setTab('discussion');
-                                                }}
-                                                className={
-                                                    tab == 'discussion'
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                            >
-                                                Discussion
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href={`/learning/course/${slug}`}>
-                                            <a
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setTab('rating');
-                                                }}
-                                                className={
-                                                    tab == 'rating'
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                            >
-                                                Leave a rating
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href={`/learning/course/${slug}`}>
-                                            <a
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setTab('feedback');
-                                                }}
-                                                className={
-                                                    tab == 'feedback'
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                            >
-                                                Leave a feedback
-                                            </a>
-                                        </Link>
-                                    </li>
-                                </ul>
+                            <br/>
+                            <ul className='nav-style1'>
+                                <li>
+                                    <Link href={`/learning/course/${slug}`}>
+                                        <a
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setTab('overview');
+                                            }}
+                                            className={tab == 'overview' ? 'active' : ''}
+                                        >
+                                            Overview
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={`/learning/course/${slug}`}>
+                                        <a
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setTab('asset');
+                                            }}
+                                            className={tab == 'asset' ? 'active' : ''}
+                                        >
+                                            Assets
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={`/learning/course/${slug}`}>
+                                        <a
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setTab('discussion');
+                                            }}
+                                            className={tab == 'discussion' ? 'active' : ''}
+                                        >
+                                            Discussion
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={`/learning/course/${slug}`}>
+                                        <a
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setTab('rating');
+                                            }}
+                                            className={tab == 'rating' ? 'active' : ''}
+                                        >
+                                            Leave a rating
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={`/learning/course/${slug}`}>
+                                        <a
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setTab('feedback');
+                                            }}
+                                            className={tab == 'feedback' ? 'active' : ''}
+                                        >
+                                            Leave a feedback
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
 
-                                {course && tab == 'asset' ? (
-                                    <CourseAsset {...course} />
-                                ) : tab == 'discussion' ? (
-                                    <CourseDiscussion {...course} />
-                                ) : tab == 'rating' ? (
-                                    <CourseRating {...course} />
-                                ) : tab == 'feedback' ? (
-                                    <CourseFeedback {...course} />
-                                ) : (
-                                    <CourseOverview {...course} />
-                                )}
-                            </div>
+                            {course && tab == 'asset' ? (<CourseAsset {...course} />) : tab == 'discussion' ? (
+                                <CourseDiscussion {...course} />) : tab == 'rating' ? (
+                                <CourseRating {...course} />) : tab == 'feedback' ? (<CourseFeedback {...course} />) : (
+                                <CourseOverview {...course} />)}
                         </div>
+                    </div>
 
-                        <div className='col-lg-3 col-md-4'>
-                            <StickyBox offsetTop={20} offsetBottom={20}>
-                                <div className='video-sidebar'>
-                                    <ProgressManager
-                                        videos_count={videos.length}
-                                        userId={user && user.id}
-                                        courseId={course.id}
-                                        selectedVideo={selectedVideo}
-                                    />
+                    <div className='col-lg-3 col-md-4'>
+                        <StickyBox offsetTop={20} offsetBottom={20}>
+                            <div className='video-sidebar'>
+                                <ProgressManager
+                                    videos_count={videos.length}
+                                    userId={user && user.id}
+                                    courseId={course.id}
+                                    selectedVideo={selectedVideo}
+                                />
 
-                                    <div className='course-video-list'>
-                                        <h4 className='title mb-3'>
-                                            {course && course.title}
-                                        </h4>
-                                        <ul style={{cursor: 'pointer'}}>
-                                            {videos.length > 0 &&
-                                                videos.map((video) => (
-                                                    <VideoList
-                                                        key={video.id}
-                                                        {...video}
-                                                        onPlay={() =>
-                                                            selectVideo(
-                                                                video.id
-                                                            )
-                                                        }
-                                                        activeClass={active}
-                                                    />
-                                                ))}
-                                        </ul>
-                                    </div>
+                                <div className='course-video-list'>
+
+                                    <h4 className='title center text-bg-info mb-5'>
+                                        {course && course.title}
+                                    </h4>
+
+                                    {videos.length > 0 && modules.length > 0 && modules.map(e => (
+                                        <div className='course-video-list'>
+                                            <h4 className='title mb-3'>
+                                                {e && e.group_name}
+                                            </h4>
+                                            <ul style={{cursor: 'pointer'}}>
+
+                                                {e.videos.map(video => (<VideoList
+                                                    key={video.id}
+                                                    {...video}
+                                                    onPlay={() => selectVideo(video.id)}
+                                                    activeClass={active}
+                                                />))}
+
+
+                                            </ul>
+                                        </div>))}
                                 </div>
-                            </StickyBox>
-                        </div>
+                            </div>
+                        </StickyBox>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <Footer/>
-        </>
-    );
+        <Footer/>
+    </>);
 };
 
 export default Index;
