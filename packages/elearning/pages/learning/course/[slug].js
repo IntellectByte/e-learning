@@ -64,47 +64,25 @@ const Index = ({user}) => {
 
     };
 
+    ///TODO: logica para que los modulos sean correlativos (bloquear los siguientes a los que no estan terminados aun)
 
-    async function fetchProgresses(groupNames, isVideoClicked) {
 
+    useEffect(() => {
+        const groups = videos.map(e => e.group_name)
+        const hashset = new Set(groups)
 
         let i = 1
 
-        const modulesVideos = []
-
-
-        for (const mod of groupNames) {
-
-            const url = `${baseUrl}/api/learnings/module-progress?courseId=${course.id}&userId=${user.id}&group_name=${mod}`;
-            const response = await axios.get(url);
-            if (progress(response.data.courseProgress, response.data.totalVideos) === 100) {
-                // console.log("terminado")
-                modulesVideos.push({
-                    group_name: mod,
-                    videos: videos.filter(e => e.group_name === mod),
-                    active: i === 1,
-                    index: i++,
-                    finished: true
-                })
-                if (isVideoClicked){
-                    ///TODO: @peluke aca dentro de este if podes usar la propiedad isVideoClicked para avisarle
-                    ///TODO: al usuario que termino un modulo y que desbloqueo el siguiente
-                    ///TODO: el nombre del modulo que termino esta en la prop que se llama 'mod'
-
-                }
-            }else{
-
-                modulesVideos.push({
-                    group_name: mod,
-                    videos: videos.filter(e => e.group_name === mod),
-                    active: i === 1,
-                    index: i++,
-                    finished: false
-                })
+        const modulesVideos = [...hashset].map(mod => {
+            return {
+                group_name: mod,
+                videos: videos.filter(e => e.group_name === mod),
+                active: i === 1,
+                index: i++
             }
-        }
-
+        })
         setModules(modulesVideos)
+<<<<<<< HEAD
     }
 
     useEffect(() => {
@@ -113,6 +91,8 @@ const Index = ({user}) => {
         const hashset = new Set(groups)
 
         fetchProgresses([...hashset], false)
+=======
+>>>>>>> 09428ae47409e4dd3d68e4e01e21dd90c2bd3978
         // console.log(modulesVideos)
     }, [videos, modules]);
 
@@ -255,9 +235,8 @@ const Index = ({user}) => {
                                         {course && course.title}
                                     </h4>
 
-                                    {videos.length > 0 && modules.length > 0 && modules.map(e => {
-
-                                       return e.index === 1 ? <div className='course-video-list'>
+                                    {videos.length > 0 && modules.length > 0 && modules.map(e => (
+                                        <div className='course-video-list'>
                                             <h4 className='title mb-3'>
                                                 {e && e.group_name}
                                             </h4>
@@ -274,31 +253,7 @@ const Index = ({user}) => {
 
 
                                             </ul>
-                                        </div> :
-
-                                           ///TODO: @peluke aca podria ser que el div en vez de desaparecer aparezca
-                                           ///TODO: como disable o que no se pueda clickear hasta que el usuario
-                                           ///TODO: complete el modulo anterior
-
-                                           e.index > 1 && modules[e.index - 2].finished && <div className='course-video-list'>
-                                               <h4 className='title mb-3'>
-                                                   {e && e.group_name}
-                                               </h4>
-                                               <ul style={{cursor: 'pointer'}}>
-
-                                                   {e.videos.map(video => (<VideoList
-                                                       onClick={fetchProgresses}
-                                                       groupNames={modules.map(e => e.group_name)}
-                                                       key={video.id}
-                                                       {...video}
-                                                       onPlay={() => selectVideo(video.id)}
-                                                       activeClass={active}
-                                                   />))}
-
-
-                                               </ul>
-                                           </div>
-                                    })}
+                                        </div>))}
                                 </div>
                             </div>
                         </StickyBox>
