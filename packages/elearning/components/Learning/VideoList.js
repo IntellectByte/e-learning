@@ -8,11 +8,16 @@ const VideoList = ({
     video_length,
     onPlay,
     activeClass,
+    onClick,
+    groupNames
 }) => {
     return (
         <li
             className={activeClass === id ? 'active' : ''}
-            onClick={() => onPlay(id)}
+            onClick={() => {
+                onPlay(id)
+                onClick(groupNames, true)
+            }}
         >
             {short_id}. {title}
             <span className='d-block text-muted fs-13 mt-1 cursor-pointer-one'>
