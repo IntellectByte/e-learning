@@ -116,11 +116,6 @@ const Index = ({user}) => {
         // console.log(modulesVideos)
     }, [videos, modules]);
 
-    useEffect(() => {
-        fetchProgresses(groups, false)
-
-    }, [modules]);
-
 
 
     useEffect(() => {
