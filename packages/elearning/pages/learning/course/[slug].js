@@ -23,7 +23,6 @@ import {progress} from "@/utils/helper";
 const Index = ({user}) => {
     const [videos, setVideos] = useState([]);
     const [modules, setModules] = useState([]);
-    const [groups, setGroups] = useState([]);
     const [course, setCourse] = useState({});
     const [selectedVideo, setSelectedVideo] = useState('');
     const [active, setActive] = useState('');
@@ -82,26 +81,8 @@ const Index = ({user}) => {
             }
         })
         setModules(modulesVideos)
-<<<<<<< HEAD
-    }
-
-    useEffect(() => {
-
-        const groups = videos.map(e => e.group_name)
-        const hashset = new Set(groups)
-
-        fetchProgresses([...hashset], false)
-=======
->>>>>>> 09428ae47409e4dd3d68e4e01e21dd90c2bd3978
         // console.log(modulesVideos)
-    }, [videos, modules]);
-
-    useEffect(() => {
-        fetchProgresses(groups, false)
-
-    }, [modules]);
-
-
+    }, [videos]);
 
     useEffect(() => {
         if (!user) router.push('/')
@@ -243,8 +224,6 @@ const Index = ({user}) => {
                                             <ul style={{cursor: 'pointer'}}>
 
                                                 {e.videos.map(video => (<VideoList
-                                                    onClick={fetchProgresses}
-                                                    groupNames={modules.map(e => e.group_name)}
                                                     key={video.id}
                                                     {...video}
                                                     onPlay={() => selectVideo(video.id)}
