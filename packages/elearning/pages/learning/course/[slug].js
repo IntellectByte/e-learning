@@ -63,23 +63,16 @@ const Index = ({user}) => {
 
     };
 
-    ///TODO: logica para que los modulos sean correlativos
-    ///todo: (bloquear los siguientes a los que no estan terminados aun)
 
-
-    async function fetchProgresses(groupNames) {
+    async function fetchProgresses(groupNames, isVideoClicked) {
 
 
         let i = 1
 
-        ///TODO: pasar .map a forof para poder trabajar de manera asincrona
         const modulesVideos = []
 
 
         for (const mod of groupNames) {
-            ///TODO: fetchear progreso del usuario en el curso, y en particular del modulo
-            ///TODO: que estamos recorriendo
-            ///TODO: si el modulo esta completo seteamos la prop finished en true
 
             const url = `${baseUrl}/api/learnings/module-progress?courseId=${course.id}&userId=${user.id}&group_name=${mod}`;
             const response = await axios.get(url);
@@ -90,10 +83,14 @@ const Index = ({user}) => {
                     videos: videos.filter(e => e.group_name === mod),
                     active: i === 1,
                     index: i++,
-                    ///TODO: prop finished es true cuando el usuario ha
-                    ///TODO: visualizado todos los videos del modulo,
                     finished: true
                 })
+                if (isVideoClicked){
+                    ///TODO: @peluke aca dentro de este if podes usar la propiedad isVideoClicked para avisarle
+                    ///TODO: al usuario que termino un modulo y que desbloqueo el siguiente
+                    ///TODO: el nombre del modulo que termino esta en la prop que se llama 'mod'
+
+                }
             }else{
 
                 modulesVideos.push({
@@ -101,8 +98,6 @@ const Index = ({user}) => {
                     videos: videos.filter(e => e.group_name === mod),
                     active: i === 1,
                     index: i++,
-                    ///TODO: prop finished es true cuando el usuario ha
-                    ///TODO: visualizado todos los videos del modulo,
                     finished: false
                 })
             }
@@ -115,7 +110,7 @@ const Index = ({user}) => {
         const groups = videos.map(e => e.group_name)
         const hashset = new Set(groups)
 
-        fetchProgresses([...hashset])
+        fetchProgresses([...hashset], false)
         // console.log(modulesVideos)
     }, [videos]);
 
@@ -269,6 +264,11 @@ const Index = ({user}) => {
 
                                             </ul>
                                         </div> :
+
+                                           ///TODO: @peluke aca podria ser que el div en vez de desaparecer aparezca
+                                           ///TODO: como disable o que no se pueda clickear hasta que el usuario
+                                           ///TODO: complete el modulo anterior
+
                                            e.index > 1 && modules[e.index - 2].finished && <div className='course-video-list'>
                                                <h4 className='title mb-3'>
                                                    {e && e.group_name}

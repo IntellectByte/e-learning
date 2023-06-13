@@ -16,7 +16,7 @@ const VideoList = ({
             className={activeClass === id ? 'active' : ''}
             onClick={() => {
                 onPlay(id)
-                onClick(groupNames)
+                onClick(groupNames, true)
             }}
         >
             {short_id}. {title}
