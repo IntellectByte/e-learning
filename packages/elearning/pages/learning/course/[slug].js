@@ -63,24 +63,59 @@ const Index = ({user}) => {
 
     };
 
-    ///TODO: logica para que los modulos sean correlativos (bloquear los siguientes a los que no estan terminados aun)
+    ///TODO: logica para que los modulos sean correlativos
+    ///todo: (bloquear los siguientes a los que no estan terminados aun)
 
+
+    async function fetchProgresses(groupNames) {
+
+
+        let i = 1
+
+        ///TODO: pasar .map a forof para poder trabajar de manera asincrona
+        const modulesVideos = []
+
+
+        for (const mod of groupNames) {
+            ///TODO: fetchear progreso del usuario en el curso, y en particular del modulo
+            ///TODO: que estamos recorriendo
+            ///TODO: si el modulo esta completo seteamos la prop finished en true
+
+            const url = `${baseUrl}/api/learnings/module-progress?courseId=${course.id}&userId=${user.id}&group_name=${mod}`;
+            const response = await axios.get(url);
+            if (progress(response.data.courseProgress, response.data.totalVideos) === 100) {
+                // console.log("terminado")
+                modulesVideos.push({
+                    group_name: mod,
+                    videos: videos.filter(e => e.group_name === mod),
+                    active: i === 1,
+                    index: i++,
+                    ///TODO: prop finished es true cuando el usuario ha
+                    ///TODO: visualizado todos los videos del modulo,
+                    finished: true
+                })
+            }else{
+
+                modulesVideos.push({
+                    group_name: mod,
+                    videos: videos.filter(e => e.group_name === mod),
+                    active: i === 1,
+                    index: i++,
+                    ///TODO: prop finished es true cuando el usuario ha
+                    ///TODO: visualizado todos los videos del modulo,
+                    finished: false
+                })
+            }
+        }
+
+        setModules(modulesVideos)
+    }
 
     useEffect(() => {
         const groups = videos.map(e => e.group_name)
         const hashset = new Set(groups)
 
-        let i = 1
-
-        const modulesVideos = [...hashset].map(mod => {
-            return {
-                group_name: mod,
-                videos: videos.filter(e => e.group_name === mod),
-                active: i === 1,
-                index: i++
-            }
-        })
-        setModules(modulesVideos)
+        fetchProgresses([...hashset])
         // console.log(modulesVideos)
     }, [videos]);
 
@@ -216,8 +251,9 @@ const Index = ({user}) => {
                                         {course && course.title}
                                     </h4>
 
-                                    {videos.length > 0 && modules.length > 0 && modules.map(e => (
-                                        <div className='course-video-list'>
+                                    {videos.length > 0 && modules.length > 0 && modules.map(e => {
+
+                                       return e.index === 1 ? <div className='course-video-list'>
                                             <h4 className='title mb-3'>
                                                 {e && e.group_name}
                                             </h4>
@@ -232,7 +268,26 @@ const Index = ({user}) => {
 
 
                                             </ul>
-                                        </div>))}
+                                        </div> :
+                                           e.index > 1 && modules[e.index - 2].finished && <div className='course-video-list'>
+                                               <h4 className='title mb-3'>
+                                                   {e && e.group_name}
+                                               </h4>
+                                               <ul style={{cursor: 'pointer'}}>
+
+                                                   {e.videos.map(video => (<VideoList
+                                                       onClick={fetchProgresses}
+                                                       groupNames={modules.map(e => e.group_name)}
+                                                       key={video.id}
+                                                       {...video}
+                                                       onPlay={() => selectVideo(video.id)}
+                                                       activeClass={active}
+                                                   />))}
+
+
+                                               </ul>
+                                           </div>
+                                    })}
                                 </div>
                             </div>
                         </StickyBox>
