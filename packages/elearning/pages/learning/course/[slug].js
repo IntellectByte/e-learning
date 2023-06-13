@@ -252,47 +252,47 @@ const Index = ({user}) => {
 
                                     {videos.length > 0 && modules.length > 0 && modules.map(e => {
 
-                                       return e.index === 1 ? <div className='course-video-list'>
-                                            <h4 className='title mb-3'>
-                                                {e && e.group_name}
-                                            </h4>
-                                            <ul style={{cursor: 'pointer'}}>
+                                        return e.index === 1 ? <div className='course-video-list'>
+                                                <h4 className='title mb-3'>
+                                                    {e && e.group_name}
+                                                </h4>
+                                                <ul style={{cursor: 'pointer'}}>
 
-                                                {e.videos.map(video => (<VideoList
-                                                    onClick={fetchProgresses}
-                                                    groupNames={modules.map(e => e.group_name)}
-                                                    key={video.id}
-                                                    {...video}
-                                                    onPlay={() => selectVideo(video.id)}
-                                                    activeClass={active}
-                                                />))}
-
-
-                                            </ul>
-                                        </div> :
-
-                                           ///TODO: @peluke aca podria ser que el div en vez de desaparecer aparezca
-                                           ///TODO: como disable o que no se pueda clickear hasta que el usuario
-                                           ///TODO: complete el modulo anterior
-
-                                           e.index > 1 && modules[e.index - 2].finished && <div className='course-video-list'>
-                                               <h4 className='title mb-3'>
-                                                   {e && e.group_name}
-                                               </h4>
-                                               <ul style={{cursor: 'pointer'}}>
-
-                                                   {e.videos.map(video => (<VideoList
-                                                       onClick={fetchProgresses}
-                                                       groupNames={modules.map(e => e.group_name)}
-                                                       key={video.id}
-                                                       {...video}
-                                                       onPlay={() => selectVideo(video.id)}
-                                                       activeClass={active}
-                                                   />))}
+                                                    {e.videos.map(video => (<VideoList
+                                                        onClick={fetchProgresses}
+                                                        groupNames={modules.map(e => e.group_name)}
+                                                        key={video.id}
+                                                        {...video}
+                                                        onPlay={() => selectVideo(video.id)}
+                                                        activeClass={active}
+                                                    />))}
 
 
-                                               </ul>
-                                           </div>
+                                                </ul>
+                                            </div> :
+
+                                            ///TODO: @peluke aca podria ser que el div en vez de desaparecer aparezca
+                                            ///TODO: como disable o que no se pueda clickear hasta que el usuario
+                                            ///TODO: complete el modulo anterior
+
+                                            e.index > 1 && modules[e.index - 2].finished && <div className='course-video-list'>
+                                                <h4 className='title mb-3'>
+                                                    {e && e.group_name}
+                                                </h4>
+                                                <ul style={{cursor: 'pointer'}}>
+
+                                                    {e.videos.map(video => (<VideoList
+                                                        onClick={fetchProgresses}
+                                                        groupNames={modules.map(e => e.group_name)}
+                                                        key={video.id}
+                                                        {...video}
+                                                        onPlay={() => selectVideo(video.id)}
+                                                        activeClass={active}
+                                                    />))}
+
+
+                                                </ul>
+                                            </div>
                                     })}
                                 </div>
                             </div>
