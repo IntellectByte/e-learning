@@ -1,19 +1,34 @@
-import React from 'react';
-import { secondsToHms } from '@/utils/helper';
+import React, {useEffect} from 'react';
+import {secondsToHms} from '@/utils/helper';
 
 const VideoList = ({
-    id,
-    title,
-    short_id,
-    video_length,
-    onPlay,
-    activeClass,
-    onClick,
-    groupNames
-}) => {
+                       id,
+                       title,
+                       short_id,
+                       video_length,
+                       onPlay,
+                       activeClass,
+                       onClick,
+                       groupNames
+                   }) => {
+
+    useEffect(() => {
+
+        if (short_id === 1) {
+            onPlay(short_id)
+            onClick(groupNames, false)
+        }
+
+    }, [])
+
     return (
         <li
             className={activeClass === id ? 'active' : ''}
+
+            onBlur={() => {
+                onPlay(id)
+                onClick(groupNames, true)
+            }}
             onClick={() => {
                 onPlay(id)
                 onClick(groupNames, true)
