@@ -16,7 +16,7 @@ const VideoList = ({
 
         if (short_id === 1) {
             onPlay(short_id)
-            onClick(groupNames, true)
+            onClick(groupNames, false)
         }
 
     }, [])

@@ -97,6 +97,7 @@
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "json-loader": "^0.5.7",
+    "react-modal": "^3.16.1",
     "sequelize-cli": "^6.4.1"
   }
 }

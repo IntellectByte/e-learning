@@ -16,14 +16,14 @@ import CourseRating from '@/components/Learning/CourseRating';
 import CourseFeedback from '@/components/Learning/CourseFeedback';
 import SupportButton from '@/components/ContactUs/SupportBtn';
 import TopBanner from '@/components/TopBanner/TopBanner';
-import {redirectUser} from "@/utils/auth";
-import App from "next/app";
-import {progress} from "@/utils/helper";
+import {redirectUser} from '@/utils/auth';
+import App from 'next/app';
+import {progress} from '@/utils/helper';
+import Modal from 'react-modal';
 
 const Index = ({user}) => {
     const [videos, setVideos] = useState([]);
     const [modules, setModules] = useState([]);
-    const [groups, setGroups] = useState([]);
     const [course, setCourse] = useState({});
     const [selectedVideo, setSelectedVideo] = useState('');
     const [active, setActive] = useState('');
@@ -31,11 +31,28 @@ const Index = ({user}) => {
     const {
         query: {slug},
     } = useRouter();
-    const router = useRouter()
+    const router = useRouter();
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    const [dropdownOpen, setDropdownOpen] = useState(Array(modules.length).fill(false));
+
+    const toggleDropdown = (index) => {
+        setDropdownOpen((prevState) => {
+            const newState = [...prevState];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
 
     const fetchVideos = async () => {
-
-
         const url = `${baseUrl}/api/learnings/videos/${slug}`;
         const response = await axios.get(url);
         setVideos(response.data.videos);
@@ -46,80 +63,71 @@ const Index = ({user}) => {
         if (response.data.course.orderNumber > 1) {
             const url1 = `${baseUrl}/api/courses/course/find-one?orderNumber=${response.data.course.orderNumber - 1}`;
             const response1 = await axios.get(url1);
-            const previousCourse = response1.data.course
+            const previousCourse = response1.data.course;
             // console.log(previousCourse)
 
             const url2 = `${baseUrl}/api/learnings/progress?courseId=${previousCourse.id}&userId=${user.id}`;
             const response2 = await axios.get(url2);
-            const previousCourseData = response2.data
-            const previousCourseProgress = progress(previousCourseData.courseProgress.length, previousCourseData.totalVideos)
+            const previousCourseData = response2.data;
+            const previousCourseProgress = progress(previousCourseData.courseProgress.length, previousCourseData.totalVideos);
             if (previousCourseProgress < 100) {
-                alert("No has terminado el curso anterior")
-                router.push('/learning/my-courses/')
+                alert('No has terminado el curso anterior');
+                router.push('/learning/my-courses/');
             }
             // console.log(response2.data)
         }
 
         // console.log(user, response.data.course)
-
     };
 
-
     async function fetchProgresses(groupNames, isVideoClicked) {
+        let i = 1;
 
-
-        let i = 1
-
-        const modulesVideos = []
-
+        const modulesVideos = [];
 
         for (const mod of groupNames) {
-
             const url = `${baseUrl}/api/learnings/module-progress?courseId=${course.id}&userId=${user.id}&group_name=${mod}`;
             const response = await axios.get(url);
             if (progress(response.data.courseProgress, response.data.totalVideos) === 100) {
                 // console.log("terminado")
                 modulesVideos.push({
                     group_name: mod,
-                    videos: videos.filter(e => e.group_name === mod),
+                    videos: videos.filter((e) => e.group_name === mod),
                     active: i === 1,
                     index: i++,
-                    finished: true
-                })
-                if (isVideoClicked){
+                    finished: true,
+                });
+                if (isVideoClicked) {
                     ///TODO: @peluke aca dentro de este if podes usar la propiedad isVideoClicked para avisarle
                     ///TODO: al usuario que termino un modulo y que desbloqueo el siguiente
                     ///TODO: el nombre del modulo que termino esta en la prop que se llama 'mod'
 
+                    openModal();
                 }
-            }else{
-
+            } else {
                 modulesVideos.push({
                     group_name: mod,
-                    videos: videos.filter(e => e.group_name === mod),
+                    videos: videos.filter((e) => e.group_name === mod),
                     active: i === 1,
                     index: i++,
-                    finished: false
-                })
+                    finished: false,
+                });
             }
         }
 
-        setModules(modulesVideos)
+        setModules(modulesVideos);
     }
 
     useEffect(() => {
+        const groups = videos.map((e) => e.group_name);
+        const hashset = new Set(groups);
 
-        const groups = videos.map(e => e.group_name)
-        const hashset = new Set(groups)
-
-        fetchProgresses([...hashset], false)
+        fetchProgresses([...hashset], false);
         // console.log(modulesVideos)
-    }, [videos, modules]);
-
-
+    }, [videos]);
 
     useEffect(() => {
-        if (!user) router.push('/')
+        if (!user) router.push('/');
         fetchVideos();
     }, [slug]);
 
@@ -145,6 +153,76 @@ const Index = ({user}) => {
     };
 
     return (<>
+        <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            shouldCloseOnOverlayClick={true}
+            contentLabel='Module Unlocked Modal'
+            style={{
+                overlay: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                }, content: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    top: '50%',
+                    left: '50%',
+                    right: 'auto',
+                    bottom: 'auto',
+                    marginRight: '-50%',
+                    transform: 'translate(-50%, -50%)',
+                    border: '2px solid #EE3A80',
+                    background: '#fff',
+                    overflow: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    borderRadius: '4px',
+                    outline: 'none',
+                    padding: '20px',
+                    width: '80%',
+                    maxWidth: '500px',
+                    zIndex: '99999999999999',
+                },
+            }}
+        >
+            <img
+                src='/sorvete-logo.png'
+                alt='Escola Sorvete Logo'
+                style={{
+                    display: 'block', width: '70%', height: 'auto', margin: '0 auto',
+                }}
+            />
+            <h2
+                style={{
+                    textAlign: 'center', fontSize: '24px', margin: '20px 0',
+                }}
+            >
+                Congratulations!
+            </h2>
+            <p style={{textAlign: 'center', fontSize: '18px'}}>
+                You have unlocked a new module.
+            </p>
+            <button
+                onClick={closeModal}
+                style={{
+                    display: 'block',
+                    width: '100px',
+                    margin: '20px auto',
+                    padding: '10px',
+                    border: 'none',
+                    backgroundColor: '#EE3A80',
+                    color: 'white',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    letterSpacing: '1px',
+                }}
+            >
+                Continue
+            </button>
+        </Modal>
+
         <SupportButton/>
 
         <TopBanner/>
@@ -234,6 +312,8 @@ const Index = ({user}) => {
                         </div>
                     </div>
 
+                    {/*  */}
+
                     <div className='col-lg-3 col-md-4'>
                         <StickyBox offsetTop={20} offsetBottom={20}>
                             <div className='video-sidebar'>
@@ -243,61 +323,37 @@ const Index = ({user}) => {
                                     courseId={course.id}
                                     selectedVideo={selectedVideo}
                                 />
-
                                 <div className='course-video-list'>
-
-                                    <h4 className='title center text-bg-info mb-5'>
+                                    <h4 className='nombre-del-curso'>
                                         {course && course.title}
                                     </h4>
-
-                                    {videos.length > 0 && modules.length > 0 && modules.map(e => {
-
-                                        return e.index === 1 ? <div className='course-video-list'>
-                                                <h4 className='title mb-3'>
-                                                    {e && e.group_name}
-                                                </h4>
-                                                <ul style={{cursor: 'pointer'}}>
-
-                                                    {e.videos.map(video => (<VideoList
-                                                        onClick={fetchProgresses}
-                                                        groupNames={modules.map(e => e.group_name)}
-                                                        key={video.id}
-                                                        {...video}
-                                                        onPlay={() => selectVideo(video.id)}
-                                                        activeClass={active}
-                                                    />))}
-
-
-                                                </ul>
-                                            </div> :
-
-                                            ///TODO: @peluke aca podria ser que el div en vez de desaparecer aparezca
-                                            ///TODO: como disable o que no se pueda clickear hasta que el usuario
-                                            ///TODO: complete el modulo anterior
-
-                                            e.index > 1 && modules[e.index - 2].finished && <div className='course-video-list'>
-                                                <h4 className='title mb-3'>
-                                                    {e && e.group_name}
-                                                </h4>
-                                                <ul style={{cursor: 'pointer'}}>
-
-                                                    {e.videos.map(video => (<VideoList
-                                                        onClick={fetchProgresses}
-                                                        groupNames={modules.map(e => e.group_name)}
-                                                        key={video.id}
-                                                        {...video}
-                                                        onPlay={() => selectVideo(video.id)}
-                                                        activeClass={active}
-                                                    />))}
-
-
-                                                </ul>
-                                            </div>
-                                    })}
+                                    {videos.length > 0 && modules.length > 0 && modules.map((e, index) => (<div
+                                        key={index}
+                                        className='module'
+                                    >
+                                        <button
+                                            className={`module-header ${dropdownOpen[index] ? 'open' : ''}`}
+                                            onClick={() => toggleDropdown(index)}
+                                        >
+                                            {e && e.group_name}
+                                        </button>
+                                        {dropdownOpen[index] && (<ul className='module-videos'>
+                                            {e.videos.map((video) => (<VideoList
+                                                onClick={fetchProgresses}
+                                                groupNames={modules.map((e) => e.group_name)}
+                                                key={video.id}
+                                                {...video}
+                                                onPlay={() => selectVideo(video.id)}
+                                                activeClass={active}
+                                            />))}
+                                        </ul>)}
+                                    </div>))}
                                 </div>
                             </div>
                         </StickyBox>
                     </div>
+
+                    {/*  */}
                 </div>
             </div>
         </div>
