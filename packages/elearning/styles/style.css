@@ -8945,3 +8945,14 @@ Go Top CSS
     transition: 0.4s;
     border-radius: 10px;
 }
+
+.disabled,
+.disabled .module-header {
+    color: gray;
+    pointer-events: none;
+}
+
+.disabled-video-module {
+    color: gray;
+    pointer-events: none;
+}
