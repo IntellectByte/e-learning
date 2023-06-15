@@ -8956,3 +8956,24 @@ Go Top CSS
     color: gray;
     pointer-events: none;
 }
+
+.button-style-progress {
+    text-decoration: none;
+    font-weight: 800;
+    cursor: pointer;
+    background-color: #ce4883;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    transition: background 0.3s ease;
+}
+
+.button-style-progress:disabled {
+    background-color: grey; /* color for the disabled button */
+    cursor: not-allowed; /* change cursor for the disabled button */
+}
