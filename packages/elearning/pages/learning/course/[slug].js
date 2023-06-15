@@ -26,6 +26,8 @@ const Index = ({user}) => {
     const [modules, setModules] = useState([]);
     const [course, setCourse] = useState({});
     const [selectedVideo, setSelectedVideo] = useState('');
+    const [selectedVideoName, setSelectedVideoName] = useState('');
+    const [selectedVideoId, setSelectedVideoId] = useState('');
     const [active, setActive] = useState('');
     const [tab, setTab] = useState('overview');
     const {
@@ -59,6 +61,9 @@ const Index = ({user}) => {
 
         setVideos(response.data.videos);
         setSelectedVideo(response.data.videos[0].video);
+        setSelectedVideoName(response.data.videos[0].title);
+
+        setSelectedVideoId(response.data.videos[0].short_id);
         setActive(response.data.videos[0].id);
         setCourse(response.data.course);
 
@@ -148,11 +153,13 @@ const Index = ({user}) => {
             } = response;
 
             setSelectedVideo(video.video);
+            setSelectedVideoId(video.short_id);
+            setSelectedVideoName(video.title);
             setActive(video.id);
 
             // console.log(video);
         } catch (err) {
-            console.log(err.response.data);
+            console.log(err);
         }
     };
 
@@ -238,7 +245,14 @@ const Index = ({user}) => {
                 <div className='row'>
                     <div className='col-lg-9 col-md-8'>
                         <div className='video-content'>
-                            {selectedVideo && (<Player videoSrc={selectedVideo}/>)}
+
+                            {selectedVideoName && selectedVideoName}
+
+                            {selectedVideo && (<Player videoSrc={selectedVideo}
+                                                       videoId={selectedVideoId}
+                                                       courseId={course.id}
+                                                       onPlay={selectVideo}
+                            />)}
 
                             <br/>
                             <ul className='nav-style1'>
