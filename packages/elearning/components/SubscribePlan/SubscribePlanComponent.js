@@ -59,7 +59,7 @@ const SubscribePlanComponent = () => {
 
                 for (const span of spans) {
                     if (span) {
-                        span.innerHTML = '/ano'
+                        span.innerHTML = '/x mès'
                     }
                 }
 
@@ -140,7 +140,7 @@ const SubscribePlanComponent = () => {
                                     defaultValue: 'INSCREVER',
                                 })}
                             </a>)}
-                            priceText='Até 10x'
+                            priceText={``}
                             headerText={sub.slug}
                         />
                     )}
