@@ -35,9 +35,9 @@ const ProgressManager = ({ userId, courseId, videos_count, selectedVideo }) => {
                 </strong>
                 .
             </p>
-            <div className='progress'>
+            <div className='progress-container'>
                 <div
-                    className='progress-bar bg-1cab94'
+                    className='progress-bar'
                     role='progressbar'
                     aria-label='Example with label'
                     style={{ width: `${progress(pro, videos_count)}%` }}
@@ -48,6 +48,7 @@ const ProgressManager = ({ userId, courseId, videos_count, selectedVideo }) => {
                     {progress(pro, videos_count)}%
                 </div>
             </div>
+
             {progress(pro, videos_count) == 100 ? (
                 <button
                     className='button-style-progress bg-roze'
