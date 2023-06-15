@@ -33,43 +33,14 @@ const ProgressManager = ({ userId, courseId, videos_count, selectedVideo }) => {
                 <strong>
                     {pro} of {videos_count} complete
                 </strong>
-                .{' '}
-                {progress(pro, videos_count) == 100 ? (
-                    <span
-                        className='bg-roze'
-                        onClick={() =>
-                            router.push(`/learning/certificate/${slug}`)
-                        }
-                        style={{
-                            textDecoration: 'underline',
-                            fontWeight: '800',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        Get certificate
-                    </span>
-                ) : (
-                    <span
-                        style={{
-                            textDecoration: 'underline',
-                            color: 'blue',
-                            fontWeight: '800',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        Get certificate after complete
-                    </span>
-                )}
+                .
             </p>
-
             <div className='progress'>
                 <div
                     className='progress-bar bg-1cab94'
                     role='progressbar'
                     aria-label='Example with label'
-                    style={{
-                        width: `${progress(pro, videos_count)}%`,
-                    }}
+                    style={{ width: `${progress(pro, videos_count)}%` }}
                     aria-valuenow={`${progress(pro, videos_count)}`}
                     aria-valuemin='0'
                     aria-valuemax='100'
@@ -77,6 +48,18 @@ const ProgressManager = ({ userId, courseId, videos_count, selectedVideo }) => {
                     {progress(pro, videos_count)}%
                 </div>
             </div>
+            {progress(pro, videos_count) == 100 ? (
+                <button
+                    className='button-style-progress bg-roze'
+                    onClick={() => router.push(`/learning/certificate/${slug}`)}
+                >
+                    Get certificate
+                </button>
+            ) : (
+                <button className='button-style-progress' disabled>
+                    Get certificate
+                </button>
+            )}
         </div>
     );
 };
