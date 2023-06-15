@@ -396,7 +396,10 @@ const Index = ({ user }) => {
                         <div className='col-lg-3 col-md-4'>
                             <StickyBox offsetTop={20} offsetBottom={20}>
                                 <div className='video-sidebar'>
-                                    <div className='course-video-list'>
+                                    <div
+                                        className='course-video-list'
+                                        style={{ marginTop: '28px' }}
+                                    >
                                         <h4 className='nombre-del-curso'>
                                             {course && course.title}
                                         </h4>
