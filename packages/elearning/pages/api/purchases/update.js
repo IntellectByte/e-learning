@@ -34,6 +34,10 @@ async function persistCourses(purchase, user) {
 
         if (cart.type === 'sub') {
 
+            await User.update({
+                isSub: true
+            }, {where: {id: user.id}})
+
             const courses = await Course.findAll()
 
             for (const course of courses) {
@@ -87,19 +91,16 @@ const purchase = async (req, res) => {
         const purchase = await Purchase.findOne({where: {id: purchaseId}});
         if (!purchase) {
             return res.status(404).json({
-                error_code: "purchase_not_found",
-                message: "Purchase not found.",
+                error_code: "purchase_not_found", message: "Purchase not found.",
             });
         }
 
         // console.log(req.body)
         // return console.log(req.body.data.paymentStatus)
 
-        await Purchase.update({paymentState: paymentStatus},
-            {
-                where: {id: purchaseId}
-            }
-        );
+        await Purchase.update({paymentState: paymentStatus}, {
+            where: {id: purchaseId}
+        });
 
         let user = await User.findOne({
             where: {id: purchase.userId}
@@ -126,20 +127,16 @@ const purchase = async (req, res) => {
                 email_confirmed_at: Date.now(),
             });
 
-            jwt.sign(
-                {
-                    userId: user.id,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    email: user.email,
-                    role: user.role,
-                    profile_photo: user.profile_photo,
-                },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: "7d",
-                }
-            );
+            jwt.sign({
+                userId: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                role: user.role,
+                profile_photo: user.profile_photo,
+            }, process.env.JWT_SECRET, {
+                expiresIn: "7d",
+            });
 
             await persistCourses(purchase, user)
             await checkoutConfirmation(purchase.items, purchase.buyerName, purchase.buyerEmail);
@@ -209,8 +206,7 @@ const purchase = async (req, res) => {
 
     } catch (e) {
         res.status(400).json({
-            error_code: "purchase_update",
-            message: e.message,
+            error_code: "purchase_update", message: e.message,
         });
     }
 };
