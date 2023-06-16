@@ -124,7 +124,7 @@ const SubscribePlanComponent = () => {
                             id='custom-pricing-component'
                             data={sub.perks}
 
-                            price={sub.price}
+                            price={sub.price/12}
                             duration='ano'
                             background={sub.background}
                             shadow='#F5BCD7'
