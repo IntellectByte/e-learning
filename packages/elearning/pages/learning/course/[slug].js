@@ -84,7 +84,7 @@ const Index = ({ user }) => {
                 previousCourseData.courseProgress.length,
                 previousCourseData.totalVideos
             );
-            if (previousCourseProgress < 100) {
+            if (previousCourseProgress < 100 && user.isSub) {
                 alert('No has terminado el curso anterior');
                 router.push('/learning/my-courses/');
             }
