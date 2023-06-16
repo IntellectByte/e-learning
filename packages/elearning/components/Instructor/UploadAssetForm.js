@@ -14,8 +14,8 @@ const INITIAL_VALUE = {
 const UploadAssetForm = ({ courseId, onFetchAssets }) => {
   const { elarniv_users_token } = parseCookies();
   const [asset, setAsset] = useState(INITIAL_VALUE);
-  const [disabled, setDisabled] = React.useState(true);
-  const [loading, setLoading] = React.useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
       fileSize = files[0].size / 1024 / 1024;
       if (fileSize > 100) {
         toast.error(
-          "The file size greater than 100 MB. Make sure less than 100 MB.",
+          "The file size is greater than 100 MB. Make sure it's less than 100 MB.",
           {
             style: {
               border: "1px solid #ff0033",
@@ -62,28 +62,17 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
 
   const handleAssetUpload = async () => {
     const file = asset.lecture_file;
-    const chunkSize = 10 * 1024 * 1024; // Tamaño de cada fragmento en bytes (en este caso, 10MB)
-    const chunks = Math.ceil(file.size / chunkSize); // Número total de fragmentos
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", process.env.UPLOAD_PRESETS);
+    data.append("cloud_name", process.env.CLOUD_NAME);
 
-    const assetUrls = [];
+    const response = await axios.post(process.env.CLOUDINARY_URL, data);
+    const assetUrl = response.data.url.replace(/^http:\/\//i, "https://");
 
-    // Subir cada fragmento por separado
-    for (let i = 0; i < chunks; i++) {
-      const start = i * chunkSize;
-      const end = Math.min(start + chunkSize, file.size);
-      const chunk = file.slice(start, end);
+    console.log("Asset URL:", assetUrl); // Muestra la URL del archivo completo
 
-      const data = new FormData();
-      data.append("file", chunk);
-      data.append("upload_preset", process.env.UPLOAD_PRESETS);
-      data.append("cloud_name", process.env.CLOUD_NAME);
-
-      let response = await axios.post(process.env.CLOUDINARY_ZIP_URL, data);
-      const assetUrl = response.data.url.replace(/^http:\/\//i, "https://");
-      assetUrls.push(assetUrl);
-    }
-
-    return assetUrls;
+    return [assetUrl];
   };
 
   const handleSubmit = async (e) => {
@@ -97,7 +86,7 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
 
       const payloadData = {
         lecture_name: asset.lecture_name,
-        lecture_files: assetUrls, // Cambiar a un array de URLs de fragmentos subidos
+        lecture_files: assetUrls, // Cambiar a un array de URLs del archivo completo
       };
       const url = `${baseUrl}/api/courses/course/assets/${courseId}`;
       const payloadHeader = {
@@ -124,13 +113,11 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
 
       router.push(`/instructor/course/assets/${courseId}`);
     } catch (err) {
-      // console.log(err.response.data);
-
       let message;
-      if (err.response.data.error) {
+      if (err.response?.data?.error) {
         message = err.response.data.error.message;
       } else {
-        message = err.response.data.message;
+        message = err.message || "An error occurred.";
       }
 
       toast.error(message, {
@@ -177,7 +164,7 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
               required={true}
             />
             <div className="form-text">
-              Upload file size less than or equal 5MB!
+              Upload file size less than or equal to 100MB!
             </div>
           </div>
         </div>
