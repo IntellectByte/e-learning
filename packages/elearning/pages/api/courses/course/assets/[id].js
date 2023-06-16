@@ -40,13 +40,14 @@ const handleGet = async (req, res) => {
 };
 
 const handlePost = async (req, res) => {
+	console.log("endpoint: ", req.query, req.body)
 	const { id: courseId } = req.query;
-	const { lecture_name, lecture_file } = req.body;
+	const { lecture_name } = req.body;
 
 	try {
 		await Course_Asset.create({
 			lecture_name,
-			lecture_file,
+			lecture_file: req.body.lecture_file[0],
 			courseId: courseId,
 		});
 

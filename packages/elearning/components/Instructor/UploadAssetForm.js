@@ -86,7 +86,7 @@ const UploadAssetForm = ({ courseId, onFetchAssets }) => {
 
       const payloadData = {
         lecture_name: asset.lecture_name,
-        lecture_files: assetUrls, // Cambiar a un array de URLs del archivo completo
+        lecture_file: assetUrls, // Cambiar a un array de URLs del archivo completo
       };
       const url = `${baseUrl}/api/courses/course/assets/${courseId}`;
       const payloadHeader = {
