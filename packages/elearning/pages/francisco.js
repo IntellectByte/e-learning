@@ -11,18 +11,19 @@ import SubscribeForm from '@/components/Common/SubscribeForm';
 export default function Francisco({ user }) {
     return (
         <>
+            {/* WHATSAPP BUTTON  */}
             <SupportButton />
-
+            {/* TOP BANNER */}
             <TopBanner />
 
             <Navbar user={user} />
 
-            <PageBanner
+            {/* <PageBanner
                 pageTitle='Francisco Santana'
                 homePageUrl='/'
                 homePageText='Home'
                 activePageText='Francisco Santana'
-            />
+            /> */}
 
             {/* FRANCISCO HISTORIA */}
             <FranciscoComponent />
