@@ -1,6 +1,26 @@
 import React from 'react';
+import baseUrl from "@/utils/baseUrl";
+import axios from "axios";
 
-const NotificationModal = ({ onClose, notifications }) => {
+const NotificationModal = ({onClose, notifications, userToken}) => {
+
+    async function onClickNotification(notificationId){
+        // console.log(notification)
+        console.log(userToken)
+
+        const url = `${baseUrl}/api/users/notification?notificationId=${notificationId}`
+        const payload = {
+            headers: {Authorization: userToken}
+        }
+        try {
+
+            await axios.put(url, {}, payload)
+
+        }catch (err){
+            console.log(err)
+        }
+    }
+
     return (
         <div className='notification-modal'>
             <button
@@ -31,19 +51,37 @@ const NotificationModal = ({ onClose, notifications }) => {
             </h3>
             <ul className='notification-list'>
                 {notifications.map((notification) => (
-                    <li key={notification.id} className='notification-item'>
-                        <a
-                            href={notification.link}
-                            style={{
-                                color: '#333333',
-                                textDecoration: 'none',
-                                fontWeight: 'bold',
-                                marginLeft: '10px',
-                            }}
-                        >
-                            {notification.message}
-                        </a>
-                    </li>
+                    !notification.read ? <li key={notification.id} className='notification-item'>
+                            <a
+                                onClick={() => onClickNotification(notification.id)}
+                                href={notification.link}
+                                style={{
+                                    color: '#333333',
+                                    textDecoration: 'none',
+                                    fontWeight: 'bold',
+                                    marginLeft: '10px',
+                                }}
+                            >
+                                {notification.message}
+                            </a>
+                            <div>no leida</div>
+                        </li>
+                        :
+                        <li key={notification.id} className='notification-item'>
+                            <a
+                                onClick={() => onClickNotification(notification.id)}
+                                href={notification.link}
+                                style={{
+                                    color: '#333333',
+                                    textDecoration: 'none',
+                                    fontWeight: 'bold',
+                                    marginLeft: '10px',
+                                }}
+                            >
+                                {notification.message}
+                            </a>
+                            <div>leida</div>
+                        </li>
                 ))}
             </ul>
         </div>

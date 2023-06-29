@@ -78,10 +78,11 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
 
             const script = document.createElement('script');
-            script.src = 'https://checkout.getnet.com.br/loader.js';
+            script.src = 'https://checkout-sandbox.getnet.com.br/loader.js';
             script.async = true;
             script.id = "script-getnet"
-            script.dataset.getnetSellerid = '39ee6be0-a7fb-43b7-b799-5f45d8d87bdd';
+            // script.dataset.getnetSellerid = '39ee6be0-a7fb-43b7-b799-5f45d8d87bdd';
+            script.dataset.getnetSellerid = '38cf0122-9285-4645-9e1e-a8ffa4f89cb2';
             script.dataset.getnetToken = `${data.token_type} ${data.access_token}`
             script.dataset.getnetAmount = cartTotal;
             script.dataset.getnetOrderid = token;

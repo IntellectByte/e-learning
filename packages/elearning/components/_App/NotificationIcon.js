@@ -8,10 +8,11 @@ import { parseCookies } from 'nookies';
 const NotificationIcon = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [notifications, setNotification] = useState([]);
+    const { elarniv_users_token } = parseCookies();
+
 
     const fetchNotification = () => {
         // Agarra el JWT de la sesion, que tiene toda tu info actual
-        const { elarniv_users_token } = parseCookies();
         const url = `${baseUrl}/api/users/notification`;
 
         const payload = {
@@ -45,6 +46,7 @@ const NotificationIcon = () => {
                         <NotificationModal
                             notifications={notifications}
                             onClose={toggleDropdown}
+                            userToken={elarniv_users_token}
                         />
                     </div>
                 )}
