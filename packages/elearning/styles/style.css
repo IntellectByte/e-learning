@@ -9055,11 +9055,13 @@ Go Top CSS
     right: 0;
     z-index: 100;
     background-color: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #ce417d;
+    animation: borderColorsPaymentField 10s linear infinite;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-width: 500px;
+    min-width: 240px;
     max-width: 600px;
+    width: 100%;
 }
 
 .notification-dropdown ul {
@@ -9110,7 +9112,18 @@ Go Top CSS
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    /* max-width: 360px; */
+    width: 100%;
+}
+
+.notification-modal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .modal-header {
@@ -9133,6 +9146,9 @@ Go Top CSS
     cursor: pointer;
     color: #888888;
     font-size: 20px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 .close-button:hover {
@@ -9141,4 +9157,26 @@ Go Top CSS
 
 .close-button:focus {
     outline: none;
+}
+
+@media (max-width: 768px) {
+    .notification-dropdown {
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 240px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .notification-modal {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .notification-dropdown {
+        min-width: 500px;
+        max-width: 800px;
+    }
 }
