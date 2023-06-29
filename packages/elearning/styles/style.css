@@ -9180,3 +9180,49 @@ Go Top CSS
         max-width: 800px;
     }
 }
+
+.button-container-notis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.clear-button,
+.view-all-button {
+    background: none;
+    border: none;
+    color: #ce4d87;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.clear-button:hover,
+.view-all-button:hover {
+    color: #cd4b85;
+}
+
+.clear-button:focus,
+.view-all-button:focus {
+    outline: none;
+}
+
+.notification-message-show {
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Media query for mobile */
+@media (max-width: 768px) {
+    .notification-message-show {
+        font-size: 10px;
+    }
+}
+
+/* Media query for desktop */
+@media (min-width: 769px) {
+    .notification-message-show {
+        font-size: 16px;
+    }
+}
