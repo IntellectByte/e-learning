@@ -57,13 +57,13 @@ const NotificationModal = ({
             </ul>
 
             <div className='button-container-notis'>
-                <button
+                {/* <button
                     onClick={onClearAll}
                     className='clear-button'
                     style={{ color: '#CD4F88' }}
                 >
                     Clear All
-                </button>
+                </button> */}
                 <button
                     onClick={onViewAll}
                     className='view-all-button'
