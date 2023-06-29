@@ -6,7 +6,9 @@ const NotificationModal = ({ onClose, notifications }) => {
             <h3>Notifications</h3>
             <ul>
                 {notifications.map((notification) => (
-                    <li key={notification.id}>{notification.text}</li>
+                    <li key={notification.id}>
+                        <a href={notification.link}>{notification.message}</a>
+                    </li>
                 ))}
             </ul>
             <button onClick={onClose}>Close</button>

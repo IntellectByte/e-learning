@@ -9020,3 +9020,125 @@ Go Top CSS
     color: white;
     font-weight: bold;
 }
+
+.notification-container {
+    position: relative;
+}
+
+.notification-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.notification-button.active {
+    background-color: #f1f1f1;
+}
+
+.notification-button:hover {
+    background-color: #f5f5f5;
+}
+
+.notification-button:focus {
+    outline: none;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 500px;
+    max-width: 600px;
+}
+
+.notification-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-dropdown li {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.notification-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.notification-dropdown li:hover {
+    background-color: #f9f9f9;
+}
+
+.notification-dropdown li:first-child {
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+
+.notification-dropdown button {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.notification-dropdown button:hover {
+    color: #333333;
+}
+
+.notification-dropdown button:focus {
+    outline: none;
+}
+
+.notification-modal {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    /* max-width: 360px; */
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #888888;
+    font-size: 20px;
+}
+
+.close-button:hover {
+    color: #333333;
+}
+
+.close-button:focus {
+    outline: none;
+}
