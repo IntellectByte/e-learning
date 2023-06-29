@@ -24,9 +24,9 @@ export default function CoursesPage({ user }) {
 
             <CoursesList user={user} />
 
-            <GetInstantCourses user={user} />
+            {/* <GetInstantCourses user={user} /> */}
 
-            <SubscribeForm />
+            {/* <SubscribeForm /> */}
 
             <Footer />
         </>

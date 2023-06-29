@@ -1,57 +1,53 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiBell } from 'react-icons/fi';
 import NotificationModal from './NotificationModal';
-import { NotificationContext } from "@/utils/NotificationContext";
-import baseUrl from "@/utils/baseUrl";
-import io from "socket.io-client";
+import axios from 'axios';
+import baseUrl from '@/utils/baseUrl';
+import { parseCookies } from 'nookies';
 
 const NotificationIcon = () => {
-    const [showModal, setShowModal] = useState(false);
-    const { notifications } = useContext(NotificationContext);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [notifications, setNotification] = useState([]);
 
-    const toggleModal = () => {
-        setShowModal(!showModal);
+    const fetchNotification = () => {
+        // Agarra el JWT de la sesion, que tiene toda tu info actual
+        const { elarniv_users_token } = parseCookies();
+        const url = `${baseUrl}/api/users/notification`;
+
+        const payload = {
+            headers: { Authorization: elarniv_users_token },
+        };
+
+        axios.get(url, payload).then((res) => {
+            setNotification(res.data.payload);
+        });
     };
 
-
     useEffect(() => {
-        const socket = io(baseUrl);
-
-        socket.on('connect', () => {
-            console.log('Connected to Socket.IO server');
-        });
-
-        socket.on('notification', (data) => {
-            console.log('Received notification:', data);
-        });
-
-        return () => {
-            socket.disconnect();
-            console.log('Disconnected from Socket.IO server');
-        };
+        fetchNotification();
     }, []);
 
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
 
     return (
         <>
-            <div className='option-item'>
-                <div className='notification-icon'>
-                    <div className='dropdown'>
-                        <button
-                            onClick={toggleModal}
-                            className='notification-link ptb-15'
-                        >
-                            <FiBell size={24} />
-                            <span>{notifications.length}</span>
-                        </button>
-                        {showModal && (
-                            <NotificationModal
-                                notifications={notifications}
-                                onClose={toggleModal}
-                            />
-                        )}
+            <div className='notification-container'>
+                <button
+                    onClick={toggleDropdown}
+                    className='notification-button'
+                >
+                    <FiBell size={24} />
+                </button>
+                {showDropdown && (
+                    <div className='notification-dropdown'>
+                        <NotificationModal
+                            notifications={notifications}
+                            onClose={toggleDropdown}
+                        />
                     </div>
-                </div>
+                )}
             </div>
         </>
     );

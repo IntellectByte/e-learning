@@ -188,7 +188,7 @@ const Navbar = ({ user }) => {
 
                                 <div className='others-option d-flex align-items-center '>
                                     {/* NOTIFICATIONS COMPONENT */}
-                                    {/*{user && <NotificationIcon />}*/}
+                                    {user && <NotificationIcon />}
 
                                     <Cart />
 
