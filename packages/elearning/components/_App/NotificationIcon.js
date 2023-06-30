@@ -32,6 +32,26 @@ const NotificationIcon = () => {
         setShowDropdown(!showDropdown);
     };
 
+    // TODAVIA NO SE IMPLEMENTO ESTA FUNCIONALIDAD
+    // const clearAllNotifications = () => {
+    //     const { elarniv_users_token } = parseCookies();
+    //     const url = `${baseUrl}/api/users/notification/clear`;
+
+    //     const payload = {
+    //         headers: { Authorization: elarniv_users_token },
+    //     };
+
+    //     axios.post(url, null, payload).then((res) => {
+    //         if (res.status === 200) {
+    //             setNotifications([]);
+    //         }
+    //     });
+    // };
+
+    const onViewAll = () => {
+        // console.log('View All clicked!');
+    };
+
     return (
         <>
             <div className='notification-container'>
