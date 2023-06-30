@@ -22,7 +22,6 @@ const SearchUser = () => {
         setLoading(true);
         try {
             const response = await axios.get(`${baseUrl}/api/students`);
-            setUsers(response.data.students);
             setLoading(false);
         } catch (err) {
             let {

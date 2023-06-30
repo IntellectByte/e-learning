@@ -1,90 +1,80 @@
+import { forEach } from "@/utils/RTEControl";
 import Notification from "../../../database/models/notification";
+import User from "../../../database/models/user";
 
 export default async function handler(req, res) {
-   /*  if (!("authorization" in req.headers)) {
-        return res.status(401).json({ message: "No autorization token" });
-    } */
-    switch (req.method) {
-        case "POST":
-            await handlePostRequest(req, res);
-            break;
-        case "PUT":
-            await handlePutRequest(req, res);
-            break;
-        default:
-            res.status(405).json({
-                message: `Method ${req.method} not allowed`,
-            });
-    }
+  switch (req.method) {
+    case "GET":
+      await findUser(req, res);
+      break;
+    case "POST":
+      await handlePostRequest(req, res);
+      break;
+    case "PUT":
+      await handlePutRequest(req, res);
+      break;
+    default:
+      res.status(405).json({
+        message: `Method ${req.method} not allowed`,
+      });
+  }
 }
 
-const handlePostRequest = async (req, res) => {
-    const { title, message, read, link, notificationType, userId } = req.body;
-
-    try {
-        const notificationExist = await Notification.findOne({
-            where: { code: notification },
-        });
-
-        if (notificationExist) {
-            return res.status(422).json({
-                message: "Notification with the same code already exists",
-            });
-        }
-
-        if (!title || !message || !userId) {
-            return res.status(422).json({
-                message: "Title, message, and userId must be provided",
-            });
-        }
-
-        const newNotification = await Notification.create({
-            title,
-            message,
-            read,
-            link,
-            notificationType,
-            userId,
-        });
-
-        res.status(200).json({
-            message: "New notification code added",
-            notification: newNotification,
-        });
-    } catch (e) {
-        res.status(400).json({
-            error_code: "create_notification",
-            message: e.message,
-        });
-    }
+const findUser = async (students) => {
+  try {
+    console.log(students);
+    const user = await User.findOne({ where: { id: students } });
+    console.log(user.first_name);
+    return user ? user : null;
+  } catch (error) {
+    throw new Error("Error al buscar el usuario en la base de datos");
+  }
 };
 
-const handlePutRequest = async (req, res) => {
-    const { notificationId } = req.body;
-
-    try {
-        const notifications = await Notification.findAll({ attributes: ["id"] });
-        let notificationIds = [];
-        notifications.forEach((cp) => {
-            notificationIds.push(cp.id);
-        });
-
-        await Notification.update(
-            { active_for_full_site: false },
-            {
-                where: {
-                    id: notificationIds,
-                },
-            }
-        );
-
-        res.status(200).json({
-            message: "Notification code activated for all courses",
-        });
-    } catch (e) {
-        res.status(400).json({
-            error_code: "notification_for_all_courses",
-            message: e.message,
-        });
+const handlePostRequest = async (req, res) => {
+  const { title, message, link, userId } = req.body;
+  //console.log(req.body);
+  try {
+    if (!title || !message) {
+      return res.status(422).json({
+        message: "Title and message must be provided",
+      });
     }
+
+    if (userId === "all") {
+      const users = await User.findAll();
+      for (const user of users) {
+        await Notification.create({
+          title,
+          message,
+          link,
+          userId: user.id,
+        });
+      }
+    } else {
+      // Find userId by email
+      const targetUserId = await findUser(userId);
+      //console.log(targetUserId)
+      if (!targetUserId) {
+        return res.status(422).json({
+          message: "User not found",
+        });
+      }
+      await Notification.create({
+        title,
+        message,
+        link,
+        userId: targetUserId.id,
+      });
+    }
+
+    res.status(200).json({
+      message: "New notification added",
+    });
+  } catch (e) {
+    res.status(400).json({
+      error_code: "create_notification",
+      message: e.message,
+    });
+  }
 };

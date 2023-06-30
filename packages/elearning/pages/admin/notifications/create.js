@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
@@ -18,8 +18,38 @@ const CreateNotification = ({ user }) => {
     title: "",
     message: "",
     link: "",
+    userId: "",
   });
   const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
+  const [sendToAll, setSendToAll] = useState(false);
+
+  useEffect(() => {
+    // Fetch users from the API
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/api/students`);
+        setUsers(response.data.students);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  // ...
+
+  const handleUserChange = (e) => {
+    const { value } = e.target;
+    setSelectedUser(value);
+  };
+
+  const handleSendToAllChange = (e) => {
+    const { checked } = e.target;
+    setSendToAll(checked);
+    setSelectedUser(checked ? "" : "all");
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +67,8 @@ const CreateNotification = ({ user }) => {
       const payload = {
         headers: { Authorization: elarniv_users_token },
       };
-      const payloadData = { ...notification };
+      const payloadData = { ...notification, userId: selectedUser };
+      console.log(payloadData, selectedUser);
       const response = await axios.post(url, payloadData, payload);
       toast.success(response.data.message, {
         style: {
@@ -96,7 +127,7 @@ const CreateNotification = ({ user }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/admin/notifica/create/">
+                    <Link href="/admin/notifications/create/">
                       <a className="active">Create</a>
                     </Link>
                   </li>
@@ -139,6 +170,37 @@ const CreateNotification = ({ user }) => {
                           placeholder="Notification Link"
                         />
                       </div>
+                      <div className="form-group">
+                        <label className="form-label fw-semibold">
+                          User ID
+                        </label>
+                        {sendToAll ? (
+                          <div>
+                            <input
+                              type="checkbox"
+                              checked={sendToAll}
+                              onChange={handleSendToAllChange}
+                            />
+                            <span>Send to all users</span>
+                          </div>
+                        ) : (
+                          <select
+                            className="form-control"
+                            name="userId"
+                            value={selectedUser}
+                            onChange={handleUserChange}
+                            disabled={sendToAll}
+                          >
+                            <option value="">Select user</option>
+                            <option value="all">All users</option>
+                            {users.map((user) => (
+                              <option key={user.id} value={user.id}>
+                                {user.first_name}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      </div>
                     </div>
 
                     <div className="col-12">
@@ -155,7 +217,6 @@ const CreateNotification = ({ user }) => {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
