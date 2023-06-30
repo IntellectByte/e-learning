@@ -271,6 +271,17 @@ const AdminSideNav = ({ user }) => {
                     Manage users
                   </a>
                 </Link>
+                <Link href="/admin/notifications">
+                  <a
+                    className={
+                      currentRoute === "/admin/notifications"
+                        ? "active"
+                        : ""
+                    }
+                  >
+                    Manage notifications
+                  </a>
+                </Link>
               </motion.li>
             </ul>
           </div>
