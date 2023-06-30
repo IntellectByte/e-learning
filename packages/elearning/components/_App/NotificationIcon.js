@@ -4,11 +4,13 @@ import NotificationModal from './NotificationModal';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
 import { parseCookies } from 'nookies';
+import {useRouter} from "next/router";
 
 const NotificationIcon = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [notifications, setNotification] = useState([]);
     const { elarniv_users_token } = parseCookies();
+    const router = useRouter()
 
 
     const fetchNotification = () => {
@@ -67,6 +69,7 @@ const NotificationIcon = () => {
                             notifications={notifications}
                             onClose={toggleDropdown}
                             userToken={elarniv_users_token}
+                            onViewAll={() => router.push("/notification")}
                         />
                     </div>
                 )}
