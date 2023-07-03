@@ -116,13 +116,17 @@ const NotificationList = ({ user }) => {
                 }
 
                 .notification-icon {
-                    flex: 0 0 40px;
+                    flex: 0 0 60px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
 
                 .icon {
-                    width: 30px;
-                    height: 30px;
+                    width: 100%;
+                    height: 100%;
                     object-fit: contain;
+                    border-radius: 50%;
                 }
 
                 .notification-details {
