@@ -1,4 +1,3 @@
-import { forEach } from "@/utils/RTEControl";
 import Notification from "../../../database/models/notification";
 import User from "../../../database/models/user";
 
@@ -12,6 +11,9 @@ export default async function handler(req, res) {
       break;
     case "PUT":
       await handlePutRequest(req, res);
+      break;
+    case "DELETE":
+      await handleDeleteRequest(req, res);
       break;
     default:
       res.status(405).json({
@@ -31,8 +33,26 @@ const findUser = async (students) => {
   }
 };
 
+const handleDeleteRequest = async (req, res) => {
+  const { notificationId } = req.query;
+
+  try {
+    // Elimina la notificación de la base de datos
+    await Notification.destroy({ where: { id: notificationId } });
+
+    res.status(200).json({
+      message: "Notification deleted",
+    });
+  } catch (error) {
+    res.status(400).json({
+      error_code: "delete_notification",
+      message: "Error deleting notification",
+    });
+  }
+};
+
 const handlePostRequest = async (req, res) => {
-  const { title, message, link, userId } = req.body;
+  const { title, message, link, icon, userId } = req.body;
   //console.log(req.body);
   try {
     if (!title || !message) {
@@ -48,6 +68,7 @@ const handlePostRequest = async (req, res) => {
           title,
           message,
           link,
+          icon,
           userId: user.id,
         });
       }
@@ -64,6 +85,7 @@ const handlePostRequest = async (req, res) => {
         title,
         message,
         link,
+        icon,
         userId: targetUserId.id,
       });
     }

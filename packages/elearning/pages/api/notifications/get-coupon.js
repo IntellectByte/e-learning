@@ -1,27 +1,27 @@
-import Coupon from "database/models/coupon";
+import Notificacion from "database/models/notificacion";
 
 export default async function handler(req, res) {
-	const { coupon } = req.body;
+	const { notificacion } = req.body;
 
 	try {
-		if (!coupon) {
+		if (!notificacion) {
 			return res.status(422).json({
-				message: "Invalid coupon code",
+				message: "Invalid notificacion code",
 			});
 		}
 
-		const discount = await Coupon.findOne({
-			where: { code: coupon, active_for_full_site: true },
+		const discount = await Notificacion.findOne({
+			where: { code: notificacion, active_for_full_site: true },
 		});
 
 		if (discount) {
-			res.status(200).json({ message: "Coupon code applied", discount });
+			res.status(200).json({ message: "Notificacion code applied", discount });
 		} else {
-			res.status(422).json({ message: "There is no any coupon code" });
+			res.status(422).json({ message: "There is no any notificacion code" });
 		}
 	} catch (e) {
 		res.status(400).json({
-			error_code: "create_coupon",
+			error_code: "create_notificacion",
 			message: e.message,
 		});
 	}

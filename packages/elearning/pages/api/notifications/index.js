@@ -1,53 +1,45 @@
-import Coupon from "database/models/coupon";
+import Notificacion from "../../../database/models/notification";
 
 export default async function handler(req, res) {
-	if (!("authorization" in req.headers)) {
-		return res.status(401).json({ message: "No autorization token" });
-	}
-	switch (req.method) {
-		case "GET":
-			await handleGet(req, res);
-			break;
-		case "DELETE":
-			await handleDelete(req, res);
-			break;
-		default:
-			res.status(405).json({
-				message: `Method ${req.method} not allowed`,
-			});
-	}
+  if (!("authorization" in req.headers)) {
+    return res.status(401).json({ message: "No authorization token" });
+  }
+
+  switch (req.method) {
+    case "DELETE":
+      await handleDelete(req, res);
+      break;
+    default:
+      res.status(405).json({ message: `Method ${req.method} not allowed` });
+  }
 }
 
-const handleGet = async (req, res) => {
-	try {
-		const coupons = await Coupon.findAll({
-			order: [["created_at", "DESC"]],
-			limit: 20,
-		});
-
-		res.status(200).json({ coupons });
-	} catch (e) {
-		res.status(400).json({
-			error_code: "get_coupons",
-			message: e.message,
-		});
-	}
-};
-
 const handleDelete = async (req, res) => {
-	const { couponId } = req.query;
-	try {
-		const coupon = await Coupon.findOne({
-			where: { id: couponId },
-		});
+  if (req.method === "DELETE") {
+    const { notificacionId } = req.query;
 
-		coupon.destroy();
+    if (!notificacionId) {
+      return res
+        .status(400)
+        .json({ message: "Missing notificacionId parameter" });
+    }
 
-		res.status(200).json({ message: "Coupon deleted successfully." });
-	} catch (e) {
-		res.status(400).json({
-			error_code: "get_Coupon",
-			message: e.message,
-		});
-	}
+    try {
+      const notificacion = await Notificacion.findOne({
+        where: { id: notificacionId }, // Cambiar notificacionId por id
+      });
+
+      if (notificacion) {
+        await notificacion.destroy();
+        res.status(200).json({ message: "Notificacion deleted successfully." });
+      } else {
+        res.status(404).json({ message: "Notificacion not found." });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error." });
+    }
+  } else {
+    res.status(405).json({ message: "Method not allowed." });
+  }
 };
