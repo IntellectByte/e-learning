@@ -1,4 +1,4 @@
-import Notificacion from "database/models/notificacion";
+import Notificacion from "../../../database/models/notificacion";
 
 export default async function handler(req, res) {
 	const { notificacion } = req.body;
