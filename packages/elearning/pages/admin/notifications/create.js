@@ -18,6 +18,7 @@ const CreateNotification = ({ user }) => {
     title: "",
     message: "",
     link: "",
+    icon:"",
     userId: "",
   });
   const [loading, setLoading] = useState(false);
@@ -168,6 +169,17 @@ const CreateNotification = ({ user }) => {
                           value={notification.link}
                           onChange={handleChange}
                           placeholder="Notification Link"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label fw-semibold">Icon</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="icon"
+                          value={notification.icon}
+                          onChange={handleChange}
+                          placeholder="Notification icon"
                         />
                       </div>
                       <div className="form-group">

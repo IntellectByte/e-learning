@@ -35,10 +35,7 @@ const initNotification = (sequelize, Types) => {
                     as: 'userId',
                 },
             },
-            // timestamp: {
-            //     type: DataTypes.DATE,
-            //     defaultValue: DataTypes.NOW,
-            // },
+            icon: Types.STRING, // Nueva columna para el ícono
         },
         {
             sequelize,
