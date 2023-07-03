@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
 import { parseCookies } from 'nookies';
+import ReactPaginate from 'react-paginate';
+import styles from './notificationList.module.css';
 
 const NotificationList = ({ user }) => {
     const [notifications, setNotifications] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(0); // Zero-based index
+    const [notificationsPerPage] = useState(6); // Number of notifications per page
     const { elarniv_users_token } = parseCookies();
 
     const fetchNotification = async () => {
@@ -28,6 +32,22 @@ const NotificationList = ({ user }) => {
         fetchNotification();
     }, []);
 
+    // Handle page change
+    const handlePageChange = (selectedPage) => {
+        setCurrentPage(selectedPage.selected);
+    };
+
+    // Calculate current notifications
+    const indexOfLastNotification = (currentPage + 1) * notificationsPerPage;
+    const indexOfFirstNotification =
+        indexOfLastNotification - notificationsPerPage;
+    const currentNotifications = notifications.slice(
+        indexOfFirstNotification,
+        indexOfLastNotification
+    );
+
+    const pageCount = Math.ceil(notifications.length / notificationsPerPage);
+
     return (
         <>
             <div className='notification-container'>
@@ -37,32 +57,47 @@ const NotificationList = ({ user }) => {
                         <div className='loading'>Loading...</div>
                     ) : (
                         <>
-                            {notifications &&
-                                notifications.map((notification) => (
-                                    <a
-                                        key={notification.id}
-                                        href={notification.link}
-                                        className='notification-item'
-                                    >
-                                        <div className='notification-content'>
-                                            <div className='notification-icon'>
-                                                <img
-                                                    src={notification.icon}
-                                                    alt='Notification Icon'
-                                                    className='icon'
-                                                />
+                            {currentNotifications.map((notification) => (
+                                <a
+                                    key={notification.id}
+                                    href={notification.link}
+                                    className='notification-item'
+                                >
+                                    <div className='notification-content'>
+                                        <div className='notification-icon'>
+                                            <img
+                                                src={notification.icon}
+                                                alt='Notification Icon'
+                                                className='icon'
+                                            />
+                                        </div>
+                                        <div className='notification-details'>
+                                            <div className='notification-message'>
+                                                {notification.message}
                                             </div>
-                                            <div className='notification-details'>
-                                                <div className='notification-message'>
-                                                    {notification.message}
-                                                </div>
-                                                <div className='notification-time'>
-                                                    {notification.time}
-                                                </div>
+                                            <div className='notification-time'>
+                                                {notification.time}
                                             </div>
                                         </div>
-                                    </a>
-                                ))}
+                                    </div>
+                                </a>
+                            ))}
+
+                            <ReactPaginate
+                                previousLabel={'Previous'}
+                                nextLabel={'Next'}
+                                breakLabel={'...'}
+                                breakClassName={styles.paginationBreak}
+                                pageCount={pageCount}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                onPageChange={handlePageChange}
+                                containerClassName={styles.pagination}
+                                activeClassName={styles.paginationLinkActive}
+                                pageClassName={styles.paginationLink}
+                                previousClassName={styles.paginationLink}
+                                nextClassName={styles.paginationLink}
+                            />
                         </>
                     )}
                 </div>
