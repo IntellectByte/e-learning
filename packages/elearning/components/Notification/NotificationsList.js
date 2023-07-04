@@ -93,7 +93,7 @@ const NotificationList = ({ user }) => {
                                 pageRangeDisplayed={5}
                                 onPageChange={handlePageChange}
                                 containerClassName={styles.pagination}
-                                activeClassName={styles.paginationLinkActive}
+                                activeClassName={styles.active}
                                 pageClassName={styles.paginationLink}
                                 previousClassName={styles.paginationLink}
                                 nextClassName={styles.paginationLink}
