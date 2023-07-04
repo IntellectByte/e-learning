@@ -1,81 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { FiBell } from 'react-icons/fi';
-import NotificationModal from './NotificationModal';
-import axios from 'axios';
-import baseUrl from '@/utils/baseUrl';
-import { parseCookies } from 'nookies';
-import {useRouter} from "next/router";
+import React, { useState, useEffect } from "react";
+import { FiBell } from "react-icons/fi";
+import NotificationModal from "./NotificationModal";
+import axios from "axios";
+import baseUrl from "@/utils/baseUrl";
+import { parseCookies } from "nookies";
+import { useRouter } from "next/router";
 
 const NotificationIcon = () => {
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [notifications, setNotification] = useState([]);
-    const { elarniv_users_token } = parseCookies();
-    const router = useRouter()
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const { elarniv_users_token } = parseCookies();
+  const router = useRouter();
 
+  const fetchNotification = () => {
+    const url = `${baseUrl}/api/users/notification`;
 
-    const fetchNotification = () => {
-        // Agarra el JWT de la sesion, que tiene toda tu info actual
-        const url = `${baseUrl}/api/users/notification`;
-
-        const payload = {
-            headers: { Authorization: elarniv_users_token },
-        };
-
-        axios.get(url, payload).then((res) => {
-            setNotification(res.data.payload);
-        });
+    const payload = {
+      headers: { Authorization: elarniv_users_token },
     };
 
-    useEffect(() => {
-        fetchNotification();
-    }, []);
+    axios.get(url, payload).then((res) => {
+      const newNotifications = res.data.payload;
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
+      // Verificar si hay nuevas notificaciones
+      const hasNewNotifications =
+        newNotifications.length > notifications.length;
 
-    // TODAVIA NO SE IMPLEMENTO ESTA FUNCIONALIDAD
-    // const clearAllNotifications = () => {
-    //     const { elarniv_users_token } = parseCookies();
-    //     const url = `${baseUrl}/api/users/notification/clear`;
+      setNotifications(newNotifications);
 
-    //     const payload = {
-    //         headers: { Authorization: elarniv_users_token },
-    //     };
+      // Cambiar el color de la campana si hay nuevas notificaciones
+      if (hasNewNotifications) {
+        // Actualizar el color de la campana aquí
+      }
+    });
+  };
 
-    //     axios.post(url, null, payload).then((res) => {
-    //         if (res.status === 200) {
-    //             setNotifications([]);
-    //         }
-    //     });
-    // };
+  useEffect(() => {
+    fetchNotification();
+  }, []);
 
-    const onViewAll = () => {
-        // console.log('View All clicked!');
-    };
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
-    return (
-        <>
-            <div className='notification-container'>
-                <button
-                    onClick={toggleDropdown}
-                    className='notification-button'
-                >
-                    <FiBell size={24} />
-                </button>
-                {showDropdown && (
-                    <div className='notification-dropdown'>
-                        <NotificationModal
-                            notifications={notifications}
-                            onClose={toggleDropdown}
-                            userToken={elarniv_users_token}
-                            onViewAll={() => router.push("/notification")}
-                        />
-                    </div>
-                )}
-            </div>
-        </>
-    );
+  const onViewAll = () => {
+    router.push("/notification");
+  };
+
+  return (
+    <>
+      <div className="notification-container">
+        <button onClick={toggleDropdown} className="notification-button">
+          <FiBell
+            size={24}
+            style={{ color: notifications.length > 0 ? "#CE417D" : "black" }}
+          />
+        </button>
+        {showDropdown && (
+          <div className="notification-dropdown">
+            <NotificationModal
+              notifications={notifications}
+              onClose={toggleDropdown}
+              userToken={elarniv_users_token}
+              onViewAll={onViewAll}
+            />
+          </div>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default NotificationIcon;
