@@ -8,8 +8,8 @@ import styles from './notificationList.module.css';
 const NotificationList = ({ user }) => {
     const [notifications, setNotifications] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(0); // Zero-based index
-    const [notificationsPerPage] = useState(6); // Number of notifications per page
+    const [currentPage, setCurrentPage] = useState(0);
+    const [notificationsPerPage] = useState(6);
     const { elarniv_users_token } = parseCookies();
 
     const fetchNotification = async () => {
