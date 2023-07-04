@@ -1,4 +1,4 @@
-import Notificacion from "../../../database/models/notification";
+import Notification from "../../../database/models/notification";
 
 export default async function handler(req, res) {
   if (!("authorization" in req.headers)) {
@@ -16,24 +16,23 @@ export default async function handler(req, res) {
 
 const handleDelete = async (req, res) => {
   if (req.method === "DELETE") {
-    const { notificacionId } = req.query;
-
-    if (!notificacionId) {
-      return res
-        .status(400)
-        .json({ message: "Missing notificacionId parameter" });
+    const { notificationMessage } = req.query;
+    if (!notificationMessage) {
+      return res.status(400).json({ message: "Missing parameter" });
     }
 
     try {
-      const notificacion = await Notificacion.findOne({
-        where: { id: notificacionId }, // Cambiar notificacionId por id
+      const notificaciones = await Notification.findAll({
+        where: { message: notificationMessage },
       });
-
-      if (notificacion) {
-        await notificacion.destroy();
-        res.status(200).json({ message: "Notificacion deleted successfully." });
+      if (notificaciones.length > 0) {
+        const ids = notificaciones.map((notificacion) => notificacion.id);
+        await Notification.destroy({ where: { id: ids } }); // Elimina todas las notificaciones con el mismo ID
+        res
+          .status(200)
+          .json({ message: "Notificationes deleted successfully." });
       } else {
-        res.status(404).json({ message: "Notificacion not found." });
+        res.status(404).json({ message: "Notification not found." });
       }
     } catch (error) {
       console.error(error);
