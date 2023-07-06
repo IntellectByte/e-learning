@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import TopBanner from "@/components/TopBanner/TopBanner";
+import io from "socket.io-client";
 
 const CreateNotification = ({ user }) => {
   const router = useRouter();
@@ -25,6 +26,8 @@ const CreateNotification = ({ user }) => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
   const [sendToAll, setSendToAll] = useState(false);
+  // const socket = io('http://localhost:4000');
+
 
   useEffect(() => {
     // Fetch users from the API
@@ -69,8 +72,11 @@ const CreateNotification = ({ user }) => {
         headers: { Authorization: elarniv_users_token },
       };
       const payloadData = { ...notification, userId: selectedUser };
-      console.log(payloadData, selectedUser);
+      // console.log(payloadData, selectedUser);
       const response = await axios.post(url, payloadData, payload);
+
+      // socket.emit('notification', payloadData)
+
       toast.success(response.data.message, {
         style: {
           border: "1px solid #4BB543",

@@ -11,11 +11,13 @@ import GeneralLoader from "@/utils/GeneralLoader";
 import { confirmAlert } from "react-confirm-alert";
 import { FaTrash } from "react-icons/fa"; // Importa el icono de eliminación aquí
 import TopBanner from "@/components/TopBanner/TopBanner";
+import io from "socket.io-client";
 
 const index = ({ user }) => {
   const { elarniv_users_token } = parseCookies();
   const [loading, setLoading] = useState(true);
   const [uniqueNotifications, setUniqueNotifications] = useState([]);
+  // const socket = io('http://localhost:4000');
 
   const fetchNotification = () => {
     // Agarra el JWT de la sesión, que tiene toda tu info actual
@@ -27,7 +29,7 @@ const index = ({ user }) => {
     };
 
     axios.get(url, payload).then((res) => {
-      console.log(res.data.payload);
+      // console.log(res.data.payload);
       const notifications = res.data.payload;
 
       // Filtra las notificaciones duplicadas por mensaje
@@ -77,6 +79,9 @@ const index = ({ user }) => {
         `${baseUrl}/api/notifications`,
         payload
       );
+
+      // socket.emit('notification', "asdfasdf")
+
       toast.success(response.data.message, {
         style: {
           border: "1px solid #4BB543",
