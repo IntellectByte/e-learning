@@ -8,6 +8,7 @@ const NotificationModal = ({
     userToken,
     onClearAll,
     onViewAll,
+    isLoading
 }) => {
     async function onClickNotification(notificationId) {
         // console.log(notification)
@@ -57,7 +58,13 @@ const NotificationModal = ({
                 style={{ width: '80%', margin: '0 auto' }}
             />
 
+
+            {isLoading && 'cargando'}
+
+
             <ul className='notification-list'>
+
+
                 {notifications.map((notification) =>
                     !notification.read ? (
                         <li key={notification.id} className='notification-item'>
