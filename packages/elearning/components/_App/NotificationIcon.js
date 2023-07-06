@@ -5,12 +5,25 @@ import axios from "axios";
 import baseUrl from "@/utils/baseUrl";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import io from 'socket.io-client';
 
 const NotificationIcon = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const { elarniv_users_token } = parseCookies();
   const router = useRouter();
+  // const socket = io('http://localhost:4000'); // Cambia la URL y el puerto según corresponda
+  //
+  // socket.on('connect', () => {
+  //   console.log('Conectado al servidor Socket.IO');
+  // });
+  //
+  // socket.on('client', (data) => {
+  //   console.log('notification', data)
+  //   fetchNotification()
+  // });
+
+
 
   const fetchNotification = () => {
     const url = `${baseUrl}/api/users/notification`;
@@ -47,10 +60,17 @@ const NotificationIcon = () => {
     router.push("/notification");
   };
 
+  // function emitNotification() {
+  //   socket.emit('notification', notifications)
+  // }
+
   return (
     <>
       <div className="notification-container">
-        <button onClick={toggleDropdown} className="notification-button">
+        <button onClick={() => {
+          toggleDropdown()
+          // emitNotification()
+        }} className="notification-button">
           <FiBell
             size={24}
             style={{ color: notifications.length > 0 ? "#CE417D" : "black" }}
