@@ -153,7 +153,7 @@ const Navbar = ({ user }) => {
                                                 >
                                                     {t('navTeacher', {
                                                         defaultValue:
-                                                            'Francisco',
+                                                            'Chef Francisco',
                                                     })}
                                                 </a>
                                             </Link>
