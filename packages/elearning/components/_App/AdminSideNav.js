@@ -291,6 +291,28 @@ const AdminSideNav = ({ user }) => {
                   </a>
                 </Link>
               </motion.li>
+              <motion.li
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10,
+                  }}
+              >
+                <Link href="/admin/purchases">
+                  <a
+                      className={
+                        currentRoute === "/admin/purchases" ? "active" : ""
+                      }
+                  >
+                    Manage subs
+                  </a>
+                </Link>
+              </motion.li>
+
             </ul>
           </div>
         </StickyBox>
