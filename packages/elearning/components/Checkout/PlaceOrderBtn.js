@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import LoadingSpinner from '@/utils/LoadingSpinner';
 import axios from 'axios';
-import toast from 'react-hot-toast';
 import {useRouter} from 'next/router';
 import {useDispatch, useSelector} from 'react-redux';
 import {calculateCartTotal} from '@/utils/calculateCartTotal';
-import {NavLink} from '@mantine/core';
-import Link from 'next/link';
 import baseUrl from 'utils/baseUrl.js';
 
 import {v4 as uuidv4} from "uuid";
@@ -22,7 +19,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     const fetchAccessToken = async () => {
 
         const script1 = document.getElementById('script-getnet');
-        if (script1){
+        if (script1) {
             script1.remove()
         }
 
@@ -43,15 +40,13 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
         try {
 
             const script1 = document.getElementById('script-getnet');
-            if (script1){
+            if (script1) {
                 script1.remove()
             }
 
             const {cartTotal} = calculateCartTotal(cartItems)
 
             const getnetItems = cartItems.map(e => {
-
-
 
                 return {
                     "name": e.title,
@@ -72,7 +67,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
 
             const script2 = document.getElementById('script-getnet');
-            if (script2){
+            if (script2) {
                 script2.remove()
             }
 
@@ -111,15 +106,12 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     }
 
 
-
-    useEffect( () => {
+    useEffect(() => {
 
         const script = document.getElementById('script-getnet');
-        if (script){
+        if (script) {
             script.remove()
         }
-
-
 
 
         fetchAccessToken()
@@ -134,7 +126,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
     useEffect(() => {
 
         const script = document.getElementById('script-getnet');
-        if (script){
+        if (script) {
             script.remove()
         }
 
@@ -150,7 +142,7 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
     const handleSubmit = () => {
 
-        console.log(purchase)
+        // console.log(purchase)
 
         dispatch({
             type: "PURCHASE_SEND",
@@ -161,8 +153,9 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
     return (
         <div>
-            <button onClick={handleSubmit} disabled={loading ? true : disabled} className={`default-btn-style-${btnColor} d-block w-100 mt-3 pay-button-getnet`}>
-                {inner} <span></span> {loading && <LoadingSpinner />}
+            <button onClick={handleSubmit} disabled={loading ? true : disabled}
+                    className={`default-btn-style-${btnColor} d-block w-100 mt-3 pay-button-getnet`}>
+                {inner} <span></span> {loading && <LoadingSpinner/>}
             </button>
         </div>
     );

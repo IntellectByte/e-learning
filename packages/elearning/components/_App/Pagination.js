@@ -22,7 +22,10 @@ const Pagination = ({totalItems, pageSize, onPageChange, fetchData}) => {
         return pageNumbers;
     };
 
-    return (<div className="pagination">
+    return (<div style={{
+        display: "flex",
+        flexDirection: "column"
+    }} className="pagination row">
         <ul>{renderPageNumbers()}</ul>
     </div>);
 };
