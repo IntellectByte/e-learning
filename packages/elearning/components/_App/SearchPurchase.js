@@ -20,7 +20,7 @@ const SearchUser = () => {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1)
     const [totalItems, setTotalItems] = useState(0)
-    const [pageSize, setPageSize] = useState(2)
+    const [pageSize, setPageSize] = useState(20)
 
     const handlePageChange = (pageNumber) => {
         console.log(pageNumber)
