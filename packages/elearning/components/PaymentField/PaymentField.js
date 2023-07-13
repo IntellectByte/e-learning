@@ -1,57 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, {useState, useEffect} from 'react';
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import PlaceOrderBtn from '@/components/Checkout/PlaceOrderBtn';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
-import { parseCookies } from 'nookies';
-import { useTranslation } from 'next-i18next';
-import { v4 as uuidv4 } from 'uuid';
+import {parseCookies} from 'nookies';
+import {useTranslation} from 'next-i18next';
+import {v4 as uuidv4} from 'uuid';
 import {useDispatch, useSelector} from 'react-redux';
 import cpfCheck from 'cpf-check';
 import phone from 'phone';
 import cep from 'cep-promise';
-import PhoneInput, { Flag } from 'react-phone-number-input';
+import PhoneInput, {Flag} from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
+import payment from "../../pages/learning/payment";
 
 
-const PaymentField = ({ user, onFormComplete }) => {
+const PaymentField = ({user, onFormComplete}) => {
     const dispatch = useDispatch()
-    const { elarniv_users_token } = parseCookies();
-    const { t } = useTranslation();
+    const {elarniv_users_token} = parseCookies();
+    const {t} = useTranslation();
     const [isMounted, setIsMounted] = React.useState(false);
-    const { cartItems } = useSelector((state) => state.cart);
+    const {cartItems} = useSelector((state) => state.cart);
     const cityRegex = /^([A-ZÀ-Ú][a-zà-ú]+[- ]?)+$/;
     const stateRegex = /^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/; // Regular expression for Brazilian state abbreviations
     const stateOptions = [
-        { value: '---', label: '----' },
-        { value: 'AC', label: 'AC' },
-        { value: 'AL', label: 'AL' },
-        { value: 'AP', label: 'AP' },
-        { value: 'AM', label: 'AM' },
-        { value: 'BA', label: 'BA' },
-        { value: 'CE', label: 'CE' },
-        { value: 'DF', label: 'DF' },
-        { value: 'ES', label: 'ES' },
-        { value: 'GO', label: 'GO' },
-        { value: 'MA', label: 'MA' },
-        { value: 'MT', label: 'MT' },
-        { value: 'MS', label: 'MS' },
-        { value: 'MG', label: 'MG' },
-        { value: 'PA', label: 'PA' },
-        { value: 'PB', label: 'PB' },
-        { value: 'PR', label: 'PR' },
-        { value: 'PE', label: 'PE' },
-        { value: 'PI', label: 'PI' },
-        { value: 'RJ', label: 'RJ' },
-        { value: 'RN', label: 'RN' },
-        { value: 'RS', label: 'RS' },
-        { value: 'RO', label: 'RO' },
-        { value: 'RR', label: 'RR' },
-        { value: 'SC', label: 'SC' },
-        { value: 'SP', label: 'SP' },
-        { value: 'SE', label: 'SE' },
-        { value: 'TO', label: 'TO' },
+        {value: '---', label: '----'},
+        {value: 'AC', label: 'AC'},
+        {value: 'AL', label: 'AL'},
+        {value: 'AP', label: 'AP'},
+        {value: 'AM', label: 'AM'},
+        {value: 'BA', label: 'BA'},
+        {value: 'CE', label: 'CE'},
+        {value: 'DF', label: 'DF'},
+        {value: 'ES', label: 'ES'},
+        {value: 'GO', label: 'GO'},
+        {value: 'MA', label: 'MA'},
+        {value: 'MT', label: 'MT'},
+        {value: 'MS', label: 'MS'},
+        {value: 'MG', label: 'MG'},
+        {value: 'PA', label: 'PA'},
+        {value: 'PB', label: 'PB'},
+        {value: 'PR', label: 'PR'},
+        {value: 'PE', label: 'PE'},
+        {value: 'PI', label: 'PI'},
+        {value: 'RJ', label: 'RJ'},
+        {value: 'RN', label: 'RN'},
+        {value: 'RS', label: 'RS'},
+        {value: 'RO', label: 'RO'},
+        {value: 'RR', label: 'RR'},
+        {value: 'SC', label: 'SC'},
+        {value: 'SP', label: 'SP'},
+        {value: 'SE', label: 'SE'},
+        {value: 'TO', label: 'TO'},
     ];
 
 
@@ -69,7 +70,8 @@ const PaymentField = ({ user, onFormComplete }) => {
                 const {phoneNumber} = phone(value);
                 return !!phoneNumber;
             })
-            .required('Phone number is required with country area code'),
+            // .required('Phone number is required with country area code'),
+            .required('Required'),
 
         streetNumber: Yup.string().required('Required'),
         street: Yup.string().required('Required'),
@@ -82,7 +84,7 @@ const PaymentField = ({ user, onFormComplete }) => {
             .matches(stateRegex, 'Invalid state abbreviation')
             .required('Required'),
         zipCode: Yup.string()
-            .test('zipCode-validation', 'Invalid zip code', async function(value) {
+            .test('zipCode-validation', 'Invalid zip code', async function (value) {
                 try {
                     const address = await cep(value.replace('-', ''));
                     return !!address;
@@ -124,9 +126,9 @@ const PaymentField = ({ user, onFormComplete }) => {
 
     const validateForm = async (values) => {
         try {
-            console.log(values);
+            // console.log(values);
 
-            await validationSchema.validate(values, { abortEarly: false });
+            await validationSchema.validate(values, {abortEarly: false});
 
             setTimeout(() => {
                 const script = document.getElementById('script-getnet');
@@ -134,7 +136,8 @@ const PaymentField = ({ user, onFormComplete }) => {
                 script.dataset.getnetCustomerDocumentType = values.doc;
                 script.dataset.getnetCustomerDocumentNumber =
                     values.documentNumber;
-                script.dataset.getnetCustomerPhoneNumber = values.phoneNumber;
+                script.dataset.getnetCustomerPhoneNumber = values.phoneNumber.replace(/[^\w\s]/gi, '');
+                // script.dataset.getnetCustomerPhoneNumber = values.phoneNumber;
                 script.dataset.getnetCustomerAddressStreetNumber =
                     values.streetNumber;
                 script.dataset.getnetCustomerAddressStreet = values.street;
@@ -167,33 +170,22 @@ const PaymentField = ({ user, onFormComplete }) => {
                     buyerDocType: script.dataset.getnetCustomerDocumentType,
                     buyerDocNumber: script.dataset.getnetCustomerDocumentNumber,
                     buyerAdressStreetNumber:
-                        script.dataset.getnetCustomerAddressStreetNumber,
+                    script.dataset.getnetCustomerAddressStreetNumber,
                     buyerPhoneNumber: script.dataset.getnetCustomerPhoneNumber,
                     buyerAdressStreet:
-                        script.dataset.getnetCustomerAddressStreet,
+                    script.dataset.getnetCustomerAddressStreet,
                     buyerAdressComplementary:
-                        script.dataset.getnetCustomerAddressComplementary,
+                    script.dataset.getnetCustomerAddressComplementary,
                     buyerAdressNeighborhood:
-                        script.dataset.getnetCustomerAddressNeighborhood,
+                    script.dataset.getnetCustomerAddressNeighborhood,
                     buyerAdressCity: script.dataset.getnetCustomerAddressCity,
                     buyerAdressState: script.dataset.getnetCustomerAddressState,
                     buyerAdressZipCode:
-                        script.dataset.getnetCustomerAddressZipcode,
+                    script.dataset.getnetCustomerAddressZipcode,
                     buyerCountry: script.dataset.getnetCustomerCountry,
                     items: JSON.parse(script.dataset.getnetItems),
                     paymentState: 'PENDANT',
                 };
-
-                // axios
-                //     .post(`${baseUrl}/api/purchases`, payment, {
-                //         headers: { authorization: elarniv_users_token },
-                //     })
-                //     .then((data) => {
-                //         // console.log(data)
-                //     })
-                //     .catch((err) => {
-                //         // console.log(err)
-                //     });
 
                 dispatch(
                     {
@@ -201,10 +193,13 @@ const PaymentField = ({ user, onFormComplete }) => {
                         data: payment
                     }
                 )
+                // console.log(payment)
 
             }, 2000);
 
             onFormComplete(true);
+
+
         } catch (error) {
             console.log(error)
             onFormComplete(false);
@@ -275,7 +270,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                             validateOnMount
                                             validate={validateForm}
                                         >
-                                            {({ isSubmitting }) => (
+                                            {({isSubmitting}) => (
                                                 <Form className='min-w'>
                                                     <div className='form-outline mb-4'>
                                                         {!user && <label htmlFor='customerFirstName'>
@@ -418,7 +413,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                         />
                                                     </div>
 
-                                                    <hr className='my-4 payment-field-border' />
+                                                    <hr className='my-4 payment-field-border'/>
 
                                                     <div className='form-outline'>
                                                         <Field
@@ -449,19 +444,22 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                         />
                                                     </div>
 
-                                                    <hr className='my-4 payment-field-border' />
+                                                    <hr className='my-4 payment-field-border'/>
 
                                                     <div
                                                         className='form-outline mb-4'>
 
                                                         <Field
                                                             name="phone"
-                                                            render={({ field, form }) => (
+                                                            render={({field, form}) => (
                                                                 <PhoneInput
                                                                     className={'phone-input'}
-                                                                    inputStyle={{ height: '45px' }}
-                                                                    dropdownStyle={{ marginTop: '4px', width: '10%' }}
-                                                                    countrySelectProps={{ style: { height: '45px' }, imgStyle: { height: '14px' } }}
+                                                                    inputStyle={{height: '45px'}}
+                                                                    dropdownStyle={{marginTop: '4px', width: '10%'}}
+                                                                    countrySelectProps={{
+                                                                        style: {height: '45px'},
+                                                                        imgStyle: {height: '14px'}
+                                                                    }}
                                                                     defaultCountry={"BR"}
                                                                     {...field}
                                                                     placeholder="Enter phone number"
@@ -496,7 +494,7 @@ const PaymentField = ({ user, onFormComplete }) => {
                                                         />
                                                     </div>
 
-                                                    <hr className='my-4 payment-field-border' />
+                                                    <hr className='my-4 payment-field-border'/>
 
                                                     <h5 className='mb-4'>
                                                         {t(

@@ -64,7 +64,7 @@ const cartReducer = (state = initialState, action) => {
 				purchase: action.data
 			}
 			case types.PURCHASE_SEND:
-			console.log(action)
+			// console.log(action)
 
 			const {elarniv_users_token} = parseCookies()
 
