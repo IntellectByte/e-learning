@@ -1,33 +1,40 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
+import styles from './pagination.module.css';
 
-const Pagination = ({totalItems, pageSize, onPageChange, fetchData}) => {
-    const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({ totalItems, pageSize, onPageChange, fetchData }) => {
+    const [currentPage, setCurrentPage] = useState(0);
     const totalPages = Math.ceil(totalItems / pageSize);
 
-    const handlePageChange = (pageNumber) => {
-        if (pageNumber >= 1 && pageNumber <= totalPages) {
-            onPageChange(pageNumber);
-        }
+    const handlePageChange = ({ selected }) => {
+        setCurrentPage(selected);
+        onPageChange(selected + 1);
     };
 
-    const renderPageNumbers = () => {
-        const pageNumbers = [];
-        for (let i = 1; i <= totalPages; i++) {
-            pageNumbers.push(<li key={i} className={currentPage === i ? 'active' : ''}>
-                <button onClick={() => {
-                    handlePageChange(i)
-                }}>{i}</button>
-            </li>);
-        }
-        return pageNumbers;
-    };
+    useEffect(() => {
+        setCurrentPage(0);
+    }, [totalItems, pageSize]);
 
-    return (<div style={{
-        display: "flex",
-        flexDirection: "column"
-    }} className="pagination row">
-        <ul>{renderPageNumbers()}</ul>
-    </div>);
+    return (
+        <div className='pagination'>
+            <ReactPaginate
+                previousLabel={'Previous'}
+                nextLabel={'Next'}
+                breakLabel={'...'}
+                breakClassName={styles.paginationBreak}
+                pageCount={totalPages}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageChange}
+                containerClassName={styles.pagination}
+                activeClassName={styles.active}
+                pageClassName={styles.paginationLink}
+                previousClassName={styles.paginationLink}
+                nextClassName={styles.paginationLink}
+                forcePage={currentPage}
+            />
+        </div>
+    );
 };
 
 export default Pagination;
