@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { parseCookies } from 'nookies';
 import GeneralLoader from '@/utils/GeneralLoader';
-import ManageRaw from '@/components/Admin/ManageRaw';
 import axios from 'axios';
 import baseUrl from '@/utils/baseUrl';
-import toast from "react-hot-toast";
-import PurchaseRaw from "@/components/Admin/PurchaseRaw";
-import Pagination from "@/components/_App/Pagination";
+import toast from 'react-hot-toast';
+import PurchaseRaw from '@/components/Admin/PurchaseRaw';
+import Pagination from '@/components/_App/Pagination';
 
 const SearchUser = () => {
     const [search, setSearch] = useState('');
@@ -18,29 +16,29 @@ const SearchUser = () => {
     const { elarniv_users_token } = parseCookies();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(1)
-    const [totalItems, setTotalItems] = useState(0)
-    const [pageSize, setPageSize] = useState(20)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+    const pageSize = 5; // Number of items per page
 
     const handlePageChange = (pageNumber) => {
-        console.log(pageNumber)
-        setPage(pageNumber);
+        setCurrentPage(pageNumber);
     };
 
     const fetchData = async () => {
         setLoading(true);
         try {
-
             const payload = {
                 headers: { Authorization: elarniv_users_token },
             };
 
-            const response = await axios.get(`${baseUrl}/api/purchases/get-all-purchases?page=${page}&pageSize=${pageSize}&search=${search}`, payload);
-            setUsers(response.data.purchases)
-            console.log(response.data.purchases)
+            const response = await axios.get(
+                `${baseUrl}/api/purchases/get-all-purchases?page=${currentPage}&pageSize=${pageSize}&search=${search}`,
+                payload
+            );
+            setUsers(response.data.purchases);
+            console.log(response.data.purchases);
 
-            setTotalItems(response.data.totalCount)
-            setPageSize(response.data.pageSize)
+            setTotalItems(response.data.totalCount);
 
             setLoading(false);
         } catch (err) {
@@ -67,7 +65,7 @@ const SearchUser = () => {
 
     useEffect(() => {
         fetchData();
-    }, [page]);
+    }, [currentPage]);
 
     useEffect(() => {
         setIsMounted(true);
@@ -75,7 +73,6 @@ const SearchUser = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-
 
         try {
             setLoading(true);
@@ -85,20 +82,17 @@ const SearchUser = () => {
             };
 
             const response = await axios.get(
-                `${baseUrl}/api/purchases/get-all-purchases?page=${1}&search=${search}&pageSize=${pageSize}`, payload
+                `${baseUrl}/api/purchases/get-all-purchases?page=${1}&search=${search}&pageSize=${pageSize}`,
+                payload
             );
 
-            setPage(response.data.page)
-
             setUsers(response.data.purchases);
-            setTotalItems(response.data.totalCount)
-            setPageSize(response.data.pageSize)
-            console.log(response.data);
+            setTotalItems(response.data.totalCount);
+            setCurrentPage(1);
 
             setLoading(false);
         } catch (err) {
-
-            setUsers([])
+            setUsers([]);
 
             let {
                 response: {
@@ -119,7 +113,6 @@ const SearchUser = () => {
             setLoading(false);
         }
     };
-
 
     return (
         <>
@@ -174,21 +167,16 @@ const SearchUser = () => {
                                         <th scope='col'>Subscribed</th>
                                         <th scope='col'>Items</th>
                                         <th scope='col'>Status</th>
-                                        {/* <th scope='col'>Text</th> */}
-                                        {/*<th scope='col'>Action</th>*/}
-                                        {/*<th scope='col'>Submit</th>*/}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {users.length > 0 ? (
-                                        users.map(
-                                            (user) => (
-                                                <PurchaseRaw
-                                                    key={user.id}
-                                                    {...user}
-                                                />
-                                            )
-                                        )
+                                        users.map((user) => (
+                                            <PurchaseRaw
+                                                key={user.id}
+                                                {...user}
+                                            />
+                                        ))
                                     ) : (
                                         <tr>
                                             <td
