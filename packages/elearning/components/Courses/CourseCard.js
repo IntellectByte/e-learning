@@ -86,11 +86,18 @@ const CourseCard = ({
                             <>
                                 {before_price > 0 && (
                                     <div className='price shadow discount-price'>
-                                        <del>${before_price}</del>
+                                        <del>R${before_price}</del>
                                     </div>
                                 )}
                                 <div className='price shadow'>
-                                    <span>${latest_price}</span>
+                                    <span
+                                        style={{
+                                            fontSize: '14px',
+                                            textAlign: 'center',
+                                        }}
+                                    >
+                                        R${latest_price}
+                                    </span>
                                 </div>
                             </>
                         </div>
