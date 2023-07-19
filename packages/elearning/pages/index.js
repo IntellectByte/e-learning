@@ -89,7 +89,6 @@
 
 // export default Index;
 import React from 'react';
-import styles from './lulz.module.css';
 
 const index = () => {
     return (
@@ -129,7 +128,7 @@ const index = () => {
             >
                 LulzSec - 'Às vezes é melhor negociar para não chorar'
             </span>
-            <div className={styles.pepe}>
+            <div className='pepe'>
                 <p style={{ color: 'transparent' }}>
                     {' '}
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
