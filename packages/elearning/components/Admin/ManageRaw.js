@@ -101,7 +101,7 @@ const StudentsRaw = ({
             setLoading(false);
             toast.success("Enroled successfully.")
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             let {
                 response: {
                     data: {message},

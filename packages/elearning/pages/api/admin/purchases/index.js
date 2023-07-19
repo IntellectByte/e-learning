@@ -25,7 +25,7 @@ const purchaseCreate = async (req, res) => {
 
     const {purchase} = req.body;
 
-    console.log(purchase)
+    // console.log(purchase)
 
     try {
         const newPurchase = await Purchase.create(purchase);
