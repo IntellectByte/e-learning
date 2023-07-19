@@ -39,6 +39,8 @@ const StudentsRaw = (purchase) => {
       <td>{purchase.items.length > 0 && purchase.items[0].type === 'sub' ? purchase.items[0].type.toUpperCase() : "No"}</td>
       <td>{purchase.items.map(e => <div style={{ marginBottom: '5px' }}>{e.name}</div>)}</td>
       <td>{purchase.paymentState === "SUCCESS" ? "PAGADO" : "N/A"}</td>
+        <td>{purchase.paymentType}</td>
+        <td>{new Date(purchase.updated_at).toLocaleDateString()}</td>
       {/* <td>
                 <div className='max-300px max-height-60'>
                     {bio ? bio : 'N/A'}

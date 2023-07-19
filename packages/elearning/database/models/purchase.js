@@ -90,6 +90,13 @@ const initPurchase = (sequelize, Types) => {
                 defaultValue: 'PENDANT',
                 // allowNull: false,
             },
+            paymentType: {
+                type: Types.ENUM,
+                values: ['get-net credito/debito', 'Manually added'],
+                defaultValue: 'Manually added',
+                // allowNull: false,
+            },
+
         },
         {
             sequelize,
@@ -99,9 +106,6 @@ const initPurchase = (sequelize, Types) => {
             updatedAt: "updated_at",
         }
     );
-
-    // sequelize.sync({ force: false })
-    //     .then(() => console.log("holanda"));
 
     return Purchase;
 };

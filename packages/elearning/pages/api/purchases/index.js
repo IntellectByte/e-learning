@@ -144,6 +144,7 @@ const validatePurchase = (purchase) => {
         buyerCountry: Joi.string().required(),
         items: Joi.array().required(),
         paymentState: Joi.string().valid('SUCCESS', 'FAILED', 'PENDANT').required(),
+        paymentType: Joi.string().valid('get-net credito/debito', 'Manually added').required(),
     });
     return schema.validate(purchase);
 };
