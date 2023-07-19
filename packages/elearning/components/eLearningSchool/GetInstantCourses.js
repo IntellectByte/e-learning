@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
 
 const GetInstantCourses = ({ user }) => {
     const [email, setEmail] = useState('');
     const { t } = useTranslation();
     const [isMounted, setIsMounted] = useState(false);
-    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        router.push('/francisco/');
-
-        const audienceId = '30ec86df3b';
+        window.open(
+            'https://www.youtube.com/watch?v=WO-suAVDztk',
+            '_blank',
+            'noopener noreferrer'
+        );
+        const audienceId = '30ec86df3b'; // Clase Gratuita Audience
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
