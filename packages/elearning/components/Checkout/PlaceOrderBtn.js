@@ -144,12 +144,13 @@ const PlaceOrderBtn = ({user, cartItems, disabled, inner, btnColor}) => {
 
         // console.log(purchase)
 
+        purchase["paymentType"] = 'get-net credito/debito'
+
         dispatch({
             type: "PURCHASE_SEND",
             data: purchase
         })
     }
-
 
     return (
         <div>

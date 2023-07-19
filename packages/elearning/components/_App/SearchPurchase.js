@@ -167,6 +167,8 @@ const SearchUser = () => {
                                         <th scope='col'>Subscribed</th>
                                         <th scope='col'>Items</th>
                                         <th scope='col'>Status</th>
+                                        <th scope='col'>Alta</th>
+                                        <th scope='col'>Fecha</th>
                                     </tr>
                                 </thead>
                                 <tbody>
