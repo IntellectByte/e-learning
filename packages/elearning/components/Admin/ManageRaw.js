@@ -39,7 +39,7 @@ const StudentsRaw = ({
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const handleSelectChange = (selected) => {
-        setSelectedOptions(dropdownOptions);
+        setSelectedOptions(selected);
     };
 
     const handleSubmit = async () => {
