@@ -191,7 +191,7 @@ const SearchUser = () => {
                         <GeneralLoader />
                     ) : (
                         <div className='table-responsive'>
-                            <table className='table align-middle table-hover fs-14'>
+                            <table style={{marginBottom: '20%'}} className='table align-middle table-hover fs-14'>
                                 <thead>
                                     <tr>
                                         <th scope='col'>Name</th>

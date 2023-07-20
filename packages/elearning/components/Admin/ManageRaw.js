@@ -39,7 +39,7 @@ const StudentsRaw = ({
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const handleSelectChange = (selected) => {
-        setSelectedOptions(selected);
+        setSelectedOptions(dropdownOptions);
     };
 
     const handleSubmit = async () => {
@@ -72,7 +72,7 @@ const StudentsRaw = ({
 
 
             const purchase = {
-                id: "alkjsdflkajsdf",
+                id: v4(),
                 userId: id,
                 amount: items.map(e => e.value).reduce((a, b) => a + b),
                 buyerEmail: email,
@@ -139,12 +139,12 @@ const StudentsRaw = ({
                         <div>Loading...</div>
                     ) : (
                         <Select
+                            onChange={handleSelectChange}
                             options={dropdownOptions}
                             value={selectedOptions}
                             multi
-                            onChange={handleSelectChange}
                             closeMenuOnSelect={false}
-                            clearable={false}
+                            clearable={true}
                         />
                     )}
                 </div>
