@@ -9226,3 +9226,31 @@ Go Top CSS
         font-size: 16px;
     }
 }
+
+.notification-icon-noti {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+    right: -21px;
+
+    color: var(--btn-color);
+}
+
+.notification-count {
+    position: absolute;
+    right: -13px;
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #ffffff;
+    background-color: var(--btn-color);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.notification-button {
+    margin-bottom: 27px;
+}
