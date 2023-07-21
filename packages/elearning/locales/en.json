@@ -216,5 +216,6 @@
     "confirm-email-textone": "Please enter Email address.",
     "confirm-email-send-email": "Send Confirmation Email",
     "forgotpasspage-textone": "Please enter your email and the token that you received in your email address.",
-    "forgotpasspage-reset-pass": "Reset Password"
+    "forgotpasspage-reset-pass": "Reset Password",
+    "course-overview-about": "About this course"
 }
