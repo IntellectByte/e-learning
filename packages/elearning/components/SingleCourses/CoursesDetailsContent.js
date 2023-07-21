@@ -11,6 +11,7 @@ import { formatDate } from '@/utils/helper';
 import BuyCourseBtn from './BuyCourseBtn';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'next-i18next';
+//
 
 const CoursesDetailsContent = ({ user: current_user, course }) => {
     const {
@@ -67,7 +68,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                 )}
                                             </li>
 
-                                            <li>
+                                            {/* <li>
                                                 <i className='bx bx-calendar'></i>
                                                 <span>
                                                     {t('course-page-span3', {
@@ -80,7 +81,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                         {formatDate(updated_at)}
                                                     </a>
                                                 </Link>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                 </div>

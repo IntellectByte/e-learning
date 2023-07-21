@@ -28,7 +28,6 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
         setIsMounted(true);
     }, []);
 
-
     useEffect(() => {
         const courseExist = cartItems.find((cart) => {
             return course.id === cart.id;
@@ -171,7 +170,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                     </div>
                                 </li>
 
-                                <li>
+                                {/* <li>
                                     <div className='d-flex justify-content-between align-items-center'>
                                         <span>
                                             <i className='flaticon-html'></i>{' '}
@@ -181,7 +180,7 @@ const CoursesDetailsSidebar = ({ current_user, course, onCoupon }) => {
                                         </span>
                                         English
                                     </div>
-                                </li>
+                                </li> */}
 
                                 <li>
                                     <div className='d-flex justify-content-between align-items-center'>
