@@ -84,5 +84,5 @@ export {
     HotmartUser,
 	Notification,
 	Purchase,
-	Subscription
+	Subscription,
 };
