@@ -22,8 +22,23 @@ const SubscribePlanComponent = () => {
     function fetchData() {
         axios.get(`${baseUrl}/api/subscriptions`)
             .then(res => {
-                setSubs(res.data);
+                // setPerks(res.data.perks);
                 // console.log(subs)
+                const subs1 = res.data.subs
+                const perks = res.data.perks
+
+                subs1.forEach(sub => {
+                    sub["perks"] = []
+                    perks.forEach(perk => {
+                        if (perk.subscriptionId === sub.id) {
+                            sub.perks.push(perk)
+                        }
+                    })
+                })
+
+                // console.log(subs1)
+                setSubs(subs1);
+
             })
             .catch(err => console.error('Error fetching data:', err))
     }
@@ -124,7 +139,7 @@ const SubscribePlanComponent = () => {
                             id='custom-pricing-component'
                             data={sub.perks}
 
-                            price={sub.price/12}
+                            price={sub.price / 12}
                             duration='ano'
                             background={sub.background}
                             shadow='#F5BCD7'

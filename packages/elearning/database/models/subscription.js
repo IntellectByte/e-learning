@@ -1,5 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import connection from "../connection";
+import SubscriptionPerk from "@/database/models/subscription_perk";
+import Subscription_Perk from "@/database/models/subscription_perk";
 
 const initSubscription = (sequelize, Types) => {
 	class Subscription extends Model {
@@ -10,6 +12,10 @@ const initSubscription = (sequelize, Types) => {
 		 */
 		static associate(models) {
 			// define association here
+			Subscription.hasMany(Subscription_Perk, {
+				foreignKey: 'subscriptionId',
+				as: 'subscriptionPerks',
+			});
 		}
 	}
 	Subscription.init(
@@ -26,7 +32,7 @@ const initSubscription = (sequelize, Types) => {
 			duration: DataTypes.STRING,
 			instructor: DataTypes.STRING,
 			type: DataTypes.STRING,
-			perks: DataTypes.JSON,
+			// perks: DataTypes.JSON,
 			background: DataTypes.STRING
 		},
 		{
@@ -38,6 +44,11 @@ const initSubscription = (sequelize, Types) => {
 		}
 	);
 
+
+	// sequelize
+	//     .sync()
+	//     .then(() => console.log("sinc"))
+	//     .catch((err) => console.log(err));
 
 	return Subscription;
 };

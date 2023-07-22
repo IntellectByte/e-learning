@@ -36,10 +36,10 @@ const initBanner = (sequelize, Types) => {
         }
     );
 
-    sequelize
-        .sync()
-        .then(() => console.log("sinc"))
-        .catch((err) => console.log(err));
+    // sequelize
+    //     .sync()
+    //     .then(() => console.log("sinc"))
+    //     .catch((err) => console.log(err));
 
     return Banner;
 };
