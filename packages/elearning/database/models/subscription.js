@@ -32,6 +32,7 @@ const initSubscription = (sequelize, Types) => {
 			duration: DataTypes.STRING,
 			instructor: DataTypes.STRING,
 			type: DataTypes.STRING,
+			access_time: DataTypes.STRING,
 			// perks: DataTypes.JSON,
 			background: DataTypes.STRING
 		},
