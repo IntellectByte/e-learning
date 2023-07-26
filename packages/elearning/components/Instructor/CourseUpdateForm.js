@@ -358,7 +358,7 @@ const CourseUpdateForm = ({ courseData }) => {
                     </div>
                 </div>
 
-                <div className='col-md-6'>
+                {/* <div className='col-md-6'>
                     <div className='form-group'>
                         <label className='form-label fw-semibold'>
                             Course Category
@@ -378,7 +378,7 @@ const CourseUpdateForm = ({ courseData }) => {
                                 ))}
                         </select>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='col-md-12'>
                     <div className='form-group'>
