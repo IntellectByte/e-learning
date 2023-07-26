@@ -337,7 +337,7 @@ const CourseCreateForm = ({ btnText, is_class }) => {
                     </div>
                 </div>
 
-                <div className='col-md-6'>
+                {/* <div className='col-md-6'>
                     <div className='form-group'>
                         <label className='form-label fw-semibold'>
                             Course Category
@@ -357,7 +357,7 @@ const CourseCreateForm = ({ btnText, is_class }) => {
                                 ))}
                         </select>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='col-md-12'>
                     <div className='form-group'>

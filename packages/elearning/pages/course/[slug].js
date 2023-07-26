@@ -54,12 +54,12 @@ export default function SingleCoursesPage({ user }) {
 
             <Navbar user={user} />
 
-            <PageBanner
+            {/* <PageBanner
                 pageTitle={course && course.title}
                 homePageUrl='/'
                 homePageText='Home'
                 activePageText={course && course.title}
-            />
+            /> */}
 
             {course && <CoursesDetailsContent user={user} course={course} />}
 

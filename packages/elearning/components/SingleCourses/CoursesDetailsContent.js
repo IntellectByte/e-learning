@@ -47,9 +47,19 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                             <div className='row align-items-center'>
                                 <div className='col-lg-8 col-md-12'>
                                     <div className='courses-title'>
-                                        <p>{short_desc}</p>
+                                        <p
+                                            style={{
+                                                color: '#CE417D',
+                                                textTransform: 'uppercase',
+                                                fontWeight: 'bold',
+                                                fontSize: '14px',
+                                                textDecoration: 'underline',
+                                            }}
+                                        >
+                                            {short_desc}
+                                        </p>
                                     </div>
-                                    <div className='courses-meta'>
+                                    {/* <div className='courses-meta'>
                                         <ul>
                                             <li>
                                                 <i className='bx bx-folder-open'></i>
@@ -68,7 +78,7 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                 )}
                                             </li>
 
-                                            {/* <li>
+                                            <li>
                                                 <i className='bx bx-calendar'></i>
                                                 <span>
                                                     {t('course-page-span3', {
@@ -81,9 +91,9 @@ const CoursesDetailsContent = ({ user: current_user, course }) => {
                                                         {formatDate(updated_at)}
                                                     </a>
                                                 </Link>
-                                            </li> */}
+                                            </li>
                                         </ul>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className='col-lg-4 col-md-12'>
