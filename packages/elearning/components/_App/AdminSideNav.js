@@ -140,6 +140,31 @@ const AdminSideNav = ({ user }) => {
                   damping: 10,
                 }}
               >
+                <Link href="/admin/subscriptions/">
+                  <a
+                    className={
+                      currentRoute === "/admin/subscriptions" ||
+                      currentRoute === "/admin/subscriptions/site-admins"
+                        ? "active"
+                        : ""
+                    }
+                  >
+                    Subscriptions
+                  </a>
+                </Link>
+              </motion.li>
+
+              <motion.li
+                whileHover={{
+                  scale: 1.05,
+                }}
+                whileTap={{ scale: 0.9 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10,
+                }}
+              >
                 <Link href="/admin/partners/">
                   <a
                     className={
