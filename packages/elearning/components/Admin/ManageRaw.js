@@ -82,7 +82,7 @@ const StudentsRaw = ({
                 return courses.find(a => a.id === e.value)
             })
 
-            const selectedSubscription = subs.find(e => e.id === selectedSub.value)
+            const selectedSubscription = selectedSub && subs.find(e => e.id === selectedSub.value)
 
 
             const items = !selectedSub ? selectedCourses.map(e => {
@@ -139,7 +139,7 @@ const StudentsRaw = ({
             setLoading(false);
             toast.success("Enroled successfully.")
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             let {
                 response: {
                     data: {message},
