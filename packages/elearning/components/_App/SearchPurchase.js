@@ -36,7 +36,7 @@ const SearchUser = () => {
                 payload
             );
             setUsers(response.data.purchases);
-            console.log(response.data.purchases);
+            // console.log(response.data.purchases);
 
             setTotalItems(response.data.totalCount);
 
