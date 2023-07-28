@@ -19,6 +19,8 @@ const StudentsRaw = ({
                          course,
                      }) => {
     const [courses, setCourses] = useState([]);
+    const [subs, setSubs] = useState([]);
+    const [selectedSub, setSelectedSub] = useState("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -31,16 +33,39 @@ const StudentsRaw = ({
         fetchCourses();
     }, []);
 
+    useEffect(() => {
+        const fetchSubs = async () => {
+            const response = await axios.get(`${baseUrl}/api/subscriptions`);
+            const data = response.data;
+            setSubs(data.subs);
+            setLoading(false);
+        };
+        fetchSubs();
+    }, []);
+
     const dropdownOptions = courses.map((course) => ({
         value: course.id,
         label: course.title,
     }));
 
+    const dropdownSubsOptions = subs.map((sub) => ({
+        value: sub.id,
+        label: sub.title,
+    }));
+
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [isntSuscriber, setIsntSuscriber] = useState(false);
 
     const handleSelectChange = (selected) => {
         setSelectedOptions(selected);
+        setIsntSuscriber(selected.length > 0 ? true : false)
     };
+
+    function handleSelectSubsChange(selected) {
+        setSelectedOptions(dropdownOptions);
+        setSelectedSub(selected[0])
+        // console.log(selected[0])
+    }
 
     const handleSubmit = async () => {
         try {
@@ -57,7 +82,10 @@ const StudentsRaw = ({
                 return courses.find(a => a.id === e.value)
             })
 
-            const items = selectedCourses.map(e => {
+            const selectedSubscription = selectedSub && subs.find(e => e.id === selectedSub.value)
+
+
+            const items = !selectedSub ? selectedCourses.map(e => {
                 return {
                     id: e.id,
                     sku: "",
@@ -66,9 +94,19 @@ const StudentsRaw = ({
                     value: e.latest_price,
                     quantity: 1,
                     instructor: "Francisco Sant'Ana",
-                    description: e.short_desc
+                    description: e.short_desc,
                 }
-            })
+            }) : [{
+                id: selectedSubscription.id,
+                sku: "",
+                name: selectedSubscription.title,
+                image: selectedSubscription.image,
+                value: selectedSubscription.price,
+                quantity: 1,
+                instructor: "Francisco Sant'Ana",
+                description: "",
+                type: "sub"
+            }]
 
 
             const purchase = {
@@ -101,7 +139,7 @@ const StudentsRaw = ({
             setLoading(false);
             toast.success("Enroled successfully.")
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             let {
                 response: {
                     data: {message},
@@ -122,6 +160,7 @@ const StudentsRaw = ({
         }
     };
 
+
     return (
         <tr>
             <td>{`${first_name} ${last_name}`}</td>
@@ -139,6 +178,23 @@ const StudentsRaw = ({
                         <div>Loading...</div>
                     ) : (
                         <Select
+                            disabled={isntSuscriber}
+                            onChange={handleSelectSubsChange}
+                            options={dropdownSubsOptions}
+                            value={selectedOptions}
+                            closeMenuOnSelect={false}
+                            clearable={true}
+                        />
+                    )}
+                </div>
+            </td>
+            <td>
+                <div>
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : (
+                        <Select
+                            disabled={selectedSub}
                             onChange={handleSelectChange}
                             options={dropdownOptions}
                             value={selectedOptions}
@@ -149,6 +205,7 @@ const StudentsRaw = ({
                     )}
                 </div>
             </td>
+
             <td>
                 <button
                     onClick={handleSubmit}

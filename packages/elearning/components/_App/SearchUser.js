@@ -199,7 +199,8 @@ const SearchUser = () => {
                                         <th scope='col'>Phone</th>
                                         <th scope='col'>Email Confirmed</th>
                                         {/* <th scope='col'>Text</th> */}
-                                        <th scope='col'>Action</th>
+                                        <th scope='col'>Planos</th>
+                                        <th scope='col'>Cursos</th>
                                         <th scope='col'>Submit</th>
                                     </tr>
                                 </thead>
