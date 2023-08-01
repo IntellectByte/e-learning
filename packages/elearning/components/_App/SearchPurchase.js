@@ -18,7 +18,15 @@ const SearchUser = () => {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
-    const pageSize = 5; // Number of items per page
+    const pageSize = 5;
+
+    const defaultFilter = 'name';
+    const [filter, setFilter] = useState(defaultFilter);
+    const [filterOptions, setFilterOptions] = useState({});
+
+    const handleFilterChange = (e) => {
+        setFilter(e.target.value);
+    };
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -36,11 +44,18 @@ const SearchUser = () => {
                 payload
             );
             setUsers(response.data.purchases);
-            // console.log(response.data.purchases);
 
             setTotalItems(response.data.totalCount);
 
             setLoading(false);
+
+            const optionsMap = {};
+            response.data.purchases.forEach((user) => {
+                if (user.items.length > 0) {
+                    optionsMap[user.items[0].name] = `users[0].items[0].name`;
+                }
+            });
+            setFilterOptions(optionsMap);
         } catch (err) {
             let {
                 response: {
@@ -70,6 +85,13 @@ const SearchUser = () => {
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
+    const filteredUsers = users.filter((user) => {
+        if (filter === 'name') {
+            return user.items.length > 0 && user.items[0].name;
+        }
+        return true;
+    });
 
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -138,6 +160,31 @@ const SearchUser = () => {
                             }}
                         />
 
+                        <select
+                            value={filter}
+                            onChange={handleFilterChange}
+                            style={{
+                                border: '2px solid #ccc',
+                                borderRadius: '5px',
+                                padding: '10px 20px',
+                                fontSize: '16px',
+                                width: '30%',
+                                boxSizing: 'border-box',
+                                marginTop: '10px',
+                                position: 'relative',
+                                left: '10px',
+                            }}
+                        >
+                            {Object.keys(filterOptions).map((optionKey) => (
+                                <option
+                                    key={filterOptions[optionKey]}
+                                    value={optionKey}
+                                >
+                                    {optionKey}
+                                </option>
+                            ))}
+                        </select>
+
                         <button
                             type='submit'
                             style={{
@@ -148,6 +195,8 @@ const SearchUser = () => {
                                 borderRadius: '5px',
                                 marginLeft: '10px',
                                 cursor: 'pointer',
+                                position: 'relative',
+                                left: '10px',
                             }}
                         >
                             <i className='flaticon-search'></i>
@@ -172,8 +221,8 @@ const SearchUser = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {users.length > 0 ? (
-                                        users.map((user) => (
+                                    {filteredUsers.length > 0 ? ( // Use filteredUsers here
+                                        filteredUsers.map((user) => (
                                             <PurchaseRaw
                                                 key={user.id}
                                                 {...user}

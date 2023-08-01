@@ -10,7 +10,7 @@ import { parseCookies } from 'nookies';
 import GeneralLoader from '@/utils/GeneralLoader';
 import TopBanner from '@/components/TopBanner/TopBanner';
 import SearchUser from '@/components/_App/SearchUser';
-import SearchPurchase from "@/components/_App/SearchPurchase";
+import SearchPurchase from '@/components/_App/SearchPurchase';
 
 const Index = ({ user }) => {
     const { elarniv_users_token } = parseCookies();
