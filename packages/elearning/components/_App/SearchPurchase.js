@@ -7,6 +7,7 @@ import baseUrl from '@/utils/baseUrl';
 import toast from 'react-hot-toast';
 import PurchaseRaw from '@/components/Admin/PurchaseRaw';
 import Pagination from '@/components/_App/Pagination';
+import {Parser} from "json2csv";
 
 const SearchUser = () => {
     const [search, setSearch] = useState('');
@@ -136,6 +137,26 @@ const SearchUser = () => {
         }
     };
 
+    function handleCsvDownload() {
+
+        if (users.length < 1){
+            return alert("No se han encontrado tickets!")
+        }
+
+        const json2csvParser = new Parser();
+        const csvData = json2csvParser.parse(users);
+
+        // console.log(csvData)
+        const csvBlob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+        const csvUrl = URL.createObjectURL(csvBlob);
+        const hiddenElement = document.createElement('a');
+
+        hiddenElement.href = csvUrl;
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'users.csv';
+        hiddenElement.click();
+    }
+
     return (
         <>
             {isMounted && (
@@ -240,6 +261,11 @@ const SearchUser = () => {
                                     )}
                                 </tbody>
                             </table>
+                            <button
+                            onClick={handleCsvDownload}
+                            >
+                                Descargar como CSV
+                            </button>
                             <Pagination
                                 totalItems={totalItems}
                                 pageSize={pageSize}
